@@ -9,6 +9,7 @@
     <string name="_4_5">4.5</string>
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
+<<<<<<< HEAD
     <string name="edit_profile_text">Edit profile</string>
     <string name="my_account_profile_text">My Account</string>
     <string name="bookings_history_profile">Bookings History</string>
@@ -16,4 +17,9 @@
     <string name="privacy_policy_profile">Privacy Policy</string>
     <string name="logout_profile">Logout</string>
     <string name="tool_bar_profile">Profile</string>
+=======
+    <string name="congratulations">Congratulations!</string>
+    <string name="go_back_to_home">Go Back to Home</string>
+    <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+>>>>>>> 2ff267c089e4f305104bbb0c7b0a8bdd500fa377
 </resources>
