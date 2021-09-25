@@ -1,10 +1,11 @@
-package com.example.hbapplicationgroupb
+package com.example.hbapplicationgroupb.ui.onboarding_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.hbapplicationgroupb.R
 
 
 class BoardingFragment01 : Fragment() {
