@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/splashScreenFragment">
 
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.hbapplicationgroupb.ui.splashscreen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboardingFragment01"
+            app:destination="@id/onboardingFragment01" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment01"
+        android:name="com.example.hbapplicationgroupb.ui.onboarding_screen.BoardingFragment01"
+        android:label="fragment_onboarding01"
+        tools:layout="@layout/fragment_onboarding01" >
+        <action
+            android:id="@+id/action_onboardingFragment01_to_boardingFragment02"
+            app:destination="@id/boardingFragment02" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardingFragment02"
+        android:name="com.example.hbapplicationgroupb.BoardingFragment02"
+        android:label="fragment_boarding02"
+        tools:layout="@layout/fragment_boarding02" >
+        <action
+            android:id="@+id/action_boardingFragment02_to_boardingFragment03"
+            app:destination="@id/boardingFragment03" />
+    </fragment>
+    <fragment
+        android:id="@+id/boardingFragment03"
+        android:name="com.example.hbapplicationgroupb.BoardingFragment03"
+        android:label="fragment_boarding03"
+        tools:layout="@layout/fragment_boarding03" />
 </navigation>
