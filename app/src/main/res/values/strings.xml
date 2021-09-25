@@ -9,4 +9,7 @@
     <string name="_4_5">4.5</string>
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="go_back_to_home">Go Back to Home</string>
+    <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
 </resources>
