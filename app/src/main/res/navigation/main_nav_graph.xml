@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph"
-    app:startDestination="@id/exploreFragment">
+    android:id="@+id/main_nav_graph">
 
-    <fragment
-        android:id="@+id/exploreFragment"
-        android:name="com.example.hbapplicationgroupb.ExploreFragment"
-        android:label="Explore Fragment"
-        tools:layout="@layout/fragment_explore" />
-    <fragment
-        android:id="@+id/wishListFragment"
-        android:name="com.example.hbapplicationgroupb.WishListFragment"
-        android:label="WishList Fragment"
-        tools:layout="@layout/fragment_wish_list" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.hbapplicationgroupb.ProfileFragment"
-        android:label="Profile Fragment"
-        tools:layout="@layout/fragment_profile" />
 </navigation>

@@ -29,11 +29,6 @@ class MainActivityTest{
         stringToBeTyped = "Espresso"
     }
 
-    @Test
-    fun checkMainActivityVisibility(){
-        onView(withId(R.id.mainActivityLayoutId)).check(matches(isDisplayed()))
-    }
-
     /**
      * perform click on explore nav wishlist and verify it opens when you click
      */
