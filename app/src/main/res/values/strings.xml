@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HBApplicationGroupB</string>
+    <string name="hello_android_group_b_texting_branching_stuff">Hello Android Group B!, texting branching stuff</string>
 </resources>
