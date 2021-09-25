@@ -9,4 +9,11 @@
     <string name="_4_5">4.5</string>
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
+    <string name="edit_profile_text">Edit profile</string>
+    <string name="my_account_profile_text">My Account</string>
+    <string name="bookings_history_profile">Bookings History</string>
+    <string name="help_amp_support_profile"><![CDATA[Help & Support]]></string>
+    <string name="privacy_policy_profile">Privacy Policy</string>
+    <string name="logout_profile">Logout</string>
+    <string name="tool_bar_profile">Profile</string>
 </resources>
