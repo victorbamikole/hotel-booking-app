@@ -4,26 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfileScreenFragment">
+    tools:context=".ui.profilescreen.ProfileScreenFragment">
 
 <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/fragment_profile_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:elevation="15dp"
+        app:elevation="4dp"
         app:layout_constraintBottom_toTopOf="@id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_vertical"
             android:text="@string/tool_bar_profile"
-            android:textColor="@color/custom_text_dark"
+            android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
@@ -54,6 +55,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         app:cardCornerRadius="50dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView">
 
@@ -61,8 +63,6 @@
             android:id="@+id/fragment_profile_upload_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardElevation="50dp"
-            app:cardMaxElevation="36dp"
             android:layout_gravity="center|center_vertical"
             android:background="@drawable/ic_photo_camera" />
 
@@ -74,8 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/profile_marginLeft_text"
         android:layout_marginTop="20dp"
-        android:text="Kiran Carmen"
-        android:textColor="@color/custom_text_dark"
+        tools:text="Kiran Carmen"
+        android:textColor="@color/profile_text_dark"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/profile_marginLeft_text"
         android:layout_marginTop="10dp"
-        android:text="iniyealakeret1@gmail.com"
+        tools:text="kcaremen@gmail.com"
         android:textColor="@color/custom_dark_ash"
         android:textSize="@dimen/upload_profile_small_text_size"
         app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/edit_profile_text"
+        tools:text="@string/edit_profile_text"
         android:textColor="@color/custom_orange"
         android:textSize="@dimen/upload_profile_small_text_size"
         app:layout_constraintStart_toStartOf="@+id/fragment_profile_email_tv"
@@ -109,8 +109,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:text="@string/my_account_profile_text"
-        android:textColor="@color/custom_text_dark"
+        tools:text="@string/my_account_profile_text"
+        android:textColor="@color/profile_text_dark"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
-        android:text="@string/bookings_history_profile"
+        tools:text="@string/bookings_history_profile"
         android:textColor="@color/custom_dark_ash"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
+        android:layout_height="1dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
@@ -156,7 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:text="@string/help_amp_support_profile"
+        tools:text="@string/help_amp_support_profile"
         android:textColor="@color/custom_dark_ash"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/privacy_policy_profile"
+        tools:text="@string/privacy_policy_profile"
         android:textColor="@color/custom_dark_ash"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -221,7 +221,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/logout_profile"
+        tools:text="@string/logout_profile"
         android:textColor="@color/custom_dark_ash"
         android:textSize="@dimen/large_text_size"
         app:layout_constraintStart_toStartOf="parent"
