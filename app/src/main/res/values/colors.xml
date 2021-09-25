@@ -7,13 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<<<<<<< HEAD
     <color name="profile_text_dark">#333333</color>
     <color name="profile_text_light_dark">#707070</color>
-=======
     <color name="OffBlack">#3C3C3C</color>
-
->>>>>>> 2ff267c089e4f305104bbb0c7b0a8bdd500fa377
     <color name="custom_orange">#ff3f38</color>
     <color name="custom_dark_ash">#adaaad</color>
     <color name="custom_light_ash">#dddbdd</color>
