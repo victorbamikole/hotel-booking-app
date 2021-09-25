@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
+        <entry key="app/src/main/res/drawable/ic_baseline_redStar_24.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_redstar_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
-=======
-        <entry key="..\:/Users/Osehiase Ehilen/Documents/start_building/HotelBooking-Application-GroupB/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
->>>>>>> c2f795edd2cb4057748cf21cc5ec6260d0a86433
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.1" />
       </map>
     </option>
