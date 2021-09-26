@@ -8,12 +8,27 @@
     tools:context=".ui.review.ReviewPageFragment"
 
     >
-    <include
-    android:id="@+id/fragment_review_page_toolbar"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    layout="@layout/toolbar"
-    />
+    <!--    profile toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/fragment_review_page_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:text="Ratings"
+            android:textColor="@color/profile_text_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
     <TextView
         android:id="@+id/fragment_review_page_tv_post"
         android:layout_width="wrap_content"
