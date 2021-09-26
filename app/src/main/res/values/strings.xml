@@ -5,9 +5,13 @@
     <string name="post">Post</string>
     <string name="tap_to_star_your_rate">Tap to star your rate</string>
     <string name="write_a_review">Write a review</string>
+    <string name="write_A_review">Write A Review</string>
     <string name="_4_5">4.5</string>
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
+    <string name="feb_2020">Feb 2020</string>
+    <string name="kara_james">Kara James</string>
+    <string name="userImage">userImage</string>
     <string name="edit_profile_text">Edit profile</string>
     <string name="my_account_profile_text">My Account</string>
     <string name="bookings_history_profile">Bookings History</string>
@@ -18,4 +22,6 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+
 </resources>
