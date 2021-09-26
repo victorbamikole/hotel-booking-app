@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileFragmentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.profilescreen.ProfileScreenFragment">
+    tools:context=".ui.bottom_nav_screens.ProfileFragment">
 
-<!--    profile toolbar-->
+<!--    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Profile Fragment"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="30sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/fragment_profile_toolbar"
         android:layout_width="match_parent"
@@ -27,17 +41,18 @@
             android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <View
-        android:id="@+id/shadow_view"
         android:layout_width="match_parent"
-        android:visibility="visible"
-        android:layout_height="4dp"
+        android:layout_height="1dp"
+        android:background="@color/custom_dark_ash"
         app:layout_constraintTop_toBottomOf="@id/fragment_profile_toolbar"
-        android:background="@drawable/toolbar_shadow" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-<!--    profile image container-->
+    <!--    profile image container-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="120dp"
@@ -58,7 +73,7 @@
 
     </androidx.cardview.widget.CardView>
 
-<!--    Upload Image icon container-->
+    <!--    Upload Image icon container-->
     <androidx.cardview.widget.CardView
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -123,7 +138,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-<!--    Booking History-->
+    <!--    Booking History-->
     <TextView
         android:id="@+id/fragment_profile_history_tv"
         android:layout_width="wrap_content"
@@ -190,7 +205,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_profile_help_tv" />
 
-<!--    Privacy and Policy-->
+    <!--    Privacy and Policy-->
 
     <TextView
         android:id="@+id/textView"
@@ -223,7 +238,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-<!--    Log out-->
+    <!--    Log out-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
