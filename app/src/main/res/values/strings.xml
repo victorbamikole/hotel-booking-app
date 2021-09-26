@@ -23,5 +23,6 @@
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+    <string name="ratings">Ratings</string>
 
 </resources>

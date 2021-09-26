@@ -14,10 +14,11 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
     private lateinit var binding: FragmentReviewPageBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //set binding to bind views when views have created
         binding = FragmentReviewPageBinding.bind(view)
+
         //to remove extra colour on top of toolbar
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
 
     }
     override fun onDetach() {
