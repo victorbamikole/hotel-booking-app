@@ -22,6 +22,12 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="Hotel_Voyage_Privacy_Policy"><u><b>Hotel Voyage Privacy Policy</b></u></string>
+    <string name="last_updated_august_text">Last updated: August 10, 2021. The Privacy Policy on xyz is carefully being review, changes and updates are made due, policy change on user geolocation, Among other clarifying changes, we have added more details about the information we collect and how its used, information related to the following, collection of user content information, use of data for verification, ad related choices, data sharing with third party services, and data storage/ processing practices</string>
+    <string name="information_we_collect"><u><b>Information we Collect</b></u></string>
+    <string name="in_order_to_effectively">In order to effectively use the xyz application, we collect some information to operate and provide support as regards services we provide.</string>
+    <string name="some_of_the_info">Some of the information we request from you are optional while others are very paramount in account opening and delivering our service. For example, you must provide a valid phone number to register to use our service and also permit the application access to collect your location from your device to fully utilize our service.</string>
+    <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
 
