@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/drawable/edit_box_for_ratings_review_design.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/drawable/food_rating_bar_full.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/food_ratingbar_full_empty.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/food_ratingbar_full_filled.xml" value="0.21197916666666666" />
@@ -11,7 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.39029126213592236" />
         <entry key="app/src/main/res/layout/fragment_boarding03.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.1" />
