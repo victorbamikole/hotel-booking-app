@@ -46,6 +46,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
+<!--        <RatingBar-->
+<!--            android:id="@+id/ratingBar1"-->
+<!--            style="@style/reviewRatingBar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:numStars="5"-->
+<!--            android:stepSize="0.01"-->
+<!--            android:isIndicator="true"-->
+<!--            />-->
         <View
             android:id="@+id/fragment_review_page_star_view_1"
             android:layout_height="24dp"
