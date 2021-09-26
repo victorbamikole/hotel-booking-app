@@ -24,7 +24,7 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         //read rating when user click on star and display text
-        binding.fragmentAddReviewPageShowRating.onRatingBarChangeListener =
+        binding.fragmentReviewPageStarViewRatingBar1.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
                 userRatings = p0.rating.toInt()
                 Toast.makeText(requireContext(),"star $p1 clicked and has ratings of $userRatings",
