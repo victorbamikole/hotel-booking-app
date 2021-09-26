@@ -29,6 +29,14 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
+    <View
+        android:id="@+id/shadow_view"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="4dp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_profile_toolbar"
+        android:background="@drawable/toolbar_shadow" />
+
 <!--    profile image container-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

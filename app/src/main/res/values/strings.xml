@@ -18,4 +18,11 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="help_amp_support"><![CDATA[Help & Support]]></string>
+    <string name="hi_karen_">Hi, karen. How can we be of help?</string>
+    <string name="our_address">Our address</string>
+    <string name="adress">7, Asajon way, Sangotedo, Eti-Osa,Lagos</string>
+    <string name="kcarmen_gmail_com">kcarmen@gmail.com</string>
+    <string name="inquiry_title">Inquiry title</string>
+    <string name="add_your_inquiry">Add your inquiry...</string>
 </resources>
