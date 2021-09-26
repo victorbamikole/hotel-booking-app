@@ -11,10 +11,6 @@ class MainActivity : AppCompatActivity() {
     //var of type of binding class created for xml file
     private lateinit var binding:ActivityMainBinding
 
-    /**
-     * Create an instance of the navigation controller
-     */
-    private lateinit var instanceOfNavController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

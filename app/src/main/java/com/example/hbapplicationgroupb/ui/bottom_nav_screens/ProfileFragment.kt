@@ -1,8 +1,9 @@
-package com.example.hbapplicationgroupb
+package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
 
 

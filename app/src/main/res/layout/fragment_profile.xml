@@ -5,7 +5,7 @@
     android:id="@+id/profileFragmentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ui.bottom_nav_screens.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

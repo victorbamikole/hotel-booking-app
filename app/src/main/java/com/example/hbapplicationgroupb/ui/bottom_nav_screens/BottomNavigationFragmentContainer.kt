@@ -1,11 +1,11 @@
-package com.example.hbapplicationgroupb
+package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBottomNavigationContainerBinding
 
 
@@ -24,10 +24,13 @@ class BottomNavigationFragmentContainer : Fragment(R.layout.fragment_bottom_navi
         /**
          * Find navigation controller
          */
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
 
-        val fragmentContainerView = Navigation.findNavController(binding.fragmentContainerView2)
+        /**
+         * Set bottom nav with nav container
+         */
 
-        bottomNav.setupWithNavController(fragmentContainerView)
+        bottomNav.setupWithNavController(navController = navHostFragment.navController)
     }
 
 }
