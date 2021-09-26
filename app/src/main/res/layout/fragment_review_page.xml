@@ -333,7 +333,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/fragment_review_page_recycler_view_layout"
+        tools:listitem=""
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
