@@ -12,4 +12,6 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="book_now">Book Now</string>
+    <string name="booking_details">Booking Details</string>
 </resources>
