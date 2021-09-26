@@ -1,14 +1,14 @@
-package com.example.hbapplicationgroupb.ui.helpandsupport
-
+package com.example.hbapplicationgroupb.ui.bookinghistory
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAddReviewPageBinding
 
-
-class HelpAndSupportFragment : Fragment(R.layout.fragment_help_and_support) {
+class BookingHistoryFragment : Fragment(R.layout.fragment_booking_history) {
 
     //var of type of binding class created for xml file
     private lateinit var binding: FragmentAddReviewPageBinding
