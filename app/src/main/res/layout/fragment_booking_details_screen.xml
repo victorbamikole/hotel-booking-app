@@ -6,43 +6,153 @@
     android:layout_height="match_parent"
     tools:context=".ui.bookingDetailsScreen.BookingDetailsScreenFragment">
 
+
+    <!--    profile toolbar-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/fragment_profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:text="@string/booking"
+            android:textColor="@color/profile_text_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
         android:text="@string/booking_details"
         android:textColor="@color/OffBlack"
         android:textSize="@dimen/big_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_toolbar" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_layout_two"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_Name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:hint="@string/phone"
-        android:elevation="10dp"
-        app:counterMaxLength="20"
-        app:endIconMode="clear_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Name"
+        android:drawablePadding="8dp"
+        android:textStyle="normal"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:elevation="20dp"
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="20"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_PhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Phone"
+        android:drawablePadding="8dp"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_phone_24"
+        android:elevation="20dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_Name" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_Start_Date"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="Check In"
+        android:drawablePadding="8dp"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_date_range_24"
+        android:elevation="15dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_PhoneNumber" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_End_Date"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="Check out"
+        android:drawablePadding="8dp"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_date_range_24"
+        android:elevation="15dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_Start_Date" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_Age_Bracket"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="People"
+        android:drawablePadding="8dp"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_people_24"
+        android:elevation="15dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_End_Date" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/bookingDetailsScreen_textView_Room_type"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Rooms"
+        android:drawablePadding="8dp"
+        android:background="@drawable/text_input_rectangle"
+        android:drawableStart="@drawable/ic_baseline_bedroom_parent_24"
+        android:elevation="15dp"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_Age_Bracket" />
 
 
-    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <androidx.appcompat.widget.AppCompatButton
