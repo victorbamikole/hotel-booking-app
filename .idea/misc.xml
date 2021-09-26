@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_redStar_24.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_redstar_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_left_arrow_back.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.25" />

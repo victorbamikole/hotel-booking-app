@@ -18,6 +18,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <View
+            android:layout_width="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_height="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_gravity="start"
+            android:background="@drawable/ic_left_arrow_back"
+            />
 
         <TextView
             android:layout_width="wrap_content"
