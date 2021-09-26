@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="small_text_size">10sp</dimen>
+
     <dimen name="big_text_size">20sp</dimen>
+    <dimen name="large_text_size">20sp</dimen>
+    <dimen name="profile_image_width">100dp</dimen>
+    <dimen name="upload_profile_image_width">28dp</dimen>
+    <dimen name="upload_profile_small_text_size">16sp</dimen>
+    <dimen name="profile_marginLeft_text">30dp</dimen>
+>>>>>>> fe47d20984f82af4aa573b85f28a051f543419a9
 </resources>

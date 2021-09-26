@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/phone"
+        android:hint="Phone"
         android:elevation="10dp"
         app:counterMaxLength="20"
         app:endIconMode="clear_text"
