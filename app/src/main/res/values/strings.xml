@@ -29,5 +29,6 @@
     <string name="some_of_the_info">Some of the information we request from you are optional while others are very paramount in account opening and delivering our service. For example, you must provide a valid phone number to register to use our service and also permit the application access to collect your location from your device to fully utilize our service.</string>
     <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+    <string name="ratings">Ratings</string>
 
 </resources>

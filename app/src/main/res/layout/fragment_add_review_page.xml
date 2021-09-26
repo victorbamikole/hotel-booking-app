@@ -16,7 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <View
+            android:layout_width="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_height="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_gravity="start"
+            android:background="@drawable/ic_left_arrow_back"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,46 +60,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
-        <!--        <RatingBar-->
-        <!--            android:id="@+id/ratingBar1"-->
-        <!--            style="@style/reviewRatingBar"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:numStars="5"-->
-        <!--            android:stepSize="0.01"-->
-        <!--            android:isIndicator="true"-->
-        <!--            />-->
-        <View
-            android:id="@+id/fragment_add_review_page_star_view_1"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:background="@drawable/ic_baseline_star_24"
+        <RatingBar
+            android:id="@+id/fragment_review_page_star_view_ratingBar1"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:rating="5"
+            android:progressTint="@color/custom_orange"
+            android:isIndicator="true"
             />
-        <View
-            android:id="@+id/fragment_add_review_page_star_view_2"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_add_review_page_star_view_3"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_add_review_page_star_view_4"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_add_review_page_star_view_5"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/fragment_add_review_page_ratingRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_add_review_page_star_view_container"
+        tools:text="Excellent"
+        />
 
 
     <com.google.android.material.textfield.TextInputLayout
