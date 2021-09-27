@@ -28,16 +28,12 @@
     <string name="adress">7, Asajon way, Sangotedo, Eti-Osa,Lagos</string>
     <string name="kcarmen_gmail_com">kcarmen@gmail.com</string>
     <string name="inquiry_title">Inquiry title</string>
-<<<<<<< HEAD
-    <string name="add_your_inquiry">Add your inquiry...</string>
-=======
     <string name="add_your_inquiry">Add your inquiry…</string>
     <string name="today_07_45am">Today, 07:45am</string>
     <string name="hotel_name">Sheraton Grand</string>
     <string name="hotel_location">Marathalli, Banglore, India</string>
     <string name="hot_lines_str">Hot Lines</string>
     <string name="dialog_str">Are you sure you want to log out?</string>
->>>>>>> 1f93f61f8cad5a2bd4153f7b2ced7024eabba740
     <string name="Hotel_Voyage_Privacy_Policy"><u><b>Hotel Voyage Privacy Policy</b></u></string>
     <string name="last_updated_august_text">Last updated: August 10, 2021. The Privacy Policy on xyz is carefully being review, changes and updates are made due, policy change on user geolocation, Among other clarifying changes, we have added more details about the information we collect and how its used, information related to the following, collection of user content information, use of data for verification, ad related choices, data sharing with third party services, and data storage/ processing practices</string>
     <string name="information_we_collect"><u><b>Information we Collect</b></u></string>
