@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileFragmentParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.profilescreen.ProfileScreenFragment">
+    tools:context=".ui.bottom_nav_screens.ProfileFragment">
 
-<!--    profile toolbar-->
+
+    <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
+<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
         android:id="@+id/fragment_bookingDetails_toolbar"
+=======
+        android:id="@+id/fragment_booking_toolbar"
+>>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -27,9 +33,19 @@
             android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
+
     </androidx.appcompat.widget.Toolbar>
 
-<!--    profile image container-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!--    profile image container-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="120dp"
@@ -37,7 +53,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         app:cardCornerRadius="60dp"
+<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
         app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
+=======
+        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar"
+>>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="30dp">
 
@@ -50,7 +70,7 @@
 
     </androidx.cardview.widget.CardView>
 
-<!--    Upload Image icon container-->
+    <!--    Upload Image icon container-->
     <androidx.cardview.widget.CardView
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -79,7 +99,11 @@
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cardView"
+<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
         app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar" />
+=======
+        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar" />
+>>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
 
     <TextView
         android:id="@+id/fragment_profile_email_tv"
@@ -115,7 +139,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-<!--    Booking History-->
+    <!--    Booking History-->
     <TextView
         android:id="@+id/fragment_profile_history_tv"
         android:layout_width="wrap_content"
@@ -182,7 +206,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_profile_help_tv" />
 
-<!--    Privacy and Policy-->
+    <!--    Privacy and Policy-->
 
     <TextView
         android:id="@+id/fragment_booking_details_cancel_textView"
@@ -215,7 +239,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
 
-<!--    Log out-->
+    <!--    Log out-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

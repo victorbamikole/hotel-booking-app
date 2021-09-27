@@ -3,14 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
+        <entry key="app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/drawable/custom_drawable_shadow.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/edit_box_for_ratings_review_design.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/drawable/food_rating_bar_full.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/food_ratingbar_full_empty.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/food_ratingbar_full_filled.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_redStar_24.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_redstar_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/drawable/ic_left_arrow_back.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/toolbar_shadow.xml" value="0.15888157894736843" />
 =======
-        <entry key="..\:/Users/Osehiase Ehilen/Documents/start_building/HotelBooking-Application-GroupB/app/src/main/res/layout/activity_main.xml" value="0.23229166666666667" />
->>>>>>> c2f795edd2cb4057748cf21cc5ec6260d0a86433
+<<<<<<< HEAD
+        <entry key="app/src/main/res/drawable/toolbar_shadow.xml" value="0.15888157894736843" />
+=======
+        <entry key="app/src/main/res/drawable/ic_left_arrow_back.xml" value="0.21197916666666666" />
+>>>>>>> eca33f823c0a9c0f6b708d7512704a9e2cd3dac9
+>>>>>>> 1f93f61f8cad5a2bd4153f7b2ced7024eabba740
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/toolbar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/booking_history_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_boarding03.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/fragment_booking_history.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+=======
+        <entry key="app/src/main/res/layout/fragment_booking_history.xml" value="0.14868421052631578" />
+        <entry key="app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.14868421052631578" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18" />
+>>>>>>> 1f93f61f8cad5a2bd4153f7b2ced7024eabba740
+        <entry key="app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.10894941634241245" />
+        <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.18" />
       </map>
     </option>
   </component>

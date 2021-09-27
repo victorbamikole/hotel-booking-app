@@ -1,0 +1,19 @@
+package com.example.hbapplicationgroupb.ui.privacy_policy_screen
+
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
+import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.databinding.FragmentPrivacyPolicyBinding
+
+
+class PrivacyPolicyFragment : Fragment(R.layout.fragment_privacy_policy) {
+    private lateinit var binding : FragmentPrivacyPolicyBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentPrivacyPolicyBinding.bind(view)
+    }
+
+
+}
