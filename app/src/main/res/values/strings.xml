@@ -5,9 +5,13 @@
     <string name="post">Post</string>
     <string name="tap_to_star_your_rate">Tap to star your rate</string>
     <string name="write_a_review">Write a review</string>
+    <string name="write_A_review">Write A Review</string>
     <string name="_4_5">4.5</string>
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
+    <string name="feb_2020">Feb 2020</string>
+    <string name="kara_james">Kara James</string>
+    <string name="userImage">userImage</string>
     <string name="edit_profile_text">Edit profile</string>
     <string name="my_account_profile_text">My Account</string>
     <string name="bookings_history_profile">Bookings History</string>
@@ -25,4 +29,12 @@
     <string name="kcarmen_gmail_com">kcarmen@gmail.com</string>
     <string name="inquiry_title">Inquiry title</string>
     <string name="add_your_inquiry">Add your inquiry...</string>
+    <string name="Hotel_Voyage_Privacy_Policy"><u><b>Hotel Voyage Privacy Policy</b></u></string>
+    <string name="last_updated_august_text">Last updated: August 10, 2021. The Privacy Policy on xyz is carefully being review, changes and updates are made due, policy change on user geolocation, Among other clarifying changes, we have added more details about the information we collect and how its used, information related to the following, collection of user content information, use of data for verification, ad related choices, data sharing with third party services, and data storage/ processing practices</string>
+    <string name="information_we_collect"><u><b>Information we Collect</b></u></string>
+    <string name="in_order_to_effectively">In order to effectively use the xyz application, we collect some information to operate and provide support as regards services we provide.</string>
+    <string name="some_of_the_info">Some of the information we request from you are optional while others are very paramount in account opening and delivering our service. For example, you must provide a valid phone number to register to use our service and also permit the application access to collect your location from your device to fully utilize our service.</string>
+    <string name="information_you_provide"><u><b>Information you provide</b></u></string>
+    <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+    <string name="ratings">Ratings</string>
 </resources>

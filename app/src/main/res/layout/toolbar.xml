@@ -7,10 +7,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
+        android:elevation="100dp"
+        android:gravity="center"
+        android:background="@color/custom_orange"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:title=" "
+        app:title="hejjejej"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,5 @@
     <dimen name="upload_profile_image_width">28dp</dimen>
     <dimen name="upload_profile_small_text_size">16sp</dimen>
     <dimen name="profile_marginLeft_text">30dp</dimen>
+    <dimen name="toolbar_leftBackArrow_widthAndSizer">30dp</dimen>
 </resources>
