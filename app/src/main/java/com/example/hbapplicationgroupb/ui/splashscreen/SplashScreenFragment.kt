@@ -35,11 +35,14 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
         return binding.root
     }
 
-    private fun setUpSplashScreen(){
-        val hotelTextViewAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(),
+
+    private fun setUpSplashScreen() {
+        val hotelTextViewAnimation = android.view.animation.AnimationUtils.loadAnimation(
+            requireContext(),
             R.anim.slide_from_top_animation
         )
-        val voyageTextViewAnimation = android.view.animation.AnimationUtils.loadAnimation(requireContext(),
+        val voyageTextViewAnimation = android.view.animation.AnimationUtils.loadAnimation(
+            requireContext(),
             R.anim.slide_from_bottom_animation
         )
 
@@ -48,12 +51,22 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
         val splashScreenTimeout = 3500
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashScreenFragment_to_onboardingFragment01
-                ,null,
+            if (onboardingFinished()) {
+                findNavController().navigate(R.id.action_splashScreenFragment_to_registerFragment)
+            } else {
+
+            findNavController().navigate(
+                R.id.action_splashScreenFragment_to_viewPagerFragment, null,
                 NavOptions.Builder()
-                    .setPopUpTo(R.id.splashScreenFragment,true).build())
-        },splashScreenTimeout.toLong())
+                    .setPopUpTo(R.id.splashScreenFragment, true).build()
+            )}
+        }, splashScreenTimeout.toLong())
     }
+
+    private fun onboardingFinished():Boolean{
+        val sharedPref = requireActivity().getSharedPreferences("onboarding",Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("finished", false)
+          }
 
     override fun onDetach() {
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)

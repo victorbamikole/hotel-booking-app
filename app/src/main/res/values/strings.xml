@@ -22,6 +22,12 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="done">Done</string>
+    <string name="getStarted">Get started</string>
     <string name="help_amp_support"><![CDATA[Help & Support]]></string>
     <string name="hi_karen_">Hi, karen. How can we be of help?</string>
     <string name="our_address">Our address</string>
@@ -42,4 +48,5 @@
     <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
+
 </resources>
