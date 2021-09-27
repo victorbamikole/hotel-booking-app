@@ -10,7 +10,7 @@
 
     <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/fragment_profile_toolbar"
+        android:id="@+id/fragment_confirmationScreen_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/fragment_confirmationScreen_title_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_vertical"
@@ -32,19 +33,19 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fragment_confirmationScreen_Confirmation_ImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/booking"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_ConfirmationScreen_Congratulation_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_confirmationScreen_toolbar"
         app:layout_constraintVertical_bias="0.64" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/fragment_ConfirmationScreen_Congratulation_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/congratulations"
@@ -59,6 +60,7 @@
         app:layout_constraintVertical_bias="0.643" />
 
     <TextView
+        android:id="@+id/fragment_confirmationScreen_Confirmation_message_Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -68,10 +70,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_ConfirmationScreen_Congratulation_textView" />
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_confirmationScreen_back_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"

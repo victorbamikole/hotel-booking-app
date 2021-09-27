@@ -129,7 +129,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_profile_myAccount_tv" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fragment_confirmationScreen_Confirmation_ImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -185,7 +185,7 @@
 <!--    Privacy and Policy-->
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/fragment_ConfirmationScreen_Congratulation_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -201,7 +201,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:src="@drawable/ic_arrow_forward"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_ConfirmationScreen_Congratulation_textView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <View
@@ -213,7 +213,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/custom_dark_ash"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_ConfirmationScreen_Congratulation_textView" />
 
 <!--    Log out-->
     <TextView
