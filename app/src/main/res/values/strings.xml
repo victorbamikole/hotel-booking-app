@@ -22,7 +22,6 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
-<<<<<<< HEAD
     <string name="book_now">Book Now</string>
     <string name="booking_details">Booking Details</string>
     <string name="phone">Phone</string>
@@ -39,12 +38,10 @@
     <string name="adults">Adults</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
-=======
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="next">Next</string>
     <string name="skip">Skip</string>
-    <string name="done">Done</string>
     <string name="getStarted">Get started</string>
     <string name="help_amp_support"><![CDATA[Help & Support]]></string>
     <string name="hi_karen_">Hi, karen. How can we be of help?</string>
@@ -67,5 +64,4 @@
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
 
->>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5
 </resources>

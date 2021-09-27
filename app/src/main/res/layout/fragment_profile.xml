@@ -10,11 +10,7 @@
 
     <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
-<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
-        android:id="@+id/fragment_bookingDetails_toolbar"
-=======
         android:id="@+id/fragment_booking_toolbar"
->>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -53,11 +49,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         app:cardCornerRadius="60dp"
-<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
-        app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
-=======
         app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar"
->>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="30dp">
 
@@ -99,12 +91,8 @@
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-<<<<<<< HEAD:app/src/main/res/layout/fragment_profile_screen.xml
-        app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar" />
-=======
-        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar" />
->>>>>>> 65167cac0876b873fc2cab70f26d43ed0e8257c5:app/src/main/res/layout/fragment_profile.xml
-
+        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar"
+      />
     <TextView
         android:id="@+id/fragment_profile_email_tv"
         android:layout_width="wrap_content"
