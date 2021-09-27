@@ -33,4 +33,6 @@
     <string name="hotel_name">Sheraton Grand</string>
     <string name="hotel_location">Marathalli, Banglore, India</string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+    <string name="hot_lines_str">Hot Lines</string>
+    <string name="dialog_str">Are you sure you want to log out?</string>
 </resources>
