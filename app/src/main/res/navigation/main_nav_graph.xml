@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.example.hbapplicationgroupb.ViewPagerFragment"
+        android:name="com.example.hbapplicationgroupb.ui.onboarding_screen.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
