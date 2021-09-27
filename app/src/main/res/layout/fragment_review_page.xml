@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.review.ReviewPageFragment"
-
     >
     <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
@@ -19,12 +18,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <View
+            android:layout_width="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_height="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_gravity="start"
+            android:background="@drawable/ic_left_arrow_back"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_vertical"
-            android:text="Ratings"
+            android:text="@string/ratings"
             android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -68,45 +73,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
-<!--        <RatingBar-->
-<!--            android:id="@+id/ratingBar1"-->
-<!--            style="@style/reviewRatingBar"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:numStars="5"-->
-<!--            android:stepSize="0.01"-->
-<!--            android:isIndicator="true"-->
-<!--            />-->
-        <View
-            android:id="@+id/fragment_review_page_star_view_1"
-            android:layout_height="24dp"
-            android:layout_width="24dp"
-            android:background="@drawable/ic_baseline_star_24"
+        <RatingBar
+            android:id="@+id/fragment_review_page_star_view_ratingBar1"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:rating="3.5"
+            android:progressTint="@color/custom_orange"
+            android:isIndicator="true"
             />
-        <View
-            android:id="@+id/fragment_review_page_star_view_2"
-            android:layout_height="24dp"
-            android:layout_width="24dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_view_3"
-            android:layout_height="24dp"
-            android:layout_width="24dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_view_4"
-            android:layout_height="24dp"
-            android:layout_width="24dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_view_5"
-            android:layout_height="24dp"
-            android:layout_width="24dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
+
     </LinearLayout>
 
     <TextView
@@ -134,203 +112,153 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_review_page_tv_writeAReview" />
 
-    <LinearLayout
-        android:id="@+id/fragment_review_page_star_fiveSmallView_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginStart="50dp"
-        app:layout_constraintTop_toTopOf="@id/fragment_review_page_tv_averageRating"
-        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-        <View
-            android:id="@+id/fragment_review_page_star_fiveSmallView_1"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_fiveSmallView_2"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_fiveSmallView_3"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_fiveSmallView_4"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_fiveSmallView_5"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/fragment_review_page_star_fiveSmallView_progressBar"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
-            android:paddingEnd="10dp"
-            android:layout_marginStart="20dp"
-            app:indicatorColor="@color/custom_orange"
-            app:trackColor="@color/custom_light_ash"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/fragment_review_page_star_fourSmallView_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginStart="62dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_fiveSmallView_container"
-        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
 
-        <View
-            android:id="@+id/fragment_review_page_star_smallView_2"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_smallView_3"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_smallView_4"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
-        <View
-            android:id="@+id/fragment_review_page_star_smallView_5"
-            android:layout_height="12dp"
-            android:layout_width="12dp"
-            android:background="@drawable/ic_baseline_star_24"
-            />
+    <RatingBar
+        android:id="@+id/fragment_review_page_star_view_ratingBar_verySmall5"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="@color/custom_orange"
+        android:rating="0"
+        android:stepSize="0.5"
+        android:layout_marginStart="50dp"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
+        app:layout_constraintTop_toTopOf="@id/fragment_review_page_tv_averageRating" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/fragment_review_page_star_fiveSmallView_progressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:paddingEnd="10dp"
+        app:indicatorColor="@color/custom_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_review_page_star_view_ratingBar_verySmall5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall5"
+        app:layout_constraintTop_toTopOf="@id/fragment_review_page_star_view_ratingBar_verySmall5"
+        app:trackColor="@color/custom_light_ash" />
+
+
+    <RatingBar
+        android:id="@+id/fragment_review_page_star_view_ratingBar_verySmall4"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="4"
+        android:progressTint="@color/custom_orange"
+        android:rating="0"
+        android:stepSize="0.5"
+        app:layout_constraintEnd_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall5"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_view_ratingBar_verySmall5" />
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/fragment_review_page_star_fourSmallView_progressBar"
-            android:layout_width="200dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
             android:paddingEnd="10dp"
             app:indicatorColor="@color/custom_orange"
             app:trackColor="@color/custom_light_ash"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/fragment_review_page_star_threeSmallView_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginStart="74dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_fourSmallView_container"
-        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal">
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_review_page_star_view_ratingBar_verySmall4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall4"
+            app:layout_constraintTop_toTopOf="@id/fragment_review_page_star_view_ratingBar_verySmall4"
+            />
 
-    <View
-        android:id="@+id/fragment_review_page_star_threeSmallView_3"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
-        />
-    <View
-        android:id="@+id/fragment_review_page_star_threeSmallView_4"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
-        />
-    <View
-        android:id="@+id/fragment_review_page_star_threeSmallView_5"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
-        />
+
+        <RatingBar
+            android:id="@+id/fragment_review_page_star_view_ratingBar_verySmall3"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="3"
+            android:stepSize="0.5"
+            android:rating="0"
+            android:progressTint="@color/custom_orange"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall4"
+            app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_view_ratingBar_verySmall4"
+            />
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/fragment_review_page_star_threeSmallView_progressBar"
-        android:layout_width="200dp"
-        android:layout_marginStart="20dp"
-        android:layout_gravity="center"
-        app:indicatorColor="@color/custom_orange"
-        android:paddingEnd="10dp"
-        app:trackColor="@color/custom_light_ash"
-        android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/fragment_review_page_star_twoSmallView_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginStart="86dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_threeSmallView_container"
-        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
+        android:layout_gravity="center"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
+        android:paddingEnd="10dp"
+        app:trackColor="@color/custom_light_ash"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_review_page_star_view_ratingBar_verySmall3"
         app:layout_constraintEnd_toEndOf="parent"
-        >
-    <View
-        android:id="@+id/fragment_review_page_star_twoSmallView_4"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall3"
+        app:layout_constraintTop_toTopOf="@id/fragment_review_page_star_view_ratingBar_verySmall3"
         />
-    <View
-        android:id="@+id/fragment_review_page_star_twoSmallView_5"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
-        />
+
+        <RatingBar
+            android:id="@+id/fragment_review_page_star_view_ratingBar_verySmall2"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="2"
+            android:stepSize="0.5"
+            android:rating="0"
+            android:progressTint="@color/custom_orange"
+            android:isIndicator="true"
+            app:layout_constraintEnd_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall3"
+            app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_view_ratingBar_verySmall3"
+            />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/fragment_review_page_star_twoSmallView_progressBar"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="center"
         android:paddingEnd="10dp"
         app:indicatorColor="@color/custom_orange"
         app:trackColor="@color/custom_light_ash"
-        android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/fragment_review_page_star_oneSmallView_container"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginStart="98dp"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_twoSmallView_container"
-        app:layout_constraintStart_toEndOf="@id/fragment_review_page_tv_averageRating"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_review_page_star_view_ratingBar_verySmall2"
         app:layout_constraintEnd_toEndOf="parent"
-        >
-
-
-    <View
-        android:id="@+id/fragment_review_page_star_oneSmallView_5"
-        android:layout_height="12dp"
-        android:layout_width="12dp"
-        android:background="@drawable/ic_baseline_star_24"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall2"
+        app:layout_constraintTop_toTopOf="@id/fragment_review_page_star_view_ratingBar_verySmall2"
         />
+
+    <RatingBar
+        android:id="@+id/fragment_review_page_star_view_ratingBar_verySmall1"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="1"
+        android:progressTint="@color/custom_orange"
+        android:rating="0"
+        android:stepSize="0.5"
+        app:layout_constraintEnd_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall2"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_view_ratingBar_verySmall2" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/fragment_review_page_star_oneSmallView_progressBar"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="center"
         android:paddingEnd="10dp"
         app:indicatorColor="@color/custom_orange"
         app:trackColor="@color/custom_light_ash"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_review_page_star_view_ratingBar_verySmall1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_review_page_star_view_ratingBar_verySmall1"
+        app:layout_constraintTop_toTopOf="@id/fragment_review_page_star_view_ratingBar_verySmall1"
+        />
 
-    </LinearLayout>
 <TextView
     android:id="@+id/fragment_review_page_tv_outOfFive"
     android:layout_width="wrap_content"
@@ -341,7 +269,7 @@
     android:textStyle="bold"
     android:textColor="@color/custom_light_ash"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/fragment_review_page_tv_averageRating"
+    app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_oneSmallView_progressBar"
     />
     <TextView
         android:id="@+id/fragment_review_page_tv_twentyFiveRatings"
@@ -352,7 +280,7 @@
         android:layout_marginEnd="10dp"
         android:text="@string/_25_ratings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_tv_averageRating"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_oneSmallView_progressBar"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"

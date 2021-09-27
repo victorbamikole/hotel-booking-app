@@ -58,35 +58,16 @@
             android:gravity="end"
             android:layout_gravity="end"
             >
-            <View
-                android:id="@+id/fragment_review_page_redStar_view_1"
-                android:layout_height="24dp"
-                android:layout_width="24dp"
-                android:background="@drawable/ic_baseline_redstar_24"
-                />
-            <View
-                android:id="@+id/fragment_review_page_redStar_view_2"
-                android:layout_height="24dp"
-                android:layout_width="24dp"
-                android:background="@drawable/ic_baseline_redstar_24"
-                />
-            <View
-                android:id="@+id/fragment_review_page_redStar_view_3"
-                android:layout_height="24dp"
-                android:layout_width="24dp"
-                android:background="@drawable/ic_baseline_redstar_24"
-                />
-            <View
-                android:id="@+id/fragment_review_page_redStar_view_4"
-                android:layout_height="24dp"
-                android:layout_width="24dp"
-                android:background="@drawable/ic_baseline_redstar_24"
-                />
-            <View
-                android:id="@+id/fragment_review_page_redStar_view_5"
-                android:layout_height="24dp"
-                android:layout_width="24dp"
-                android:background="@drawable/ic_baseline_redstar_24"
+            <RatingBar
+                android:id="@+id/fragment_review_page_star_view_ratingBar1"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:rating="3.5"
+                android:progressTint="@color/custom_orange"
+                android:isIndicator="true"
                 />
         </LinearLayout>
 

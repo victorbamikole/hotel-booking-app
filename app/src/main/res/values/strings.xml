@@ -32,7 +32,14 @@
     <string name="today_07_45am">Today, 07:45am</string>
     <string name="hotel_name">Sheraton Grand</string>
     <string name="hotel_location">Marathalli, Banglore, India</string>
-    <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="hot_lines_str">Hot Lines</string>
     <string name="dialog_str">Are you sure you want to log out?</string>
+    <string name="Hotel_Voyage_Privacy_Policy"><u><b>Hotel Voyage Privacy Policy</b></u></string>
+    <string name="last_updated_august_text">Last updated: August 10, 2021. The Privacy Policy on xyz is carefully being review, changes and updates are made due, policy change on user geolocation, Among other clarifying changes, we have added more details about the information we collect and how its used, information related to the following, collection of user content information, use of data for verification, ad related choices, data sharing with third party services, and data storage/ processing practices</string>
+    <string name="information_we_collect"><u><b>Information we Collect</b></u></string>
+    <string name="in_order_to_effectively">In order to effectively use the xyz application, we collect some information to operate and provide support as regards services we provide.</string>
+    <string name="some_of_the_info">Some of the information we request from you are optional while others are very paramount in account opening and delivering our service. For example, you must provide a valid phone number to register to use our service and also permit the application access to collect your location from your device to fully utilize our service.</string>
+    <string name="information_you_provide"><u><b>Information you provide</b></u></string>
+    <string name="describe_your_experience_optional">Describe your experience (optional)</string>
+    <string name="ratings">Ratings</string>
 </resources>
