@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/bottom_sheet"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Cancel"
-        android:textColor="@color/OffBlack"
+        android:textStyle="bold|normal"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Done"
+        android:textStyle="bold"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,13 +56,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Room No. 1"
-        android:textColor="@color/OffBlack"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room1_radioButton"
+        android:id="@+id/fragment_booking_details_room1_countButtonAdd"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -72,11 +74,11 @@
     <View
         android:id="@+id/view11"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/OffBlack"
+        android:background="@color/custom_dark_ash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Room No. 2"
-        android:textColor="@color/OffBlack"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view11" />
@@ -125,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Room No. 22"
-        android:textColor="@color/black"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view12" />
@@ -161,7 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Room No. 24"
-        android:textColor="@color/OffBlack"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13" />
@@ -179,7 +181,7 @@
     <View
         android:id="@+id/view14"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -196,7 +198,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Room No. 26"
-        android:textColor="@color/OffBlack"
+        android:textColor="@color/custom_dark_ash"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view14" />

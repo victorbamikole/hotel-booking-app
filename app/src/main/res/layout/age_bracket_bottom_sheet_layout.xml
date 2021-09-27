@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Done"
+        android:text="@string/done"
         android:textColor="@android:color/holo_red_light"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,24 +51,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="16dp"
-        android:text="Adults"
+        android:text="@string/adults"
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/fragment_booking_details_16_plus_years_Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="5dp"
-        android:text="16 + years"
+        android:text="@string/_16_years"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room1_textView" />
 
     <View
-        android:id="@+id/fragment_booking_details_room1_radioButton"
+        android:id="@+id/fragment_booking_details_room1_countButtonAdd"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -78,23 +78,24 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <View
+        android:id="@+id/fragment_booking_details_room1_countButton_subtract"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
         android:background="@drawable/ic_baseline_remove_circle_24"
         android:backgroundTint="@color/custom_dark_ash"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room1_count_TextView"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/fragment_booking_details_room1_count_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room1_radioButton"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room1_countButtonAdd"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
@@ -107,7 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_16_plus_years_Textview" />
 
 
     <TextView
@@ -116,18 +117,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="16dp"
-        android:text="Teens"
+        android:text="@string/teens"
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_16_plus_years_Textview" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="12-15 years"
+        android:text="@string/_12_15_years"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room2_textView" />
 
@@ -147,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="0"
+        android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
         app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room2_radioButton"
@@ -169,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_margin="15dp"
-        android:background="@color/OffBlack"
+        android:background="@color/custom_dark_ash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +183,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="16dp"
-        android:text="Children"
+        android:text="@string/children"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +194,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="2-11 years"
+        android:text="@string/_2_11_years"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -213,7 +214,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="0"
+        android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
         app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room22_radioButton"
@@ -233,7 +234,7 @@
     <View
         android:id="@+id/view5"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_margin="15dp"
         android:background="@color/custom_dark_ash"
         app:layout_constraintEnd_toEndOf="parent"
@@ -248,7 +249,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="16dp"
-        android:text="Infants"
+        android:text="@string/infants"
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +259,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="under 2 years"
+        android:text="@string/under_2_years"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room24_textView" />
 

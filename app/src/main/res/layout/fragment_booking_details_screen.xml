@@ -9,7 +9,7 @@
 
     <!--    profile toolbar-->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/fragment_profile_toolbar"
+        android:id="@+id/fragment_bookingDetails_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/fragment_booking_details_toolBarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_vertical"
@@ -27,10 +28,22 @@
             android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/fragment_booking_details_back_arrow_viev"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_new_24"/>
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
+
+
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/fragment_booking_details_bookingDetails_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -40,7 +53,7 @@
         android:textSize="@dimen/big_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_toolbar" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/bookingDetailsScreen_textView_Name"
@@ -59,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_bookingDetails_TextView" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/bookingDetailsScreen_textView_PhoneNumber"
@@ -153,9 +166,8 @@
 
 
 
-
-
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_booking_bookNow_Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"

@@ -12,5 +12,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:title=" "
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
