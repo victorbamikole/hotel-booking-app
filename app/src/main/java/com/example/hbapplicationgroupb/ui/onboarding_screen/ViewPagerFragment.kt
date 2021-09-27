@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb
+package com.example.hbapplicationgroupb.ui.onboarding_screen
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentViewPagerBinding
 import com.example.hbapplicationgroupb.ui.onboarding_screen.adapter.OnBoardingItemAdapter
 import com.example.hbapplicationgroupb.ui.onboarding_screen.model.OnboardingItem
