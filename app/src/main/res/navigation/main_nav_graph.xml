@@ -11,30 +11,24 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_onboardingFragment01"
-            app:destination="@id/onboardingFragment01" />
-    </fragment>
-    <fragment
-        android:id="@+id/onboardingFragment01"
-        android:name="com.example.hbapplicationgroupb.ui.onboarding_screen.BoardingFragment01"
-        android:label="fragment_onboarding01"
-        tools:layout="@layout/fragment_onboarding01" >
+            android:id="@+id/action_splashScreenFragment_to_viewPagerFragment"
+            app:destination="@id/viewPagerFragment" />
         <action
-            android:id="@+id/action_onboardingFragment01_to_boardingFragment02"
-            app:destination="@id/boardingFragment02" />
+            android:id="@+id/action_splashScreenFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/boardingFragment02"
-        android:name="com.example.hbapplicationgroupb.BoardingFragment02"
-        android:label="fragment_boarding02"
-        tools:layout="@layout/fragment_boarding02" >
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.hbapplicationgroupb.ui.onboarding_screen.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_boardingFragment02_to_boardingFragment03"
-            app:destination="@id/boardingFragment03" />
+            android:id="@+id/action_viewPagerFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/boardingFragment03"
-        android:name="com.example.hbapplicationgroupb.BoardingFragment03"
-        android:label="fragment_boarding03"
-        tools:layout="@layout/fragment_boarding03" />
+        android:id="@+id/registerFragment"
+        android:name="com.example.hbapplicationgroupb.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
