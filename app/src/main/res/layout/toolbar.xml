@@ -14,5 +14,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:title="hejjejej"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
