@@ -97,6 +97,9 @@ dependencies {
 
 //        implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.4'
 
+    //borja_bravo expandable textView Library = https://github.com/bravoborja/ReadMoreTextView
+    implementation 'com.borjabravo:readmoretextview:2.1.0'
+
 
 }
 
