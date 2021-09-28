@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.ui.review
+package com.example.hbapplicationgroupb.ui.review.adapter
 
 import android.view.LayoutInflater
 import android.view.View

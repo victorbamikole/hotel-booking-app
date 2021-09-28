@@ -63,5 +63,26 @@
     <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
+    <string name="hotel_description">lorem kskksllsksjsjsjsjs jcjv vsj v vssd ss dvjdvsjdvs jjdvs
+        jdvjdvjdv jvdj dv jdvjdvjvdjjdvjdvjvdjvdjdvjvdjjdvjvdjdvjvdjvdjvdjvdjjvdjdvsjvdjvdjvdjvdjjdvjds
+        jasjjskjkss sid dk cdk cask  askk saksa ksa  kascm  scak ksk sack sackscak
+        jd ddvj dvj dvj vd dvj jdv dv jdvj dvsjdsv jvds jsd aggsgs shsh s jja jaaja
+        aa aj ajma j  akkakakaa akakk ak ak a ka kaka akamj</string>
+    <string name="amenities">Amenities</string>
+    <string name="free_wifi">Free WiFi</string>
+    <string name="breakfast">BreakFast</string>
+    <string name="pets">Pets</string>
+    <string name="bars">Bars</string>
+    <string name="pool">Pool</string>
+    <string name="gallery">Gallery</string>
+    <string name="more">More</string>
+    <string name="parkplaza_gmail_com">parkplaza@gmail.com</string>
+    <string name="_91_8272988282">+91-8272988282</string>
+    <string name="price">Price</string>
+    <string name="_6999">$6999</string>
+    <string name="reviews">Reviews</string>
+    <string name="our_services">Our Services</string>
+    <string name="single_deluxe_room">Single Deluxe Room</string>
+    <string name="_69999">$69999</string>
 
 </resources>
