@@ -22,6 +22,27 @@
     <string name="congratulations">Congratulations!</string>
     <string name="go_back_to_home">Go Back to Home</string>
     <string name="your_booking_has_been_confirmed">your booking has been confirmed</string>
+    <string name="book_now">Book Now</string>
+    <string name="booking_details">Booking Details</string>
+    <string name="phone">Phone</string>
+    <string name="booking">Booking</string>
+    <string name="_16_years">16 + years</string>
+    <string name="_1">1</string>
+    <string name="teens">Teens</string>
+    <string name="_12_15_years">12-15 years</string>
+    <string name="children">Children</string>
+    <string name="_2_11_years">2-11 years</string>
+    <string name="infants">Infants</string>
+    <string name="under_2_years">under 2 years</string>
+    <string name="_0">0</string>
+    <string name="adults">Adults</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="getStarted">Get started</string>
     <string name="help_amp_support"><![CDATA[Help & Support]]></string>
     <string name="hi_karen_">Hi, karen. How can we be of help?</string>
     <string name="our_address">Our address</string>
@@ -42,4 +63,26 @@
     <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
+    <string name="hotel_description">lorem kskksllsksjsjsjsjs jcjv vsj v vssd ss dvjdvsjdvs jjdvs
+        jdvjdvjdv jvdj dv jdvjdvjvdjjdvjdvjvdjvdjdvjvdjjdvjvdjdvjvdjvdjvdjvdjjvdjdvsjvdjvdjvdjvdjjdvjds
+        jasjjskjkss sid dk cdk cask  askk saksa ksa  kascm  scak ksk sack sackscak
+        jd ddvj dvj dvj vd dvj jdv dv jdvj dvsjdsv jvds jsd aggsgs shsh s jja jaaja
+        aa aj ajma j  akkakakaa akakk ak ak a ka kaka akamj</string>
+    <string name="amenities">Amenities</string>
+    <string name="free_wifi">Free WiFi</string>
+    <string name="breakfast">BreakFast</string>
+    <string name="pets">Pets</string>
+    <string name="bars">Bars</string>
+    <string name="pool">Pool</string>
+    <string name="gallery">Gallery</string>
+    <string name="more">More</string>
+    <string name="parkplaza_gmail_com">parkplaza@gmail.com</string>
+    <string name="_91_8272988282">+91-8272988282</string>
+    <string name="price">Price</string>
+    <string name="_6999">$6999</string>
+    <string name="reviews">Reviews</string>
+    <string name="our_services">Our Services</string>
+    <string name="single_deluxe_room">Single Deluxe Room</string>
+    <string name="_69999">$69999</string>
+
 </resources>
