@@ -106,6 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_profile_name_tv"/>
 
     <TextView
+        android:id="@+id/fragment_profile_edit_profile_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -141,7 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_profile_myAccount_tv" />
 
     <ImageView
-        android:id="@+id/fragment_confirmationScreen_Confirmation_ImageView"
+        android:id="@+id/fragment_profile_history_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -175,6 +176,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <ImageView
+        android:id="@+id/fragment_profile_help_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -209,6 +211,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <ImageView
+        android:id="@+id/fragment_profile_privacy_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
