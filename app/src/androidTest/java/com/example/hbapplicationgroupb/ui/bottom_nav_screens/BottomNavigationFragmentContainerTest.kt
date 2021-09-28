@@ -4,6 +4,7 @@ import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -30,5 +31,26 @@ class BottomNavigationFragmentContainerTest{
     @Test
     fun test_if_bottom_nav_fragment_container_is_visible(){
         onView(withId(R.id.bottomNavContainerId)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_if_i_click_explore_button_in_bottom_nav_its_corresponding_nav_layout_displays(){
+        onView(withId(R.id.exploreFragment)).perform(click())
+
+        onView(withId(R.id.exploreFragment)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_if_i_click_wishlist_button_in_bottom_nav_its_corresponding_nav_layout_displays(){
+        onView(withId(R.id.wishListFragment)).perform(click())
+
+        onView(withId(R.id.wishListFragment)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun test_if_i_click_profile_button_in_bottom_nav_its_corresponding_nav_layout_displays(){
+        onView(withId(R.id.profileFragment)).perform(click())
+
+        onView(withId(R.id.profileFragment)).check(matches(isDisplayed()))
     }
 }
