@@ -229,6 +229,7 @@
 
     <!--    Log out-->
     <TextView
+        android:id="@+id/fragment_profile_log_out_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
