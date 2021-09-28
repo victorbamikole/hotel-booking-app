@@ -1,10 +1,8 @@
-package com.example.hbapplicationgroupb.ui.bookingConfirmationFragment
+package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingConfirmationFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingConfirmationBinding
 
