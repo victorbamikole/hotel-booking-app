@@ -100,12 +100,20 @@
         android:id="@+id/addReviewPageFragment"
         android:name="com.example.hbapplicationgroupb.ui.review.AddReviewPageFragment"
         android:label="fragment_add_review_page"
-        tools:layout="@layout/fragment_add_review_page" />
+        tools:layout="@layout/fragment_add_review_page" >
+        <action
+            android:id="@+id/action_addReviewPageFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
         android:name="com.example.hbapplicationgroupb.ui.bookingConfirmationFragment.BookingConfirmationFragment"
         android:label="fragment_booking_confirmation"
-        tools:layout="@layout/fragment_booking_confirmation" />
+        tools:layout="@layout/fragment_booking_confirmation" >
+        <action
+            android:id="@+id/action_bookingConfirmationFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/bookingDetailsScreenFragment"
         android:name="com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BookingDetailsScreenFragment"

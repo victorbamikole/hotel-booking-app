@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
 
@@ -31,6 +32,11 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
                 binding.fragmentReviewPageStarFiveSmallViewProgressBar.progress =
                     ((userRatings/5) * 100)
             }
+        binding.fragmentReviewPageStarViewRatingBar1.setOnClickListener {
+                findNavController()
+                    .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+
+        }
 
 
     }

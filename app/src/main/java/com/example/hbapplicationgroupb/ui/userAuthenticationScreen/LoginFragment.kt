@@ -22,7 +22,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
         binding.btnLogin.setOnClickListener {
-           findNavController().navigate(R.id.action_loginFragment_to_bottomNavigationFragmentContainer)
+           findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
            // findNavController().navigate(R.id.action_loginFragment_to_bottom_nav_nav_graph2)
         }
     }
