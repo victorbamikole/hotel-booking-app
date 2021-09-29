@@ -16,10 +16,7 @@ class BottomNavigationFragmentContainer : Fragment(R.layout.fragment_bottom_navi
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBottomNavigationContainerBinding.bind(view)
 
-        /**
-         * find bottom nav container
-         */
-        val bottomNav = binding.bottomNavContainerId
+
 
         /**
          * Find navigation controller
@@ -30,7 +27,7 @@ class BottomNavigationFragmentContainer : Fragment(R.layout.fragment_bottom_navi
          * Set bottom nav with nav container
          */
 
-        bottomNav.setupWithNavController(navController = navHostFragment.navController)
+        binding.bottomNavContainerId.setupWithNavController(navController = navHostFragment.navController)
     }
 
 }
