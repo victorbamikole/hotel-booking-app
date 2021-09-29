@@ -10,6 +10,8 @@
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
     <string name="feb_2020">Feb 2020</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="Explore">Explore</string>
     <string name="kara_james">Kara James</string>
     <string name="userImage">userImage</string>
     <string name="edit_profile_text">Edit profile</string>
@@ -91,5 +93,23 @@
     <string name="login">Login</string>
     <string name="here"> here.</string>
     <string name="reset_password">Reset Password</string>
-
+    <string name="per_night">per night</string>
+    <string name="_499">$499</string>
+    <string name="_96">96%</string>
+    <string name="rating">4 star hotel</string>
+    <string name="top_hotel_name">Sarover Portico</string>
+    <string name="save">Save</string>
+    <string name="explore_hotel_name">Sheraton Grand</string>
+    <string name="explore_hotel_price">$599</string>
+    <string name="filter_by">Filter By</string>
+    <string name="bangalore">Bangalore</string>
+    <string name="view">View</string>
+    <string name="we_have_deals_for">We have deals for</string>
+    <string name="your_favorite_and_relaxing">your favorite and relaxing</string>
+    <string name="stay">stay.</string>
+    <string name="top_deals">Top Deals</string>
+    <string name="view_all">View All</string>
+    <string name="filter">Filter</string>
+    <string name="sheraton_grand">Sheraton Grand</string>
+    <string name="_599">$599</string>
 </resources>

@@ -18,4 +18,5 @@
     <color name="translucent_grey">#18cccccc</color>
     <color name="link_color">#1824d6</color>
     <color name="btn_color">#fa0905</color>
+    <color name="grey">#e0e0e0</color>
 </resources>

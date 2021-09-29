@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="305dp">
+
+    <androidx.cardview.widget.CardView
+        app:cardElevation="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/topHotelImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hotel3" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="108dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="214dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/book_now"
+            android:textColor="@color/custom_orange" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="222dp"
+            android:src="@drawable/ic_baseline_bookmark_24" />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="220dp"
+            android:text="@string/save"
+            android:textColor="@color/custom_orange"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/topHotelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/top_hotel_name"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/topHotelRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="170dp"
+            android:text="@string/rating"
+            android:textColor="@color/grey"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/topHotelPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="170dp"
+            android:text="@string/_96"
+            android:textColor="@color/grey"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:src="@drawable/ic_baseline_thumb_up_24"
+            android:id="@+id/like"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="168dp"
+            android:text="@string/_96"
+            android:textColor="@color/grey"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/topHotelPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="274dp"
+            android:layout_marginTop="170dp"
+            android:text="@string/per_night"
+            android:textColor="@color/grey"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/topHotelPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="131dp"
+            android:text="@string/_499"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
