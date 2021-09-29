@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/exploreFragment"
+        android:id="@+id/exploreFragment2"
         android:title="Explore"
         android:icon="@drawable/ic_explore"/>
     <item
-        android:id="@+id/wishListFragment"
+        android:id="@+id/wishListFragment2"
         android:title="Wishlist"
         android:icon="@drawable/ic_wishlist"/>
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profileFragment2"
         android:title="Profile"
         android:icon="@drawable/ic_profile"/>
 </menu>

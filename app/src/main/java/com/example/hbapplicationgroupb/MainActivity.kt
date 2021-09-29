@@ -21,14 +21,14 @@ class MainActivity : AppCompatActivity() {
             R.id.fragmentContainerView
         ) as NavHostFragment
 
+
         binding.bottomNavContainerId.setupWithNavController(navController = navHostFragment.navController)
 
         navHostFragment.navController.addOnDestinationChangedListener{ _, destination,_ ->
             when(destination.id){
                 R.id.exploreFragment2 -> showNavBar()
-                R.id.exploreFragment -> showNavBar()
-                R.id.profileFragment -> showNavBar()
-                R.id.wishListFragment -> showNavBar()
+                R.id.profileFragment2 -> showNavBar()
+                R.id.wishListFragment2 -> showNavBar()
                 else -> binding.bottomNavContainerId.visibility = View.GONE
             }
         }
