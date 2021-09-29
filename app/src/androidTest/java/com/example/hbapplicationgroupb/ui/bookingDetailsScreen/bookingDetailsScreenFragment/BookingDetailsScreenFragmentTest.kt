@@ -1,5 +1,7 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment
 
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -19,13 +21,15 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BookingDetailsScreenFragmentTest {
 
-//    private lateinit var scenario: FragmentScenario<BookingDetailsScreenFragment>
-//
-//    @Before
-//    fun setUp() {
-//        scenario = launchFragmentInContainer(themeResId= R.style.Theme_AppCompat_DayNight)
-//        scenario.moveToState(Lifecycle.State.STARTED)
-//    }
+
+    /**Initializing the scenario for the fragment*/
+    private lateinit var scenario: FragmentScenario<BookingDetailsScreenFragment>
+
+    @Before
+    fun setUp() {
+        scenario = launchFragmentInContainer(themeResId= R.style.Theme_HBApplicationGroupB)
+        scenario.moveToState(Lifecycle.State.STARTED)
+    }
 
     @Test
     fun TestBookingARoom(){
@@ -37,6 +41,7 @@ class BookingDetailsScreenFragmentTest {
         var rooms = ""
 
         onView(withId(R.id.bookingDetailsScreen_textView_Name)).perform(typeText(name))
+        Espresso.closeSoftKeyboard()
         onView(withId(R.id.bookingDetailsScreen_textView_PhoneNumber)).perform(typeText(phone))
         Espresso.closeSoftKeyboard()
         onView(withId(R.id.bookingDetailsScreen_textView_Start_Date)).perform(click())
@@ -50,8 +55,8 @@ class BookingDetailsScreenFragmentTest {
         onView(withId(R.id.fragment_booking_bookNow_Button)).perform(click())
 
 
-//    @After
-//    fun tearDown() {
-//    }
+    @After
+    fun tearDown() {
+    }
 }
 }
