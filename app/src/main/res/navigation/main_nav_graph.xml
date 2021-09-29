@@ -27,11 +27,6 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.hbapplicationgroupb.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.LoginFragment"
         android:label="fragment_login"
@@ -43,8 +38,8 @@
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_bottomNavigationFragmentContainer"
-            app:destination="@id/bottomNavigationFragmentContainer" />
+            android:id="@+id/action_loginFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -65,24 +60,93 @@
         android:id="@+id/hotelDescriptionFragment"
         android:name="com.example.hbapplicationgroupb.ui.hoteldescription.HotelDescriptionFragment"
         android:label="fragment_hotel_description"
-        tools:layout="@layout/fragment_hotel_description" />
-    <fragment
-        android:id="@+id/bottomNavigationFragmentContainer"
-        android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.BottomNavigationFragmentContainer"
-        android:label="fragment_bottom_navigation_container"
-        tools:layout="@layout/fragment_bottom_navigation_container" >
+        tools:layout="@layout/fragment_hotel_description" >
         <action
-            android:id="@+id/action_bottomNavigationFragmentContainer_to_topHotelsFragment3"
-            app:destination="@id/topHotelsFragment" />
+            android:id="@+id/action_hotelDescriptionFragment_to_reviewPageFragment"
+            app:destination="@id/reviewPageFragment" />
+        <action
+            android:id="@+id/action_hotelDescriptionFragment_to_bookingDetailsScreenFragment"
+            app:destination="@id/bookingDetailsScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/topHotelsFragment"
         android:name="com.example.hbapplicationgroupb.ui.tophotels.TopHotelsFragment"
         android:label="fragment_top_hotels"
-        tools:layout="@layout/fragment_top_hotels" />
+        tools:layout="@layout/fragment_top_hotels" >
+        <action
+            android:id="@+id/action_topHotelsFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exploreFragment2"
         android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.ExploreFragment"
         android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragment2_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingHistoryFragment"
+        android:name="com.example.hbapplicationgroupb.ui.bookinghistory.BookingHistoryFragment"
+        android:label="fragment_booking_history"
+        tools:layout="@layout/fragment_booking_history" />
+    <fragment
+        android:id="@+id/wishListFragment2"
+        android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/addReviewPageFragment"
+        android:name="com.example.hbapplicationgroupb.ui.review.AddReviewPageFragment"
+        android:label="fragment_add_review_page"
+        tools:layout="@layout/fragment_add_review_page" />
+    <fragment
+        android:id="@+id/bookingConfirmationFragment"
+        android:name="com.example.hbapplicationgroupb.ui.bookingConfirmationFragment.BookingConfirmationFragment"
+        android:label="fragment_booking_confirmation"
+        tools:layout="@layout/fragment_booking_confirmation" />
+    <fragment
+        android:id="@+id/bookingDetailsScreenFragment"
+        android:name="com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BookingDetailsScreenFragment"
+        android:label="fragment_booking_details_screen"
+        tools:layout="@layout/fragment_booking_details_screen" >
+        <action
+            android:id="@+id/action_bookingDetailsScreenFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpAndSupportFragment"
+        android:name="com.example.hbapplicationgroupb.ui.helpandsupport.HelpAndSupportFragment"
+        android:label="fragment_help_and_support"
+        tools:layout="@layout/fragment_help_and_support" />
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.hbapplicationgroupb.ui.privacy_policy_screen.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_bookingHistoryFragment"
+            app:destination="@id/bookingHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_helpAndSupportFragment"
+            app:destination="@id/helpAndSupportFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewPageFragment"
+        android:name="com.example.hbapplicationgroupb.ui.review.ReviewPageFragment"
+        android:label="fragment_review_page"
+        tools:layout="@layout/fragment_review_page" >
+        <action
+            android:id="@+id/action_reviewPageFragment_to_addReviewPageFragment"
+            app:destination="@id/addReviewPageFragment" />
+    </fragment>
 </navigation>

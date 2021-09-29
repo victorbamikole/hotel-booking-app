@@ -39,7 +39,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.tvViewAllHotel.setOnClickListener {
-            findNavController().navigate(R.id.topHotelsFragment)
+            findNavController().navigate(R.id.action_exploreFragment2_to_topHotelsFragment)
         }
 
     }
