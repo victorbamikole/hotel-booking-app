@@ -86,6 +86,13 @@
     <string name="our_services">Our Services</string>
     <string name="single_deluxe_room">Single Deluxe Room</string>
     <string name="_69999">$69999</string>
+    <string name="tc">T&amp;C and Privacy Policy.</string>
+    <string name="register">Register</string>
+    <string name="already_a_member">Already a member? </string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="here"> here.</string>
+    <string name="reset_password">Reset Password</string>
     <string name="per_night">per night</string>
     <string name="_499">$499</string>
     <string name="_96">96%</string>
@@ -105,6 +112,4 @@
     <string name="filter">Filter</string>
     <string name="sheraton_grand">Sheraton Grand</string>
     <string name="_599">$599</string>
-
-
 </resources>
