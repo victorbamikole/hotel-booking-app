@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.model.Hotels
 
 class ExploreFragment : Fragment(R.layout.fragment_explore) {
-    var binding : FragmentExploreBinding? = null
+    private lateinit var binding : FragmentExploreBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,4 +37,5 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding!!.recyclerView2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
+
 }
