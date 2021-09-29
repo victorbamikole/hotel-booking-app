@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupb.util
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.model.HotelImagesForViewPager
 import com.example.hbapplicationgroupb.model.RoomImageAndDetailForViewPager
+import com.example.hbapplicationgroupb.model.UserReview
 
 fun getListOfHotelImages():List<HotelImagesForViewPager>{
     return listOf(
@@ -23,5 +24,15 @@ fun getListForBottomViewPager():List<RoomImageAndDetailForViewPager>{
         RoomImageAndDetailForViewPager(R.drawable.image_hotel_3,"Johnson Deluxe Room","$700000"),
         RoomImageAndDetailForViewPager(R.drawable.image_hotel_2,"Yeah Deluxe Room","$30"),
         RoomImageAndDetailForViewPager(R.drawable.image_hotel_1,"Require Deluxe Room","$700")
+    )
+}
+fun getListOfUserReview():List<UserReview>{
+    return listOf(
+        UserReview("Johnson",4,R.drawable.image_hotel_6,"good product"),
+        UserReview("Johnson",4,R.drawable.image_hotel_5,"good product"),
+        UserReview("Johnson",4,R.drawable.image_hotel_4,"good product"),
+        UserReview("Johnson",4,R.drawable.image_hotel_3,"good product"),
+        UserReview("Johnson",4,R.drawable.image_hotel_2,"good product"),
+        UserReview("Johnson",4,R.drawable.image_hotel_1,"good product")
     )
 }
