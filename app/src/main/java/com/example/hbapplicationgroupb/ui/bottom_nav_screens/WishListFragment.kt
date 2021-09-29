@@ -20,6 +20,10 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         setUpWishListRecyclerView()
     }
 
+    /**
+     * Set up recyclerview for wishlist screen
+     */
+
     private fun setUpWishListRecyclerView() {
         instanceOfWishListAdapter = WishListAdapter()
         instanceOfWishListAdapter.hotels = listOf(

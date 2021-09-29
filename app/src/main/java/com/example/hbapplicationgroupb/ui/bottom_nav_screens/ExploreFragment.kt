@@ -7,18 +7,11 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 
 class ExploreFragment : Fragment(R.layout.fragment_explore) {
-    var binding : FragmentExploreBinding? = null
+    private lateinit var binding : FragmentExploreBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-
     }
 
 }
