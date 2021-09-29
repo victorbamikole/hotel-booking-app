@@ -16,4 +16,7 @@
     <color name="custom_dark_ash">#adaaad</color>
     <color name="custom_light_ash">#dddbdd</color>
     <color name="translucent_grey">#18cccccc</color>
+    <color name="link_color">#1824d6</color>
+    <color name="btn_color">#fa0905</color>
+    <color name="grey">#e0e0e0</color>
 </resources>

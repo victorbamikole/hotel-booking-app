@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.hbapplicationgroupb"
-        minSdk 17
+        minSdk 22
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -105,13 +105,40 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
     implementation "androidx.test.espresso:espresso-idling-resource:$androidx_test_espresso"
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0')
 
     // androidx.test
     def androidx_test = "1.1.0"
     androidTestImplementation "androidx.test:runner:$androidx_test"
     androidTestImplementation "androidx.test:core:$androidx_test"
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
+
+//    def fragment_version = "1.4.0-alpha08"
+//    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+
+    //Test fragments
+    debugImplementation "androidx.fragment:fragment-testing:1.4.0-alpha09"
+    implementation "androidx.fragment:fragment-ktx:1.4.0-alpha09"
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.4.0"
+
+    // androidx.test
+    androidTestImplementation "androidx.test:runner:1.4.0"
+    androidTestImplementation "androidx.test:core:1.4.0"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.3"
+
+    //Navigation Tests
+    androidTestImplementation("androidx.navigation:navigation-testing:2.3.5")
+
+    // Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha09")
+
+    //Multidex dependency to enable app accommodate all our methods
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+
 
 
     //Bottom Sheet
