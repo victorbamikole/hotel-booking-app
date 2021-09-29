@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.bottom_nav_screens.ExploreFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/fragment_review_page_toolbar"
         android:layout_width="match_parent"
@@ -81,92 +80,105 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="90dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/custom_orange"
         app:cardCornerRadius="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="322dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewButton"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:alpha="0.20"
+        android:padding="20dp"
+       android:background="@color/translucent_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
 
         <TextView
+            android:layout_margin="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="280dp"
-            android:layout_marginBottom="10dp"
+            android:layout_gravity="center|start"
             android:text="@string/view"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/viewButton"
-            android:layout_width="145dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="240dp"
-            android:layout_marginBottom="-8dp"
-            android:alpha="0.20"
-            android:backgroundTint="@color/white" />
-
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_baseline_ads_click_24" />
-
-        <TextView
-            android:id="@+id/firstext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="17dp"
-            android:elegantTextHeight="true"
-            android:text="@string/we_have_deals_for"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_gravity="center|end"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/secondText"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="60dp"
-            android:elegantTextHeight="true"
-            android:text="@string/your_favorite_and_relaxing"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_marginStart="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_ads_click_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/thirdText"
-            android:layout_width="294dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="103dp"
-            android:elegantTextHeight="true"
-            android:text="@string/stay"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/firstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:elegantTextHeight="true"
+        android:text="@string/we_have_deals_for"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/secondText"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
+    <TextView
+
+        android:id="@+id/secondText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/your_favorite_and_relaxing"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/thirdText"
+        app:layout_constraintStart_toStartOf="@+id/firstext"
+        app:layout_constraintTop_toBottomOf="@id/firstext" />
+
+    <TextView
+        android:id="@+id/thirdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:text="@string/stay"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/firstext"
+        app:layout_constraintTop_toBottomOf="@+id/secondText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,12 +190,12 @@
 
 
             <TextView
-                android:textColor="@color/black"
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="@string/top_hotels"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -193,14 +205,12 @@
                 android:id="@+id/tv_viewAllHotel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="196dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/view_all"
                 android:textColor="@color/custom_orange"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -218,13 +228,13 @@
 
 
             <TextView
-                android:textColor="@color/black"
                 android:id="@+id/topDeal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/top_deals"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,13 +244,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/view_all"
                 android:textColor="@color/custom_orange"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.861"
-                app:layout_constraintStart_toEndOf="@+id/topDeal"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -253,13 +262,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/topDeal"
                 app:layout_constraintVertical_bias="0.0"
-                tools:listitem="@layout/recyclerview_row" />
+
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
