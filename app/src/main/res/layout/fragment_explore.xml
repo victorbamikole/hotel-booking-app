@@ -93,33 +93,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/viewTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        android:text="@string/view"
+        android:textColor="#FAFAFA"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/viewButton"
+
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:layout_constraintStart_toEndOf="@id/viewTextView"
+        app:layout_constraintBottom_toBottomOf="@id/viewTextView"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/viewButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="bottom"
-        android:alpha="0.20"
+        android:alpha="0.10"
         android:padding="20dp"
-       android:background="@color/translucent_grey"
+        android:background="@color/translucent_grey"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:text="@string/view"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
-    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/icon"
