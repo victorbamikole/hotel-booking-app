@@ -65,8 +65,8 @@
             android:id="@+id/action_hotelDescriptionFragment_to_reviewPageFragment"
             app:destination="@id/reviewPageFragment" />
         <action
-            android:id="@+id/action_hotelDescriptionFragment_to_bookingDetailsScreenFragment"
-            app:destination="@id/bookingDetailsScreenFragment" />
+            android:id="@+id/action_hotelDescriptionFragment_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
     </fragment>
     <fragment
         android:id="@+id/topHotelsFragment"
@@ -115,15 +115,6 @@
             app:destination="@id/exploreFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/bookingDetailsScreenFragment"
-        android:name="com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BookingDetailsScreenFragment"
-        android:label="fragment_booking_details_screen"
-        tools:layout="@layout/fragment_booking_details_screen" >
-        <action
-            android:id="@+id/action_bookingDetailsScreenFragment_to_bookingConfirmationFragment"
-            app:destination="@id/bookingConfirmationFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/helpAndSupportFragment"
         android:name="com.example.hbapplicationgroupb.ui.helpandsupport.HelpAndSupportFragment"
         android:label="fragment_help_and_support"
@@ -156,5 +147,14 @@
         <action
             android:id="@+id/action_reviewPageFragment_to_addReviewPageFragment"
             app:destination="@id/addReviewPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingDetailsScreenFragment2"
+        android:name="com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragment"
+        android:label="fragment_booking_details_screen"
+        tools:layout="@layout/fragment_booking_details_screen" >
+        <action
+            android:id="@+id/action_bookingDetailsScreenFragment2_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
     </fragment>
 </navigation>

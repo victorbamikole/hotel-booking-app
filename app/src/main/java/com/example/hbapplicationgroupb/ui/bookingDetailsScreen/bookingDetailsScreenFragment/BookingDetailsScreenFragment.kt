@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.navigation.fragment.findNavController
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.callback.SingleDayPickCallback
@@ -33,8 +34,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             }
             val today = CivilCalendar()
             val datePicker = PrimeDatePicker.bottomSheetWith(today)
-                .pickSingleDay(callback)
-                .initiallyPickedSingleDay(pickedDay = today)
+                .pickRangeDays()
                 .build()
                  fragmentManager?.let { datePicker.show(it, "SOME_TAG") }
         }
@@ -47,12 +47,15 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             }
             val today = CivilCalendar()
             val datePicker = PrimeDatePicker.bottomSheetWith(today)
-                .pickSingleDay(callback)
-                .initiallyPickedSingleDay(pickedDay = today)
+                .pickRangeDays()
                 .build()
             fragmentManager?.let { datePicker.show(it, "SOME_TAG")
         }
     }
+        binding.fragmentBookingBookNowButton.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_bookingDetailsScreenFragment2_to_bookingConfirmationFragment)
+        }
 
 
         /** Method to pop bottom Sheet for Age Selection */
