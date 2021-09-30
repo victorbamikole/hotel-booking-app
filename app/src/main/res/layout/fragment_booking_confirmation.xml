@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/booking"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_booking_details_cancel_textView"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_paymentOptions_AmountToBePaid_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
         app:layout_constraintVertical_bias="0.64" />
 
     <TextView
-        android:id="@+id/fragment_booking_details_cancel_textView"
+        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/congratulations"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
 
 
     <androidx.appcompat.widget.AppCompatButton

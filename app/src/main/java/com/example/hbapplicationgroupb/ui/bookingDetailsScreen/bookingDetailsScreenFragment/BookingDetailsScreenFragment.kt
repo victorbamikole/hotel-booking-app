@@ -31,6 +31,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             val callback = SingleDayPickCallback { day ->
                 // TODO
             }
+
             val today = CivilCalendar()
             val datePicker = PrimeDatePicker.bottomSheetWith(today)
                 .pickSingleDay(callback)

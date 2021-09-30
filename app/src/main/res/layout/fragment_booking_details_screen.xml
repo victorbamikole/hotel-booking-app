@@ -30,7 +30,7 @@
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/fragment_booking_details_back_arrow_viev"
+            android:id="@+id/fragment_paymentOptions_back_arrow_viev"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_baseline_arrow_back_ios_new_24"/>
@@ -112,6 +112,7 @@
         android:drawableStart="@drawable/ic_baseline_date_range_24"
         android:elevation="15dp"
         android:paddingStart="20dp"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +127,7 @@
         android:layout_marginTop="20dp"
         android:hint="Check out"
         android:drawablePadding="8dp"
+        android:focusable="false"
         android:background="@drawable/text_input_rectangle"
         android:drawableStart="@drawable/ic_baseline_date_range_24"
         android:elevation="15dp"
@@ -147,6 +149,7 @@
         android:background="@drawable/text_input_rectangle"
         android:drawableStart="@drawable/ic_baseline_people_24"
         android:elevation="15dp"
+        android:focusable="false"
         android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -166,6 +169,7 @@
         android:drawableStart="@drawable/ic_baseline_bedroom_parent_24"
         android:elevation="15dp"
         android:paddingStart="20dp"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
