@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -16,5 +17,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)//set binding to root layout
 
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.fragmentContainerView
+        ) as NavHostFragment
+
+
+        binding.bottomNavContainerId.setupWithNavController(navController = navHostFragment.navController)
+
+        navHostFragment.navController.addOnDestinationChangedListener{ _, destination,_ ->
+            when(destination.id){
+                R.id.exploreFragment2 -> showNavBar()
+                R.id.profileFragment2 -> showNavBar()
+                R.id.wishListFragment2 -> showNavBar()
+                else -> binding.bottomNavContainerId.visibility = View.GONE
+            }
+        }
     }
+
+    private fun showNavBar() {
+        binding.bottomNavContainerId.visibility = View.VISIBLE
+    }
+
 }

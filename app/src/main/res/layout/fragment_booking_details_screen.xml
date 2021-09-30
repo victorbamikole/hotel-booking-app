@@ -36,6 +36,14 @@
             android:background="@drawable/ic_baseline_arrow_back_ios_new_24"/>
 
     </androidx.appcompat.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
     <View

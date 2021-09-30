@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupb.ui.hoteldescription
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentHotelDescriptionBinding
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
@@ -20,7 +21,14 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding = FragmentHotelDescriptionBinding.bind(view)
         initialiseViewPager()
         setUpViewPagerTransition()
-
+        binding.bookNowButton.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_hotelDescriptionFragment_to_bookingDetailsScreenFragment)
+        }
+            binding.addStarRatingContainer.setOnClickListener {
+                findNavController()
+                    .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
+            }
 
     }
 
