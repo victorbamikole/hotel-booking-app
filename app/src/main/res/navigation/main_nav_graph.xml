@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
-        android:name="com.example.hbapplicationgroupb.ui.bookingConfirmationFragment.BookingConfirmationFragment"
+        android:name="com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingConfirmationFragment.BookingConfirmationFragment"
         android:label="fragment_booking_confirmation"
         tools:layout="@layout/fragment_booking_confirmation" >
         <action
