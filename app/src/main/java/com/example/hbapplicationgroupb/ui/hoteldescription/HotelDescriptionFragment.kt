@@ -23,7 +23,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         setUpViewPagerTransition()
         binding.bookNowButton.setOnClickListener {
             findNavController()
-                .navigate(R.id.action_hotelDescriptionFragment_to_bookingDetailsScreenFragment)
+                .navigate(R.id.action_hotelDescriptionFragment_to_bookingDetailsScreenFragment2)
         }
             binding.addStarRatingContainer.setOnClickListener {
                 findNavController()
