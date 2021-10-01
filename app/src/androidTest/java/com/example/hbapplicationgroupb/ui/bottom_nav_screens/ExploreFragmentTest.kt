@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 
+//import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -20,7 +21,7 @@ class ExploreFragmentTest {
 
 //    @Test
 //    fun testViews() {
-//        val scenario = launchFragmentInContainer<ExploreFragment>()
+////        val scenario = launchFragmentInContainer<ExploreFragment>()
 //        Espresso.onView(withId(R.id.firstext))
 //            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
 //        Espresso.onView(withId(R.id.secondText))
@@ -34,4 +35,5 @@ class ExploreFragmentTest {
 //
 //    }
 
+//    }
 }

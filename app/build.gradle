@@ -113,8 +113,13 @@ dependencies {
     androidTestImplementation "androidx.test:core:$androidx_test"
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
 
-//    def fragment_version = "1.4.0-alpha08"
+//    //Fragment testing dependency
+//    def fragment_version = "1.4.0-alpha09"
 //    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+//
+//    //espresso rule and runner
+//    androidTestImplementation('androidx.test:runner:1.4.0')
+//    androidTestImplementation('androidx.test:rules:1.4.0')
 
 
 }
