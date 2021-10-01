@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    tools:context=".ui.bookingConfirmationFragment.BookingConfirmationFragment">
+    tools:context=".ui.bookingDetailsScreen.bookingConfirmationFragment.BookingConfirmationFragment">
 
 
     <!--    profile toolbar-->
@@ -31,6 +31,24 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_confirmationScreen_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_confirmationScreen_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
         android:id="@+id/fragment_confirmationScreen_Confirmation_ImageView"

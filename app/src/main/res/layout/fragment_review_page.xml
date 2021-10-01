@@ -283,6 +283,7 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_review_page_star_oneSmallView_progressBar"
         />
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_review_page_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"

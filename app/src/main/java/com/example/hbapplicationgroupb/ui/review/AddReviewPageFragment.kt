@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.RatingBar
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAddReviewPageBinding
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
@@ -39,6 +40,10 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
 
 
             }
+        binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_addReviewPageFragment_to_hotelDescriptionFragment)
+        }
     }
     override fun onDetach() {
         //clear flag on detach of fragment

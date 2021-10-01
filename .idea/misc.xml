@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.22685185185185186" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/drawable-hdpi/bg_button.xml" value="0.1" />
+=======
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_ads_click_24.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_thumb_up_24.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2984375" />
+>>>>>>> d9a08749a1afb7d49e05488998f4d3531a4d9cfc
         <entry key="app/src/main/res/drawable/custom_drawable_shadow.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/edit_box_for_ratings_review_design.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/drawable/food_rating_bar_full.xml" value="0.21197916666666666" />
@@ -28,12 +32,20 @@
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.1" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.2" />
+=======
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
+>>>>>>> ce7d156340e1491a4ca38840b95502736f8af5f0
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.17" />
         <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.10894941634241245" />
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
