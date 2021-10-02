@@ -1,6 +1,10 @@
 package com.example.hbapplicationgroupb.ui.hoteldescription
 
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -10,6 +14,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.hbapplicationgroupb.MainActivity
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragment
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,10 +23,16 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class HotelDescriptionFragmentTest{
-/**
-    @get:Rule
-    val activityRule: ActivityScenarioRule<MainActivity> =
-        ActivityScenarioRule(MainActivity::class.java)
+
+
+    /**Initializing the scenario for the fragment*/
+    private lateinit var scenario: FragmentScenario<HotelDescriptionFragment>
+
+    @Before
+    fun setUp() {
+        scenario = launchFragmentInContainer(themeResId= R.style.Theme_HBApplicationGroupB)
+        scenario.moveToState(Lifecycle.State.STARTED)
+    }
 
     @Test
     fun test_areViewsVisibleWhenAppNavigateToFragment(){
@@ -43,7 +55,6 @@ class HotelDescriptionFragmentTest{
         //check if breakfast icon is visible
         Espresso.onView(withId(R.id.fragment_hotel_description_card_breakfast))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
 
         //check if pets icon is visible
         Espresso.onView(withId(R.id.fragment_hotel_description_card_pets))
@@ -93,17 +104,5 @@ class HotelDescriptionFragmentTest{
         Espresso.onView(withId(R.id.fragment_image_description_viewPager_ourServices))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-    @Test
-    fun test_testToCheckIfButtonsAreClickableAndIfClickablePerformRequiredAction(){
-        /**
-         * code to navigate to hotelDescription fragment goes here
-         */
-        //onclick of button to gallery
-        Espresso.onView(withId(R.id.fragment_hotel_description_cardClick_to_Gallery))
-            .perform(ViewActions.click())
-        /**
-         * code to assert that views are visible in the next activity
-         */
-    }
-    */
+
 }
