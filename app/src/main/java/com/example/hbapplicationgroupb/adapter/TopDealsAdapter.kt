@@ -20,7 +20,6 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
         val topDealPrice = binding.topDealPrice
         val topDealRating = binding.topDealRating
         val topDealPercent = binding.topDealPercent
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {

@@ -37,12 +37,14 @@
         <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.10894941634241245" />
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
-        <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.26132246376811596" />
-        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.18430539384185982" />
+        <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.26721014492753625" />
+        <entry key="app/src/main/res/layout/room_viewpager_design.xml" value="0.26132246376811596" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/top_hotels_recyclerview.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/top_deals_recyclerview.xml" value="0.26132246376811596" />
+        <entry key="app/src/main/res/layout/top_hotels_recyclerview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_pager_template.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/wish_list_list_item_layout.xml" value="0.26132246376811596" />
       </map>

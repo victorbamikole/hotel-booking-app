@@ -21,6 +21,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTopDealsBinding.bind(view)
 
+        //List of top deals items
         val topDeals =
             listOf(
                 TopHotels(R.drawable.hotel2, "Sheraton Grand", "$599", "4 star hotel", "80%"),
