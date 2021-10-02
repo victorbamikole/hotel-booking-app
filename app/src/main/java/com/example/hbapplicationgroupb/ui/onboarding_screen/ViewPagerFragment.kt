@@ -51,8 +51,8 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
     }
 
 
-    private fun navigateToRegisterFragment(){
-      findNavController().navigate(R.id.action_viewPagerFragment_to_registerFragment)
+    private fun navigateToLoginFragment(){
+      findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         onBoardingFinished()
 
     }
@@ -94,12 +94,12 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
                 onboardingVp.currentItem +=1
 
             }else{
-                navigateToRegisterFragment()
+                navigateToLoginFragment()
                 onBoardingFinished()
             }
         }
         binding.btnSkip.setOnClickListener {
-            navigateToRegisterFragment()
+            navigateToLoginFragment()
             onBoardingFinished()
         }
     }

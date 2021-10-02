@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
 
@@ -20,6 +21,32 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding = FragmentProfileBinding.bind(view)
         binding?.fragmentProfileLogOutBtn?.setOnClickListener {
             showLogOutAlert()
+        }
+
+        binding?.fragmentProfileHistoryTv?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_bookingHistoryFragment)
+
+        }
+        binding?.fragmentProfileHistoryIcon?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_bookingHistoryFragment)
+        }
+        binding?.fragmentProfileHelpTv?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_helpAndSupportFragment)
+        }
+        binding?.fragmentProfileHelpIcon?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_helpAndSupportFragment)
+        }
+        binding?.fragmentProfilePrivacyIcon?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
+        }
+        binding?.fragmentBookingDetailsCancelTextView?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
         }
     }
 
@@ -44,16 +71,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 

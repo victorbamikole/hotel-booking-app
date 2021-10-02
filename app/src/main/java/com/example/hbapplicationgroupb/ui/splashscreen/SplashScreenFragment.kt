@@ -52,7 +52,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
         val splashScreenTimeout = 3500
         Handler(Looper.getMainLooper()).postDelayed({
             if (onboardingFinished()) {
-                findNavController().navigate(R.id.action_splashScreenFragment_to_registerFragment)
+                findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             } else {
 
             findNavController().navigate(

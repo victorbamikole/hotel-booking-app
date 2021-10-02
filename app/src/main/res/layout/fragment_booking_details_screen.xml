@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bookingDetailsScreen.BookingDetailsScreenFragment">
+    tools:context=".ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragment">
 
 
     <!--    profile toolbar-->
@@ -35,10 +35,25 @@
             android:layout_height="30dp"
             android:background="@drawable/ic_baseline_arrow_back_ios_new_24"/>
 
-
-
     </androidx.appcompat.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 
@@ -100,6 +115,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:hint="Check In"
+        android:focusable="false"
         android:drawablePadding="8dp"
         android:background="@drawable/text_input_rectangle"
         android:drawableStart="@drawable/ic_baseline_date_range_24"
@@ -114,6 +130,7 @@
         android:id="@+id/bookingDetailsScreen_textView_End_Date"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:focusable="false"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
@@ -154,6 +171,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:hint="Rooms"
+        android:focusable="false"
         android:drawablePadding="8dp"
         android:background="@drawable/text_input_rectangle"
         android:drawableStart="@drawable/ic_baseline_bedroom_parent_24"

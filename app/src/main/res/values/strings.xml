@@ -10,6 +10,8 @@
     <string name="out_of_5">(OUT OF 5)</string>
     <string name="_25_ratings">25 Ratings</string>
     <string name="feb_2020">Feb 2020</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="Explore">Explore</string>
     <string name="kara_james">Kara James</string>
     <string name="userImage">userImage</string>
     <string name="edit_profile_text">Edit profile</string>
@@ -63,11 +65,9 @@
     <string name="information_you_provide"><u><b>Information you provide</b></u></string>
     <string name="describe_your_experience_optional">Describe your experience (optional)</string>
     <string name="ratings">Ratings</string>
-    <string name="hotel_description">lorem kskksllsksjsjsjsjs jcjv vsj v vssd ss dvjdvsjdvs jjdvs
-        jdvjdvjdv jvdj dv jdvjdvjvdjjdvjdvjvdjvdjdvjvdjjdvjvdjdvjvdjvdjvdjvdjjvdjdvsjvdjvdjvdjvdjjdvjds
-        jasjjskjkss sid dk cdk cask  askk saksa ksa  kascm  scak ksk sack sackscak
-        jd ddvj dvj dvj vd dvj jdv dv jdvj dvsjdsv jvds jsd aggsgs shsh s jja jaaja
-        aa aj ajma j  akkakakaa akakk ak ak a ka kaka akamj</string>
+    <string name="hotel_description">There are two methods by which you can do this. First, there is additive mixing, which is when you combine two shades of light together.
+        Since each light is building on each other, it can produce a brighter color. Second, there is subtractive mixing. This is what most people are familiar with, asit’s the process of combining paints or other colored substances to make another hue.
+        This is the most common form of color mixing, but it is somewhat limited, particularly when it comes to making white.</string>
     <string name="amenities">Amenities</string>
     <string name="free_wifi">Free WiFi</string>
     <string name="breakfast">BreakFast</string>
@@ -84,5 +84,30 @@
     <string name="our_services">Our Services</string>
     <string name="single_deluxe_room">Single Deluxe Room</string>
     <string name="_69999">$69999</string>
-
+    <string name="tc">T&amp;C and Privacy Policy.</string>
+    <string name="register">Register</string>
+    <string name="already_a_member">Already a member? </string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
+    <string name="here"> here.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="per_night">per night</string>
+    <string name="_499">$499</string>
+    <string name="_96">96%</string>
+    <string name="rating">4 star hotel</string>
+    <string name="top_hotel_name">Sarover Portico</string>
+    <string name="save">Save</string>
+    <string name="explore_hotel_name">Sheraton Grand</string>
+    <string name="explore_hotel_price">$599</string>
+    <string name="filter_by">Filter By</string>
+    <string name="bangalore">Bangalore</string>
+    <string name="view">View</string>
+    <string name="we_have_deals_for">We have deals for</string>
+    <string name="your_favorite_and_relaxing">your favorite and relaxing</string>
+    <string name="stay">stay.</string>
+    <string name="top_deals">Top Deals</string>
+    <string name="view_all">View All</string>
+    <string name="filter">Filter</string>
+    <string name="sheraton_grand">Sheraton Grand</string>
+    <string name="_599">$599</string>
 </resources>
