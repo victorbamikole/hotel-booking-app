@@ -66,7 +66,7 @@
                 tools:layout_editor_absoluteY="72dp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewBangalore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -84,7 +84,7 @@
                 android:layout_marginStart="164dp"
                 android:src="@drawable/ic_baseline_filter_alt_24"
                 app:layout_constraintTop_toTopOf="@id/imageView"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toEndOf="@+id/textViewBangalore"
                 tools:layout_editor_absoluteY="77dp" />
 
             <TextView
@@ -110,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewBangalore" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topDealsRecyclerView"
@@ -120,7 +120,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textViewBangalore"
                 tools:listitem="@layout/top_deals_recyclerview" />
 
 
