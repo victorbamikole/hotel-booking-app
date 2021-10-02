@@ -15,7 +15,9 @@
             app:destination="@id/viewPagerFragment" />
         <action
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -39,13 +41,19 @@
             app:destination="@id/forgotPasswordFragment" />
         <action
             android:id="@+id/action_loginFragment_to_exploreFragment2"
-            app:destination="@id/exploreFragment2" />
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.ResetPasswordFragment"
@@ -55,7 +63,11 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" />
+        tools:layout="@layout/fragment_forgot_password" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/hotelDescriptionFragment"
         android:name="com.example.hbapplicationgroupb.ui.hoteldescription.HotelDescriptionFragment"
@@ -67,6 +79,11 @@
         <action
             android:id="@+id/action_hotelDescriptionFragment_to_bookingDetailsScreenFragment2"
             app:destination="@id/bookingDetailsScreenFragment2" />
+        <action
+            android:id="@+id/action_hotelDescriptionFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/topHotelsFragment"
@@ -76,6 +93,9 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_hotelDescriptionFragment"
             app:destination="@id/hotelDescriptionFragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment2"
@@ -104,6 +124,9 @@
         <action
             android:id="@+id/action_addReviewPageFragment_to_hotelDescriptionFragment"
             app:destination="@id/hotelDescriptionFragment" />
+        <action
+            android:id="@+id/action_addReviewPageFragment_to_reviewPageFragment"
+            app:destination="@id/reviewPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
