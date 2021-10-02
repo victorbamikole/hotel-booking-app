@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.hbapplicationgroupb.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BottomSheetForRooms : BottomSheetDialogFragment() {
 
     fun bottomSheet(){
