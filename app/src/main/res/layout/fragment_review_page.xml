@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_tv_post"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_tv_addNewReview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
