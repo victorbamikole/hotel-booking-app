@@ -1,11 +1,11 @@
 package com.example.hbapplicationgroupb.model.getDataModel.getHotelDataModel.hotelTopdealData
 
 data class GetHotelTopDealDataItem(
-    val Id: String,
-    val Name: String,
-    val Description: String,
-    val Email: String,
-    val Address: String,
-    val City: String,
-    val State: String
+    val id: String,
+    val name: String,
+    val description: String,
+    val email: String,
+    val address: String,
+    val city: String,
+    val state: String
 )

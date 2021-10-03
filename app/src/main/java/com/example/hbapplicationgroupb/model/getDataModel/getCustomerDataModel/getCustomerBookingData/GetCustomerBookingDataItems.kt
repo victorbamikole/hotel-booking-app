@@ -3,9 +3,9 @@ package com.example.hbapplicationgroupb.model.getDataModel.getCustomerDataModel.
 import java.util.*
 
 data class GetCustomerBookingDataItems(
-    val BookingReference: String,
-    val CheckIn: Date,
-    val CheckOut: Date,
-    val NumberOfPeople: Int,
-    val ServiceName: String
+    val bookingReference: String,
+    val checkIn: Date,
+    val checkOut: Date,
+    val numberOfPeople: Int,
+    val serviceName: String
 )

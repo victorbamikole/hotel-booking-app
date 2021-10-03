@@ -3,5 +3,5 @@ package com.example.hbapplicationgroupb.model.getDataModel.getCustomerDataModel.
 data class GetCustomerWishListDataItem(
     val hotelId: String,
     val hotelName: String,
-    val ImageUrl: String
+    val imageUrl: String
 )

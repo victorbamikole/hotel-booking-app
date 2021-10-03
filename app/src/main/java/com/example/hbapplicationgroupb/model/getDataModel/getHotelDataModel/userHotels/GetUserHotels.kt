@@ -3,7 +3,7 @@ package com.example.hbapplicationgroupb.model.getDataModel.getHotelDataModel.use
 data class GetUserHotels(
     val statusCode: String,
     val success: String,
-    val Data: List<GetUserHotelsItem>,
-    val Message: String,
+    val data: List<GetUserHotelsItem>,
+    val message: String,
     val errors: String? = null
 )

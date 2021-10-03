@@ -3,7 +3,7 @@ package com.example.hbapplicationgroupb.model.getDataModel.getHotelDataModel.hot
 data class GetHotelTopDealData(
     val statusCode: String,
     val success: Boolean,
-    val Data: List<GetHotelTopDealDataItem>,
-    val Message: String,
+    val data: List<GetHotelTopDealDataItem>,
+    val message: String,
     val errors: String? = null
 )

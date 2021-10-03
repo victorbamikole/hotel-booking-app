@@ -5,7 +5,7 @@ import com.example.hbapplicationgroupb.model.getDataModel.getCustomerDataModel.g
 data class GetCustomerBookingsData(
     val statusCode: String,
     val success: Boolean,
-    val Data: List<GetCustomerBookingDataItems>,
+    val data: List<GetCustomerBookingDataItems>,
     val message: String,
-    val error: String? = null
+    val errors: String? = null
 )

@@ -3,7 +3,7 @@ package com.example.hbapplicationgroupb.model.getDataModel.getCustomerDataModel.
 data class GetCustomerWishListData(
     val statusCode: String,
     val success: Boolean,
-    val Data: List<GetCustomerWishListDataItem>,
-    val Message: String,
+    val data: List<GetCustomerWishListDataItem>,
+    val message: String,
     val errors: String? = null
 )
