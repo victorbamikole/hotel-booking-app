@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 
 //import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -19,21 +20,20 @@ import org.junit.runner.RunWith
 class ExploreFragmentTest {
 
 
-//    @Test
-//    fun testViews() {
-////        val scenario = launchFragmentInContainer<ExploreFragment>()
-//        Espresso.onView(withId(R.id.firstext))
-//            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-//        Espresso.onView(withId(R.id.secondText))
-//            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-//        Espresso.onView(withId(R.id.thirdText))
-//            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-//        Espresso.onView(withId(R.id.recyclerView))
-//            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-//        Espresso.onView(withId(R.id.recyclerView2))
-//            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
-//
-//    }
+    @Test
+    fun testViewsExploreScreen() {
+        val scenario = launchFragmentInContainer<ExploreFragment>()
+        Espresso.onView(withId(R.id.firstext))
+            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        Espresso.onView(withId(R.id.secondText))
+            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        Espresso.onView(withId(R.id.thirdText))
+            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        Espresso.onView(withId(R.id.recyclerView))
+            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        Espresso.onView(withId(R.id.recyclerView2))
+            .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
 
-//    }
+    }
+
 }

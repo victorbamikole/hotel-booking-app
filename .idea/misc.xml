@@ -39,7 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.26721014492753625" />
         <entry key="app/src/main/res/layout/room_viewpager_design.xml" value="0.26132246376811596" />
