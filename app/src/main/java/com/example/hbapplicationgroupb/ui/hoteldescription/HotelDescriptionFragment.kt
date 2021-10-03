@@ -25,6 +25,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             findNavController()
                 .navigate(R.id.action_hotelDescriptionFragment_to_bookingDetailsScreenFragment2)
         }
+        binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
             binding.addStarRatingContainer.setOnClickListener {
                 findNavController()
                     .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
