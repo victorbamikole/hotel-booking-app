@@ -22,15 +22,21 @@ class ExploreFragmentTest {
 
     @Test
     fun testViewsExploreScreen() {
+        /**Initializing the scenario for the fragment*/
         val scenario = launchFragmentInContainer<ExploreFragment>()
+        //Check if the first text is visible
         Espresso.onView(withId(R.id.firstext))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        //Check if the second text is visible
         Espresso.onView(withId(R.id.secondText))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        //Check if the third text is visible
         Espresso.onView(withId(R.id.thirdText))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        //Check if the recyclerview is visible
         Espresso.onView(withId(R.id.recyclerView))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
+        //Check if the recyclerview is visible
         Espresso.onView(withId(R.id.recyclerView2))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
 

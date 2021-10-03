@@ -16,7 +16,10 @@ class TopDealsFragmentTest{
 
     @Test
     fun testViewsTopDealsScreen() {
+        /**Initializing the scenario for the fragment*/
         val scenario = launchFragmentInContainer<TopDealsFragment>()
+
+        //Check if the recyclerview is visible
         Espresso.onView(ViewMatchers.withId(R.id.topDealsRecyclerView))
             .check(ViewAssertions.matches((ViewMatchers.isDisplayed())))
 
