@@ -7,6 +7,7 @@ plugins {
     id "kotlin-parcelize"
     id "androidx.navigation.safeargs.kotlin"
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 31
@@ -142,6 +143,9 @@ dependencies {
 
     //Enable multidex for apps with over 64K methods
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Fragment Test Ui
     //debugImplementation("androidx.fragment:fragment-testing:1.3.6")
