@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/fragment_PaymentOptions_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarDivider"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:elevation="4dp"
@@ -26,17 +26,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_vertical"
             android:text="Payment Options"
-            android:textStyle="normal|bold"
             android:textColor="@color/OffBlack"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
 
 
         <View
             android:id="@+id/fragment_paymentOptions_back_arrow_viev"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:backgroundTint="@color/OffBlack"
-            android:background="@drawable/ic_baseline_arrow_back_ios_new_24"/>
+            android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:backgroundTint="@color/OffBlack" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Amount to be paid"
-        android:textStyle="normal|bold"
         android:textColor="@color/offDarkBlack"
         android:textSize="20sp"
+        android:textStyle="normal|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view6" />
