@@ -23,6 +23,7 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
         val topPrice = binding.topHotelPrice
         val topRating = binding.topHotelRating
         val topPercent = binding.topHotelPercent
+        val bookTopHotel = binding.bookTopHotel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
@@ -40,6 +41,9 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
             holder.topPrice.text = currentItem.price
             holder.topRating.text = currentItem.rating
             holder.topPercent.text = currentItem.percent
+            holder.bookTopHotel.setOnClickListener {
+                findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsScreenFragment2)
+            }
             setOnClickListener {
                 findNavController().navigate(R.id.hotelDescriptionFragment)
             }

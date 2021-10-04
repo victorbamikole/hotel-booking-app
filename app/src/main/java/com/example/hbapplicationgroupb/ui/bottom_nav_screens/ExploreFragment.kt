@@ -43,8 +43,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         }
 
         binding.viewAllTopDeals.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreFragment2_to_topHotelsFragment)
+            findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
         }
+
     }
 
 }

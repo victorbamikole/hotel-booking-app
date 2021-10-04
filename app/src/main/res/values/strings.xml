@@ -112,9 +112,7 @@
     <string name="_599">$599</string>
     <string name="u_login_u"><u>Login</u></string>
     <string name="add_review">Add Review</string>
-<<<<<<< HEAD
     <string name="add_New_review">Add New Review</string>
-=======
     <string name="email_us">Email us</string>
->>>>>>> 9110175d701b630ae38804a8485f5813c017de6f
+
 </resources>
