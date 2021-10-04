@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupb.model.hotelTopDeals
 
-data class HotelTopDealItems(
+data class TopHotelItems(
     val id:String,
     val name: String,
     val description: String,
