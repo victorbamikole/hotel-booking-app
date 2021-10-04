@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.model.getDataModel.getCustomerDataModel.
 
 import java.util.*
 
+
 data class GetCustomerBookingDataItems(
     val bookingReference: String,
     val checkIn: Date,
