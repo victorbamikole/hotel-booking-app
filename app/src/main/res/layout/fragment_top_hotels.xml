@@ -25,6 +25,11 @@
             android:textColor="@color/profile_text_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left_arrow_back"/>
     </androidx.appcompat.widget.Toolbar>
     <View
         android:id="@+id/shadow_view"
@@ -35,12 +40,11 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_review_page_toolbar" />
 
 
-
     <ScrollView
-        android:layout_width="406dp"
-        android:layout_height="688dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+       app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_review_page_toolbar">
 
@@ -53,7 +57,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="36dp"
                 android:src="@drawable/ic_baseline_location_on_24"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +117,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
                 tools:listitem="@layout/top_hotels_recyclerview" />

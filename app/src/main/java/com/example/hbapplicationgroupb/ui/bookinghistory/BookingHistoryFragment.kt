@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingHistoryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookingHistoryFragment : Fragment(R.layout.fragment_booking_history) {
 
     //var of type of binding class created for xml file

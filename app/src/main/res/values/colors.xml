@@ -10,7 +10,7 @@
     <color name="profile_text_dark">#333333</color>
     <color name="help_text_dark">#454545</color>
     <color name="help_text_light">#BFBFBF</color>
-    <color name="profile_text_light_dark">#707070</color>
+    <color name="profile_text_light_dark">@color/profile_text_dark</color>
     <color name="OffBlack">#3C3C3C</color>
     <color name="custom_orange">#ff3f38</color>
     <color name="custom_dark_ash">#adaaad</color>
