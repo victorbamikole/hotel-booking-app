@@ -12,7 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAddReviewPageBinding
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
     var userRatings = 0
     //var of type of binding class created for xml file
