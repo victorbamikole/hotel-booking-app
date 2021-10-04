@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupb.model.di
 
-import com.example.hbapplicationgroupb.model.api.RetrofitServiceInterface
+import com.example.hbapplicationgroupb.model.api.NetworkCall
 import com.example.hbapplicationgroupb.model.constants.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -18,7 +18,7 @@ object HotelModule {
 
     @Singleton
     @Provides
-    fun provideDataInHotelModule(): RetrofitServiceInterface {
+    fun provideDataInHotelModule(): NetworkCall {
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level= HttpLoggingInterceptor.Level.BODY
@@ -29,7 +29,7 @@ object HotelModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(RetrofitServiceInterface::class.java)
+            .create(NetworkCall::class.java)
 
     }
 }
