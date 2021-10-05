@@ -52,8 +52,8 @@
 
     <ImageView
         android:id="@+id/fragment_confirmationScreen_Confirmation_ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="353dp"
+        android:layout_height="282dp"
         android:src="@drawable/booking"
         app:layout_constraintBottom_toTopOf="@+id/fragment_paymentOptions_AmountToBePaid_textView"
         app:layout_constraintEnd_toEndOf="parent"
