@@ -15,8 +15,9 @@ import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenB
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen) {
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>

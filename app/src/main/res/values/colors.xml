@@ -19,5 +19,9 @@
     <color name="link_color">#1824d6</color>
     <color name="btn_color">#fa0905</color>
     <color name="grey">#e0e0e0</color>
+<<<<<<< HEAD
     <color name="offDarkBlack">#3C3B3B</color>
+=======
+    <color name="light_gray">#e4e6e9</color>
+>>>>>>> fdb78096e08b0bcf1765d5e20abf06f364f265b8
 </resources>

@@ -10,7 +10,9 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.adapter.TopHotelsAdapter
 import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupb.model.TopHotels
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
     var binding: FragmentTopHotelsBinding? = null
