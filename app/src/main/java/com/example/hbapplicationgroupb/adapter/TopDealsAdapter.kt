@@ -31,14 +31,16 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
         holder.itemView.apply {
-            val currentItem = topDeals[position]
-            holder.topDealImage.setImageResource(currentItem.hotelImage)
-            holder.topDealName.text = currentItem.name
-            holder.topDealPrice.text = currentItem.price
-            holder.topDealRating.text = currentItem.rating
-            holder.topDealPercent.text = currentItem.percent
-            setOnClickListener {
-                findNavController().navigate(R.id.hotelDescriptionFragment)
+            holder.apply {
+                val currentItem = topDeals[position]
+                topDealImage.setImageResource(currentItem.hotelImage)
+                topDealName.text = currentItem.name
+                topDealPrice.text = currentItem.price
+                topDealRating.text = currentItem.rating
+                topDealPercent.text = currentItem.percent
+                setOnClickListener {
+                    findNavController().navigate(R.id.hotelDescriptionFragment)
+                }
             }
         }
     }
