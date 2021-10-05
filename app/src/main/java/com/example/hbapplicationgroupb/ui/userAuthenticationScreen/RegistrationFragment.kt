@@ -9,10 +9,11 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
-    lateinit var _binding : FragmentRegistrationBinding
+    private lateinit var _binding : FragmentRegistrationBinding
     private val binding get() = _binding
 
 
