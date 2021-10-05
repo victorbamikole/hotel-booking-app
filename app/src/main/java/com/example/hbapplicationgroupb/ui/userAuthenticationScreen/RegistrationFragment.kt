@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
+import dagger.hilt.android.AndroidEntryPoint
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
 
-
+@AndroidEntryPoint
 class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     private lateinit var binding:FragmentRegistrationBinding
 

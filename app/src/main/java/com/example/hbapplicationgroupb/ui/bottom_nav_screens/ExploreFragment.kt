@@ -9,7 +9,9 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.adapter.ExploreHomeAdapter
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.model.Hotels
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExploreFragment : Fragment(R.layout.fragment_explore) {
     private lateinit var binding : FragmentExploreBinding
 
@@ -27,8 +29,8 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
         //Inflate the top hotels recycler view layout to the fragment class
         val myAdapter = ExploreHomeAdapter(hotels)
-        binding!!.recyclerView.adapter = myAdapter
-        binding!!.recyclerView.layoutManager =
+        binding.recyclerView.adapter = myAdapter
+        binding.recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 

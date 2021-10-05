@@ -14,8 +14,9 @@ import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
 import com.example.hbapplicationgroupb.ui.review.adapter.ReviewPageFragmentRVAdapter
 import com.example.hbapplicationgroupb.util.getListOfUserReview
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
     //var of type of binding class created for xml file
     private lateinit var binding: FragmentReviewPageBinding
