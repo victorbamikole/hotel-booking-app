@@ -209,6 +209,11 @@
         <action
             android:id="@+id/action_profileFragment2_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_exploreFragment2"
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"

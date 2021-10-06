@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.ui.adapters
+package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
