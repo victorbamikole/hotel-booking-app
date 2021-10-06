@@ -84,7 +84,7 @@
     <string name="our_services">Our Services</string>
     <string name="single_deluxe_room">Single Deluxe Room</string>
     <string name="_69999">$69999</string>
-    <string name="tc">T&amp;C and Privacy Policy.</string>
+    <string name="tc"><u>T&amp;C and Privacy Policy.</u></string>
     <string name="register">Register</string>
     <string name="already_a_member">Already a member? </string>
     <string name="forgot_password">Forgot Password?</string>
@@ -112,6 +112,7 @@
     <string name="_599">$599</string>
     <string name="u_login_u"><u>Login</u></string>
     <string name="add_review">Add Review</string>
+    <string name="add_New_review">Add New Review</string>
     <string name="email_us">Email us</string>
     <string name="payment_options">Payment Options</string>
     <string name="amount_to_be_paid">Amount to be paid</string>

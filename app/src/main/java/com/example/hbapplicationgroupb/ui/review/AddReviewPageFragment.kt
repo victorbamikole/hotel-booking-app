@@ -27,24 +27,28 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         //read rating when user click on star and display text
-        binding.fragmentReviewPageStarViewRatingBar1.onRatingBarChangeListener =
-            RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
-                userRatings = p0.rating.toInt()
-                Toast.makeText(requireContext(),"star $p1 clicked and has ratings of $userRatings",
+        binding.fragmentReviewPageStarViewRatingBar1.setOnRatingBarChangeListener {  ratingBar, fl, b ->
+
+                userRatings = ratingBar.rating.toInt()
+                Toast.makeText(requireContext(),"star $fl clicked and has ratings of $userRatings",
                     Toast.LENGTH_SHORT).show()
-                when(p1.toInt()){
+                when(fl.toInt()){
                     1 -> "Very poor".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     2 -> "Poor".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     3 -> "Good".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     4 -> "Very Good".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     5 -> "Excellent".also { binding.fragmentAddReviewPageRatingRemark.text = it }
+                    else -> "click to change rating value".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                 }
 
 
             }
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             findNavController()
-                .navigate(R.id.action_addReviewPageFragment_to_hotelDescriptionFragment)
+                .navigate(R.id.action_addReviewPageFragment_to_reviewPageFragment)
+        }
+        binding.addRatingBackArrow.setOnClickListener {
+            findNavController().navigate(R.id.action_addReviewPageFragment_to_reviewPageFragment)
         }
     }
     override fun onDetach() {
