@@ -76,7 +76,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/choose_a_payment_method"
         android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="130dp"
+            android:layout_marginStart="155dp"
             android:src="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="28dp"
-            android:text="Master Card"
+            android:text="@string/master_card"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="124dp"
+            android:layout_marginStart="149dp"
             android:src="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="40dp"
-            android:text="VISA"
+            android:text="@string/visa"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -183,7 +183,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="178dp"
+            android:layout_marginStart="202dp"
             android:src="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
@@ -242,7 +242,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="40dp"
-            android:text="Debit Card"
+            android:text="@string/debit_card"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -250,7 +250,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="138dp"
+            android:layout_marginStart="163dp"
             android:src="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
@@ -287,7 +287,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="28dp"
-            android:text="Paytm"
+            android:text="@string/paytm"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -295,7 +295,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="163dp"
+            android:layout_marginStart="190dp"
             android:src="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
