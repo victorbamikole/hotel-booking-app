@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.adapter.TopDealsAdapter
@@ -35,6 +36,10 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         binding!!.topDealsRecyclerView.adapter = myAdapter
         binding!!.topDealsRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding?.topDealsFragmentBackArrow?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_topDealsFragment_to_exploreFragment2)
+        }
 
     }
 

@@ -21,6 +21,10 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         binding.textView2.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
         }
+        binding.tvPrivacyPolicy.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_registrationFragment_to_privacyPolicyFragment)
+        }
 
     }
 }
