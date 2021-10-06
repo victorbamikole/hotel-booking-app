@@ -1,10 +1,8 @@
-package com.example.hbapplicationgroupb.adapter
+package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.RecyclerviewRowBinding
@@ -24,13 +22,13 @@ class ExploreHomeAdapter(var hotels: List<Hotels>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): ExploreHomeAdapter.HotelsViewHolder {
+    ): HotelsViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
         return HotelsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ExploreHomeAdapter.HotelsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
         holder.itemView.apply {
             val currentItem = hotels[position]
             holder.hotelImage.setImageResource(currentItem.hotelImage)

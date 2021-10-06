@@ -1,11 +1,9 @@
-package com.example.hbapplicationgroupb.adapter
+package com.example.hbapplicationgroupb.ui.tophotels
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
