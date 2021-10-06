@@ -1,7 +1,7 @@
 package com.example.hbapplicationgroupb.di
 
 import com.example.hbapplicationgroupb.model.api.NetworkCall
-import com.example.hbapplicationgroupb.model.constants.Constants.BASE_URL
+import com.example.hbapplicationgroupb.util.constants.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
