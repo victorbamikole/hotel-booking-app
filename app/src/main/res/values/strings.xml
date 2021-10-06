@@ -113,4 +113,9 @@
     <string name="u_login_u"><u>Login</u></string>
     <string name="add_review">Add Review</string>
     <string name="email_us">Email us</string>
+    <string name="payment_options">Payment Options</string>
+    <string name="amount_to_be_paid">Amount to be paid</string>
+    <string name="_6999_00">$6999.00</string>
+    <string name="choose_a_payment_method">Choose a payment method</string>
+    <string name="google_pay">Google Pay</string>
 </resources>
