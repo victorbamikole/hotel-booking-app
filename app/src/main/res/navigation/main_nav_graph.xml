@@ -52,7 +52,12 @@
         tools:layout="@layout/fragment_registration" >
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_registrationFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -66,7 +71,9 @@
         tools:layout="@layout/fragment_forgot_password" >
         <action
             android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/hotelDescriptionFragment"
@@ -95,7 +102,12 @@
             app:destination="@id/hotelDescriptionFragment" />
         <action
             android:id="@+id/action_topHotelsFragment_to_exploreFragment2"
-            app:destination="@id/exploreFragment2" />
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment2"
@@ -105,17 +117,35 @@
         <action
             android:id="@+id/action_exploreFragment2_to_topHotelsFragment"
             app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_topDealsFragment"
+            app:destination="@id/topDealsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingHistoryFragment"
         android:name="com.example.hbapplicationgroupb.ui.bookinghistory.BookingHistoryFragment"
         android:label="fragment_booking_history"
-        tools:layout="@layout/fragment_booking_history" />
+        tools:layout="@layout/fragment_booking_history" >
+        <action
+            android:id="@+id/action_bookingHistoryFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2"
+            app:popUpTo="@id/profileFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/wishListFragment2"
         android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.WishListFragment"
         android:label="fragment_wish_list"
-        tools:layout="@layout/fragment_wish_list" />
+        tools:layout="@layout/fragment_wish_list" >
+        <action
+            android:id="@+id/action_wishListFragment2_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
+        <action
+            android:id="@+id/action_wishListFragment2_to_exploreFragment2"
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/addReviewPageFragment"
         android:name="com.example.hbapplicationgroupb.ui.review.AddReviewPageFragment"
@@ -123,10 +153,14 @@
         tools:layout="@layout/fragment_add_review_page" >
         <action
             android:id="@+id/action_addReviewPageFragment_to_hotelDescriptionFragment"
-            app:destination="@id/hotelDescriptionFragment" />
+            app:destination="@id/hotelDescriptionFragment"
+            app:popUpTo="@id/hotelDescriptionFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_addReviewPageFragment_to_reviewPageFragment"
-            app:destination="@id/reviewPageFragment" />
+            app:destination="@id/reviewPageFragment"
+            app:popUpTo="@id/reviewPageFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
@@ -135,18 +169,32 @@
         tools:layout="@layout/fragment_booking_confirmation" >
         <action
             android:id="@+id/action_bookingConfirmationFragment_to_exploreFragment2"
-            app:destination="@id/exploreFragment2" />
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/helpAndSupportFragment"
         android:name="com.example.hbapplicationgroupb.ui.helpandsupport.HelpAndSupportFragment"
         android:label="fragment_help_and_support"
-        tools:layout="@layout/fragment_help_and_support" />
+        tools:layout="@layout/fragment_help_and_support" >
+        <action
+            android:id="@+id/action_helpAndSupportFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2"
+            app:popUpTo="@id/profileFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="com.example.hbapplicationgroupb.ui.privacy_policy_screen.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
-        tools:layout="@layout/fragment_privacy_policy" />
+        tools:layout="@layout/fragment_privacy_policy" >
+        <action
+            android:id="@+id/action_privacyPolicyFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2"
+            app:popUpTo="@id/profileFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.hbapplicationgroupb.ui.bottom_nav_screens.ProfileFragment"
@@ -179,5 +227,27 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_bookingConfirmationFragment"
             app:destination="@id/bookingConfirmationFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsScreenFragment2_to_exploreFragment2"
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/topDealsFragment"
+        android:name="com.example.hbapplicationgroupb.ui.topdeals.TopDealsFragment"
+        android:label="fragment_top_deals"
+        tools:layout="@layout/fragment_top_deals" >
+        <action
+            android:id="@+id/action_topDealsFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2"
+            app:popUpTo="@id/exploreFragment2"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_topDealsFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment" />
+        <action
+            android:id="@+id/action_topDealsFragment_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
     </fragment>
 </navigation>

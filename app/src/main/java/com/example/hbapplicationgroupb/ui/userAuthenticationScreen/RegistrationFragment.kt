@@ -16,12 +16,6 @@ class RegistrationFragment : Fragment() {
     private lateinit var _binding : FragmentRegistrationBinding
     private val binding get() = _binding
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +36,11 @@ class RegistrationFragment : Fragment() {
 
         binding.btnRegister.setOnClickListener {
             Toast.makeText(activity, "Registration successful", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.tvPrivacyPolicy.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_registrationFragment_to_privacyPolicyFragment)
         }
     }
 

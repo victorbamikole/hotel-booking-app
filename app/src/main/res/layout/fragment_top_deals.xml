@@ -17,10 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_left_arrow_back"/>
+        <View
+            android:id="@+id/topDealsFragmentBackArrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_left_arrow_back"/>
 
         <TextView
             android:layout_width="wrap_content"

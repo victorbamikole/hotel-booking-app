@@ -33,27 +33,40 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
         //to remove extra colour on top of toolbar
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-        //read rating clicked and display toast
-        binding.fragmentReviewPageStarViewRatingBar1.onRatingBarChangeListener =
-            RatingBar.OnRatingBarChangeListener { p0, p1, p2 ->
-                userRatings = p0.rating.toInt()
-                Toast.makeText(
-                    requireContext(), "star $p1 clicked and has ratings of $userRatings",
-                    Toast.LENGTH_SHORT
-                ).show()
-                binding.fragmentReviewPageStarFiveSmallViewProgressBar.progress =
-                    ((userRatings / 5) * 100)
-                findNavController()
-                    .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
-            }
-        binding.fragmentReviewPageStarViewRatingBar1.setOnClickListener {
-                findNavController()
-                    .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+       setBarRatingAndProgressBar()
 
+
+        binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+        }
+        binding.ratingBackArrow.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_addReviewPageFragment_to_hotelDescriptionFragment)
         }
 
-
     }
+
+    private fun setBarRatingAndProgressBar() {
+        //read rating clicked and display toast
+        binding.fragmentReviewPageStarViewRatingBar1.rating = 4.5f
+
+        //set up five small rating with progress bar
+        binding.fragmentReviewPageStarViewRatingBarVerySmall5.rating = 4f
+        binding.fragmentReviewPageStarFiveSmallViewProgressBar.progress =
+            ((binding.fragmentReviewPageStarViewRatingBarVerySmall5.rating /5 *100).toInt())
+
+        //set up four small rating with progress bar
+        binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 3.5f
+        binding.fragmentReviewPageStarFourSmallViewProgressBar.progress =
+            ((binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating /4 *100).toInt())
+
+        //set up three small rating with progress bar
+        binding.fragmentReviewPageStarViewRatingBarVerySmall3.rating =3f
+        binding.fragmentReviewPageStarThreeSmallViewProgressBar.progress=
+            ((binding.fragmentReviewPageStarViewRatingBarVerySmall3.rating /3 *100).toInt())
+    }
+
     override fun onDetach() {
         //clear flag on detach of fragment
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
