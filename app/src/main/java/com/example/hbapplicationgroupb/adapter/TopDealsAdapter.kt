@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealsRecyclerviewBinding
@@ -20,6 +21,7 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
         val topDealPrice = binding.topDealPrice
         val topDealRating = binding.topDealRating
         val topDealPercent = binding.topDealPercent
+        val topDealButton = binding.topDealButton
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
@@ -37,10 +39,14 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
             holder.topDealPrice.text = currentItem.price
             holder.topDealRating.text = currentItem.rating
             holder.topDealPercent.text = currentItem.percent
+            holder.topDealButton.setOnClickListener {
+                findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
+            }
             setOnClickListener {
-                findNavController().navigate(R.id.hotelDescriptionFragment)
+                findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
             }
         }
+
     }
 
     override fun getItemCount(): Int {

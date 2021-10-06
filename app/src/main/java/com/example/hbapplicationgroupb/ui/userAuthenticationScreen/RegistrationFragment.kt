@@ -5,24 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import dagger.hilt.android.AndroidEntryPoint
+import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
 
 @AndroidEntryPoint
-class RegistrationFragment : Fragment() {
+class RegistrationFragment : Fragment(R.layout.fragment_registration) {
+    private lateinit var binding:FragmentRegistrationBinding
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentRegistrationBinding.bind(view)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        binding.textView2.setOnClickListener {
+            findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
+        }
+        binding.tvPrivacyPolicy.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_registrationFragment_to_privacyPolicyFragment)
+        }
 
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false)
-    }
-
 }
