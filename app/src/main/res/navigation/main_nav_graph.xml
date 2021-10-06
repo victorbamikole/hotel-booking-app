@@ -223,6 +223,11 @@
         <action
             android:id="@+id/action_reviewPageFragment_to_addReviewPageFragment"
             app:destination="@id/addReviewPageFragment" />
+        <action
+            android:id="@+id/action_reviewPageFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment"
+            app:popUpTo="@id/hotelDescriptionFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingDetailsScreenFragment2"
