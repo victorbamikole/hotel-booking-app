@@ -58,6 +58,10 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             findNavController()
                 .navigate(R.id.action_bookingDetailsScreenFragment2_to_bookingConfirmationFragment)
         }
+        binding.fragmentBookingDetailsBackArrowViev.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_bookingDetailsScreenFragment2_to_exploreFragment2)
+        }
 
 
         /** Method to pop bottom Sheet for Age Selection */

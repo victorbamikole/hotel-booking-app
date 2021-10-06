@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.application
+package com.example.hbapplicationgroupb.di.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

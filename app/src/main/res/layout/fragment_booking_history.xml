@@ -29,10 +29,11 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <ImageView
+        <View
+            android:id="@+id/bookingHistoryBackArrow"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_left_arrow_back" />
+            android:background="@drawable/ic_left_arrow_back" />
 
     </androidx.appcompat.widget.Toolbar>
     <!--shadow-->

@@ -1,11 +1,9 @@
-package com.example.hbapplicationgroupb.adapter
+package com.example.hbapplicationgroupb.ui.tophotels
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
@@ -23,6 +21,7 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
         val topPrice = binding.topHotelPrice
         val topRating = binding.topHotelRating
         val topPercent = binding.topHotelPercent
+        val bookTopHotel = binding.bookTopHotel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
@@ -40,6 +39,9 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
             holder.topPrice.text = currentItem.price
             holder.topRating.text = currentItem.rating
             holder.topPercent.text = currentItem.percent
+            holder.bookTopHotel.setOnClickListener {
+                findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsScreenFragment2)
+            }
             setOnClickListener {
                 findNavController().navigate(R.id.hotelDescriptionFragment)
             }

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.adapter.ExploreHomeAdapter
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.model.Hotels
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,9 +43,13 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             findNavController().navigate(R.id.action_exploreFragment2_to_topHotelsFragment)
         }
 
-        binding.viewAllTopDeals.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreFragment2_to_topHotelsFragment)
+        binding.viewButton.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
         }
+        binding.viewAllTopDeals.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
+        }
+
     }
 
 }

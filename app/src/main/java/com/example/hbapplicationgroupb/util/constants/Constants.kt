@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.model.constants
+package com.example.hbapplicationgroupb.util.constants
 
 object Constants {
     const val BASE_URL = ""
