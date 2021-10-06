@@ -1,8 +1,11 @@
 package com.example.hbapplicationgroupb.dataBase.dao
 
+import androidx.room.Dao
 import androidx.room.TypeConverter
 import java.util.*
 
+
+@Dao
 class DateConverter {
     @TypeConverter
     fun toDate(timestamp: Long): Date {

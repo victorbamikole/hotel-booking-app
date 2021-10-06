@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.hbapplicationgroupb.dataBase.dao.*
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotelsItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
@@ -23,8 +24,8 @@ import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataItem
     ListOfTopDealsItem::class,
     HotelTopDealItems::class,
     UserHotelDataItem::class], version = 1, exportSchema = false)
-abstract class HBDataBase : RoomDatabase() {
 
+abstract class HBDataBase : RoomDatabase() {
       abstract fun GetAllHotelsItemDao() : GetAllHotelsItemDao
       abstract fun CustomerBookingDataItemDao() : CustomerBookingDataItemDao
       abstract fun CustomerWishListItemDao() : CustomerWishListItemDao

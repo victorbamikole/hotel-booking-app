@@ -1,12 +1,13 @@
 package com.example.hbapplicationgroupb.dataBase.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsItem
 import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
-
+@Dao
 interface HotelTopDealItemsDao {
 
     @Insert( onConflict = OnConflictStrategy.IGNORE)
