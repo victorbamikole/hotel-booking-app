@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupb.model.dataclass.WishListDataClass
-import com.example.hbapplicationgroupb.ui.adapters.WishListAdapter
 
 class WishListFragment : Fragment(R.layout.fragment_wish_list) {
     private lateinit var binding : FragmentWishListBinding

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.model.di
+package com.example.hbapplicationgroupb.di
 
 import com.example.hbapplicationgroupb.model.api.NetworkCall
 import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryImpl
