@@ -1,15 +1,13 @@
-package com.example.hbapplicationgroupb.adapter
+package com.example.hbapplicationgroupb.ui.topdeals
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealsRecyclerviewBinding
-import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
 import com.example.hbapplicationgroupb.model.TopHotels
 
 class TopDealsAdapter(var topDeals: List<TopHotels>):
@@ -29,7 +27,7 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.top_deals_recyclerview, parent, false)
-        return TopDealsAdapter.DealsViewHolder(view)
+        return DealsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {

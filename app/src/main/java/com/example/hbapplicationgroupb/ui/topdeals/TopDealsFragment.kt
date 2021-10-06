@@ -2,16 +2,11 @@ package com.example.hbapplicationgroupb.ui.topdeals
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.adapter.TopDealsAdapter
-import com.example.hbapplicationgroupb.adapter.TopHotelsAdapter
 import com.example.hbapplicationgroupb.databinding.FragmentTopDealsBinding
-import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupb.model.TopHotels
 
 class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
