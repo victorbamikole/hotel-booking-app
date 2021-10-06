@@ -18,6 +18,7 @@ import retrofit2.http.POST
 
 interface NetworkCall {
 
+<<<<<<< HEAD
     @GET("")
     suspend fun getAllHotel() : Response<GetListOfTopHotelsResponse>
 
@@ -51,5 +52,7 @@ interface NetworkCall {
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
 
+=======
+>>>>>>> 5b76a2bf4deabe8736aa43129aced88c29714da0
 
 }

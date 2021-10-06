@@ -26,10 +26,11 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_left_arrow_back"/>
+        <View
+            android:id="@+id/topHotelsFragmentBackAroow"
+            android:layout_width="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:layout_height="@dimen/toolbar_leftBackArrow_widthAndSizer"
+            android:background="@drawable/ic_left_arrow_back"/>
     </androidx.appcompat.widget.Toolbar>
     <View
         android:id="@+id/shadow_view"
