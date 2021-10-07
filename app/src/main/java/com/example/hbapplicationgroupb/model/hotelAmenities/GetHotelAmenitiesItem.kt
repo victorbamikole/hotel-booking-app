@@ -9,6 +9,6 @@ data class GetHotelAmenitiesItem(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val price: String,
+    val price: Double,
     val discount: String
 )
