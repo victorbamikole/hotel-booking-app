@@ -44,10 +44,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
         }
-        binding?.fragmentBookingDetailsCancelTextView?.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
-        }
+//        binding?.fragmentBookingDetailsCancelTextView?.setOnClickListener {
+//            findNavController()
+//                .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
+//        }
     }
 
     private fun showLogOutAlert(){

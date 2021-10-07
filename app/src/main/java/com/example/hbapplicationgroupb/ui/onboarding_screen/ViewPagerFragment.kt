@@ -20,7 +20,6 @@ import com.example.hbapplicationgroupb.ui.onboarding_screen.model.OnboardingItem
 
 
 class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
-
     private var _binding : FragmentViewPagerBinding? = null
     private val binding get() = _binding!!
     private lateinit var onBoardingItemAdapter: OnBoardingItemAdapter
@@ -32,8 +31,6 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
         // Inflate the layout for this fragment
         _binding = FragmentViewPagerBinding.inflate(layoutInflater,container,false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +40,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
         setUpCurrentIndicator(0)
     }
 
-   private fun onBoardingFinished(){
+   private fun onBoardingFinished() {
         val sharedPref = requireActivity().getSharedPreferences("onboarding",Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
         editor.putBoolean("finished",true)
@@ -51,13 +48,13 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
     }
 
 
-    private fun navigateToLoginFragment(){
+    private fun navigateToLoginFragment() {
       findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
         onBoardingFinished()
-
     }
 
-    private fun setUpOnboardingItem(){
+
+    private fun setUpOnboardingItem() {
         onBoardingItemAdapter = OnBoardingItemAdapter(
             listOf(
                 OnboardingItem(
@@ -94,6 +91,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
                 onboardingVp.currentItem +=1
 
             }else{
+
                 navigateToLoginFragment()
                 onBoardingFinished()
             }
@@ -110,12 +108,13 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
     }
 
 
-    private fun setUpIndicator(){
+    private fun setUpIndicator() {
         val indicators = arrayOfNulls<ImageView>(onBoardingItemAdapter.itemCount)
         val layoutParam : LinearLayout.LayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT,WRAP_CONTENT)
         layoutParam.setMargins(8,0,8,0)
 
-        for (i in indicators.indices){
+
+        for (i in indicators.indices) {
             indicators[i] = ImageView(context)
             indicators[i]?.let {
                 it.setImageDrawable(
@@ -132,19 +131,21 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
         }
     }
 
-    private fun changeNextAndSkipButtonText(){
+
+
+    private fun changeNextAndSkipButtonText() {
         binding.btnNext.text = getString(R.string.getStarted)
         binding.btnSkip.text = getString(R.string.done)
     }
 
-    fun setUpCurrentIndicator(position: Int){
-        if(position == onBoardingItemAdapter.itemCount -1){
+    fun setUpCurrentIndicator(position: Int) {
+        if(position == onBoardingItemAdapter.itemCount -1) {
             changeNextAndSkipButtonText()
         }else{
             restoreButtonText()
         }
         val childCount = binding.indicatorContainer.childCount
-        for (i in 0 until childCount){
+        for (i in 0 until childCount) {
             val imageView = binding.indicatorContainer.getChildAt(i) as ImageView
             if (i==position){
                 imageView.setImageDrawable(

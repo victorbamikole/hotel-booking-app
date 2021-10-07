@@ -15,6 +15,7 @@ android {
     compileSdk 31
 
     defaultConfig {
+       // testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         applicationId "com.example.hbapplicationgroupb"
         minSdk 22
         targetSdk 31
@@ -162,6 +163,13 @@ dependencies {
     //Hilt dependencies
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+
+    // Core library
+   // androidTestImplementation 'androidx.test:core:1.4.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+  //  androidTestImplementation 'androidx.test:runner:1.4.0'
+  //  androidTestImplementation 'androidx.test:rules:1.4.0'
 
 }
 

@@ -1,7 +1,13 @@
 package com.example.hbapplicationgroupb.model.topdealsdata
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity(tableName = "Top_Deals_Table")
 data class ListOfTopDealsItem(
-    val id: String,
+    @PrimaryKey
+    val id: Int,
     val name: String,
     val description: String,
     val email: String,
