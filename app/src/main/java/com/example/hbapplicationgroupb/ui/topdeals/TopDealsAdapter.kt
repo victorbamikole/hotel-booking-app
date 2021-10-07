@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupb.ui.topdeals
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
@@ -37,17 +38,25 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
             holder.topDealPrice.text = currentItem.price
             holder.topDealRating.text = currentItem.rating
             holder.topDealPercent.text = currentItem.percent
-            holder.topDealButton.setOnClickListener {
-                findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
-            }
             setOnClickListener {
-                findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
+                findNavController().navigate(R.id.hotelDescriptionFragment)
             }
         }
+                val currentItem = topDeals[position]
+                holder.topDealImage.setImageResource(currentItem.hotelImage)
+                holder.topDealName.text = currentItem.name
+                holder.topDealPrice.text = currentItem.price
+                holder.topDealRating.text = currentItem.rating
+                holder.topDealPercent.text = currentItem.percent
+                holder.topDealButton.setOnClickListener {
+//                    findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
+//                    findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
+                }
+            }
 
+
+        override fun getItemCount(): Int {
+            return topDeals.size
+        }
     }
 
-    override fun getItemCount(): Int {
-        return topDeals.size
-    }
-}
