@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_cancel_textView"
+        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -47,11 +47,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room1_textView"
+        android:id="@+id/fragment_paymentOptions_GooglePay_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room1_countButtonAdd"
+        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -74,7 +74,7 @@
     <View
         android:id="@+id/view11"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -82,11 +82,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room1_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_GooglePay_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room2_textView"
+        android:id="@+id/fragment_paymentOptions_VISA_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -98,7 +98,7 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room2_radioButton"
+        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -118,11 +118,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room2_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room22_textView"
+        android:id="@+id/fragment_paymentOptions_MasterCard_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -134,7 +134,7 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room22_radioButton"
+        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -154,11 +154,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room22_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_MasterCard_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room24_textView"
+        android:id="@+id/fragment_paymentOptions_DebitCard_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -169,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room24_radioButton"
+        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -181,7 +181,7 @@
     <View
         android:id="@+id/view14"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
@@ -189,11 +189,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room24_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_DebitCard_TextView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room26_textView"
+        android:id="@+id/fragment_paymentOptions_Paytm_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -204,7 +204,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view14" />
 
     <RadioButton
-        android:id="@+id/fragment_booking_details_room26_radioButton"
+        android:id="@+id/fragment_paymentOptions_PaytmNextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"

@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_cancel_textView"
+        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -42,11 +42,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room1_textView"
+        android:id="@+id/fragment_paymentOptions_GooglePay_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -55,7 +55,7 @@
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_cancel_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
 
     <TextView
         android:id="@+id/fragment_booking_details_16_plus_years_Textview"
@@ -65,10 +65,10 @@
         android:layout_marginTop="5dp"
         android:text="@string/_16_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room1_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_GooglePay_textView" />
 
     <View
-        android:id="@+id/fragment_booking_details_room1_countButtonAdd"
+        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -95,7 +95,7 @@
         android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room1_countButtonAdd"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
@@ -112,7 +112,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room2_textView"
+        android:id="@+id/fragment_paymentOptions_VISA_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -130,7 +130,7 @@
         android:layout_marginLeft="16dp"
         android:text="@string/_12_15_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room2_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
 
 
     <View
@@ -151,12 +151,12 @@
         android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room2_radioButton"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
     <View
-        android:id="@+id/fragment_booking_details_room2_radioButton"
+        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -217,12 +217,12 @@
         android:text="1"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room22_radioButton"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
     <View
-        android:id="@+id/fragment_booking_details_room22_radioButton"
+        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -244,7 +244,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_room24_textView"
+        android:id="@+id/fragment_paymentOptions_DebitCard_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -261,7 +261,7 @@
         android:layout_marginLeft="16dp"
         android:text="@string/under_2_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_booking_details_room24_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_DebitCard_TextView" />
 
 
     <View
@@ -282,12 +282,12 @@
         android:text="0"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room24_radioButton"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
 
     <View
-        android:id="@+id/fragment_booking_details_room24_radioButton"
+        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
