@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataItem
 @Dao
 interface UserHotelDataItemDao {
 
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListTopOfUserHotelDataItem(listOfUserHotelDataItem: ArrayList<UserHotelDataItem>)
 
     @Query("SELECT * FROM user_Hotels_Table ORDER BY Id ASC")

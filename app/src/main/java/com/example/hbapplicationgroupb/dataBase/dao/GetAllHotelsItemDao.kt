@@ -9,7 +9,7 @@ import com.example.hbapplicationgroupb.model.allHotels.GetAllHotelsItem
 @Dao
 interface GetAllHotelsItemDao {
 
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfGetAllHotelsItem(listOfGetAllHotelsItem: ArrayList<GetAllHotelsItem>)
 
 

@@ -11,7 +11,7 @@ import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListIt
 @Dao
 interface CustomerWishListItemDao {
 
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfCustomerWishListItem(listOfCustomerWishListItem: ArrayList<CustomerWishListItem>)
 
     @Query("SELECT * FROM Customer_WishList_Table ORDER BY Id ASC")

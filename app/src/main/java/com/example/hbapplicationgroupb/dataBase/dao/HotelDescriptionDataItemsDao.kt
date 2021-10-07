@@ -9,7 +9,7 @@ import com.example.hbapplicationgroupb.model.hotelAmenities.GetHotelAmenitiesIte
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionDataItems
 @Dao
 interface HotelDescriptionDataItemsDao {
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfHotelDescriptionDataItems(listOfHotelDescriptionDataItems: ArrayList<HotelDescriptionDataItems>)
 
     @Query("SELECT * FROM Hotel_Description_Table ORDER BY Id ASC")

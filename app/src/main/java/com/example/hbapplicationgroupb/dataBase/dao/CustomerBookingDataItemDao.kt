@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBooking
 @Dao
 interface CustomerBookingDataItemDao {
 
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfCustomerBookingDataItem(listOfCustomerBookingDataItem: ArrayList<CustomerBookingDataItem>)
 
     @Query("SELECT * FROM Customer_Booking_History_Table ORDER BY Id ASC")

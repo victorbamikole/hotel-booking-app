@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupb.model.hotelAmenities.GetHotelAmenitiesIte
 @Dao
 interface GetHotelAmenitiesItemDao {
 
-    @Insert( onConflict = OnConflictStrategy.IGNORE)
+    @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfGetHotelAmenitiesItem(listOfGetHotelAmenitiesItem: ArrayList<GetHotelAmenitiesItem>)
 
     @Query("SELECT * FROM Hotel_Amenities_Table ORDER BY Id ASC")
