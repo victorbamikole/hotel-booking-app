@@ -9,7 +9,7 @@
     <!--    profile toolbar-->
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/fragment_booking_toolbar"
+        android:id="@+id/fragment_PaymentOptions_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
@@ -45,7 +45,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_booking_toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_PaymentOptions_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_booking_rv"

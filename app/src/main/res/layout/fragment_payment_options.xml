@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/fragment_PaymentOptions_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarDivider"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/paymentFragment_TextView_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:text="Payment Options"
+            android:textColor="@color/OffBlack"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
+
+
+        <View
+            android:id="@+id/fragment_paymentOptions_back_arrow_viev"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_new_24"
+            android:backgroundTint="@color/OffBlack" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_PaymentOptions_toolbar" />
+
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Amount to be paid"
+        android:textColor="@color/offDarkBlack"
+        android:textSize="20sp"
+        android:textStyle="normal|bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_Amount_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:text="$6999.00"
+        android:textColor="@color/offDarkBlack"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_ChoosePayment_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="36dp"
+        android:text="Choose a Payment Method"
+        android:textColor="@color/OffBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_Amount_textView" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_ChoosePayment_textView" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_GooglePay_iconView"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/icon_googlepay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_GooglePay_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Google Pay"
+        android:textColor="@color/OffBlack"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_GooglePay_iconView"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_arrow_right"
+        android:backgroundTint="@color/OffBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+    <View
+        android:id="@+id/view11"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/custom_dark_ash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_GooglePay_textView" />
+
+
+    <View
+        android:id="@+id/fragment_paymentOptions_VIsa_Icon"
+        android:layout_width="38dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/icon_visa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_VISA_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:text="VISA"
+        android:textColor="@color/OffBlack"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_VIsa_Icon"
+        app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_arrow_right"
+        android:backgroundTint="@color/OffBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/custom_dark_ash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
+
+
+    <View
+        android:id="@+id/fragment_paymentOptions_MasterCard_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/icon_mastercard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_MasterCard_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:text="MasterCard"
+        android:textColor="@color/OffBlack"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_MasterCard_Icon"
+        app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_arrow_right"
+        android:backgroundTint="@color/OffBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+
+    <View
+        android:id="@+id/view13"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/custom_dark_ash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_MasterCard_textView" />
+
+
+    <View
+        android:id="@+id/fragment_paymentOptions_DebitCard_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/icon_debit_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view13" />
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_DebitCard_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Debit Card"
+        android:textColor="@color/OffBlack"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_DebitCard_Icon"
+        app:layout_constraintTop_toBottomOf="@+id/view13" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_arrow_right"
+        android:backgroundTint="@color/OffBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view13" />
+
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/custom_dark_ash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_DebitCard_TextView" />
+
+
+    <View
+        android:id="@+id/fragment_paymentOptions_Paytm_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/icon_paytm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_Paytm_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="12dp"
+        android:text="Paytm"
+        android:textColor="@color/OffBlack"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_Paytm_Icon"
+        app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+    <View
+        android:id="@+id/fragment_paymentOptions_PaytmNextArrow_Icon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/ic_arrow_right"
+        android:backgroundTint="@color/OffBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view14" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
