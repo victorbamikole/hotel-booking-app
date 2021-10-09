@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentResetPasswordBinding
@@ -20,6 +21,12 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
 
         val userToken = arguments?.getString("token")
         val userEmail = arguments?.getString("email")
+        binding.btnReset.setOnClickListener {
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+        }
+        binding.tvResetPasswordLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+        }
 
     }
 

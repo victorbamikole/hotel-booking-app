@@ -68,6 +68,9 @@
             android:id="@+id/deepLink"
             app:action="ACTION_VIEW"
             app:uri="https://www.example.com/forget-password/{token}/{email}" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
