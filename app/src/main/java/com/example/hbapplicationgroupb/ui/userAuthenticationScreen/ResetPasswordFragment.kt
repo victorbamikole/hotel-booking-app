@@ -18,7 +18,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentResetPasswordBinding.bind(view)
-
+        //get token and email from deep link
         val userToken = arguments?.getString("token")
         val userEmail = arguments?.getString("email")
         binding.btnReset.setOnClickListener {
