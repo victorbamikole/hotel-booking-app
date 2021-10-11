@@ -46,6 +46,9 @@ interface NetworkCall {
     suspend fun registerAUser() : Response<UserDataResponse>
 
     @POST
+    suspend fun resetForgetPasswordEmail()
+
+    @POST
     suspend fun loginAUser() : Response<LoginUserDataResponse>
 
     @PATCH
