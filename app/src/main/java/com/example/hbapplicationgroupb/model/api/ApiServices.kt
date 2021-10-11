@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.model.api
 
 import com.example.hbapplicationgroupb.model.TopHotels
+import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -19,10 +20,10 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 
-interface NetworkCall {
+interface ApiServices {
 
-    @GET("")
-    suspend fun getAllHotel() : Response<GetListOfTopHotelsResponse>
+    @GET("api/Hotel/all-hotels?")
+    suspend fun getAllHotel() : Response<GetAllHotel>
 
     @GET()
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>

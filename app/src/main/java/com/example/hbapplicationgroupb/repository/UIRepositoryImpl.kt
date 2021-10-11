@@ -2,9 +2,9 @@ package com.example.hbapplicationgroupb.repository
 
 import javax.inject.Inject
 
-class RoomToUIRepositoryImpl @Inject constructor(
+class UIRepositoryImpl @Inject constructor(
 //    db : HotelDatabase
-) :  RoomToUiRepositoryInterface{
+) :  UiRepositoryInterface{
 
 
 }

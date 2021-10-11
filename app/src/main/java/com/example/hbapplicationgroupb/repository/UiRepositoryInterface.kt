@@ -1,4 +1,4 @@
 package com.example.hbapplicationgroupb.repository
 
-interface RoomToUiRepositoryInterface {
+interface UiRepositoryInterface {
 }

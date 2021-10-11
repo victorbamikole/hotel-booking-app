@@ -1,10 +1,10 @@
 package com.example.hbapplicationgroupb.di
 
-import com.example.hbapplicationgroupb.model.api.NetworkCall
-import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryImpl
-import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryInterface
-import com.example.hbapplicationgroupb.repository.RoomToUIRepositoryImpl
-import com.example.hbapplicationgroupb.repository.RoomToUiRepositoryInterface
+import com.example.hbapplicationgroupb.model.api.ApiServices
+import com.example.hbapplicationgroupb.repository.ApiRepositoryImpl
+import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
+import com.example.hbapplicationgroupb.repository.UIRepositoryImpl
+import com.example.hbapplicationgroupb.repository.UiRepositoryInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,14 +17,14 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesApiRepository(networkCall: NetworkCall): ApiToRoomRepositoryInterface {
-        return ApiToRoomRepositoryImpl(networkCall)
+    fun providesApiRepository(apiServices: ApiServices): ApiRepositoryInterface {
+        return ApiRepositoryImpl(apiServices)
     }
 
     @Provides
     @Singleton
-    fun providesUIRepository(): RoomToUiRepositoryInterface {
-        return RoomToUIRepositoryImpl()
+    fun providesUIRepository(): UiRepositoryInterface {
+        return UIRepositoryImpl()
     }
 
 
