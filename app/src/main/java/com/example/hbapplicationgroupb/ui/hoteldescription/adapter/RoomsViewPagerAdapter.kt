@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.model.RoomImageAndDetailForViewPager
 
@@ -30,6 +31,7 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
         holder.image.setBackgroundResource(imagePosition.image)
         holder.title.text = imagePosition.placeTitle
         holder.price.text = imagePosition.placePrice
+
     }
 
     override fun getItemCount(): Int {
