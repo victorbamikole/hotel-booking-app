@@ -183,6 +183,7 @@
         android:background="@drawable/bg_button"
         android:text="Login"
         android:textSize="17sp"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.606"
