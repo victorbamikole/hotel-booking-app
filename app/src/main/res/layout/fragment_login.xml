@@ -180,7 +180,7 @@
         style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/bg_button"
+        android:background="@drawable/login_button_state_handler"
         android:text="Login"
         android:textSize="17sp"
         android:enabled="false"
