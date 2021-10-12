@@ -34,7 +34,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
             if (ForgetPasswordValidationFunctions.checkIfFieldNotEmpty(binding.tvForgotPasswordEmail.text.toString())){
                 if (ForgetPasswordValidationFunctions.checkIfEmailIsValid(binding.tvForgotPasswordEmail.text.toString())){
                     roomViewModel.sendForgetPasswordEmailToApi(
-                        PostForgotPasswordData(binding.tvForgotPasswordEmail.text.toString())
+                        binding.tvForgotPasswordEmail.text.toString()
                     )
                 }else{
                     binding.tvForgotPasswordEmail.error = "enter a valid email"
