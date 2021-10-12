@@ -1,5 +1,5 @@
 package com.example.hbapplicationgroupb.model.forgotPasswordData
 
-data class PostForgetPasswordData(
+data class PostForgotPasswordData(
     val emailAddress: String
 )
