@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionRoomType
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -33,13 +33,10 @@ class RoomViewModel @Inject constructor(
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
 
 
-   init {
-      getAllHotelsFromApi()
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
-      addAllHotelsToRoom()
-   }
-
-         fun sendForgetPasswordEmailToApi(email: PostForgotPasswordData){
+         fun sendForgetPasswordEmailToApi(email: String){
             viewModelScope.launch(Dispatchers.IO){
                try {
                   val response = apiRepository.resetForgetPasswordEmail(email)
@@ -57,37 +54,24 @@ class RoomViewModel @Inject constructor(
             }
          }
 
-   //Fetch all the Hotels from the Api
-   private fun getAllHotelsFromApi(){
-      viewModelScope.launch {
-         val response = apiRepository.getAllHotels()
-         if (response.isSuccessful){
-            allHotelsList.postValue(response.body()?.data)
-         }
-      }
-   }
 
-   //Save hotels from Api into Room Database
-   private fun addAllHotelsToRoom(){
-      viewModelScope.launch (Dispatchers.IO){
-         apiRepository.addAllHotelsToRoom(allHotelsList.value)
-      }
-   }
 
-   //Get hotel with given id from end point
-   fun getHotelDescription(hotelId :String){
-
-      try {
-         viewModelScope.launch (Dispatchers.IO){
-            val response = apiRepository.getHotelDescriptionFromEndPoint(hotelId)
-            if (response.isSuccessful){
-               _hotelDescription.postValue(response.body()?.hotelDescriptionData)
+   fun confirmEmailAddress(emailAndToken:ConfirmEmailAddress){
+      viewModelScope.launch(Dispatchers.IO){
+         try {
+            val response = apiRepository.confirmEmailAddress(emailAndToken)
+            if(response.isSuccessful){
+               val responseBody = response.body()
+               _confirmEmailAddress.postValue(responseBody)
+            }else{
+               _confirmEmailAddress.postValue(null)
             }
-         }
-      }catch (e: Exception){
-         e.printStackTrace()
-      }
+         }catch (e:Exception){
+            e.printStackTrace()
 
+         }
+
+      }
    }
 
 

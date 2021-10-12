@@ -1,10 +1,9 @@
 package com.example.hbapplicationgroupb.model.forgotPasswordData
 
 data class ForgotPasswordDataResponse(
-    val id: Int,
-    val statusCode: String,
-    val success: Boolean,
-    val data: List<ForgotPasswordDataResponseId>,
+
+    val statusCode: Int,
+    val succeeded: Boolean,
+    val data: String,
     val message: String,
-    val errors: String? = null
 )

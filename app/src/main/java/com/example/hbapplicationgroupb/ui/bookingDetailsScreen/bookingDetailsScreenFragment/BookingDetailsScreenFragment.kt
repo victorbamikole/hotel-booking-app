@@ -56,7 +56,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     }
         binding.fragmentBookingBookNowButton.setOnClickListener {
             findNavController()
-                .navigate(R.id.action_bookingDetailsScreenFragment2_to_bookingConfirmationFragment)
+                .navigate(R.id.action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment)
         }
         binding.fragmentBookingDetailsBackArrowViev.setOnClickListener {
             findNavController()

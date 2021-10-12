@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentHotelDescriptionBinding
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionRoomType
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.RoomsViewPagerAdapter
 import com.example.hbapplicationgroupb.util.HorizontalMaginDecorationForViewPager
@@ -29,9 +28,6 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
         initialiseViewPager()
         setUpViewPagerTransition()
-
-        fetchHotelDescription(safeArgs.hotelId)
-
 
 
         binding.bookNowButton.setOnClickListener {
@@ -126,16 +122,4 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
     }
 
-    //Fetch Hotel with hotel Id From Room Database
-    private fun fetchHotelDescription(hotelId : String){
-        roomViewModel.getHotelDescription(hotelId)
-        roomViewModel.hotelDescription.observe(viewLifecycleOwner, { hotel ->
-            binding.hotelDescExpandableTv.text = hotel.description
-            binding.HotelName.text = hotel.name
-            binding.locationOfHotel.text = hotel.address
-            binding.fragmentHotelDescriptionTvEmail.text = hotel.email
-            binding.fragmentHotelDescriptionTvPhonrNumer.text = hotel.phone
-            binding.fragmentReviewPageStarViewRatingBarVerySmall4.numStars = hotel.rating
-        })
-    }
 }
