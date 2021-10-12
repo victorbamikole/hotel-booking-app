@@ -48,7 +48,7 @@ interface NetworkCall {
     @POST
     suspend fun registerAUser() : Response<UserDataResponse>
 
-    @POST("api/v1/Authentication/forgot-password")
+    @POST("/api/Authentication/forgot-password")
     suspend fun resetForgetPasswordEmail(@Body email: PostForgotPasswordData):Response<ForgotPasswordDataResponse>
 
     @POST
