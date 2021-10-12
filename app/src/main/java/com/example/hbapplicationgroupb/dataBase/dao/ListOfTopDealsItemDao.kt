@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionDataItems
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsItem
 @Dao
 interface ListOfTopDealsItemDao {

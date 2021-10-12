@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.di
 
-import com.example.hbapplicationgroupb.model.api.ApiServices
+import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.repository.ApiRepositoryImpl
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.repository.UIRepositoryImpl
@@ -17,14 +18,14 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesApiRepository(apiServices: ApiServices): ApiRepositoryInterface {
-        return ApiRepositoryImpl(apiServices)
+    fun providesApiRepository(hotelServices: HotelServices, db :HBDataBase): ApiRepositoryInterface {
+        return ApiRepositoryImpl(hotelServices,db)
     }
 
     @Provides
     @Singleton
-    fun providesUIRepository(): UiRepositoryInterface {
-        return UIRepositoryImpl()
+    fun providesUIRepository(db :HBDataBase): UiRepositoryInterface {
+        return UIRepositoryImpl(db)
     }
 
 

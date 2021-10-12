@@ -22,13 +22,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
 
-        //List of different hotels
-//        val hotels = listOf(
-//            Hotels(R.drawable.hotel2, "Sheraton Grand", "$599"),
-//            Hotels(R.drawable.hotel3, "GitHub Grand", "$999"),
-//            Hotels(R.drawable.hotel2, "Radison Blue", "$1299"),
-//            Hotels(R.drawable.hotel3, "Jetro Hols", "$899")
-//        )
+        //Fetch All Hotels From APi
         uiViewModel.getAllHotels()
 
 
@@ -58,7 +52,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
 
         uiViewModel.allHotels.observe(viewLifecycleOwner,{
-
             myAdapter.populateHotels(it)
         })
 

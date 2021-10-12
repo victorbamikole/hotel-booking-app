@@ -7,13 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.RecyclerviewRowBinding
-import com.example.hbapplicationgroupb.model.Hotels
-import com.example.hbapplicationgroupb.model.allHotels.Data
+import com.example.hbapplicationgroupb.model.allHotels.HotelData
 
 class ExploreHomeAdapter() :
     RecyclerView.Adapter<ExploreHomeAdapter.HotelsViewHolder>() {
 
-    private var hotels =  listOf<Data>()
+    private var hotels =  listOf<HotelData>()
     class HotelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: RecyclerviewRowBinding = RecyclerviewRowBinding.bind(itemView)
         val hotelImage = binding.hotelImage
@@ -48,7 +47,7 @@ class ExploreHomeAdapter() :
         return hotels.size
     }
 
-    fun populateHotels(hotelList : List<Data>){
+    fun populateHotels(hotelList : List<HotelData>){
         hotels = hotelList
     }
 }

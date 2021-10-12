@@ -1,13 +1,12 @@
 package com.example.hbapplicationgroupb.model.api
 
-import com.example.hbapplicationgroupb.model.TopHotels
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.GetListOfHotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
 import com.example.hbapplicationgroupb.model.tophoteldata.GetListOfTopHotelsResponse
@@ -15,12 +14,9 @@ import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPa
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
-interface ApiServices {
+interface HotelServices {
 
     @GET("api/Hotel/all-hotels?")
     suspend fun getAllHotel() : Response<GetAllHotel>
@@ -34,8 +30,9 @@ interface ApiServices {
     @GET
     suspend fun getListOfTopDealsHotel() : Response<ListOfTopDealsResponse>
 
-    @GET
-    suspend fun getListOfHotelDescription() : Response<GetListOfHotelDescriptionResponse>
+    //Fetch description for a particular hotel
+    @GET("api/Hotel/{hotelId}")
+    suspend fun getHotelDescriptionResponse(@Path("hotelId") hotelId :String) : Response<HotelDescriptionResponse>
 
     @GET
     suspend fun getHotelAmenities() : Response<HotelAmenitiesResponse>
