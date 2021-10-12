@@ -49,11 +49,8 @@ interface NetworkCall {
     @POST("api/v1/Authentication/forgot-password")
     suspend fun resetForgetPasswordEmail(@Body email: PostForgotPasswordData):Response<ForgotPasswordDataResponse>
 
-    @PATCH("api/v1/Authentication/reset-password")
+    @PATCH("api/Authentication/reset-password")
     suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>
-
-//    @PATCH("api/v1/Authentication/reset-password/{token}")
-//    suspend fun resetUserPassword (@Path("token") token: String, @Body password: PostResetPasswordData): Response<ResetPasswordDataResponse>
 
     @POST
     suspend fun loginAUser() : Response<LoginUserDataResponse>

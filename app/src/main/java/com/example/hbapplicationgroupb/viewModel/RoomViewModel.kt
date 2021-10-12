@@ -43,7 +43,7 @@ class RoomViewModel @Inject constructor(
          }
 
    //sending password to database
-   fun sendPasswordToAPI(password: PostResetPasswordData) {
+   fun sendNewPasswordToAPI(password: PostResetPasswordData) {
       viewModelScope.launch(Dispatchers.IO){
          try {
              val response = apiToRoomRepository.resetPassword(password)

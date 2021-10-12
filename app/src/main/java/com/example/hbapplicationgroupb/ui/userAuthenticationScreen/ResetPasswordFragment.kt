@@ -2,13 +2,10 @@ package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentResetPasswordBinding
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -38,12 +35,12 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
             if(ResetPasswordValidationFunctions.checkIfFieldNotEmpty(binding.tvResetPassword.text.toString())){
                if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==0){
                    if (ResetPasswordValidationFunctions.checkIfPasswordMatches(binding.tvResetPassword.text.toString(),binding.tvConfirmPassword.text.toString())){
-                        roomViewModel.sendPasswordToAPI(
+                        roomViewModel.sendNewPasswordToAPI(
                             PostResetPasswordData(
-                                userToken.toString(),
-                                userEmail.toString(),
-                                binding.tvResetPassword.text.toString(),
-                                binding.tvConfirmPassword.text.toString()
+                                token = userToken.toString(),
+                                email = userEmail.toString(),
+                                newPassword = binding.tvResetPassword.text.toString(),
+                                confirmPassword = binding.tvConfirmPassword.text.toString()
                             ))
                    }else{
                        binding.tvResetPassword.error = "password does not match"
@@ -52,7 +49,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                }else if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==1){
                    binding.tvResetPassword.error = "password must be more than six characters"
                }else if(ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==2){
-                   binding.tvResetPassword.error = "password must contain number"
+                   binding.tvResetPassword.error = "password must contain number, letter and special characters"
                }
 
             }else{

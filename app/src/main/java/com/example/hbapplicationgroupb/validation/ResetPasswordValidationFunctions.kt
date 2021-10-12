@@ -18,7 +18,7 @@ object ResetPasswordValidationFunctions {
             // one means throw error password less than 6
             return 1
         }
-        if (string.length >= 6 && !string.contains(Regex("[0-9]"))){
+        if (string.length >= 6 && !string.contains(Regex("[0-9] [a-zA-Z] [@#$%^&+=]"))){
             //two means throw error that password does not contain number
             return 2
         }
