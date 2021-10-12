@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryInterface
@@ -19,7 +21,10 @@ class RoomViewModel @Inject constructor(
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
 
-         fun sendForgetPasswordEmailToApi(email: PostForgotPasswordData){
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
+         fun sendForgetPasswordEmailToApi(email: String){
             viewModelScope.launch(Dispatchers.IO){
                try {
                   val response = apiToRoomRepository.resetForgetPasswordEmail(email)
@@ -36,6 +41,24 @@ class RoomViewModel @Inject constructor(
 
             }
          }
+
+   fun confirmEmailAddress(emailAndToken:ConfirmEmailAddress){
+      viewModelScope.launch(Dispatchers.IO){
+         try {
+            val response = apiToRoomRepository.confirmEmailAddress(emailAndToken)
+            if(response.isSuccessful){
+               val responseBody = response.body()
+               _confirmEmailAddress.postValue(responseBody)
+            }else{
+               _confirmEmailAddress.postValue(null)
+            }
+         }catch (e:Exception){
+            e.printStackTrace()
+
+         }
+
+      }
+   }
 
 
 }
