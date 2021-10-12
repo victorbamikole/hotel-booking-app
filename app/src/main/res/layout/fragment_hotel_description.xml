@@ -72,6 +72,50 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_hotel_description_card_more"
                 app:layout_constraintStart_toStartOf="@id/fragment_hotel_description_card_more"
                 app:layout_constraintTop_toBottomOf="@id/fragment_hotel_description_card_more" />
+            <TextView
+                android:id="@+id/HotelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="30sp"
+                android:text="Park Plaza"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                />
+            <TextView
+                android:id="@+id/mostViewedTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/HotelName"
+                app:layout_constraintBottom_toBottomOf="@id/HotelName"
+                android:textSize="10sp"
+                android:text="most Viewed"
+                android:textStyle="bold"
+                android:textColor="@color/custom_orange"
+                app:layout_constraintStart_toEndOf="@id/HotelName"
+
+                />
+            <TextView
+                android:id="@+id/locationOfHotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/HotelName"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20sp"
+                android:text="@string/marathalli_bangalore"
+                />
+            <TextView
+                android:id="@+id/shoeInMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="show in map"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="@id/locationOfHotel"
+                app:layout_constraintBottom_toBottomOf="@id/locationOfHotel"
+                app:layout_constraintStart_toEndOf="@id/locationOfHotel"
+                />
 
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -86,7 +130,7 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationOfHotel"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
                 app:trimLength="165"
