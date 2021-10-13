@@ -1,11 +1,13 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
+import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.GetListOfHotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
@@ -16,10 +18,10 @@ import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataRespons
 import retrofit2.Response
 import retrofit2.http.*
 
-interface NetworkCall {
+interface HotelServices {
 
-    @GET("")
-    suspend fun getAllHotel() : Response<GetListOfTopHotelsResponse>
+    @GET("api/Hotel/all-hotels?")
+    suspend fun getAllHotel() : Response<GetAllHotel>
 
     @GET()
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
@@ -30,8 +32,9 @@ interface NetworkCall {
     @GET
     suspend fun getListOfTopDealsHotel() : Response<ListOfTopDealsResponse>
 
-    @GET
-    suspend fun getListOfHotelDescription() : Response<GetListOfHotelDescriptionResponse>
+    //Fetch description for a particular hotel
+    @GET("api/Hotel/{hotelId}")
+    suspend fun getHotelDescriptionResponse(@Path("hotelId") hotelId :String) : Response<HotelDescriptionResponse>
 
     @GET
     suspend fun getHotelAmenities() : Response<HotelAmenitiesResponse>
@@ -45,8 +48,11 @@ interface NetworkCall {
     @POST
     suspend fun registerAUser() : Response<UserDataResponse>
 
-    @POST("api/v1/Authentication/forgot-password")
-    suspend fun resetForgetPasswordEmail(@Body email: PostForgotPasswordData):Response<ForgotPasswordDataResponse>
+    @POST("api/Authentication/forgot-password")
+    suspend fun resetForgetPasswordEmail(@Query("email") email: String):Response<ForgotPasswordDataResponse>
+
+    @POST("api/Authentication/confirm-email")
+    suspend fun confirmEmailAddress(@Body emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
 
     @POST("api/Authentication/login")
     suspend fun userLoginDetails(

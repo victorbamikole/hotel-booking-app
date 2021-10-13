@@ -3,7 +3,6 @@ package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -34,9 +33,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.tvUserLoginEmail.addTextChangedListener(loginButtonHandler)
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
-//        roomViewModel.userLoginDetails.observe(viewLifecycleOwner,{
-//            Toast.makeText(context,"$it",Toast.LENGTH_LONG).show()
-//        })
 
         //If input fields are not empty
         binding.btnLogin.setOnClickListener {
@@ -47,19 +43,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 if (LoginValidation.validatePasswordPattern(usersPassword)) {
                     roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
                     roomViewModel.userLoginDetails.observe(
-                        viewLifecycleOwner, { userLoginDetails ->
-                            if (userLoginDetails.isSuccessful) {
-                                Log.d("LOGIN_DETAILS", "Body: ${userLoginDetails.body()?.message}")
-                                Log.d("LOGIN_DETAILS", "Code: ${userLoginDetails.code()}")
-                                Log.d("LOGIN_DETAILS", "Message: ${userLoginDetails.message()}")
-                            } else {
-                                Log.d("TAG", "Is this the error: ${userLoginDetails.errorBody()!!.string()}")
+                        viewLifecycleOwner, {
+                            if(it.succeeded) {
+                                findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                             }
-
                         }
                     )
-                    findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
-
                 }
                 else{
                     binding.regPasswordInput.error = "Password does not match with any email address"

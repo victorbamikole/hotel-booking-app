@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/login_button_state_handler.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.2689189189189189" />
         <entry key="app/src/main/res/drawable/toolbar_shadow.xml" value="0.15888157894736843" />
+        <entry key="app/src/main/res/font/adamina.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/booking_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />

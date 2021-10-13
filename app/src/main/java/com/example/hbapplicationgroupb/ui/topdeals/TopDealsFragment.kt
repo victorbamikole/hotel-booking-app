@@ -22,8 +22,8 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
             listOf(
                 TopHotels(R.drawable.hotel2, "Sheraton Grand", "$599", "4 star hotel", "80%"),
                 TopHotels(R.drawable.hotel3, "GitHub Grand", "$999", "5 star hotel", "90%"),
-                TopHotels(R.drawable.hotel2, "Radison Blue", "$1299", "4 star hotel", "80%"),
-                TopHotels(R.drawable.hotel3, "Jetro Hols", "$899", "5 star hotel", "100%")
+                TopHotels(R.drawable.hotel2, "Radisson Blue", "$1299", "4 star hotel", "80%"),
+                TopHotels(R.drawable.hotel3, "Jethro Hols", "$899", "5 star hotel", "100%")
             )
 
         //Inflate the top hotels recycler view layout to the fragment class

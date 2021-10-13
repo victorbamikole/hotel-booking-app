@@ -1,12 +1,29 @@
 package com.example.hbapplicationgroupb.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.hbapplicationgroupb.repository.RoomToUiRepositoryInterface
+import androidx.lifecycle.viewModelScope
+import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.repository.UiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UIViewModel @Inject constructor(
-    roomToUiRepository: RoomToUiRepositoryInterface
+    private val uiRepository: UiRepositoryInterface
 ) : ViewModel(){
+
+    //List of all hotels
+    lateinit var allHotels :LiveData<List<HotelData>>
+
+
+    fun getAllHotels(){
+        viewModelScope.launch {
+            allHotels = uiRepository.getAllHotels()
+
+        }
+    }
+
+
 }

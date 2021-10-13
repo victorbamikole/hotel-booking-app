@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 /**
- * class HorizontalMaginDecorationForViewPager adds margin to the left and right sides of the View item.
+ * class HorizontalMarginDecorationForViewPager adds margin to the left and right sides of the View item.
  * @param horizontalMarginInDp is the margin resource in dp.
  * the horizontalMarginInDp is passed as parameter for the class
  * context is the this -> which denote the class you are working on
  * it extends RecyclerView with static method ItemDecoration which allows properties to be
  * set for view decoration
  */
-class HorizontalMaginDecorationForViewPager (context: Context, @DimenRes horizontalMarginInDp: Int) :
+class HorizontalMarginDecorationForViewPager (context: Context, @DimenRes horizontalMarginInDp: Int) :
 RecyclerView.ItemDecoration() {
 
     private val horizontalMarginInPx: Int =

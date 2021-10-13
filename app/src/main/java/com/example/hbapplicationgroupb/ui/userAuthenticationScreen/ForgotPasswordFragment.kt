@@ -1,14 +1,13 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentForgotPasswordBinding
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.validation.ForgetPasswordValidationFunctions
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +31,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
             if (ForgetPasswordValidationFunctions.checkIfFieldNotEmpty(binding.tvForgotPasswordEmail.text.toString())){
                 if (ForgetPasswordValidationFunctions.checkIfEmailIsValid(binding.tvForgotPasswordEmail.text.toString())){
                     roomViewModel.sendForgetPasswordEmailToApi(
-                        PostForgotPasswordData(binding.tvForgotPasswordEmail.text.toString())
+                        binding.tvForgotPasswordEmail.text.toString()
                     )
                 }else{
                     binding.tvForgotPasswordEmail.error = "enter a valid email"
