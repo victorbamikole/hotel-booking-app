@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -56,8 +57,14 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 binding.fragmentHotelDescriptionTvPhonrNumer.text = it.phone
                 binding.fragmentHotelDescriptionTvEmail.text = it.email
                 binding.hotelDescExpandableTv.text = it.description
-                binding.fragmentReviewPageStarViewRatingBarVerySmall4.numStars = it.rating.toInt()
+                binding.fragmentReviewPageStarViewRatingBarVerySmall4.numStars = 4//it.rating.toInt()
 //                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
+
+                //Set Room types for roomViewPagerAdapter
+                roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
+
+                //Set Hotel Images on hotelViewPagerAdapter
+                hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
             } else{
                 Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
             }
@@ -73,7 +80,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPager.offscreenPageLimit = 1
 
         hotelViewPagerAdapter = HotelViewPagerAdapter()
-        hotelViewPagerAdapter.getImagesFromExternalSource(getListOfHotelImages())
+//        hotelViewPagerAdapter.getImagesFromExternalSource()
         binding.fragmentImageDescriptionViewPager.adapter = hotelViewPagerAdapter
 
         //list of rooms viewpager
@@ -81,9 +88,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPagerOurServices.clipChildren = false
         binding.fragmentImageDescriptionViewPagerOurServices.offscreenPageLimit = 1
 
-        val hotelRooms = roomViewModel.hotelRooms
         roomViewPagerAdapter = RoomsViewPagerAdapter()
-        roomViewPagerAdapter.populateHotelRooms(hotelRooms)
+
         binding.fragmentImageDescriptionViewPagerOurServices.adapter = roomViewPagerAdapter
     }
     private fun setUpViewPagerTransition() {

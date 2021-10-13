@@ -12,6 +12,6 @@ data class HotelDescriptionData(
     val phone: String,
     val rating: Double,
     val reviews: List<Review>,
-    val hotelDescriptionRoomTypes: List<HotelDescriptionRoomType>,
+    val roomTypes: List<HotelDescriptionRoomType>,
     val state: String
 )

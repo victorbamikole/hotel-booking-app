@@ -25,10 +25,6 @@ class RoomViewModel @Inject constructor(
    private val _hotelDescription =  MutableLiveData<HotelDescriptionData>()
    val hotelDescription : LiveData<HotelDescriptionData> get() = _hotelDescription
 
-   //Hotel Room Types
-   val hotelRooms :ArrayList<HotelDescriptionRoomType> = arrayListOf()
-
-
 
    private val allHotelsList = MutableLiveData<List<HotelData>>()
 
@@ -39,14 +35,6 @@ class RoomViewModel @Inject constructor(
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
-   init {
-       populateHotelRooms()
-   }
-
-   //Populate hotel rooms
-   private fun populateHotelRooms(){
-      hotelDescription.value?.hotelDescriptionRoomTypes?.let { hotelRooms.addAll(it) }
-   }
 
          fun sendForgetPasswordEmailToApi(email: String){
             viewModelScope.launch(Dispatchers.IO){

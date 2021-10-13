@@ -8,12 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.model.RoomImageAndDetailForViewPager
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionRoomType
 
 class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPagerHolder>() {
 
-    private val hotelRooms : ArrayList<HotelDescriptionRoomType> = arrayListOf()
+    val hotelRooms :  MutableList<HotelDescriptionRoomType> = mutableListOf()
 
     inner class ViewPagerHolder(viewItems: View): RecyclerView.ViewHolder(viewItems){
         val image: ImageView = viewItems.findViewById(R.id.bottom_viewPager_imageView)
@@ -29,20 +28,20 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-        val imagePosition = hotelRooms[position]
+        val roomPosition = hotelRooms[position]
         Glide.with(holder.itemView)
-            .load(imagePosition.thumbnail)
+            .load(roomPosition.thumbnail)
             .into(holder.image)
-        holder.title.text = imagePosition.name
-        holder.price.text = imagePosition.price.toString()
+        holder.title.text = roomPosition.name
+        holder.price.text = roomPosition.price.toString()
     }
 
     override fun getItemCount(): Int {
         return hotelRooms.size
     }
 
-    fun populateHotelRooms(list:ArrayList<HotelDescriptionRoomType>){
-        hotelRooms.clear()
+    fun populateHotelRooms(list:MutableList<HotelDescriptionRoomType>){
+
         hotelRooms.addAll(list)
 
         notifyDataSetChanged()

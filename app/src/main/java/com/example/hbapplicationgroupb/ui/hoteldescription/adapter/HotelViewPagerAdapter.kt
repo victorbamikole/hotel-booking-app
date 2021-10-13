@@ -5,11 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.model.HotelImagesForViewPager
 
 class HotelViewPagerAdapter : RecyclerView.Adapter<HotelViewPagerAdapter.ViewPagerHolder>() {
-    private var contents:MutableList<HotelImagesForViewPager> = mutableListOf()
+    private var hotelImages:ArrayList<String> = arrayListOf()
     inner class ViewPagerHolder(viewItems: View): RecyclerView.ViewHolder(viewItems){
         val image: ImageView = viewItems.findViewById(R.id.fragment_details_page_rv_imageView)
 
@@ -21,18 +22,18 @@ class HotelViewPagerAdapter : RecyclerView.Adapter<HotelViewPagerAdapter.ViewPag
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-        val imagePosition = contents[position]
-        holder.image.setBackgroundResource(imagePosition.imageData)
-
+        Glide.with(holder.itemView)
+            .load(hotelImages[position])
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int {
-        return contents.size
+        return hotelImages.size
     }
 
-    fun getImagesFromExternalSource(list:List<HotelImagesForViewPager>){
-        contents.clear()
-        contents.addAll(list)
+    fun getImagesFromExternalSource(list:List<String>){
+        hotelImages.clear()
+        hotelImages.addAll(list)
         notifyDataSetChanged()
     }
 
