@@ -30,11 +30,11 @@ class RoomViewModel @Inject constructor(
    //Hotel Room Types
    val hotelRooms = hotelDescription.value?.hotelDescriptionRoomTypes
 
-   private val _allHotelsList = MutableLiveData<GetAllHotel>()
-   val allHotelsList:LiveData<GetAllHotel> = _allHotelsList
+   private val _allHotelsList = MutableLiveData<GetAllHotel?>()
+   val allHotelsList:LiveData<GetAllHotel?> = _allHotelsList
 
-   private val _allTopDeals = MutableLiveData<TopDeals>()
-   val allTopDeals:LiveData<TopDeals> = _allTopDeals
+   private val _allTopDeals = MutableLiveData<TopDeals?>()
+   val allTopDeals:LiveData<TopDeals?> = _allTopDeals
 
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
