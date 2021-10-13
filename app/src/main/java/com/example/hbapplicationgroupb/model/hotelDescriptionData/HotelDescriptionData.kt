@@ -10,7 +10,7 @@ data class HotelDescriptionData(
     val id: String,
     val name: String,
     val phone: String,
-    val rating: Int,
+    val rating: Double,
     val reviews: List<Review>,
     val hotelDescriptionRoomTypes: List<HotelDescriptionRoomType>,
     val state: String

@@ -13,7 +13,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 
 class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPagerHolder>() {
 
-    private lateinit var hotelRooms : List<HotelDescriptionRoomType>
+    private val hotelRooms : ArrayList<HotelDescriptionRoomType> = arrayListOf()
 
     inner class ViewPagerHolder(viewItems: View): RecyclerView.ViewHolder(viewItems){
         val image: ImageView = viewItems.findViewById(R.id.bottom_viewPager_imageView)
@@ -41,10 +41,10 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
         return hotelRooms.size
     }
 
-    fun populateHotelRooms(list:List<HotelDescriptionRoomType>?){
-        if (list != null) {
-            hotelRooms = list
-        }
+    fun populateHotelRooms(list:ArrayList<HotelDescriptionRoomType>){
+        hotelRooms.clear()
+        hotelRooms.addAll(list)
+
         notifyDataSetChanged()
     }
 }

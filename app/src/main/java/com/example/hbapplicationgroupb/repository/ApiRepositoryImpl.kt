@@ -4,6 +4,7 @@ import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import retrofit2.Response
 
 class ApiRepositoryImpl (
@@ -15,6 +16,10 @@ class ApiRepositoryImpl (
 
     override suspend fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress): Response<ConfirmEmailAddressResponse> {
         return hotelServices.confirmEmailAddress(emailAndToken)
+    }
+
+    override suspend fun getHotelDescriptionResponse(id: String): Response<HotelDescriptionResponse> {
+        return hotelServices.getHotelDescriptionResponse(id)
     }
 
 }

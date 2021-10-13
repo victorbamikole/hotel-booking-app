@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionRoomType
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,9 @@ class RoomViewModel @Inject constructor(
    val hotelDescription : LiveData<HotelDescriptionData> get() = _hotelDescription
 
    //Hotel Room Types
-   val hotelRooms = hotelDescription.value?.hotelDescriptionRoomTypes
+   val hotelRooms :ArrayList<HotelDescriptionRoomType> = arrayListOf()
+
+
 
    private val allHotelsList = MutableLiveData<List<HotelData>>()
 
@@ -35,6 +38,15 @@ class RoomViewModel @Inject constructor(
 
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
+   init {
+       populateHotelRooms()
+   }
+
+   //Populate hotel rooms
+   private fun populateHotelRooms(){
+      hotelDescription.value?.hotelDescriptionRoomTypes?.let { hotelRooms.addAll(it) }
+   }
 
          fun sendForgetPasswordEmailToApi(email: String){
             viewModelScope.launch(Dispatchers.IO){
@@ -71,6 +83,22 @@ class RoomViewModel @Inject constructor(
 
          }
 
+      }
+   }
+
+   //Fetch hotel description from api
+   fun getHotelDescription(id :String) {
+      viewModelScope.launch (Dispatchers.IO){
+         try {
+            val response = apiRepository.getHotelDescriptionResponse(id)
+            if (response.isSuccessful){
+               _hotelDescription.postValue(response.body()?.data)
+            } else{
+               //DO SOMETHING
+            }
+         } catch (e :Exception){
+            e.printStackTrace()
+         }
       }
    }
 
