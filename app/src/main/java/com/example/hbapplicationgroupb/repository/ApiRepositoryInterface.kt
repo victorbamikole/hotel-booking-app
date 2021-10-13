@@ -8,7 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 
 
-interface ApiToRoomRepositoryInterface {
+interface ApiRepositoryInterface {
 
     suspend fun resetForgetPasswordEmail(email: String): Response<ForgotPasswordDataResponse>
     suspend fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
