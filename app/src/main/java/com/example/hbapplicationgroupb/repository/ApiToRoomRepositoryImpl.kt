@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupb.repository
 
-import com.example.hbapplicationgroupb.model.api.NetworkCall
+import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -8,15 +8,14 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import retrofit2.Response
 
 class ApiToRoomRepositoryImpl (
-    private val networkCall :NetworkCall
+    private val hotelServices: HotelServices
 ) :ApiToRoomRepositoryInterface {
     override suspend fun resetForgetPasswordEmail(email: PostForgotPasswordData): Response<ForgotPasswordDataResponse> {
-        return  networkCall.resetForgetPasswordEmail(email)
+        return  hotelServices.resetForgetPasswordEmail(email)
     }
 
     override suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse> {
-        return networkCall.resetPassword(password)
+        return hotelServices.resetPassword(password)
     }
-
 
 }

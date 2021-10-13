@@ -10,6 +10,6 @@ import retrofit2.Response
 interface ApiToRoomRepositoryInterface {
 
     suspend fun resetForgetPasswordEmail(email: PostForgotPasswordData): Response<ForgotPasswordDataResponse>
-    suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
+
 
 }

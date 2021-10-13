@@ -2,15 +2,12 @@ package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentForgotPasswordBinding
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.validation.ForgetPasswordValidationFunctions
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
