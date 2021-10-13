@@ -1,8 +1,5 @@
 package com.example.hbapplicationgroupb.model.customerBookingData
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
 data class CustomerBookingDataResponse(
     val statusCode: String,
     val success: Boolean,
