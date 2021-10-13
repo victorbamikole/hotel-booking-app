@@ -53,20 +53,26 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     //This function observes the TopHotels LiveData and populates the RecyclerView UI
     private fun initViewModel() {
         roomViewModel.allHotelsList.observe(viewLifecycleOwner,{
-            myAdapter.populateHotels(it.data)
+            if (it != null){
+                myAdapter.populateHotels(it.data)
                 Log.d("Homefrag", "${it.data}")
                 myAdapter.notifyDataSetChanged()
-            binding.recyclerView.adapter = myAdapter
-            })
+                binding.recyclerView.adapter = myAdapter
+
+            }
+             })
     }
 
     //This function observes the TopDeals LiveData and populates the RecyclerView UI
     private fun initViewModel2() {
         roomViewModel.allTopDeals.observe(viewLifecycleOwner,{
-            myAdapter2.populateTopDeals(it.data)
-            Log.d("Homefrag", "${it.data}")
-            myAdapter2.notifyDataSetChanged()
-            binding.recyclerView2.adapter = myAdapter2
+            if (it != null){
+                myAdapter2.populateTopDeals(it.data)
+                Log.d("Homefrag", "${it.data}")
+                myAdapter2.notifyDataSetChanged()
+                binding.recyclerView2.adapter = myAdapter2
+
+            }
         })
     }
 
