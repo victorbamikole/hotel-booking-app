@@ -22,6 +22,7 @@ object RepositoryModule {
         return ApiRepositoryImpl(hotelServices)
     }
 
+
     @Provides
     @Singleton
     fun providesUIRepository(db :HBDataBase): UiRepositoryInterface {

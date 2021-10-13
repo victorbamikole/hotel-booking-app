@@ -12,6 +12,7 @@ import com.example.hbapplicationgroupb.model.TopHotels
 
 class TopDealsAdapter(var topDeals: List<TopHotels>):
     RecyclerView.Adapter<TopDealsAdapter.DealsViewHolder>(){
+
     class DealsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val binding: TopDealsRecyclerviewBinding =
             TopDealsRecyclerviewBinding.bind(itemView)
@@ -24,8 +25,7 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
-        val view =
-            LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.top_deals_recyclerview, parent, false)
         return DealsViewHolder(view)
     }
@@ -38,6 +38,7 @@ class TopDealsAdapter(var topDeals: List<TopHotels>):
             holder.topDealPrice.text = currentItem.price
             holder.topDealRating.text = currentItem.rating
             holder.topDealPercent.text = currentItem.percent
+
             setOnClickListener {
                 findNavController().navigate(R.id.hotelDescriptionFragment)
             }

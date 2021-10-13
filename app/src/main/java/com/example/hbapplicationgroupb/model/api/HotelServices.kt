@@ -26,6 +26,7 @@ interface HotelServices {
     @GET()
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
 
+
     @GET
     suspend fun getTopHotels() : Response<GetListOfTopHotelsResponse>
 

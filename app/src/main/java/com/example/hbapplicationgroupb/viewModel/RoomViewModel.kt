@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RoomViewModel @Inject constructor(
    private val apiRepository : ApiRepositoryInterface
-) : ViewModel(){
+) : ViewModel() {
 
    //User Added
    val newUser: MutableLiveData<Response<UserDataResponseItem>> = MutableLiveData()
@@ -41,12 +41,27 @@ class RoomViewModel @Inject constructor(
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
+
+
+
    fun registerUser(userData : UserDataResponseItem){
       viewModelScope.launch {
-         val response = apiRepository.registerAUser(userData)
-         newUser.value = response
+         try {
+            val response = apiRepository.registerAUser(userData)
+            if(response.isSuccessful){
+               newUser.value = response
+            } else{
+               newUser.value = null
+            }
+
+         } catch (e: Exception){
+            e.printStackTrace()
+         }
       }
    }
+
+
+
 
       fun sendForgetPasswordEmailToApi(email: String){
          viewModelScope.launch(Dispatchers.IO){

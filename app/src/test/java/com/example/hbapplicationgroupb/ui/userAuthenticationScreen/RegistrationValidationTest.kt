@@ -9,7 +9,7 @@ class RegistrationValidationTest{
 
     @Test
     fun validateUserName() {
-        var result = RegistrationValidation.validateUserName ("we")
+        var result = RegistrationValidation.validateUserFirstName ("we")
         assertEquals(true,result)
     }
 

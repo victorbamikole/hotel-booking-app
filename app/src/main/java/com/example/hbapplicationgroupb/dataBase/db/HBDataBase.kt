@@ -34,7 +34,6 @@ import javax.inject.Singleton
 @TypeConverters(HotelTypeConverter::class)
 abstract class HBDataBase : RoomDatabase() {
 
-
     abstract fun allHotelsDao() : AllHotelDao
     abstract fun CustomerBookingDataItemDao() : CustomerBookingDataItemDao
     abstract fun CustomerWishListItemDao() : CustomerWishListItemDao
@@ -42,4 +41,7 @@ abstract class HBDataBase : RoomDatabase() {
     abstract fun ListOfTopDealsItemDao() : ListOfTopDealsItemDao
     abstract fun HotelTopDealItemsDao() : HotelTopDealItemsDao
     abstract fun UserHotelDataItemDao() : UserHotelDataItemDao
+
+
+
 }
