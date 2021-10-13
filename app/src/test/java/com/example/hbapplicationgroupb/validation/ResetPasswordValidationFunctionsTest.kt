@@ -32,7 +32,7 @@ class ResetPasswordValidationFunctionsTest {
 
     @Test
     fun checkIfPassWordIsValid_returnZeroIfPasswordIsValidCase1_returnZero() {
-        assertEquals(0,ResetPasswordValidationFunctions.checkIfPassWordIsValid("Oyesina123"))
+        assertEquals(0,ResetPasswordValidationFunctions.checkIfPassWordIsValid("Oyesina@123"))
     }
     @Test
     fun checkIfPassWordIsValid_returnOneIfPasswordIsLessThanSIx_returnOne() {
