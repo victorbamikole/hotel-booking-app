@@ -29,6 +29,7 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
         val roomPosition = hotelRooms[position]
+
         Glide.with(holder.itemView)
             .load(roomPosition.thumbnail)
             .into(holder.image)

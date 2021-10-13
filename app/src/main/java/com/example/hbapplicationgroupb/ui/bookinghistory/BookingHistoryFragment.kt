@@ -18,8 +18,7 @@ class BookingHistoryFragment : Fragment(R.layout.fragment_booking_history) {
         //set binding to bind views when views have created
         binding = FragmentBookingHistoryBinding.bind(view)
         binding.bookingHistoryBackArrow.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_bookingHistoryFragment_to_profileFragment2)
+            findNavController().navigate(R.id.action_bookingHistoryFragment_to_profileFragment2)
         }
 
     }
