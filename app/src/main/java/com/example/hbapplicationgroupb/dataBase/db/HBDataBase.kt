@@ -40,49 +40,4 @@ abstract class HBDataBase : RoomDatabase() {
     abstract fun ListOfTopDealsItemDao() : ListOfTopDealsItemDao
     abstract fun HotelTopDealItemsDao() : HotelTopDealItemsDao
     abstract fun UserHotelDataItemDao() : UserHotelDataItemDao
-
-    @Module()
-    @InstallIn(SingletonComponent::class)
-    object DatabaseModule{
-        @Volatile
-        private var INSTANCE : HBDataBase? = null
-
-        @Singleton
-        @Provides
-        fun getDataBase(@ApplicationContext context: Context): HBDataBase {
-            val tempInstance = INSTANCE
-            if(tempInstance!=null){
-                return tempInstance
-            }
-            synchronized(this){
-                val instance = Room.databaseBuilder(context.applicationContext,
-                    HBDataBase::class.java,
-                    "app_database").build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-
-    }
-
-//    companion object{
-//        @Volatile
-//        private var INSTANCE : HBDataBase? = null
-//
-//        @Singleton
-//        @Provides()
-//        fun getDataBase (context: Context): HBDataBase {
-//            val tempInstance = INSTANCE
-//            if(tempInstance!=null){
-//                return tempInstance
-//            }
-//            synchronized(this){
-//                val instance = Room.databaseBuilder(context.applicationContext,
-//                    HBDataBase::class.java,
-//                "app_database").build()
-//                INSTANCE = instance
-//                return instance
-//            }
-//        }
-//    }
 }
