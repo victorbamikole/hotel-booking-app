@@ -29,20 +29,18 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
     }
 
     override fun onBindViewHolder(holder: ViewPagerHolder, position: Int) {
-<<<<<<< HEAD
-        val imagePosition = servicesListOfPlaces[position]
-        holder.image.setBackgroundResource(imagePosition.image)
-        holder.title.text = imagePosition.placeTitle
-        holder.price.text = imagePosition.placePrice
 
-=======
+//        val imagePosition = servicesListOfPlaces[position]
+//        holder.image.setBackgroundResource(imagePosition.image)
+//        holder.title.text = imagePosition.placeTitle
+//        holder.price.text = imagePosition.placePrice
+
         val imagePosition = hotelRooms[position]
         Glide.with(holder.itemView)
             .load(imagePosition.thumbnail)
             .into(holder.image)
         holder.title.text = imagePosition.name
         holder.price.text = imagePosition.price.toString()
->>>>>>> a383825c4d155602e1aed08b5d5d03c92eeb5e92
     }
 
     override fun getItemCount(): Int {
