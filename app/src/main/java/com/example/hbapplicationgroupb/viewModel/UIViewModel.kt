@@ -11,19 +11,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UIViewModel @Inject constructor(
-    private val uiRepository: UiRepositoryInterface
+    private val UiRepository: UiRepositoryInterface
 ) : ViewModel(){
 
-    //List of all hotels
-    lateinit var allHotels :LiveData<List<HotelData>>
-
-
-    fun getAllHotels(){
-        viewModelScope.launch {
-            allHotels = uiRepository.getAllHotels()
-
-        }
-    }
 
 
 }
