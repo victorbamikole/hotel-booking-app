@@ -42,6 +42,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                                 newPassword = binding.tvResetPassword.text.toString(),
                                 confirmPassword = binding.tvConfirmPassword.text.toString()
                             ))
+                       findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                    }else{
                        binding.tvResetPassword.error = "password does not match"
                        binding.tvConfirmPassword.error = "password does not match"
@@ -56,7 +57,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                 binding.tvResetPassword.error = "this field cannot be empty"
             }
 
-            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+//            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
         }
         binding.tvResetPasswordLogin.setOnClickListener {
             findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
