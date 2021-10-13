@@ -37,7 +37,6 @@ class RoomViewModel @Inject constructor(
    private var _resetPasswordData: MutableLiveData<ResetPasswordDataResponse> = MutableLiveData()
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
-   fun sendForgetPasswordEmailToApi(email: String) {
 
       var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
       val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
@@ -79,6 +78,19 @@ class RoomViewModel @Inject constructor(
          }
       }
 
-
+      fun sendNewPasswordToAPI(password: PostResetPasswordData) {
+         viewModelScope.launch(Dispatchers.IO) {
+            try {
+               val response = apiRepository.resetPassword(password)
+               if (response.isSuccessful) {
+                  val responseBody = response.body()
+                  _resetPasswordData.postValue(responseBody)
+               } else {
+                  _resetPasswordData.postValue(null)
+               }
+            } catch (e: Exception) {
+               e.printStackTrace()
+            }
+         }
+      }
    }
-}

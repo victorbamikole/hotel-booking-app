@@ -6,7 +6,6 @@ import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBooking
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
@@ -51,11 +50,13 @@ interface HotelServices {
     suspend fun registerAUser() : Response<UserDataResponse>
 
     @POST("api/Authentication/forgot-password")
-    suspend fun resetForgetPasswordEmail(@Query("email") email: PostForgotPasswordData):Response<ForgotPasswordDataResponse>
+    suspend fun resetForgetPasswordEmail(@Query("email") email: String):Response<ForgotPasswordDataResponse>
 
     @POST("api/Authentication/confirm-email")
     suspend fun confirmEmailAddress(@Body emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
 
+    @PATCH("api/Authentication/reset-password")
+    suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>
 
     @POST
     suspend fun loginAUser() : Response<LoginUserDataResponse>

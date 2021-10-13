@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -33,6 +35,7 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
                     roomViewModel.sendForgetPasswordEmailToApi(
                         binding.tvForgotPasswordEmail.text.toString()
                     )
+                    Log.d("PASSWORD", "PASSWORD")
                 }else{
                     binding.tvForgotPasswordEmail.error = "enter a valid email"
                 }
