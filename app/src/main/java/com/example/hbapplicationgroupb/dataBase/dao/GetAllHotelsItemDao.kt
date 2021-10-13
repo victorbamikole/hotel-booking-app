@@ -6,6 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotelsItem
+import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
+
 @Dao
 interface GetAllHotelsItemDao {
 
@@ -15,4 +17,5 @@ interface GetAllHotelsItemDao {
 
     @Query("SELECT * FROM All_Hotels_Item_Table ORDER BY Id ASC")
     fun readAllGetAllHotelsItem(): LiveData<List<GetAllHotelsItem>>
+
 }

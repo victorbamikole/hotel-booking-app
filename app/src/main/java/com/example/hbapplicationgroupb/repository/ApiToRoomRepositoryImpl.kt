@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.repository
 
+import com.example.hbapplicationgroupb.model.Hotels
 import com.example.hbapplicationgroupb.model.api.NetworkCall
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse

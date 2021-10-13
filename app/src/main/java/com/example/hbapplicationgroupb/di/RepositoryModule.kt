@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.di
 
+import com.example.hbapplicationgroupb.dataBase.dao.GetAllHotelsItemDao
 import com.example.hbapplicationgroupb.model.api.NetworkCall
 import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryImpl
 import com.example.hbapplicationgroupb.repository.ApiToRoomRepositoryInterface
@@ -23,8 +24,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesUIRepository(): RoomToUiRepositoryInterface {
-        return RoomToUIRepositoryImpl()
+    fun providesUIRepository(networkCall : NetworkCall, dao: GetAllHotelsItemDao): RoomToUiRepositoryInterface {
+        return RoomToUIRepositoryImpl(networkCall, dao)
     }
 
 

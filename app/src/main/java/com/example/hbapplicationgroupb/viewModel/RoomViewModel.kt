@@ -60,5 +60,4 @@ class RoomViewModel @Inject constructor(
       }
    }
 
-
 }

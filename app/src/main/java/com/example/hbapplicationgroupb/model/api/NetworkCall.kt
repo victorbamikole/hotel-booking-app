@@ -11,6 +11,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.GetListOfHotel
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
 import com.example.hbapplicationgroupb.model.tophoteldata.GetListOfTopHotelsResponse
+import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
@@ -21,6 +22,9 @@ interface NetworkCall {
 
     @GET("")
     suspend fun getAllHotel() : Response<GetListOfTopHotelsResponse>
+
+    @GET("")
+    suspend fun getAllHotels() : Response<HotelTopDealItems>
 
     @GET()
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
