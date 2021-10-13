@@ -9,9 +9,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 
 
-interface ApiToRoomRepositoryInterface {
+
+interface ApiRepositoryInterface {
+
+    //Register user
+    suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponseItem>
     suspend fun resetForgetPasswordEmail(email: String): Response<ForgotPasswordDataResponse>
     suspend fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
-    suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponseItem>
 
 }

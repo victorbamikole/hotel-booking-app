@@ -1,6 +1,5 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -18,26 +17,33 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class RegistrationFragmentTest{
 
-/**    @get:Rule
+    @get:Rule
     val activityRule: ActivityScenarioRule<MainActivity> =
         ActivityScenarioRule(MainActivity::class.java)
 
-    @Test//Test Name field in Registration Screen
-    fun test_isRegistrationScreenUserNameFieldVisible(){
-        onView(withId(R.id.tv_reg_user_name))
+    @Test//Test First Name field in Registration Screen
+    fun test_isRegistrationScreenFirstNameFieldVisible(){
+        onView(withId(R.id.editTextViewRegUsername))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     @Test//Test Email field in Registration Screen
     fun test_isRegistrationScreenUserEmailFieldVisible(){
-        onView(withId(R.id.tv_reg_user_email))
+        onView(withId(R.id.editTextRegUserEmail))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
 
-    @Test//Test Password field in Registration Screen
-    fun test_isRegistrationScreenUserPasswordFieldVisible(){
-        onView(withId(R.id.tv_reg_user_password))
+    @Test//Test lastName field in Registration Screen
+    fun test_isRegistrationScreenLastNameFieldVisible(){
+        onView(withId(R.id.editTextUserLastName))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+    }
+
+    @Test//Test Gender field in Registration Screen
+    fun test_isRegistrationScreenGenderFieldVisible(){
+        onView(withId(R.id.editTextRegUserGender))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
@@ -52,6 +58,6 @@ class RegistrationFragmentTest{
     fun test_isRegisterButtonClickable(){
         onView(withId(R.id.btn_register))
             .check(ViewAssertions.matches(ViewMatchers.isClickable()))
-    }*/
+    }
 
 }

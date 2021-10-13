@@ -1,36 +1,30 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
 import android.os.Bundle
-import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
-import com.example.hbapplicationgroupb.viewModel.UIViewModel
+import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.Response
-import okhttp3.ResponseBody
-import java.lang.ProcessBuilder.Redirect.to
-import java.util.Observer
+
 
 @AndroidEntryPoint
 class RegistrationFragment : Fragment() {
     private lateinit var _binding : FragmentRegistrationBinding
     private val binding get() = _binding
-    private val viewModel: UIViewModel by viewModels()
+    private val viewModel: RoomViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegistrationBinding.inflate(layoutInflater)
         return binding.root
@@ -42,52 +36,67 @@ class RegistrationFragment : Fragment() {
 
 
 
-        // var firstName = binding.tvRegUserName.text.toString()
-        //var lastName = binding.tvRegUserName.text.toString()
-        var email = binding.tvRegUserEmail.text.toString()
-        //var userName = binding.tvRegUserName.text.toString()
-        var password = binding.regPasswordInput.editText!!.text.toString()
-        // var phoneNumber = binding.regPasswordInput.editText!!.text.toString()
-        // var gender = binding.regPasswordInput.editText!!.text.toString()
-        // var age = binding.regPasswordInput.editText!!.text.toString()
-        var radioButton = binding.btnRadio
 
-        var userData: UserDataResponseItem = UserDataResponseItem("ungbede","Onum",
-            "purityezra@gmail.com","Sammycool1","Password14$",
-            "08091185347","male", 23 )
+//        val radioButton = binding.btnRadio
+
+//        var userData: UserDataResponseItem = UserDataResponseItem(
+//            firstName = firstName,
+//            lastName = lastName,
+//            email  = email,
+//            userName = "TestUser1",
+//            password = password,
+//            phoneNumber = phoneNumber,
+//            gender = gender,
+//            age = 20 )
+
+
+
 
         //Set click listener on login link
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
         }
 
+
         binding.btnRegister.setOnClickListener {
-//            if (Auth.validateUserName(userName.text.toString())){
-//                userName.error = "User Name field must not be empty"
-//                userName.isFocusable
+            val firstName = binding.editTextViewRegUsername.text.toString()
+            val lastName = binding.editTextUserLastName.text.toString()
+            val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString()
+            val gender = binding.editTextRegUserGender.text.toString()
+            val email = binding.editTextRegUserEmail.text.toString()
+            val password = binding.editTextRegPassword.editText!!.text.toString()
+
+            val userDataTest = UserDataResponseItem(firstName,lastName,email,
+                "TestUser4",password,phoneNumber,gender,20)
+//            if (RegistrationValidation.validateUserName(firstName)){
+//                binding.tvRegUserName.error = "User Name field must not be empty"
+//                binding.tvRegUserName.isFocusable
 //                return@setOnClickListener
 //            }
 //
-//            if (Auth.validateEmail(email.text.toString())){
-//                email.error = "Email field must not be empty"
-//                email.isFocusable
+//
+//            if (RegistrationValidation.validateEmail(email)){
+//                binding.tvRegUserEmail.error = "Email field must not be empty"
+//                binding.tvRegUserEmail.isFocusable
 //                return@setOnClickListener
 //            }
 //
-//            if (Auth.validatePassword(password!!.text.toString())){
-//                password.error = "Enter a valid password"
-//                password.isFocusable
+//
+//            if (RegistrationValidation.validatePassword(password)){
+//                binding.regPasswordInput.error = "Enter a valid password"
+//                 binding.regPasswordInput.isFocusable
 //                return@setOnClickListener
 //            }
-//
-//            if(Auth.validateRadioButtonIsChecked(radioButton)){
+
+
+//            if(RegistrationValidation.validateRadioButtonIsChecked(radioButton)){
 //                radioButton.error = "Agree to the terms and condition"
 //                radioButton.requestFocus()
 //                return@setOnClickListener
 //            }
 
-            viewModel.registerUser(userData)
-            viewModel.newUser.observe(requireActivity(), androidx.lifecycle.Observer { response ->
+            viewModel.registerUser(userDataTest)
+            viewModel.newUser.observe(requireActivity(), { response ->
                 if (response.isSuccessful){
                     Toast.makeText(activity, "Registration successful", Toast.LENGTH_SHORT).show()
 

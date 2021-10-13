@@ -9,9 +9,9 @@ data class UserDataResponseItem(
     val firstName: String,
     val lastName: String,
     val email: String,
-    val userName: String,
+    val userName: String? = null,
     val password: String,
     val phoneNumber: String,
     val gender: String,
-    val age: Int
+    val age: Int? = null
 ) : Parcelable

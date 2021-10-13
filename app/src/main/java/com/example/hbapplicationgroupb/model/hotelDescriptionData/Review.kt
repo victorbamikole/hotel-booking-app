@@ -1,9 +1,7 @@
 package com.example.hbapplicationgroupb.model.hotelDescriptionData
 
-import androidx.room.Entity
-
-data class ReviewsItem(
-    val text: String,
+data class Review(
     val customerImage: String,
-    val date: String
+    val date: String,
+    val text: String
 )
