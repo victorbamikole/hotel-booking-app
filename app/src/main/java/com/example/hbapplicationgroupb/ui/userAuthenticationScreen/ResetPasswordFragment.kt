@@ -42,6 +42,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                                 newPassword = binding.tvResetPassword.text.toString(),
                                 confirmPassword = binding.tvConfirmPassword.text.toString()
                             ))
+                       Toast.makeText(requireContext(), "Password changed successfully", Toast.LENGTH_SHORT).show()
                        findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                    }else{
                        binding.tvResetPassword.error = "password does not match"

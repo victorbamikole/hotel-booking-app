@@ -5,5 +5,4 @@ data class ForgotPasswordDataResponse(
     val success: Boolean,
     val data: List<ForgotPasswordDataResponseId>,
     val message: String,
-    val errors: String? = null
 )
