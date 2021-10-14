@@ -16,7 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentViewPagerBinding
 import com.example.hbapplicationgroupb.ui.onboarding_screen.adapter.OnBoardingItemAdapter
-import com.example.hbapplicationgroupb.ui.onboarding_screen.model.OnboardingItem
+import com.example.hbapplicationgroupb.ui.onboarding_screen.model.OnBoardingItem
 
 
 class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
@@ -27,7 +27,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentViewPagerBinding.inflate(layoutInflater,container,false)
         return binding.root
@@ -35,7 +35,7 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpOnboardingItem()
+        setUpOnBoardingItem()
         setUpIndicator()
         setUpCurrentIndicator(0)
     }
@@ -54,21 +54,21 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
     }
 
 
-    private fun setUpOnboardingItem() {
+    private fun setUpOnBoardingItem() {
         onBoardingItemAdapter = OnBoardingItemAdapter(
             listOf(
-                OnboardingItem(
-                    onboardingImage = R.drawable.onboarding_01_img,
+                OnBoardingItem(
+                    onBoardingImage = R.drawable.onboarding_01_img,
                     title = "Search and save your preferences",
                     description = "browse best hotels from 40,000+ database that fits your unique needs"
                 ),
-                OnboardingItem(
-                    onboardingImage = R.drawable.onboarding_02_img,
+                OnBoardingItem(
+                    onBoardingImage = R.drawable.onboarding_02_img,
                     title = "Find the best deals",
                     description = "Find the best deals from any season and book from a curated list"
                 ),
-                OnboardingItem(
-                    onboardingImage = R.drawable.onboarding_03,
+                OnBoardingItem(
+                    onBoardingImage = R.drawable.onboarding_03,
                     title = "Book and enjoy your stay",
                     description = "select hotel and date as per your preference to book and have a pleasant stay"
                 )
@@ -84,11 +84,11 @@ class ViewPagerFragment : Fragment(R.layout.fragment_view_pager) {
         })
         (binding.onboardingViewPager.getChildAt(0) as RecyclerView).overScrollMode =
             RecyclerView.OVER_SCROLL_NEVER
-        val onboardingVp = binding.onboardingViewPager
+        val onBoardingVp = binding.onboardingViewPager
 
         binding.btnNext.setOnClickListener {
-            if (onboardingVp.currentItem +1 < onBoardingItemAdapter.itemCount){
-                onboardingVp.currentItem +=1
+            if (onBoardingVp.currentItem +1 < onBoardingItemAdapter.itemCount){
+                onBoardingVp.currentItem +=1
 
             }else{
 

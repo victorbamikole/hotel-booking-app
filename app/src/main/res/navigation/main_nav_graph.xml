@@ -101,7 +101,8 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="hotelId"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="8d3c676d-834c-4980-bd45-c7dc70a00d55"/>
         <argument
             android:name="hotelPrice"
             app:argType="integer" />

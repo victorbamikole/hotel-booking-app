@@ -21,4 +21,5 @@
     <color name="grey">#e0e0e0</color>
     <color name="offDarkBlack">#3C3B3B</color>
     <color name="light_gray">#e4e6e9</color>
+    <color name="disabled_login_btn">#f76f6d</color>
 </resources>

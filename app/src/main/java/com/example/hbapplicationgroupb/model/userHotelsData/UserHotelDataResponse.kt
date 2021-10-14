@@ -1,8 +1,5 @@
 package com.example.hbapplicationgroupb.model.userHotelsData
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
 
 data class UserHotelDataResponse (
     val statusCode: String,

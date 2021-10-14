@@ -4,14 +4,11 @@ package com.example.hbapplicationgroupb.ui.review
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.RatingBar
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
-import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
 import com.example.hbapplicationgroupb.ui.review.adapter.ReviewPageFragmentRVAdapter
 import com.example.hbapplicationgroupb.util.getListOfUserReview
 import dagger.hilt.android.AndroidEntryPoint

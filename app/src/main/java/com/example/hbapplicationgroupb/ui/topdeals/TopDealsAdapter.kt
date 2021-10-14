@@ -3,7 +3,6 @@ package com.example.hbapplicationgroupb.ui.topdeals
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupb.R
