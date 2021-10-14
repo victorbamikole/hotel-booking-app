@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.model.RoomImageAndDetailForViewPager
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionRoomType
 
 class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPagerHolder>() {

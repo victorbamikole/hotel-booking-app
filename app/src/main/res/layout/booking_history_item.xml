@@ -33,7 +33,8 @@
             android:src="@drawable/hotel"
             android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_booking_date_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_booking_date_tv"
+            android:contentDescription="@drawable/hotel" />
 
 
         <TextView
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:text="@string/hotel_name"
             android:textSize="@dimen/upload_profile_small_text_size"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
