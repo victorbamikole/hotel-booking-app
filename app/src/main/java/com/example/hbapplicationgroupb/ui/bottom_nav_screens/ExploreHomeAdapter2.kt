@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.RecyclerviewRowBinding
-import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.model.topdealsnew.Data
+import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 
-class ExploreHomeAdapter() :
-    RecyclerView.Adapter<ExploreHomeAdapter.HotelsViewHolder>() {
+class ExploreHomeAdapter2() :
+    RecyclerView.Adapter<ExploreHomeAdapter2.HotelsViewHolder>() {
 
-    private var hotels: List<HotelData> = listOf()
-    fun populateHotels(list: List<HotelData>) {
+    private var hotels: List<Data> = listOf()
+    fun populateTopDeals(list: List<Data>) {
         this.hotels = list
         notifyDataSetChanged()
     }
@@ -25,12 +26,12 @@ class ExploreHomeAdapter() :
         val hotelName = binding.hotelName
         val hotelPrice = binding.hotelPrice
 
-        fun populateHotels(hotelList : HotelData){
+        fun populateTopDeals(topDeals: Data) {
             Glide.with(itemView)
-                .load(hotelList.featuredImage)
+                .load(topDeals.thumbnail)
                 .into(hotelImage)
-            hotelName.text = hotelList.name
-            hotelPrice.text = hotelList.roomTypes[0].price.toString()//.price
+            hotelName.text = topDeals.hotelName
+            hotelPrice.text = topDeals.price.toString()//.price
         }
 
     }
@@ -40,17 +41,18 @@ class ExploreHomeAdapter() :
         viewType: Int,
     ): HotelsViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.recyclerview2_explore_screen, parent, false)
         return HotelsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
-        holder.populateHotels(hotels[position])
+        holder.populateTopDeals(hotels[position])
     }
 
     override fun getItemCount(): Int {
         return hotels.size
     }
-
-
 }
+
+

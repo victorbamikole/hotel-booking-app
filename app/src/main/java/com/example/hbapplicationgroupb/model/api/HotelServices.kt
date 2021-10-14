@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.model.api
 
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
@@ -9,12 +10,17 @@ import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDa
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
+import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
+import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
+import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.tophoteldata.GetListOfTopHotelsResponse
+import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,6 +29,9 @@ interface HotelServices {
     @GET ("api/Hotel/all-hotels?")
     suspend fun getAllHotel() : Response<GetAllHotel>
 
+    @GET("api/Hotel/all-hotels")
+    suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
+
     @GET()
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
 
@@ -30,8 +39,8 @@ interface HotelServices {
     @GET
     suspend fun getTopHotels() : Response<GetListOfTopHotelsResponse>
 
-    @GET
-    suspend fun getListOfTopDealsHotel() : Response<ListOfTopDealsResponse>
+    @GET("api/Hotel/top-deals")
+    suspend fun getListOfTopDealsHotel(@Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int) : Response<TopDeals>
 
     //Fetch description for a particular hotel
     @GET("api/Hotel/{hotelId}")
@@ -54,6 +63,9 @@ interface HotelServices {
 
     @POST("api/Authentication/confirm-email")
     suspend fun confirmEmailAddress(@Body emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
+
+    @PATCH("api/Authentication/reset-password")
+    suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>
 
     @POST
     suspend fun loginAUser() : Response<LoginUserDataResponse>

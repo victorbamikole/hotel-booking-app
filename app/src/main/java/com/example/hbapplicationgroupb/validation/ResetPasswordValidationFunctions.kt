@@ -7,7 +7,7 @@ object ResetPasswordValidationFunctions {
         }
         return false
     }
-    fun checkIfPasswordMatches(stringOne: String,stringTwo: String):Boolean{
+    fun checkIfPasswordMatches(stringOne: String, stringTwo: String):Boolean{
         if (stringOne == stringTwo){
             return true
         }
@@ -24,4 +24,5 @@ object ResetPasswordValidationFunctions {
         }
         return 0
     }
+    // [a-zA-Z] [@#$%^&+=]
 }
