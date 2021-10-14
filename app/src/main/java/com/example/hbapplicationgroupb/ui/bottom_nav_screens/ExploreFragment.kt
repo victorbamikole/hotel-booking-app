@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
+import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +36,8 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
 
         //Inflate the top deals recycler view layout to the fragment class
+        val myAdapter2 = ExploreHomeAdapter()
+        binding.recyclerView2.adapter = myAdapter2
         binding.recyclerView2.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 

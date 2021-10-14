@@ -10,6 +10,7 @@ import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDa
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
+import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
@@ -63,6 +64,11 @@ interface HotelServices {
 
     @POST("api/Authentication/confirm-email")
     suspend fun confirmEmailAddress(@Body emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
+
+    @POST("api/Authentication/login")
+    suspend fun userLoginDetails(
+        @Body userLoginDetails : PostLoginUserData
+    ) : Response<LoginUserDataResponse>
 
     @PATCH("api/Authentication/reset-password")
     suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>

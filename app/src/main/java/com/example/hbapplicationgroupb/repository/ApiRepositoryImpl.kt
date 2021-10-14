@@ -5,8 +5,10 @@ import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
-import com.example.hbapplicationgroupb.model.forgotPasswordData.PostForgotPasswordData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
+import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
@@ -25,6 +27,13 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.confirmEmailAddress(emailAndToken)
     }
 
+    override suspend fun getHotelDescriptionResponse(id: String): Response<HotelDescriptionResponse> {
+        return hotelServices.getHotelDescriptionResponse(id)
+    }
+
+    override suspend fun userLoginDetails(userLoginDetails: PostLoginUserData): Response<LoginUserDataResponse> {
+        return hotelServices.userLoginDetails(userLoginDetails)
+    }
 
     override suspend fun registerAUser(userData: UserDataResponseItem
     ): Response<UserDataResponseItem> {
@@ -39,13 +48,6 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun getTopDeals(pageSize: Int, pageNumber: Int): Response<TopDeals> {
         return  hotelServices.getListOfTopDealsHotel(pageSize, pageNumber)
     }
-
-//    override suspend fun getToDeals(
-//        pageSize: Int,
-//        pageNumber: Int
-//    ): Response<ListOfTopDealsResponse> {
-//        return  hotelServices.getListOfTopDealsHotel(pageSize, pageNumber)
-//    }
 
 
     override suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse> {

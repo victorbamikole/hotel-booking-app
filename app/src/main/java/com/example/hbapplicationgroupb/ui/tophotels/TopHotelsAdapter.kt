@@ -9,7 +9,7 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
 import com.example.hbapplicationgroupb.model.TopHotels
 
-class TopHotelsAdapter(var tophotels: List<TopHotels>) :
+class TopHotelsAdapter(var topHotels: List<TopHotels>) :
     RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
 
 
@@ -33,7 +33,7 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
 
     override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
         holder.itemView.apply {
-            val currentItem = tophotels[position]
+            val currentItem = topHotels[position]
             holder.topImage.setImageResource(currentItem.hotelImage)
             holder.topName.text = currentItem.name
             holder.topPrice.text = currentItem.price
@@ -49,6 +49,6 @@ class TopHotelsAdapter(var tophotels: List<TopHotels>) :
     }
 
     override fun getItemCount(): Int {
-        return tophotels.size
+        return topHotels.size
     }
 }

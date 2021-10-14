@@ -3,7 +3,6 @@ package com.example.hbapplicationgroupb.ui.topdeals
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -60,11 +59,11 @@ class TopDealsAdapter():
 
         holder.itemView.apply {
             holder.topDealButton.setOnClickListener {
-                findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
+                findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
             }
             setOnClickListener {
                 val action = TopDealsFragmentDirections
-                    .actionTopDealsFragmentToHotelDescriptionFragment(hotelId,hotelPrice.toString())
+                    .actionTopDealsFragmentToHotelDescriptionFragment(hotelId)
                 findNavController().navigate(action)
             }
         }

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.22685185185185186" />
+        <entry key="app/src/main/res/drawable-hdpi/bg_button.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_ads_click_24.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_thumb_up_24.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/drawable/custom_background.xml" value="0.29384615384615387" />
@@ -18,9 +19,20 @@
         <entry key="app/src/main/res/drawable/ic_baseline_redstar_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_left_arrow_back.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/login_button_state_handler.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.2689189189189189" />
         <entry key="app/src/main/res/drawable/toolbar_shadow.xml" value="0.15888157894736843" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/age_bracket_bottom_sheet_layout.xml" value="0.234375" />
+=======
+        <entry key="app/src/main/res/font/adamina.xml" value="0.18854166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+>>>>>>> 22f3e33cec39c87673fe5ccd401a8d66e36c3d3a
+=======
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+>>>>>>> 33f20e078534e45713311981f0c43d27fd8d9130
         <entry key="app/src/main/res/layout/booking_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
@@ -29,10 +41,32 @@
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_bottom_navigation_container.xml" value="0.1" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/fragment_confirm_email.xml" value="0.1" />
+=======
+        <entry key="app/src/main/res/layout/fragment_confirm_email.xml" value="0.234375" />
+>>>>>>> 9ca849fd0a5a5d2162eaa51c0f244fa1642cc36a
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.25" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_hotel_description.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.2269021739130435" />
+        <entry key="app/src/main/res/layout/fragment_payment_checkout.xml" value="0.14273504273504273" />
+        <entry key="app/src/main/res/layout/fragment_payment_options.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.2269021739130435" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.18888888888888888" />
+=======
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
+=======
+>>>>>>> 33f20e078534e45713311981f0c43d27fd8d9130
         <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.2269021739130435" />
 <<<<<<< HEAD
         <entry key="app/src/main/res/layout/fragment_payment_checkout.xml" value="0.25" />
@@ -51,6 +85,8 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.22" />
 =======
@@ -63,9 +99,16 @@
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
+<<<<<<< HEAD
+        <entry key="app/src/main/res/layout/hotel_view_pager_design.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.26721014492753625" />
+        <entry key="app/src/main/res/layout/room_number_bottom_sheet.xml" value="0.18888888888888888" />
+=======
         <entry key="app/src/main/res/layout/recyclerview2_explore_screen.xml" value="0.25427350427350426" />
         <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.5" />
+>>>>>>> 33f20e078534e45713311981f0c43d27fd8d9130
         <entry key="app/src/main/res/layout/room_viewpager_design.xml" value="0.26132246376811596" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18" />
         <entry key="app/src/main/res/layout/top_deals_recyclerview.xml" value="0.26132246376811596" />

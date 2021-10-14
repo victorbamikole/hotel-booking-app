@@ -30,7 +30,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         //Fetch Top Deals From APi
         roomViewModel.getTopDeals(20, 1)
 
-        //Inflate the top deals recycler view layout to the fragment class
+        binding!!.topDealsRecyclerView.adapter = myAdapter
         binding!!.topDealsRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 

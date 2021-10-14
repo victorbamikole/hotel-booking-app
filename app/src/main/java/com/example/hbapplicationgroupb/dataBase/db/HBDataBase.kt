@@ -1,8 +1,6 @@
 package com.example.hbapplicationgroupb.dataBase.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.hbapplicationgroupb.dataBase.dao.*
@@ -14,12 +12,6 @@ import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsItem
 import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataItem
 import com.example.hbapplicationgroupb.util.HotelTypeConverter
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 
 @Database(entities = [
