@@ -14,10 +14,7 @@ class UIRepositoryImpl @Inject constructor(
         return db.allHotelsDao().getHotelFromDatabase(hotelId)
     }
 
-    //Fetch all hotels from room
-    override fun getAllHotels(): LiveData<List<HotelData>> {
-        return db.allHotelsDao().getAllHotelsFromRoom()
-    }
+
 
 
 }

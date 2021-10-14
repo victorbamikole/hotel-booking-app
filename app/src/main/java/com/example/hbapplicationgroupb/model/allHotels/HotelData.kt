@@ -22,7 +22,6 @@ data class HotelData(
     val rating: Double,
     @Embedded
     val reviews: Any,
-
     val roomTypes: List<RoomType>,
     val state: String
 )

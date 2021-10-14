@@ -8,6 +8,5 @@ interface UiRepositoryInterface {
     //Fetches hotel with given id from room database
     fun getHotelByIdFromDatabase(hotelId :String) : LiveData<HotelData>
 
-    //Fetch all hotels from database
-    fun getAllHotels() :LiveData<List<HotelData>>
+
 }
