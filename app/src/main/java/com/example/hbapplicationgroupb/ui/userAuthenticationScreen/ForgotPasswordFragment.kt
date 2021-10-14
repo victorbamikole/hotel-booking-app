@@ -1,11 +1,10 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R

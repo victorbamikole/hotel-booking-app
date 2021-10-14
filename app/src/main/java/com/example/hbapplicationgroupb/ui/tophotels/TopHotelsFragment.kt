@@ -31,14 +31,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
         binding.topHotelsRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
-        //List of top hotels
-//        val topHotels =
-//            listOf(
-//                TopHotels(R.drawable.hotel2, "Sheraton Grand", "$599", "4 star hotel", "80%"),
-//                TopHotels(R.drawable.hotel3, "GitHub Grand", "$999", "5 star hotel", "90%"),
-//                TopHotels(R.drawable.hotel2, "Radison Blue", "$1299", "4 star hotel", "80%"),
-//                TopHotels(R.drawable.hotel3, "Jetro Hols", "$899", "5 star hotel", "100%")
-//            )
+
 
         //Inflate the top hotels recycler view layout to the fragment class
 //        val myAdapter = TopHotelsAdapter(topHotels)

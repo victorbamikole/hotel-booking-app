@@ -25,7 +25,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         _binding = FragmentSplashScreenBinding.inflate(layoutInflater,container,false)
@@ -51,7 +51,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
 
         val splashScreenTimeout = 3500
         Handler(Looper.getMainLooper()).postDelayed({
-            if (onboardingFinished()) {
+            if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             } else {
 
@@ -63,7 +63,7 @@ class SplashScreenFragment : Fragment(R.layout.fragment_splash_screen) {
         }, splashScreenTimeout.toLong())
     }
 
-    private fun onboardingFinished():Boolean{
+    private fun onBoardingFinished():Boolean{
         val sharedPref = requireActivity().getSharedPreferences("onboarding",Context.MODE_PRIVATE)
         return sharedPref.getBoolean("finished", false)
           }

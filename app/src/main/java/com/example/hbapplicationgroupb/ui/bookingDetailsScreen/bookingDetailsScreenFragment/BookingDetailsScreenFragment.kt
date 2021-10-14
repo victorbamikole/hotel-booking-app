@@ -1,11 +1,9 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker

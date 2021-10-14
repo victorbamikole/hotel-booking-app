@@ -51,20 +51,7 @@ class TopHotelsAdapter() :
 
     override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
         holder.populateHotels(tophotels[position])
-//        holder.itemView.apply {
-//            val currentItem = tophotels[position]
-//            holder.topImage.setImageResource(currentItem.hotelImage)
-//            holder.topName.text = currentItem.name
-//            holder.topPrice.text = currentItem.price
-//            holder.topRating.text = currentItem.rating
-//            holder.topPercent.text = currentItem.percent
-//            holder.bookTopHotel.setOnClickListener {
-//                findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsScreenFragment2)
-//            }
-//            setOnClickListener {
-//                findNavController().navigate(R.id.hotelDescriptionFragment)
-//            }
-//        }
+
     }
 
     override fun getItemCount(): Int {
