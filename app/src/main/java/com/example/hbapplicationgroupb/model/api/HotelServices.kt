@@ -16,6 +16,7 @@ import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.tophoteldata.GetListOfTopHotelsResponse
 import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
+import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
@@ -29,11 +30,16 @@ interface HotelServices {
     @GET("api/Hotel/all-hotels")
     suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
 
-    @GET()
-    suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
+
 
     @GET
-    suspend fun getTopHotels() : Response<GetListOfTopHotelsResponse>
+    suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
+
+    @GET("api/Hotel/top-hotels")
+    suspend fun getTopHotels(
+        @Query("PageSize") PageSize: Int,
+        @Query("PageNumber") PageNumber:Int
+    ) : Response<AllTopHotels>
 
     @GET("api/Hotel/top-deals")
     suspend fun getListOfTopDealsHotel(@Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int) : Response<TopDeals>
