@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
-import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
+import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
-import com.example.hbapplicationgroupb.model.topdealsdata.ListOfTopDealsResponse
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,31 +41,59 @@ class RoomViewModel @Inject constructor(
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
 
+   private var _userLoginDetails : MutableLiveData<LoginUserDataResponse> = MutableLiveData()
+   val userLoginDetails : LiveData<LoginUserDataResponse> = _userLoginDetails
+
    private var _resetPasswordData: MutableLiveData<ResetPasswordDataResponse> = MutableLiveData()
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
-      var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
-      val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+    fun sendForgetPasswordEmailToApi(email: String) {
+       viewModelScope.launch(Dispatchers.IO) {
+          try {
+             val response = apiRepository.resetForgetPasswordEmail(email)
+             if (response.isSuccessful) {
+                val responseBody = response.body()
+                _forgotPasswordData.postValue(responseBody)
+             } else {
+                _forgotPasswordData.postValue(null)
+             }
+          } catch (e: Exception) {
+             e.printStackTrace()
+          }
+       }
+    }
 
-      fun sendForgetPasswordEmailToApi(email: String) {
-         viewModelScope.launch(Dispatchers.IO) {
-            try {
-               val response = apiRepository.resetForgetPasswordEmail(email)
-               if (response.isSuccessful) {
-                  val responseBody = response.body()
-                  _forgotPasswordData.postValue(responseBody)
-               } else {
-                  _forgotPasswordData.postValue(null)
-               }
-            } catch (e: Exception) {
-               e.printStackTrace()
-
+   fun sendUserLoginDetailsToApi(userLoginDetails : PostLoginUserData){
+      viewModelScope.launch{
+         try {
+            val response = apiRepository.userLoginDetails(userLoginDetails)
+            if (response.isSuccessful){
+               _userLoginDetails.postValue(response.body())
             }
-
+         }
+         catch (e:Exception){
+            e.printStackTrace()
          }
       }
+   }
 
+   fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress) {
+      viewModelScope.launch(Dispatchers.IO) {
+         try {
+            val response = apiRepository.confirmEmailAddress(emailAndToken)
+            if (response.isSuccessful) {
+               val responseBody = response.body()
+               _confirmEmailAddress.postValue(responseBody)
+            }
+         }
+         catch (e:Exception){
+            e.printStackTrace()
+         }
+      }
+   }
 
    fun getAllHotels(pageSize:Int,currentPage:Int){
 
@@ -85,39 +113,21 @@ class RoomViewModel @Inject constructor(
    }
 
 
-      fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress) {
-         viewModelScope.launch(Dispatchers.IO) {
-            try {
-               val response = apiRepository.confirmEmailAddress(emailAndToken)
-               if (response.isSuccessful) {
-                  val responseBody = response.body()
-                  _confirmEmailAddress.postValue(responseBody)
-               } else {
-                  _confirmEmailAddress.postValue(null)
-               }
-            } catch (e: Exception) {
-               e.printStackTrace()
-
+   fun sendNewPasswordToAPI(password: PostResetPasswordData) {
+      viewModelScope.launch(Dispatchers.IO) {
+         try {
+            val response = apiRepository.resetPassword(password)
+            if (response.isSuccessful) {
+               val responseBody = response.body()
+               _resetPasswordData.postValue(responseBody)
+            } else {
+               _resetPasswordData.postValue(null)
             }
-
+         } catch (e: Exception) {
+            e.printStackTrace()
          }
       }
-
-      fun sendNewPasswordToAPI(password: PostResetPasswordData) {
-         viewModelScope.launch(Dispatchers.IO) {
-            try {
-               val response = apiRepository.resetPassword(password)
-               if (response.isSuccessful) {
-                  val responseBody = response.body()
-                  _resetPasswordData.postValue(responseBody)
-               } else {
-                  _resetPasswordData.postValue(null)
-               }
-            } catch (e: Exception) {
-               e.printStackTrace()
-            }
-         }
-      }
+   }
 
 
 
@@ -137,9 +147,5 @@ class RoomViewModel @Inject constructor(
 
       }
    }
-
-   }
-
-
-
+}
 

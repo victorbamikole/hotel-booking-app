@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentHotelDescriptionBinding
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.RoomsViewPagerAdapter
-import com.example.hbapplicationgroupb.util.HorizontalMaginDecorationForViewPager
+import com.example.hbapplicationgroupb.util.HorizontalMarginDecorationForViewPager
 import com.example.hbapplicationgroupb.util.getListOfHotelImages
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 
@@ -90,7 +90,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 page.scaleY = 1f
             }
 
-        val itemDecoration = HorizontalMaginDecorationForViewPager(
+        val itemDecoration = HorizontalMarginDecorationForViewPager(
             requireContext(),
             R.dimen.viewpager_current_item_horizontal_margin
         )
@@ -114,7 +114,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             page.scaleY = 1f
         }
 
-        val itemDecoration = HorizontalMaginDecorationForViewPager(
+        val itemDecoration = HorizontalMarginDecorationForViewPager(
             requireContext(),
             R.dimen.viewpager_current_item_horizontal_margin
         )
