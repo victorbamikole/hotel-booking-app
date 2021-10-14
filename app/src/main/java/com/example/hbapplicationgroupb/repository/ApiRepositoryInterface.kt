@@ -5,6 +5,8 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
+import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
@@ -22,4 +24,7 @@ interface ApiRepositoryInterface {
     suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel>
     suspend fun getTopDeals(pageSize: Int, pageNumber:Int): Response<TopDeals>
     suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
+
+    suspend fun userLoginDetails(userLoginDetails : PostLoginUserData) : Response<LoginUserDataResponse>
+
 }

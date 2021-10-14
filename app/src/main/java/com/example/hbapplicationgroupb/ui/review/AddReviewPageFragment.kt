@@ -1,17 +1,13 @@
 package com.example.hbapplicationgroupb.ui.review
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.RatingBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAddReviewPageBinding
-import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

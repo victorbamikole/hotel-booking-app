@@ -19,7 +19,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun providesApiRepository(hotelServices: HotelServices, db :HBDataBase): ApiRepositoryInterface {
+    fun providesApiRepository(hotelServices: HotelServices): ApiRepositoryInterface {
         return ApiRepositoryImpl(hotelServices)
     }
 
