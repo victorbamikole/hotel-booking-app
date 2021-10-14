@@ -26,57 +26,57 @@ class RoomViewModel @Inject constructor(
 ) : ViewModel() {
 
    //Hotel description livedata
-   private val _hotelDescription = MutableLiveData<HotelDescriptionData>()
+   private val _hotelDescription: MutableLiveData<HotelDescriptionData> = MutableLiveData()
    val hotelDescription: LiveData<HotelDescriptionData> get() = _hotelDescription
 
-   //Hotel Room Types
-   val hotelRooms = hotelDescription.value?.hotelDescriptionRoomTypes
 
    private val _allHotelsList = MutableLiveData<GetAllHotel?>()
-   val allHotelsList:LiveData<GetAllHotel?> = _allHotelsList
+   val allHotelsList: LiveData<GetAllHotel?> = _allHotelsList
 
    private val _allTopDeals = MutableLiveData<TopDeals?>()
-   val allTopDeals:LiveData<TopDeals?> = _allTopDeals
+   val allTopDeals: LiveData<TopDeals?> = _allTopDeals
 
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
 
-   private var _userLoginDetails : MutableLiveData<LoginUserDataResponse> = MutableLiveData()
-   val userLoginDetails : LiveData<LoginUserDataResponse> = _userLoginDetails
+   private var _userLoginDetails: MutableLiveData<LoginUserDataResponse> = MutableLiveData()
+   val userLoginDetails: LiveData<LoginUserDataResponse> = _userLoginDetails
 
    private var _resetPasswordData: MutableLiveData<ResetPasswordDataResponse> = MutableLiveData()
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
-   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+
+   var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
-    fun sendForgetPasswordEmailToApi(email: String) {
-       viewModelScope.launch(Dispatchers.IO) {
-          try {
-             val response = apiRepository.resetForgetPasswordEmail(email)
-             if (response.isSuccessful) {
-                val responseBody = response.body()
-                _forgotPasswordData.postValue(responseBody)
-             } else {
-                _forgotPasswordData.postValue(null)
-             }
-          } catch (e: Exception) {
-             e.printStackTrace()
-          }
-       }
-    }
 
-   fun sendUserLoginDetailsToApi(userLoginDetails : PostLoginUserData){
-      viewModelScope.launch{
+   fun sendForgetPasswordEmailToApi(email: String) {
+      viewModelScope.launch(Dispatchers.IO) {
          try {
-            val response = apiRepository.userLoginDetails(userLoginDetails)
-            if (response.isSuccessful){
-               _userLoginDetails.postValue(response.body())
+            val response = apiRepository.resetForgetPasswordEmail(email)
+            if (response.isSuccessful) {
+               val responseBody = response.body()
+               _forgotPasswordData.postValue(responseBody)
+            } else {
+               _forgotPasswordData.postValue(null)
             }
-         }
-         catch (e:Exception){
+         } catch (e: Exception) {
             e.printStackTrace()
          }
+      }
+   }
+
+   fun sendUserLoginDetailsToApi(userLoginDetails: PostLoginUserData) {
+      viewModelScope.launch {
+         try {
+            val response = apiRepository.userLoginDetails(userLoginDetails)
+            if (response.isSuccessful) {
+               _userLoginDetails.postValue(response.body())
+            }
+         } catch (e: Exception) {
+            e.printStackTrace()
+         }
+
       }
    }
 
@@ -88,24 +88,23 @@ class RoomViewModel @Inject constructor(
                val responseBody = response.body()
                _confirmEmailAddress.postValue(responseBody)
             }
-         }
-         catch (e:Exception){
+         } catch (e: Exception) {
             e.printStackTrace()
          }
       }
    }
 
-   fun getAllHotels(pageSize:Int,currentPage:Int){
+   fun getAllHotels(pageSize: Int, currentPage: Int) {
 
       viewModelScope.launch {
-         try{
-            val response = apiRepository.getAllHotels(pageSize,currentPage)
-            if (response.isSuccessful){
+         try {
+            val response = apiRepository.getAllHotels(pageSize, currentPage)
+            if (response.isSuccessful) {
                _allHotelsList.postValue(response.body())
-            }else{
+            } else {
                _allHotelsList.postValue(null)
             }
-         }catch (e:Exception){
+         } catch (e: Exception) {
             e.printStackTrace()
          }
 
@@ -130,22 +129,40 @@ class RoomViewModel @Inject constructor(
    }
 
 
-
-   fun getTopDeals(pageSize:Int,pageNumber:Int){
+   fun getTopDeals(pageSize: Int, pageNumber: Int) {
 
       viewModelScope.launch {
-         try{
-            val response = apiRepository.getTopDeals(pageSize,pageNumber)
-            if (response.isSuccessful){
+         try {
+            val response = apiRepository.getTopDeals(pageSize, pageNumber)
+            if (response.isSuccessful) {
                _allTopDeals.postValue(response.body())
-            }else{
+            } else {
                _allTopDeals.postValue(null)
             }
-         }catch (e:Exception){
+         } catch (e: Exception) {
             e.printStackTrace()
          }
 
       }
    }
+
+   //Fetch hotel description from api
+   fun getHotelDescription(id: String) {
+      viewModelScope.launch(Dispatchers.IO) {
+         try {
+            val response = apiRepository.getHotelDescriptionResponse(id)
+            if (response.isSuccessful) {
+               _hotelDescription.postValue(response.body()?.data)
+            } else {
+               _hotelDescription.postValue(null)
+            }
+         } catch (e: Exception) {
+            e.printStackTrace()
+         }
+      }
+   }
 }
+
+
+
 
