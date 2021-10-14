@@ -19,4 +19,5 @@ class UIRepositoryImpl @Inject constructor(
         return db.allHotelsDao().getAllHotelsFromRoom()
     }
 
+
 }
