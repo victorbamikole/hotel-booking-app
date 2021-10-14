@@ -34,24 +34,17 @@ class TopDealsAdapter():
 
         fun populateTopDeals(topDeals: Data) {
             Glide.with(itemView)
-                .asBitmap()
                 .load(topDeals.thumbnail)
                 .into(topDealImagei)
 
             topDealName.text = topDeals.hotelName
             topDealPrice.text = String.format("$${topDeals.price}")
             topDealRating.text = topDeals.name
-            topDealPercent.text = topDeals.discount.toString()
+            topDealPercent.text = topDeals.discountPrice.toString()
+
 
         }
     }
-
-
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
-//        val view = LayoutInflater.from(parent.context)
-//                .inflate(R.layout.top_deal_recycler_view_layout, parent, false)
-//        return DealsViewHolder(view)
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -61,11 +54,20 @@ class TopDealsAdapter():
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
         holder.populateTopDeals(topDeals[position])
+        val hotelId = topDeals[position].hotelId
+        val hotelPrice = topDeals[position].price
 
 
-//        setOnClickListener {
-//                findNavController().navigate(R.id.hotelDescriptionFragment)
-//            }
+        holder.itemView.apply {
+            holder.topDealButton.setOnClickListener {
+                findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
+            }
+            setOnClickListener {
+                val action = TopDealsFragmentDirections
+                    .actionTopDealsFragmentToHotelDescriptionFragment(hotelId,hotelPrice.toString())
+                findNavController().navigate(action)
+            }
+        }
         }
 
         override fun getItemCount(): Int {

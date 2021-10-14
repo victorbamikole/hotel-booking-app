@@ -113,7 +113,7 @@
             app:argType="string" />
         <argument
             android:name="hotelPrice"
-            app:argType="integer" />
+            app:argType="string" />
 
     </fragment>
     <fragment
