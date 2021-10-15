@@ -1,8 +1,10 @@
 package com.example.hbapplicationgroupb.ui.hoteldescription
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,7 +15,10 @@ import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.RoomsViewPage
 import com.example.hbapplicationgroupb.util.HorizontalMarginDecorationForViewPager
 import com.example.hbapplicationgroupb.util.getListOfHotelImages
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
     private lateinit var binding:FragmentHotelDescriptionBinding
     private lateinit var hotelViewPagerAdapter:HotelViewPagerAdapter
@@ -25,10 +30,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHotelDescriptionBinding.bind(view)
 
+        roomViewModel.getHotelDescription("8d3c676d-834c-4980-bd45-c7dc70a00d55")
 
         initialiseViewPager()
         setUpViewPagerTransition()
-
 
         binding.bookNowButton.setOnClickListener {
             findNavController()
@@ -44,6 +49,28 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 .navigate(R.id.action_hotelDescriptionFragment_to_exploreFragment2)
         }
 
+        //Observe Hotel Description in viewModel
+        roomViewModel.hotelDescription.observe(viewLifecycleOwner, {
+            if (it != null){
+                binding.HotelName.text = it.name
+                binding.locationOfHotel.text = it.address
+                binding.fragmentHotelDescriptionTvPhonrNumer.text = it.phone
+                binding.fragmentHotelDescriptionTvEmail.text = it.email
+                binding.hotelDescExpandableTv.text = it.description
+                binding.fragmentReviewPageStarViewRatingBarVerySmall4.numStars = 4//it.rating.toInt()
+//                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
+
+                //Set Room types for roomViewPagerAdapter
+                roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
+
+                //Set Hotel Images on hotelViewPagerAdapter
+                hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
+            } else{
+                Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
+            }
+
+        })
+
     }
 
 
@@ -53,7 +80,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPager.offscreenPageLimit = 1
 
         hotelViewPagerAdapter = HotelViewPagerAdapter()
-        hotelViewPagerAdapter.getImagesFromExternalSource(getListOfHotelImages())
+//        hotelViewPagerAdapter.getImagesFromExternalSource()
         binding.fragmentImageDescriptionViewPager.adapter = hotelViewPagerAdapter
 
         //list of rooms viewpager
@@ -61,9 +88,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPagerOurServices.clipChildren = false
         binding.fragmentImageDescriptionViewPagerOurServices.offscreenPageLimit = 1
 
-        val hotelRooms = roomViewModel.hotelRooms
         roomViewPagerAdapter = RoomsViewPagerAdapter()
-        roomViewPagerAdapter.populateHotelRooms(hotelRooms)
+
         binding.fragmentImageDescriptionViewPagerOurServices.adapter = roomViewPagerAdapter
     }
     private fun setUpViewPagerTransition() {
