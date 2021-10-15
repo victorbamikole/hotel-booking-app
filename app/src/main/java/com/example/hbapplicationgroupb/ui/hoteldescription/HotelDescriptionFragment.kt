@@ -29,8 +29,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHotelDescriptionBinding.bind(view)
-
-        roomViewModel.getHotelDescription("8d3c676d-834c-4980-bd45-c7dc70a00d55")
+        val hotelId = safeArgs.hotelId
+        roomViewModel.getHotelDescription(hotelId)
 
         initialiseViewPager()
         setUpViewPagerTransition()

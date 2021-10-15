@@ -13,17 +13,22 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class RoomViewModel @Inject constructor(
    private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
+
+   //User Added
+   val newUser: MutableLiveData<Response<UserDataResponseItem>> = MutableLiveData()
 
    //Hotel description livedata
    private val _hotelDescription: MutableLiveData<HotelDescriptionData> = MutableLiveData()
@@ -46,8 +51,27 @@ class RoomViewModel @Inject constructor(
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
 
-   var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
-   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+   fun registerUser(userData : UserDataResponseItem){
+      viewModelScope.launch {
+         try {
+            val response = apiRepository.registerAUser(userData)
+            if(response.isSuccessful){
+               newUser.value = response
+            } else{
+               newUser.value = null
+            }
+
+         } catch (e: Exception){
+            e.printStackTrace()
+         }
+      }
+   }
+
+
+
+      var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+      val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
 
 
    fun sendForgetPasswordEmailToApi(email: String) {

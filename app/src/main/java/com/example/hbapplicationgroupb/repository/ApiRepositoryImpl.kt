@@ -5,6 +5,7 @@ import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -32,6 +33,12 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun userLoginDetails(userLoginDetails: PostLoginUserData): Response<LoginUserDataResponse> {
         return hotelServices.userLoginDetails(userLoginDetails)
+    }
+
+    override suspend fun registerAUser(userData: UserDataResponseItem
+    ): Response<UserDataResponseItem> {
+
+        return hotelServices.registerAUser(userData)
     }
 
     override suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel> {

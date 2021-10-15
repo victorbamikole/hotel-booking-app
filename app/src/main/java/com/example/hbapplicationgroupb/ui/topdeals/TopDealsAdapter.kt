@@ -5,54 +5,69 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
 import com.example.hbapplicationgroupb.databinding.TopDealsRecyclerviewBinding
 import com.example.hbapplicationgroupb.model.TopHotels
+import com.example.hbapplicationgroupb.model.topdealsnew.Data
 
-class TopDealsAdapter(var topDeals: List<TopHotels>):
+class TopDealsAdapter():
     RecyclerView.Adapter<TopDealsAdapter.DealsViewHolder>(){
+
+    private var topDeals: List<Data> = listOf()
+    fun populateTopDeals(list: List<Data>) {
+        this.topDeals = list
+        notifyDataSetChanged()
+    }
+
+
     class DealsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val binding: TopDealsRecyclerviewBinding =
-            TopDealsRecyclerviewBinding.bind(itemView)
-        val topDealImage = binding.topDealImage
-        val topDealName = binding.topDealName
-        val topDealPrice = binding.topDealPrice
-        val topDealRating = binding.topDealRating
-        val topDealPercent = binding.topDealPercent
-        val topDealButton = binding.topDealButton
+        private val binding: TopDealRecyclerViewLayoutBinding = TopDealRecyclerViewLayoutBinding.bind(itemView)
+        val topDealImagei = binding.topDealsRecyclerViewImage
+        val topDealName = binding.topDealtopDealNameHotelRecyclerViewSaveText
+        val topDealPrice = binding.topDealRecyclerViewPrice
+        val topDealRating = binding.topDealRecyclerViewtopDealRating
+        val topDealPercent = binding.topDealRecyclerViewtopDealPercent
+        val topDealButton = binding.topDealRecyclerviewBookNowButton
+
+        fun populateTopDeals(topDeals: Data) {
+            Glide.with(itemView)
+                .load(topDeals.thumbnail)
+                .into(topDealImagei)
+
+            topDealName.text = topDeals.hotelName
+            topDealPrice.text = String.format("$${topDeals.price}")
+            topDealRating.text = topDeals.name
+            topDealPercent.text = topDeals.discountPrice.toString()
+
+
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
-        val view =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_deals_recyclerview, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.top_deal_recycler_view_layout, parent, false)
         return DealsViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
+        holder.populateTopDeals(topDeals[position])
+        val hotelId = topDeals[position].hotelId
+        val hotelPrice = topDeals[position].price
+
+
         holder.itemView.apply {
-            val currentItem = topDeals[position]
-            holder.topDealImage.setImageResource(currentItem.hotelImage)
-            holder.topDealName.text = currentItem.name
-            holder.topDealPrice.text = currentItem.price
-            holder.topDealRating.text = currentItem.rating
-            holder.topDealPercent.text = currentItem.percent
+            holder.topDealButton.setOnClickListener {
+                findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
+            }
             setOnClickListener {
-                findNavController().navigate(R.id.hotelDescriptionFragment)
+                val action = TopDealsFragmentDirections
+                    .actionTopDealsFragmentToHotelDescriptionFragment(hotelId)
+                findNavController().navigate(action)
             }
         }
-                val currentItem = topDeals[position]
-                holder.topDealImage.setImageResource(currentItem.hotelImage)
-                holder.topDealName.text = currentItem.name
-                holder.topDealPrice.text = currentItem.price
-                holder.topDealRating.text = currentItem.rating
-                holder.topDealPercent.text = currentItem.percent
-                holder.topDealButton.setOnClickListener {
-//                    findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
-//                    findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescriptionFragment)
-                }
-            }
-
+        }
 
         override fun getItemCount(): Int {
             return topDeals.size

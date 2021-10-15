@@ -51,6 +51,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reg_toolbar" />
 
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/fragment_registration_progressBar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:elevation="10dp"-->
+<!--            android:outlineAmbientShadowColor="@color/custom_orange"-->
+<!--            android:foregroundGravity="center"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.428"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            local:layout_constraintBottom_toBottomOf="@+id/iv_registration"-->
+<!--            local:layout_constraintHorizontal_bias="0.451"-->
+<!--            local:layout_constraintVertical_bias="0.365" />-->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/reg_name_card"
             android:layout_width="match_parent"
@@ -69,7 +85,7 @@
                 app:startIconDrawable="@drawable/icon_person">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_name"
+                    android:id="@+id/editTextViewRegUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -95,7 +111,7 @@
                 app:startIconDrawable="@drawable/icon_person">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_last_name"
+                    android:id="@+id/editTextUserLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -121,7 +137,7 @@
                 app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_phone_number"
+                    android:id="@+id/editTextRegUserPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
@@ -147,10 +163,10 @@
                 app:startIconDrawable="@drawable/ic_baseline_people_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_gender"
+                    android:id="@+id/editTextRegUserGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
@@ -172,7 +188,7 @@
                 app:startIconDrawable="@drawable/icon_email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_email"
+                    android:id="@+id/editTextRegUserEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -189,7 +205,7 @@
             app:layout_constraintTop_toBottomOf="@+id/email_field_card">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reg_password_input"
+                android:id="@+id/editTextRegPassword"
                 style="@style/TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -198,7 +214,7 @@
                 app:startIconDrawable="@drawable/icon_padlock">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_reg_user_password"
+                    android:id="@+id/editTextRegUserPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -212,7 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:buttonTint="@color/btn_color"
-            android:checked="true"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reg_password_field_card"
 
