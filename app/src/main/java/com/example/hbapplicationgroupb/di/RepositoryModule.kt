@@ -23,6 +23,7 @@ object RepositoryModule {
         return ApiRepositoryImpl(hotelServices)
     }
 
+
     @Provides
     @Singleton
 
