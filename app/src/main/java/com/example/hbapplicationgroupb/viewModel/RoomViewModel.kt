@@ -15,6 +15,9 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
+import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.tophotelresponse.Data
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +52,10 @@ class RoomViewModel @Inject constructor(
 
    private var _resetPasswordData: MutableLiveData<ResetPasswordDataResponse> = MutableLiveData()
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
+
+   //get top hotels
+   private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
+   val topHotels : LiveData<AllTopHotels> = _topHotel
 
 
    fun registerUser(userData : UserDataResponseItem){
@@ -169,6 +176,22 @@ class RoomViewModel @Inject constructor(
 
       }
    }
+
+   fun getTopHotels(PageSize: Int, PageNumber: Int){
+      viewModelScope.launch {
+         try {
+             val response = apiRepository.getTopHotels(PageSize,PageNumber)
+            if (response.isSuccessful){
+               _topHotel.postValue(response.body())
+            }else{
+               _topHotel.postValue(null)
+            }
+         }catch (e:Exception){
+            e.printStackTrace()
+         }
+      }
+   }
+
 
    //Fetch hotel description from api
    fun getHotelDescription(id: String) {
