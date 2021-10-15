@@ -67,7 +67,7 @@ class RoomViewModel @Inject constructor(
     }
 
    fun sendUserLoginDetailsToApi(userLoginDetails : PostLoginUserData){
-      viewModelScope.launch{
+      viewModelScope.launch(Dispatchers.IO){
          try {
             val response = apiRepository.userLoginDetails(userLoginDetails)
             if (response.isSuccessful){
