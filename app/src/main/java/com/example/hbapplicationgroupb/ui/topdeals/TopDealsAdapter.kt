@@ -24,11 +24,11 @@ class TopDealsAdapter():
 
     class DealsViewHolder(itemView: View, listener : SetItemClickListener): RecyclerView.ViewHolder(itemView) {
         private val binding: TopDealRecyclerViewLayoutBinding = TopDealRecyclerViewLayoutBinding.bind(itemView)
-        val topDealImagei = binding.topDealsRecyclerViewImage
-        val topDealName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        val topDealPrice = binding.topDealRecyclerViewPrice
-        val topDealRating = binding.topDealRecyclerViewtopDealRating
-        val topDealPercent = binding.topDealRecyclerViewtopDealPercent
+        private val topDealImage = binding.topDealsRecyclerViewImage
+        private val topDealName = binding.topDealtopDealNameHotelRecyclerViewSaveText
+        private val topDealPrice = binding.topDealRecyclerViewPrice
+        private val topDealRating = binding.topDealRecyclerViewtopDealRating
+        private val topDealPercent = binding.topDealRecyclerViewtopDealPercent
         val topDealButton = binding.topDealRecyclerviewBookNowButton
 
 
@@ -41,9 +41,13 @@ class TopDealsAdapter():
         fun populateTopDeals(topDeals: Data) {
             Glide.with(itemView)
                 .load(topDeals.thumbnail)
-                .into(topDealImagei)
+                .into(topDealImage)
 
-            topDealName.text = topDeals.name
+            if (topDeals.name.length > 15){
+                topDealName.text = String.format("${topDeals.name.substring(0,15)}...")
+            } else{
+                topDealName.text = topDeals.name
+            }
             topDealPrice.text = String.format("$${topDeals.price}")
             topDealRating.text = topDeals.name
             topDealPercent.text = topDeals.percentageRating.toString()

@@ -66,7 +66,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginBottom="48dp"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toStartOf="@+id/topDealsRecyclerViewImage"
             tools:text="@string/top_hotel_name" />
@@ -129,7 +129,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
             app:layout_constraintEnd_toEndOf="@+id/topDealsRecyclerViewImage"
             tools:text="@string/_499" />
