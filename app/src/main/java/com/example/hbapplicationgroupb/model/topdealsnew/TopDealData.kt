@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupb.model.topdealsnew
 
-data class Data(
+data class TopDealData(
     val description: String,
     val percentageRating: Int,
     val id: String,

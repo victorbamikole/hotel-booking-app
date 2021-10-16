@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
-import com.example.hbapplicationgroupb.model.topdealsnew.Data
+import com.example.hbapplicationgroupb.model.topdealsnew.TopDealData
 
 class TopDealsAdapter():
     RecyclerView.Adapter<TopDealsAdapter.DealsViewHolder>(){
 
     lateinit var listener :SetItemClickListener
 
-    private var topDeals: List<Data> = listOf()
-    fun populateTopDeals(list: List<Data>) {
+    private var topDeals: List<TopDealData> = listOf()
+    fun populateTopDeals(list: List<TopDealData>) {
         this.topDeals = list
         notifyDataSetChanged()
     }
@@ -38,7 +38,7 @@ class TopDealsAdapter():
             }
         }
 
-        fun populateTopDeals(topDeals: Data) {
+        fun populateTopDeals(topDeals: TopDealData) {
             Glide.with(itemView)
                 .load(topDeals.thumbnail)
                 .into(topDealImage)
