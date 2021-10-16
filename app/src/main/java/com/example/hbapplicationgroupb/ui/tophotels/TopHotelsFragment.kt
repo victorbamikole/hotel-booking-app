@@ -21,6 +21,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
     val myAdapter = TopHotelsAdapter()
 
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTopHotelsBinding.bind(view)

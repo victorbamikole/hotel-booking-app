@@ -35,7 +35,7 @@ class TopHotelsAdapter() :
                 .into(topImage)
             topName.text = hotelList.name
             topRating.text = hotelList.rating.toString()
-    topPercent.text = hotelList.numberOfReviews.toString()
+            topPercent.text = hotelList.numberOfReviews.toString()
 
 //            topPrice.text = hotelList.
 //            topPrice.text = hotelList.roomTypes[0].price.toString()//.price

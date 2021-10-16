@@ -30,7 +30,7 @@ class ExploreHomeAdapter2() :
             Glide.with(itemView)
                 .load(topDeals.thumbnail)
                 .into(hotelImage)
-            hotelName.text = topDeals.hotelName
+            hotelName.text = topDeals.name
             hotelPrice.text = topDeals.price.toString()//.price
         }
 
