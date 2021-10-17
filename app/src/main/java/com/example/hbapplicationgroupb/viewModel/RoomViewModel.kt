@@ -57,6 +57,11 @@ class RoomViewModel @Inject constructor(
    private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
    val topHotels : LiveData<AllTopHotels> = _topHotel
 
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
+
+
 
    fun registerUser(userData : UserDataResponseItem){
       viewModelScope.launch {
@@ -76,26 +81,21 @@ class RoomViewModel @Inject constructor(
 
 
 
-      var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
-      val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
-
-
-
-   fun sendForgetPasswordEmailToApi(email: String) {
-      viewModelScope.launch(Dispatchers.IO) {
-         try {
-            val response = apiRepository.resetForgetPasswordEmail(email)
-            if (response.isSuccessful) {
-               val responseBody = response.body()
-               _forgotPasswordData.postValue(responseBody)
-            } else {
-               _forgotPasswordData.postValue(null)
-            }
-         } catch (e: Exception) {
-            e.printStackTrace()
-         }
-      }
-   }
+    fun sendForgetPasswordEmailToApi(email: String) {
+       viewModelScope.launch(Dispatchers.IO) {
+          try {
+             val response = apiRepository.resetForgetPasswordEmail(email)
+             if (response.isSuccessful) {
+                val responseBody = response.body()
+                _forgotPasswordData.postValue(responseBody)
+             } else {
+                _forgotPasswordData.postValue(null)
+             }
+          } catch (e: Exception) {
+             e.printStackTrace()
+          }
+       }
+    }
 
    fun sendUserLoginDetailsToApi(userLoginDetails: PostLoginUserData) {
       viewModelScope.launch {
