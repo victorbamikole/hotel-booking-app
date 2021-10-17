@@ -29,8 +29,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHotelDescriptionBinding.bind(view)
-
-        roomViewModel.getHotelDescription("8d3c676d-834c-4980-bd45-c7dc70a00d55")
+        val hotelId = safeArgs.hotelId
+        roomViewModel.getHotelDescription(hotelId)
 
         initialiseViewPager()
         setUpViewPagerTransition()
@@ -57,8 +57,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 binding.fragmentHotelDescriptionTvPhonrNumer.text = it.phone
                 binding.fragmentHotelDescriptionTvEmail.text = it.email
                 binding.hotelDescExpandableTv.text = it.description
-                binding.fragmentReviewPageStarViewRatingBarVerySmall4.numStars = 4//it.rating.toInt()
-//                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
+                binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = it.rating.toFloat()
+                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
 
                 //Set Room types for roomViewPagerAdapter
                 roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
@@ -80,7 +80,6 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPager.offscreenPageLimit = 1
 
         hotelViewPagerAdapter = HotelViewPagerAdapter()
-//        hotelViewPagerAdapter.getImagesFromExternalSource()
         binding.fragmentImageDescriptionViewPager.adapter = hotelViewPagerAdapter
 
         //list of rooms viewpager

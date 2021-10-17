@@ -124,4 +124,10 @@
     <string name="debit_card">Debit Card</string>
     <string name="paytm">Paytm</string>
     <string name="marathalli_bangalore">marathalli, Bangalore</string>
+    <string name="back_to_login">back_to_login</string>
+    <string name="user_email">user_email</string>
+    <string name="account_created_Successfully">Your account has been successfully created, an email verification has been sent to your mail</string>
+    <string name="account_created_successfully">account_created_Successfully</string>
+    <string name="useremail">userEmail</string>
+    <string name="back_to_login2">back to login</string>
 </resources>
