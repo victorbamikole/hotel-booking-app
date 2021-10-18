@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
@@ -34,6 +35,8 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
                 email = userEmail,
                 token = userToken
             )
+        Toast.makeText(requireContext(),"email and token is $emailAndToken",Toast.LENGTH_SHORT)
+            .show()
 
         roomViewModel.confirmEmailAddress(emailAndToken)
 
