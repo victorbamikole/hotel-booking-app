@@ -13,17 +13,25 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
+import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.tophotelresponse.Data
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class RoomViewModel @Inject constructor(
    private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
+
+   //User Added
+   val newUser: MutableLiveData<Response<UserDataResponseItem>> = MutableLiveData()
 
    //Hotel description livedata
    private val _hotelDescription: MutableLiveData<HotelDescriptionData> = MutableLiveData()
@@ -45,26 +53,49 @@ class RoomViewModel @Inject constructor(
    private var _resetPasswordData: MutableLiveData<ResetPasswordDataResponse> = MutableLiveData()
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
+   //get top hotels
+   private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
+   val topHotels : LiveData<AllTopHotels> = _topHotel
 
-   var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
 
-   fun sendForgetPasswordEmailToApi(email: String) {
-      viewModelScope.launch(Dispatchers.IO) {
+
+
+   fun registerUser(userData : UserDataResponseItem){
+      viewModelScope.launch {
          try {
-            val response = apiRepository.resetForgetPasswordEmail(email)
-            if (response.isSuccessful) {
-               val responseBody = response.body()
-               _forgotPasswordData.postValue(responseBody)
-            } else {
-               _forgotPasswordData.postValue(null)
+            val response = apiRepository.registerAUser(userData)
+            if(response.isSuccessful){
+               newUser.value = response
+            } else{
+               newUser.value = null
             }
-         } catch (e: Exception) {
+
+         } catch (e: Exception){
             e.printStackTrace()
          }
       }
    }
+
+
+
+    fun sendForgetPasswordEmailToApi(email: String) {
+       viewModelScope.launch(Dispatchers.IO) {
+          try {
+             val response = apiRepository.resetForgetPasswordEmail(email)
+             if (response.isSuccessful) {
+                val responseBody = response.body()
+                _forgotPasswordData.postValue(responseBody)
+             } else {
+                _forgotPasswordData.postValue(null)
+             }
+          } catch (e: Exception) {
+             e.printStackTrace()
+          }
+       }
+    }
 
    fun sendUserLoginDetailsToApi(userLoginDetails: PostLoginUserData) {
       viewModelScope.launch {
@@ -145,6 +176,22 @@ class RoomViewModel @Inject constructor(
 
       }
    }
+
+   fun getTopHotels(PageSize: Int, PageNumber: Int){
+      viewModelScope.launch {
+         try {
+             val response = apiRepository.getTopHotels(PageSize,PageNumber)
+            if (response.isSuccessful){
+               _topHotel.postValue(response.body())
+            }else{
+               _topHotel.postValue(null)
+            }
+         }catch (e:Exception){
+            e.printStackTrace()
+         }
+      }
+   }
+
 
    //Fetch hotel description from api
    fun getHotelDescription(id: String) {
