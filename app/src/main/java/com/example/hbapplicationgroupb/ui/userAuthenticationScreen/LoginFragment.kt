@@ -41,7 +41,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             if(LoginValidation.validateEmailPattern(usersEmail)) {
                 if (LoginValidation.validatePasswordPattern(usersPassword)) {
-                    roomViewModel.  sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
+                    roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
                     roomViewModel.userLoginDetails.observe(
                         viewLifecycleOwner, {
                             if(it.succeeded) {
