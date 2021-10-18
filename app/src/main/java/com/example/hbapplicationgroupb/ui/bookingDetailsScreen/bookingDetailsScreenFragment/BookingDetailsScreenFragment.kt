@@ -26,6 +26,9 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
         binding = FragmentBookingDetailsScreenBinding.bind(view)
 
 
+
+
+
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
         binding.bookingDetailsScreenTextViewStartDate.setOnClickListener {
             val callback = SingleDayPickCallback { day ->
@@ -64,15 +67,25 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
 
         /** Method to pop bottom Sheet for Age Selection */
         binding.bookingDetailsScreenTextViewAgeBracket.setOnClickListener {
-            var bottomSheet : BottomSheetForAgeBracket = BottomSheetForAgeBracket()
-            fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG") }
+            val bottomSheet : BottomSheetForAgeBracket = BottomSheetForAgeBracket()
+            fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG")}
         }
 
 
         /** Method to pop bottom Sheet for Room type Selection */
         binding.bookingDetailsScreenTextViewRoomType.setOnClickListener {
-            var bottomSheet : BottomSheetForRooms = BottomSheetForRooms()
-            fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG") }
+            val bottomSheet : BottomSheetForRooms = BottomSheetForRooms()
+            fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG")}
         }
+
+        binding.fragmentBookingBookNowButton.setOnClickListener {
+            val nameForBooking = binding.bookingDetailsScreenTextViewName.text.toString()
+            val phoneNumberForBooking = binding.bookingDetailsScreenTextViewPhoneNumber.text.toString()
+            val checkIn = binding.bookingDetailsScreenTextViewStartDate.text.toString()
+            val checkout = binding.bookingDetailsScreenTextViewEndDate.text.toString()
+            val people = binding.bookingDetailsScreenTextViewAgeBracket.text.toString()
+            val roomType = binding.bookingDetailsScreenTextViewRoomType.text.toString()
+        }
+
 }
 }
