@@ -35,27 +35,39 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
         binding.btnReset.setOnClickListener {
 
             if(ResetPasswordValidationFunctions.checkIfFieldNotEmpty(binding.tvResetPassword.text.toString())){
-                if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==0){
-                    if (ResetPasswordValidationFunctions.checkIfPasswordMatches(binding.tvResetPassword.text.toString(),binding.tvConfirmPassword.text.toString())){
+                if (ResetPasswordValidationFunctions.isValidPassword(binding.tvResetPassword.text.toString())) {
+                    if (ResetPasswordValidationFunctions.checkIfPasswordMatches(
+                            binding.tvResetPassword.text.toString(),
+                            binding.tvConfirmPassword.text.toString()
+                        )
+                    ) {
                         roomViewModel.sendNewPasswordToAPI(
                             PostResetPasswordData(
                                 token = userToken.toString(),
                                 email = userEmail.toString(),
                                 newPassword = binding.tvResetPassword.text.toString(),
                                 confirmPassword = binding.tvConfirmPassword.text.toString()
-                            ))
-                        Toast.makeText(requireContext(), "Password changed successfully", Toast.LENGTH_SHORT).show()
+                            )
+                        )
+                        Toast.makeText(
+                            requireContext(),
+                            "Password changed successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
                         Log.d("PASSWORD RESET", "PASSWORD RESET")
-                    }else{
+                    } else {
                         binding.tvResetPassword.error = "password does not match"
                         binding.tvConfirmPassword.error = "password does not match"
                     }
-                }else if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==1){
-                    binding.tvResetPassword.error = "password must be more than six characters"
-                }else if(ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==2){
-                    binding.tvResetPassword.error = "password must contain number, letter and special characters"
+                }else{
+                    binding.tvResetPassword.error = "password must contain one Uppercase, one number, one special character"
                 }
+//                }else if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==1){
+//                    binding.tvResetPassword.error = "password must be more than six characters"
+//                }else if(ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==2){
+//                    binding.tvResetPassword.error = "password must contain number, letter and special characters"
+//                }
 
             }else{
                 binding.tvResetPassword.error = "this field cannot be empty"
