@@ -70,14 +70,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onStart() {
         super.onStart()
-        //check if user is already logged in and move to app if true
-        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
-        if (userSession != DEFAULT_TOKEN){
-            //Move into the App
-            findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
 
-        }
-
+        navigateToExploreScreen()
     }
 
     private fun login() {
@@ -112,5 +106,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         override fun afterTextChanged(p0: Editable?) {}
 
+    }
+
+    //Navigate to Explore Screen
+
+    private fun navigateToExploreScreen(){
+        //check if user is already logged in and move to app if true
+        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        if (userSession != DEFAULT_TOKEN){
+            //Move into the App
+            findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+
+        }
     }
 }

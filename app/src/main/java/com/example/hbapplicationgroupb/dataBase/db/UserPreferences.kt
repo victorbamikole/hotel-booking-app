@@ -19,11 +19,15 @@ class UserPreferences @Inject constructor(
     fun returnSharedPref() = sharedPreferences
 
     //Save user session whenever user is logged in
-    fun saveSession(user : UserDataResponseItem){
+    fun saveSession(token : String){
 
     }
 
     fun getSessionUser() : String? {
         return sharedPreferences.getString("userToken", DEFAULT_TOKEN)
+    }
+
+    fun clearUserSession(){
+        editor.putString("userToken", DEFAULT_TOKEN).commit()
     }
 }
