@@ -13,11 +13,9 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
-import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
-import com.example.hbapplicationgroupb.model.tophotelresponse.Data
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -57,6 +55,11 @@ class RoomViewModel @Inject constructor(
    private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
    val topHotels : LiveData<AllTopHotels> = _topHotel
 
+   private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
+   val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
+
+
 
    fun registerUser(userData : UserDataResponseItem){
       viewModelScope.launch {
@@ -76,26 +79,21 @@ class RoomViewModel @Inject constructor(
 
 
 
-      var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
-      val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
-
-
-
-   fun sendForgetPasswordEmailToApi(email: String) {
-      viewModelScope.launch(Dispatchers.IO) {
-         try {
-            val response = apiRepository.resetForgetPasswordEmail(email)
-            if (response.isSuccessful) {
-               val responseBody = response.body()
-               _forgotPasswordData.postValue(responseBody)
-            } else {
-               _forgotPasswordData.postValue(null)
-            }
-         } catch (e: Exception) {
-            e.printStackTrace()
-         }
-      }
-   }
+    fun sendForgetPasswordEmailToApi(email: String) {
+       viewModelScope.launch(Dispatchers.IO) {
+          try {
+             val response = apiRepository.resetForgetPasswordEmail(email)
+             if (response.isSuccessful) {
+                val responseBody = response.body()
+                _forgotPasswordData.postValue(responseBody)
+             } else {
+                _forgotPasswordData.postValue(null)
+             }
+          } catch (e: Exception) {
+             e.printStackTrace()
+          }
+       }
+    }
 
    fun sendUserLoginDetailsToApi(userLoginDetails: PostLoginUserData) {
       viewModelScope.launch {
@@ -103,6 +101,9 @@ class RoomViewModel @Inject constructor(
             val response = apiRepository.userLoginDetails(userLoginDetails)
             if (response.isSuccessful) {
                _userLoginDetails.postValue(response.body())
+            }
+            else{
+               _userLoginDetails.postValue(null)
             }
          } catch (e: Exception) {
             e.printStackTrace()

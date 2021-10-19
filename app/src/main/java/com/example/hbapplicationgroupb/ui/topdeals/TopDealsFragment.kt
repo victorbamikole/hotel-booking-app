@@ -9,9 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentTopDealsBinding
-import com.example.hbapplicationgroupb.model.TopHotels
-import com.example.hbapplicationgroupb.ui.bottom_nav_screens.ExploreHomeAdapter
-import com.example.hbapplicationgroupb.ui.bottom_nav_screens.ExploreHomeAdapter2
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +46,31 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
 
                 binding!!.topDealsRecyclerView.adapter = myAdapter
                 myAdapter.notifyDataSetChanged()
+
+                Log.d("hotelId", "hotel id: ${it.data[0].id}")
+                Log.d("hotelId", "name: ${it.data[0].name}")
+                Log.d("hotelId", "hotel name: ${it.data[0].percentageRating}")
+                Log.d("hotelId", "Price: ${it.data[0].price}")
+                Log.d("hotelId", "Price: ${it.data[0].thumbnail}")
+
+                //Set Click Listener on adapter list items
+                myAdapter.setOnItemClickListener(object : TopDealsAdapter.SetItemClickListener{
+                    override fun setOnItemClick(position: Int, myView: View?) {
+                        val id = it.data[position].id
+                        val price = it.data[position].price.toString()
+                        findNavController()
+                            .navigate(
+                            TopDealsFragmentDirections
+                                .actionTopDealsFragmentToHotelDescriptionFragment(
+                                    id,price
+                                )
+                            )
+                    }
+
+                })
+
             }
         })
     }
+
 }
