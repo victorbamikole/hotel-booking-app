@@ -262,17 +262,46 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/reg_age_card"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    local:layout_constraintBottom_toTopOf="@id/btn_radio"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_password_field_card"
+                    local:layout_constraintStart_toStartOf="@+id/email_field_card">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextRegAge"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Age"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                        app:startIconDrawable="@drawable/icon_padlock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextRegUserAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textCursorDrawable="@null"
+                            android:textSize="19sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+
                 <RadioButton
                     android:id="@+id/btn_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="40dp"
                     android:buttonTint="@color/btn_color"
                     android:checked="false"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/reg_password_field_card"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_age_card"
                     local:layout_constraintBottom_toTopOf="@+id/btn_register"
                     />
 
