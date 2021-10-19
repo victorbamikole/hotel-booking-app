@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
@@ -33,7 +32,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
-        roomViewModel.userLoginDetails.observe(viewLifecycleOwner, Observer {
+        //Observe live data in view model
+
+        roomViewModel.userLoginDetails.observe(viewLifecycleOwner,  {
             if (it ==null) {
                 Snackbar.make(
                     binding.root, "Login failed; Invalid email address or password.", Snackbar.LENGTH_LONG
@@ -69,7 +70,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         else{
             binding.regEmailInput.error = "Invalid email address"
             Snackbar.make(binding.root, "Invalid email address", Snackbar.LENGTH_LONG).show()
-
         }
 
     }
