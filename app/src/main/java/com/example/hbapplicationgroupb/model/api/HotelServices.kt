@@ -15,6 +15,7 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
+import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
 import retrofit2.Response
@@ -51,7 +52,7 @@ interface HotelServices {
     suspend fun addToCustomerWishList() : Response<CustomerWishListResponse>
 
     @POST("api/Authentication/register")
-    suspend fun registerAUser(@Body userData: UserDataResponseItem) : Response<UserDataResponseItem>
+    suspend fun registerAUser(@Body userData: UserDataResponseItem) : Response<UserDataResponse>
 
     @POST("api/Authentication/forgot-password")
     suspend fun resetForgetPasswordEmail(@Query("email") email: String):Response<ForgotPasswordDataResponse>

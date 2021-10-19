@@ -48,12 +48,13 @@ class RegistrationFragment : Fragment() {
             val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString()
             val gender = binding.editTextRegUserGender.text.toString()
             val email = binding.editTextRegUserEmail.text.toString()
-            val password = binding.editTextRegPassword.editText!!.text.toString()
+            val password = binding.editTextRegUserPassword.text.toString()
             val radioButton = binding.btnRadio
-            val userName = CreateUserName.createUserName(firstName,lastName)
+            val age = binding.editTextRegUserAge.text.toString().toInt()
+            val userName = binding.editTextUserUserName.text.toString()
 
             val userDataTest = UserDataResponseItem(firstName,lastName,email,
-                userName,password,phoneNumber,gender,20)
+                userName,password,phoneNumber,gender,age)
 
             /**Field Validation*/
             if (!RegistrationValidation.validateUserFirstName(firstName)){
@@ -93,8 +94,8 @@ class RegistrationFragment : Fragment() {
 
 
             if (!RegistrationValidation.validatePassword(password)){
-                binding.editTextRegPassword.error = "Enter a valid password"
-                 binding.editTextRegPassword.isFocusable
+                binding.editTextRegUserPassword.error = "Enter a valid password"
+                 binding.editTextRegUserPassword.isFocusable
                 return@setOnClickListener
             }
 
@@ -106,10 +107,13 @@ class RegistrationFragment : Fragment() {
 
             }
             viewModel.registerUser(userDataTest)
-            viewModel.newUser.observe(requireActivity(), {
-                if (it.isSuccessful){
-                    /** the correct navigation destination yet to be implemented*/
-                    Toast.makeText(activity, "Registration successful", Toast.LENGTH_SHORT).show()
+            viewModel.newUser.observe(viewLifecycleOwner, {
+                if (it != null){
+                    /** the correct navigation destination yet to be implemented */
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    if (it.succeeded){
+                        findNavController().navigate(R.id.action_registrationFragment_to_privacyPolicyFragment)
+                    }
                 }
 
             })

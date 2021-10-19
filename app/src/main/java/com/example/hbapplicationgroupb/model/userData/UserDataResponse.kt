@@ -1,9 +1,12 @@
 package com.example.hbapplicationgroupb.model.userData
 
 data class UserDataResponse(
-    val statusCode: String,
-    val success: Boolean,
-    val data: List<UserDataResponseItem>,
+    val statusCode: Int,
+    val succeeded: Boolean,
+    val data: BasicUserData,
     val message: String,
-    val errors: String? = null
+)
+data class BasicUserData(
+    val id:String,
+    val token:String,
 )
