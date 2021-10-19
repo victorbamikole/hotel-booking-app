@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     style="@style/TopUserAuthCard"
-                    app:layout_constraintBottom_toTopOf="@+id/reg_phone_number_card"
+                    app:layout_constraintBottom_toTopOf="@+id/reg_user_name_card"
                     app:layout_constraintTop_toBottomOf="@+id/reg_name_card">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -130,11 +130,40 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/reg_user_name_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    style="@style/TopUserAuthCard"
+                    app:layout_constraintBottom_toTopOf="@+id/reg_phone_number_card"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_last_name_card">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reg_user_name_input"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="User Name"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                        app:startIconDrawable="@drawable/icon_person">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextUserUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textSize="19sp"
+                            android:textCursorDrawable="@null" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/reg_phone_number_card"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     style="@style/TopUserAuthCard"
-                    app:layout_constraintTop_toBottomOf="@+id/reg_last_name_card">
+                    app:layout_constraintTop_toBottomOf="@+id/reg_user_name_card"
+                    local:layout_constraintBottom_toTopOf="@+id/reg_gender_card"
+                    >
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reg_phone_number_input"
