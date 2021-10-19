@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -14,18 +16,19 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
-import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
-import com.example.hbapplicationgroupb.model.tophotelresponse.Data
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
+import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class RoomViewModel @Inject constructor(
-   private val apiRepository : ApiRepositoryInterface
+   private val apiRepository : ApiRepositoryInterface,
 ) : ViewModel() {
 
    //Hotel description livedata
@@ -49,13 +52,17 @@ class RoomViewModel @Inject constructor(
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
    //get top hotels
-   private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
-   val topHotels : LiveData<AllTopHotels> = _topHotel
+   private val _topHotel: MutableLiveData<AllTopHotels> = MutableLiveData()
+   val topHotels: LiveData<AllTopHotels> = _topHotel
 
 
    var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
+
+   init {
+      getTopHotels()
+   }
 
    fun sendForgetPasswordEmailToApi(email: String) {
       viewModelScope.launch(Dispatchers.IO) {
@@ -153,21 +160,40 @@ class RoomViewModel @Inject constructor(
       }
    }
 
-   fun getTopHotels(PageSize: Int, PageNumber: Int){
-      viewModelScope.launch {
-         try {
-             val response = apiRepository.getTopHotels(PageSize,PageNumber)
-            if (response.isSuccessful){
-               _topHotel.postValue(response.body())
-            }else{
-               _topHotel.postValue(null)
-            }
-         }catch (e:Exception){
-            e.printStackTrace()
-         }
-      }
+//   fun getTopHotels(PageSize: Int, PageNumber: Int){
+//      viewModelScope.launch {
+//         try {
+//             val response = apiRepository.getTopHotels(PageSize,PageNumber)
+//            if (response.isSuccessful){
+//               _topHotel.postValue(response.body())
+//            }else{
+//               _topHotel.postValue(null)
+//            }
+//         }catch (e:Exception){
+//            e.printStackTrace()
+//         }
+//      }
+//   }
+
+   fun getTopHotels() = viewModelScope.launch {
+
+//      _topHotel.postValue(Resource.Loading())
+      val response = apiRepository.getTopHotels()
+//         for (topHotel in response.body()!!.data){
+//
+//         }
+      _topHotel.postValue(response.body())
+
    }
 
+   private fun handleTopHotelResponse(response: Response<AllTopHotels>): Resource<AllTopHotels> {
+      if (response.isSuccessful) {
+         response.body()?.let { result ->
+            return Resource.Success(result)
+         }
+      }
+      return Resource.Error(response.message())
+   }
 
    //Fetch hotel description from api
    fun getHotelDescription(id: String) {
@@ -183,6 +209,15 @@ class RoomViewModel @Inject constructor(
             e.printStackTrace()
          }
       }
+   }
+
+
+   fun saveTopHotels(topHotelData: List<TopHotelData>) = viewModelScope.launch {
+      apiRepository.insertHotelToDatabase(topHotelData)
+   }
+
+   fun getAllTopHotel() = viewModelScope.launch {
+      apiRepository.getAllTopHotels()
    }
 }
 

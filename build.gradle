@@ -32,3 +32,11 @@ task clean(type: Delete) {
 task check {
     dependsOn "installKotlinterPrePushHook"
 }
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'org.xerial:sqlite-jdbc:3.34.0'
+        }
+    }
+}
