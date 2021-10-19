@@ -13,11 +13,9 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
-import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
-import com.example.hbapplicationgroupb.model.tophotelresponse.Data
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -103,6 +101,9 @@ class RoomViewModel @Inject constructor(
             val response = apiRepository.userLoginDetails(userLoginDetails)
             if (response.isSuccessful) {
                _userLoginDetails.postValue(response.body())
+            }
+            else{
+               _userLoginDetails.postValue(null)
             }
          } catch (e: Exception) {
             e.printStackTrace()
