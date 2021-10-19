@@ -107,7 +107,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     //Navigate to Explore Screen
-
     private fun navigateToExploreScreen(){
         //check if user is already logged in and move to app if true
         val userSession = activity?.let { UserPreferences(it).getSessionUser() }
