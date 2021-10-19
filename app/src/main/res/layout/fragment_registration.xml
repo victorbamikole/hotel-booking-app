@@ -6,6 +6,25 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.userAuthenticationScreen.RegistrationFragment">
+    <View
+        android:id="@+id/viewCover"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_grey"
+        android:elevation="100dp"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/registerProgressBar"
+        android:elevation="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:layout_constraintTop_toTopOf="parent"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/reg_toolbar"
@@ -370,6 +389,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
                     app:layout_constraintTop_toTopOf="@+id/textView3" />
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_register"

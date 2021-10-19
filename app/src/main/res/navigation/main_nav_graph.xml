@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_registrationFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_registrationIsSuccessfulFragment"
+            app:destination="@id/registrationIsSuccessfulFragment" />
 
     </fragment>
     <fragment
@@ -314,5 +317,14 @@
         <action
             android:id="@+id/action_confirmEmail_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationIsSuccessfulFragment"
+        android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationIsSuccessfulFragment"
+        android:label="fragment_registration_is_successful"
+        tools:layout="@layout/fragment_registration_is_successful" >
+        <action
+            android:id="@+id/action_registrationIsSuccessfulFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
 </navigation>
