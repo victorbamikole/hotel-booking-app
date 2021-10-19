@@ -5,10 +5,12 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
@@ -56,6 +58,21 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                 binding.topHotelsRecyclerView.adapter = myAdapter
                 Log.d("TTT", "initializeViewModel:${it.data} ")
             }
+        })
+
+        myAdapter.topHotelClickListener(object : TopHotelClickListener{
+            override fun onItemSelected(position: Int, item: TopHotelData) {
+                val id = item.id
+                val price = item.price.toString()
+                findNavController()
+                    .navigate(
+                        TopHotelsFragmentDirections
+                            .actionTopHotelsFragmentToHotelDescriptionFragment(
+                                id,price
+                            )
+                    )
+            }
+
         })
     }
 

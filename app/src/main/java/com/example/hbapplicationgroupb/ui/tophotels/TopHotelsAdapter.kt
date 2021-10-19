@@ -1,27 +1,23 @@
 package com.example.hbapplicationgroupb.ui.tophotels
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navArgument
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
-import com.example.hbapplicationgroupb.databinding.TopDealsRecyclerviewBinding
-import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
-import com.example.hbapplicationgroupb.ui.topdeals.TopDealsFragmentDirections
 
 class TopHotelsAdapter() :
     RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
 
-    class HotelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    private lateinit var listener: TopHotelClickListener
+
+    class HotelsViewHolder(itemView: View,private val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
         private val binding: TopDealRecyclerViewLayoutBinding =
             TopDealRecyclerViewLayoutBinding.bind(itemView)
 
@@ -33,6 +29,12 @@ class TopHotelsAdapter() :
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
 
         fun bind(topHotel : TopHotelData){
+
+            itemView.setOnClickListener {
+                topHotelClickListener.onItemSelected(adapterPosition,topHotel)
+            }
+
+
             Glide.with(itemView)
                 .load(topHotel.thumbnail)
                 .into(topImage)
@@ -61,7 +63,7 @@ class TopHotelsAdapter() :
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.top_deal_recycler_view_layout, parent, false)
-        return HotelsViewHolder(view)
+        return HotelsViewHolder(view,listener)
     }
 
     override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
@@ -76,17 +78,6 @@ class TopHotelsAdapter() :
                     .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
                 findNavController().navigate(action)
             }
-            setOnClickListener {
-                val id = topHotel.id
-                val price = topHotel.price.toString()
-                findNavController()
-                    .navigate(
-                        TopHotelsFragmentDirections
-                            .actionTopHotelsFragmentToHotelDescriptionFragment(
-                                id,price
-                            )
-                    )
-            }
 
         }
 
@@ -97,73 +88,13 @@ class TopHotelsAdapter() :
     override fun getItemCount() = differ.currentList.size
 
 
+    fun topHotelClickListener(topHotelClickListener: TopHotelClickListener){
+        listener = topHotelClickListener
+
+    }
+
 }
 
-
-
-
-
-
-
-
-
-
-
-//package com.example.hbapplicationgroupb.ui.tophotels
-//
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import androidx.recyclerview.widget.RecyclerView
-//import com.bumptech.glide.Glide
-//import com.example.hbapplicationgroupb.R
-//import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
-//import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
-//
-//class TopHotelsAdapter() :
-//    RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
-//    var tophotels: List<TopHotelData> = listOf()
-//    fun populateHotels(list: List<TopHotelData>) {
-//        this.tophotels = list
-//        notifyDataSetChanged()
-//    }
-//
-//    class HotelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        private val binding: TopHotelsRecyclerviewBinding =
-//            TopHotelsRecyclerviewBinding.bind(itemView)
-//        val topImage = binding.topHotelImage
-//        val topName = binding.topHotelName
-//        val topPrice = binding.topHotelPrice
-//        val topRating = binding.topHotelRating
-//        val topPercent = binding.topHotelPercent
-//        val bookTopHotel = binding.bookTopHotel
-//        //
-//        fun populateHotels(hotelList : TopHotelData){
-//            Glide.with(itemView)
-//                .load(hotelList.thumbnail)
-//                .into(topImage)
-//            topName.text = hotelList.name
-//            topRating.text = hotelList.rating.toString()
-//            topPercent.text = hotelList.numberOfReviews.toString()
-//
-////            topPrice.text = hotelList.
-////            topPrice.text = hotelList.roomTypes[0].price.toString()//.price
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
-//        val view =
-//            LayoutInflater.from(parent.context)
-//                .inflate(R.layout.top_hotels_recyclerview, parent, false)
-//        return HotelsViewHolder(view)
-//    }
-//
-//    override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
-//        holder.populateHotels(tophotels[position])
-//
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return tophotels.size
-//    }
-//}
+interface TopHotelClickListener{
+    fun onItemSelected(position: Int, item:TopHotelData)
+}
