@@ -114,13 +114,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topHotelsRecyclerView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:listitem="@layout/top_hotels_recyclerview" />
+                tools:listitem="@layout/top_deal_recycler_view_layout" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

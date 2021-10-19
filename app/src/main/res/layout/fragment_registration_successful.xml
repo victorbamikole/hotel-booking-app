@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context=".ui.bookingDetailsScreen.bookingConfirmationFragment.BookingConfirmationFragment">
+
+
+    <TextView
+        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Congratulations"
+        android:textColor="@color/OffBlack"
+        android:textSize="20sp"
+        android:textStyle="bold|normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_UserName_Registration_Successful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text=" UserName"
+        android:textColor="@color/OffBlack"
+        android:textSize="20sp"
+        android:textStyle="bold|normal"
+        app:layout_constraintStart_toEndOf="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_confirmationScreen_Confirmation_message_Textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/account_created_Successfully"
+        android:textColor="@color/OffBlack"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+
+
+    <TextView
+        android:id="@+id/textView_UserEmail_Registration_Successful"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/useremail"
+        android:textColor="@color/OffBlack"
+        android:textSize="20sp"
+        android:textStyle="bold|normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_confirmationScreen_Confirmation_message_Textview" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_confirmationScreen_back_button_to_loging"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/rectangle_button"
+        android:text="@string/back_to_login2"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_UserEmail_Registration_Successful"
+        app:layout_constraintVertical_bias="0.157" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

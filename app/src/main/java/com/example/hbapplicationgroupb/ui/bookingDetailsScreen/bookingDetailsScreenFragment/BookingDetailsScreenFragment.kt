@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.callback.SingleDayPickCallback
@@ -12,6 +13,7 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
+import com.example.hbapplicationgroupb.ui.hoteldescription.HotelDescriptionFragmentArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,13 +21,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen) {
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+    private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
 
+        val hotelName = safeArgs.hotelName
 
+        binding.bookingDetailsScreenTextViewName.setText(hotelName)
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
         binding.bookingDetailsScreenTextViewStartDate.setOnClickListener {
             val callback = SingleDayPickCallback { day ->

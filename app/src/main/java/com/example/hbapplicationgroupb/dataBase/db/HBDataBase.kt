@@ -25,6 +25,7 @@ import com.example.hbapplicationgroupb.util.HotelTypeConverter
 
 @TypeConverters(HotelTypeConverter::class)
 abstract class HBDataBase : RoomDatabase() {
+
     abstract fun allHotelsDao() : AllHotelDao
     abstract fun CustomerBookingDataItemDao() : CustomerBookingDataItemDao
     abstract fun CustomerWishListItemDao() : CustomerWishListItemDao
@@ -33,4 +34,7 @@ abstract class HBDataBase : RoomDatabase() {
     abstract fun UserHotelDataItemDao() : UserHotelDataItemDao
     abstract fun getAllTopHotelsDao() :  TopHotelDao
 //    abstract fun insertTopHotelDao(): TopHotelDao
+
+
+
 }

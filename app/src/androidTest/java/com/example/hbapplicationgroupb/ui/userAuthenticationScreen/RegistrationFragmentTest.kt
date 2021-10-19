@@ -1,6 +1,5 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -24,27 +23,27 @@ class RegistrationFragmentTest{
 
     @Test//Test First Name field in Registration Screen
     fun test_isRegistrationScreenFirstNameFieldVisible(){
-        onView(withId(R.id.tv_reg_user_name))
+        onView(withId(R.id.editTextViewRegUsername))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
     @Test//Test Email field in Registration Screen
     fun test_isRegistrationScreenUserEmailFieldVisible(){
-        onView(withId(R.id.tv_reg_user_email))
+        onView(withId(R.id.editTextRegUserEmail))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
 
     @Test//Test lastName field in Registration Screen
     fun test_isRegistrationScreenLastNameFieldVisible(){
-        onView(withId(R.id.tv_reg_user_last_name))
+        onView(withId(R.id.editTextUserLastName))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
 
     @Test//Test Gender field in Registration Screen
     fun test_isRegistrationScreenGenderFieldVisible(){
-        onView(withId(R.id.tv_reg_user_gender))
+        onView(withId(R.id.editTextRegUserGender))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }

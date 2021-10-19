@@ -12,12 +12,18 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+
 import retrofit2.Response
 
 
 interface ApiRepositoryInterface {
 
+    //Register user
+    suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponseItem>
     suspend fun resetForgetPasswordEmail(email: String): Response<ForgotPasswordDataResponse>
     suspend fun confirmEmailAddress(emailAndToken: ConfirmEmailAddress):Response<ConfirmEmailAddressResponse>
 

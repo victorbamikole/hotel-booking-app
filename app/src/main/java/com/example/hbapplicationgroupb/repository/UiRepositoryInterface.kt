@@ -2,8 +2,7 @@ package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
-import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+
 
 interface UiRepositoryInterface {
 
