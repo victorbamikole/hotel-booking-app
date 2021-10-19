@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.util.constants.PREFERENCE_NAME
 import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
+import com.example.hbapplicationgroupb.util.constants.SHARED_PREF_KEY
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -20,14 +21,15 @@ class UserPreferences @Inject constructor(
 
     //Save user session whenever user is logged in
     fun saveSession(token : String){
+        editor.putString(SHARED_PREF_KEY, token).commit()
 
     }
 
     fun getSessionUser() : String? {
-        return sharedPreferences.getString("userToken", DEFAULT_TOKEN)
+        return sharedPreferences.getString(SHARED_PREF_KEY, DEFAULT_TOKEN)
     }
 
     fun clearUserSession(){
-        editor.putString("userToken", DEFAULT_TOKEN).commit()
+        editor.putString(SHARED_PREF_KEY, DEFAULT_TOKEN).commit()
     }
 }
