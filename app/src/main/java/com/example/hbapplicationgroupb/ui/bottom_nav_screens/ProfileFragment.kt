@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
 
 
@@ -20,6 +21,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
         binding?.fragmentProfileLogOutBtn?.setOnClickListener {
+
+            //Clear user token from shared preferences
+            activity?.let { it1 -> UserPreferences(it1).clearUserSession() }
             showLogOutAlert()
         }
 
@@ -61,7 +65,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val btnProfileLogOutDialog = dialogView.findViewById<Button>(R.id.fragment_profile_log_out_btn)
         btnProfileLogOutDialog.setOnClickListener {
             customDialog?.dismiss()
+
+            //Navigate to the login screen
+            findNavController().navigate(R.id.action_profileFragment2_to_loginFragment)
+
             Toast.makeText(activity,"Log out Button Clicked", Toast.LENGTH_LONG).show()
+
         }
 
         val btnProfileCancelDialog = dialogView.findViewById<Button>(R.id.fragment_profile_cancel_btn)

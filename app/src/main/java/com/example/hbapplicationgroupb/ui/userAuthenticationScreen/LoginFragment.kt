@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
+import com.example.hbapplicationgroupb.util.constants.SHARED_PREF_KEY
 import com.example.hbapplicationgroupb.validation.LoginValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -32,17 +38,22 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
-        //Observe live data in view model
+        roomViewModel.userLoginDetails.observe(viewLifecycleOwner, Observer {
 
-        roomViewModel.userLoginDetails.observe(viewLifecycleOwner,  {
-            if (it ==null) {
-                Snackbar.make(
-                    binding.root, "Login failed; Invalid email address or password.", Snackbar.LENGTH_LONG
-                ).show()
+            if (it.succeeded) {
+                lifecycleScope.launch {
+
+                    //Save user auth token to shared preference
+                    activity?.let { it1 ->
+                        UserPreferences(it1).saveSession(it.data.token)
+                    }
+
+                    findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+                    Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_LONG).show()
+                }
             }
-            else {
-                findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
-                Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
+            else{
+                Toast.makeText(requireActivity(), "Invalid login details", Toast.LENGTH_LONG).show()
             }
         })
 
@@ -55,6 +66,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        navigateToExploreScreen()
+    }
+
     private fun login() {
         val usersEmail = binding.tvUserLoginEmail.text.toString().trim()
         val usersPassword = binding.tvUserPassword.text.toString().trim()
@@ -64,12 +81,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
             else{
                 binding.regPasswordInput.error = "Password does not match with any email address"
-                Snackbar.make(binding.root, "Invalid password", Snackbar.LENGTH_LONG).show()
             }
         }
         else{
             binding.regEmailInput.error = "Invalid email address"
-            Snackbar.make(binding.root, "Invalid email address", Snackbar.LENGTH_LONG).show()
         }
 
     }
@@ -89,5 +104,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         override fun afterTextChanged(p0: Editable?) {}
 
+    }
+
+    //Navigate to Explore Screen
+    private fun navigateToExploreScreen(){
+        //check if user is already logged in and move to app if true
+        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        if (userSession != DEFAULT_TOKEN){
+            //Move into the App
+            findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+
+        }
     }
 }
