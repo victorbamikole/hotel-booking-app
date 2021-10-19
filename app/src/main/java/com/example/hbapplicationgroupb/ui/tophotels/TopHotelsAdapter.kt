@@ -25,11 +25,11 @@ class TopHotelsAdapter() :
         private val binding: TopDealRecyclerViewLayoutBinding =
             TopDealRecyclerViewLayoutBinding.bind(itemView)
 
-        val topImage = binding.topDealsRecyclerViewImage
-        val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        val topPrice = binding.topDealRecyclerViewPrice
-        val topRating = binding.topDealRecyclerViewtopDealRating
-        val topPercent = binding.topDealRecyclerViewtopDealPercent
+        private val topImage = binding.topDealsRecyclerViewImage
+        private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
+        private val topPrice = binding.topDealRecyclerViewPrice
+        private val description = binding.topDealRecyclerViewtopDealRating
+        private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
 
         fun bind(topHotel : TopHotelData){
@@ -37,15 +37,10 @@ class TopHotelsAdapter() :
                 .load(topHotel.thumbnail)
                 .into(topImage)
 
-            topName.text = topHotel.name
             "${topHotel.percentageRating}%".also { topPercent.text = it }
            topHotel.price.toString() .also { topPrice.text = it }
-
+            description.text = topHotel.description
             topName.text = topHotel.name
-            topRating.text = topHotel.percentageRating.toString()
-            topPercent.text = topHotel.price.toString()
-
-
         }
     }
 
