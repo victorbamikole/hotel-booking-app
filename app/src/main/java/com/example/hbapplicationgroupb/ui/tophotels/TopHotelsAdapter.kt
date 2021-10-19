@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
+import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 
 class TopHotelsAdapter() :
@@ -18,8 +18,8 @@ class TopHotelsAdapter() :
     private lateinit var listener: TopHotelClickListener
 
     class HotelsViewHolder(itemView: View,private val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
-        private val binding: TopDealRecyclerViewLayoutBinding =
-            TopDealRecyclerViewLayoutBinding.bind(itemView)
+        private val binding: TopHotelsRecyclerviewBinding =
+            TopHotelsRecyclerviewBinding.bind(itemView)
 
         private val topImage = binding.topDealsRecyclerViewImage
         private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
@@ -29,12 +29,9 @@ class TopHotelsAdapter() :
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
 
         fun bind(topHotel : TopHotelData){
-
             itemView.setOnClickListener {
                 topHotelClickListener.onItemSelected(adapterPosition,topHotel)
             }
-
-
             Glide.with(itemView)
                 .load(topHotel.thumbnail)
                 .into(topImage)
@@ -62,7 +59,7 @@ class TopHotelsAdapter() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
         val view =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_deal_recycler_view_layout, parent, false)
+                .inflate(R.layout.top_hotels_recyclerview, parent, false)
         return HotelsViewHolder(view,listener)
     }
 
@@ -73,10 +70,8 @@ class TopHotelsAdapter() :
 
         holder.itemView.apply {
             holder.bookTopHotelNow.setOnClickListener {
-                val name = topHotel.name
-                val action =TopHotelsFragmentDirections
-                    .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
-                findNavController().navigate(action)
+                listener.bookNow(position, topHotel)
+
             }
 
         }
@@ -97,4 +92,5 @@ class TopHotelsAdapter() :
 
 interface TopHotelClickListener{
     fun onItemSelected(position: Int, item:TopHotelData)
+    fun bookNow(position: Int, item:TopHotelData)
 }

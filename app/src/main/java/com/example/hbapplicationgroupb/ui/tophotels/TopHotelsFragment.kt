@@ -60,6 +60,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
             }
         })
 
+
         myAdapter.topHotelClickListener(object : TopHotelClickListener{
             override fun onItemSelected(position: Int, item: TopHotelData) {
                 val id = item.id
@@ -71,6 +72,17 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                                 id,price
                             )
                     )
+
+
+
+            }
+
+            override fun bookNow(position: Int, item: TopHotelData) {
+
+                val name = item.name
+                val action =TopHotelsFragmentDirections
+                    .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
+                findNavController().navigate(action)
             }
 
         })

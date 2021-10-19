@@ -1,126 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="30dp"
+    app:cardCornerRadius="10dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="305dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
-    <androidx.cardview.widget.CardView
-        app:cardElevation="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/topHotelImage"
-            android:layout_width="match_parent"
+            android:id="@+id/topDealsRecyclerViewImage"
+            android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/hotel3" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/hotel3" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bookTopHotel"
-            android:layout_width="108dp"
+            android:id="@+id/topDealRecyclerviewBookNowButton"
+            android:layout_width="wrap_content"
             android:layout_height="34dp"
-            android:layout_marginStart="230dp"
-            android:layout_marginTop="214dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/custom_button"
             android:text="@string/book_now"
-            android:textColor="@color/custom_orange" />
+            android:textColor="@color/custom_orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
 
         <ImageView
+            android:id="@+id/topDealSaveHotelRecyclerViewImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="222dp"
-            android:src="@drawable/ic_baseline_bookmark_24" />
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_bookmark_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
 
         <TextView
-            android:id="@+id/save"
+            android:id="@+id/topDealSaveHotelRecyclerViewSaveText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginStart="8dp"
             android:text="@string/save"
             android:textColor="@color/custom_orange"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/topDealSaveHotelRecyclerViewImage"
+            app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
+
 
         <TextView
-            android:id="@+id/topHotelName"
+            android:id="@+id/topDealtopDealNameHotelRecyclerViewSaveText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="130dp"
-            android:text="@string/top_hotel_name"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="48dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintStart_toStartOf="@+id/topDealsRecyclerViewImage"
+            tools:text="@string/top_hotel_name" />
 
         <TextView
-            android:id="@+id/topHotelRating"
+            android:id="@+id/topDealRecyclerViewtopDealRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="170dp"
-            android:text="@string/rating"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/rating" />
 
         <TextView
-            android:id="@+id/topHotelPercent"
+            android:id="@+id/topDealRecyclerViewtopDealPercent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="95dp"
-            android:layout_marginTop="170dp"
-            android:text="@string/_96"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealRating"
+            tools:text="@string/_96" />
+
 
         <ImageView
-            android:src="@drawable/ic_baseline_thumb_up_24"
-            android:id="@+id/like"
+            android:id="@+id/topDealRecyclerViewlike"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="168dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_baseline_thumb_up_24"
             android:text="@string/_96"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealPercent" />
 
 
         <TextView
-            android:id="@+id/topHotelPeriod"
+            android:id="@+id/topDealRecyclerViewPeriod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="170dp"
-            android:text="@string/per_night"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/per_night" />
 
         <TextView
-            android:id="@+id/topHotelPrice"
+            android:id="@+id/topDealRecyclerViewPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="131dp"
-            android:text="@string/_499"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
+            app:layout_constraintEnd_toEndOf="@+id/topDealsRecyclerViewImage"
+            tools:text="@string/_499" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
