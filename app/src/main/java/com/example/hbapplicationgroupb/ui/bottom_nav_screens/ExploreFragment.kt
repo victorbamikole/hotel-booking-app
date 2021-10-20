@@ -26,9 +26,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         initViewModel()
         initViewModel2()
         //Fetch All Hotels From APi
-        roomViewModel.getAllHotels(10,1)
+        roomViewModel.getTopHotels()
         //Fetch Top Deals From APi
-        roomViewModel.getTopDeals(10, 1)
+        roomViewModel.getTopDeals()
 
         //Inflate the top hotels recycler view layout to the fragment class
         binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -54,7 +54,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     //This function observes the TopHotels LiveData and populates the RecyclerView UI
     private fun initViewModel() {
-        roomViewModel.allHotelsList.observe(viewLifecycleOwner,{
+        roomViewModel.topHotels.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter.populateHotels(it.data)
                 Log.d("Homefrag", "${it.data}")
@@ -67,7 +67,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     //This function observes the TopDeals LiveData and populates the RecyclerView UI
     private fun initViewModel2() {
-        roomViewModel.allTopDealsAndHotel.observe(viewLifecycleOwner,{
+        roomViewModel.allTopDeals.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter2.populateTopDeals(it.data)
                 Log.d("Homefrag", "${it.data}")

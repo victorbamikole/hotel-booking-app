@@ -8,12 +8,14 @@ import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.RecyclerviewRowBinding
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 
 class ExploreHomeAdapter() :
     RecyclerView.Adapter<ExploreHomeAdapter.HotelsViewHolder>() {
 
-    private var hotels: List<HotelData> = listOf()
-    fun populateHotels(list: List<HotelData>) {
+    private var hotels: List<TopDealAndHotelData> = listOf()
+    fun populateHotels(list: List<TopDealAndHotelData>) {
         this.hotels = list
         notifyDataSetChanged()
     }
@@ -25,12 +27,12 @@ class ExploreHomeAdapter() :
         val hotelName = binding.hotelName
         val hotelPrice = binding.hotelPrice
 
-        fun populateHotels(hotelList : HotelData){
+        fun populateHotels(hotelList : TopDealAndHotelData){
             Glide.with(itemView)
-                .load(hotelList.featuredImage)
+                .load(hotelList.thumbnail)
                 .into(hotelImage)
             hotelName.text = hotelList.name
-            hotelPrice.text = hotelList.roomTypes[0].price.toString()//.price
+            hotelPrice.text = hotelList.price.toString()//.price
         }
 
     }

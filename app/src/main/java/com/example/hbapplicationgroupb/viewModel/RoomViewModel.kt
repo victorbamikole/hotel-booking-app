@@ -39,8 +39,8 @@ class RoomViewModel @Inject constructor(
    private val _allHotelsList = MutableLiveData<GetAllHotel?>()
    val allHotelsList: LiveData<GetAllHotel?> = _allHotelsList
 
-   private val _allTopDeals = MutableLiveData<TopDealsAndHotel?>()
-   val allTopDealsAndHotel: LiveData<TopDealsAndHotel?> = _allTopDeals
+   private val _allTopDeals = MutableLiveData<TopDealsAndHotel>()
+   val allTopDeals: LiveData<TopDealsAndHotel> = _allTopDeals
 
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData
@@ -52,8 +52,8 @@ class RoomViewModel @Inject constructor(
    val resetPasswordData: LiveData<ResetPasswordDataResponse> = _resetPasswordData
 
    //get top hotels
-   private val _topHotel : MutableLiveData<AllTopHotels> = MutableLiveData()
-   val topHotels : LiveData<AllTopHotels> = _topHotel
+   private val _topHotel : MutableLiveData<TopDealsAndHotel> = MutableLiveData()
+   val topHotels : LiveData<TopDealsAndHotel> = _topHotel
 
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
@@ -161,11 +161,11 @@ class RoomViewModel @Inject constructor(
    }
 
 
-   fun getTopDeals(pageSize: Int, pageNumber: Int) {
+   fun getTopDeals() {
 
       viewModelScope.launch {
          try {
-            val response = apiRepository.getTopDeals(pageSize, pageNumber)
+            val response = apiRepository.getTopDeals()
             if (response.isSuccessful) {
                _allTopDeals.postValue(response.body())
             } else {
@@ -178,10 +178,10 @@ class RoomViewModel @Inject constructor(
       }
    }
 
-   fun getTopHotels(PageSize: Int, PageNumber: Int){
+   fun getTopHotels(){
       viewModelScope.launch {
          try {
-             val response = apiRepository.getTopHotels(PageSize,PageNumber)
+             val response = apiRepository.getTopHotels()
             if (response.isSuccessful){
                _topHotel.postValue(response.body())
             }else{

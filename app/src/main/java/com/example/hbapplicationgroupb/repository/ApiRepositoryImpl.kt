@@ -46,8 +46,8 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.getAllHotels(pageSize,currentPage)
     }
 
-    override suspend fun getTopDeals(pageSize: Int, pageNumber: Int): Response<TopDealsAndHotel> {
-        return  hotelServices.getListOfTopDealsHotel(pageSize, pageNumber)
+    override suspend fun getTopDeals(): Response<TopDealsAndHotel> {
+        return  hotelServices.getListOfTopDealsHotel()
     }
 
 
@@ -55,10 +55,7 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.resetPassword(password)
     }
 
-    override suspend fun getTopHotels(
-        PageSize: Int,
-        PageNumber: Int
-    ): Response<AllTopHotels> {
-        return hotelServices.getTopHotels(PageSize, PageNumber)
+    override suspend fun getTopHotels(): Response<TopDealsAndHotel> {
+        return hotelServices.getTopHotels()
     }
 }

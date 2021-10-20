@@ -28,7 +28,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
         initializeViewModel()
 
-        roomViewModel.getTopHotels(10,1)
+        roomViewModel.getTopHotels()
 
         binding.topHotelsRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 

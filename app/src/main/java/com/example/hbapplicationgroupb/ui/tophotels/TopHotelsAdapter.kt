@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopHotelsRecyclerviewBinding
-import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.model.tophotelresponse.Data
 
 class TopHotelsAdapter() :
     RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
-    var tophotels: List<Data> = listOf()
-    fun populateHotels(list: List<Data>) {
+    var tophotels: List<TopDealAndHotelData> = listOf()
+    fun populateHotels(list: List<TopDealAndHotelData>) {
         this.tophotels = list
         notifyDataSetChanged()
     }
@@ -29,16 +28,14 @@ class TopHotelsAdapter() :
         val topPercent = binding.topHotelPercent
         val bookTopHotel = binding.bookTopHotel
 //
-        fun populateHotels(hotelList : Data){
+        fun populateHotels(hotelList : TopDealAndHotelData){
             Glide.with(itemView)
                 .load(hotelList.thumbnail)
                 .into(topImage)
             topName.text = hotelList.name
-            topRating.text = hotelList.rating.toString()
-            topPercent.text = hotelList.numberOfReviews.toString()
+            topRating.text = hotelList.description
+    "${hotelList.percentageRating}$".also { topPercent.text = it }
 
-//            topPrice.text = hotelList.
-//            topPrice.text = hotelList.roomTypes[0].price.toString()//.price
         }
     }
 
