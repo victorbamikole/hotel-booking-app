@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
-import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,7 +67,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     //This function observes the TopDeals LiveData and populates the RecyclerView UI
     private fun initViewModel2() {
-        roomViewModel.allTopDeals.observe(viewLifecycleOwner,{
+        roomViewModel.allTopDealsAndHotel.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter2.populateTopDeals(it.data)
                 Log.d("Homefrag", "${it.data}")

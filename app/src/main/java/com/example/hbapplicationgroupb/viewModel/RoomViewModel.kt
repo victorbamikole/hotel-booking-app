@@ -13,7 +13,7 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
@@ -39,8 +39,8 @@ class RoomViewModel @Inject constructor(
    private val _allHotelsList = MutableLiveData<GetAllHotel?>()
    val allHotelsList: LiveData<GetAllHotel?> = _allHotelsList
 
-   private val _allTopDeals = MutableLiveData<TopDeals?>()
-   val allTopDeals: LiveData<TopDeals?> = _allTopDeals
+   private val _allTopDeals = MutableLiveData<TopDealsAndHotel?>()
+   val allTopDealsAndHotel: LiveData<TopDealsAndHotel?> = _allTopDeals
 
    private var _forgotPasswordData: MutableLiveData<ForgotPasswordDataResponse> = MutableLiveData()
    val forgotPasswordData: LiveData<ForgotPasswordDataResponse> = _forgotPasswordData

@@ -39,7 +39,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
 
     //This function observes the TopDeals LiveData and populates the RecyclerView UI
     private fun initViewModel() {
-        roomViewModel.allTopDeals.observe(viewLifecycleOwner,{
+        roomViewModel.allTopDealsAndHotel.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter.populateTopDeals(it.data)
                 Log.d("Homefrag", "${it.data}")

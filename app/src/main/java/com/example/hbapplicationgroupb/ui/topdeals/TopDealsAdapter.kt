@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDealData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 
 class TopDealsAdapter():
     RecyclerView.Adapter<TopDealsAdapter.DealsViewHolder>(){
 
     lateinit var listener :SetItemClickListener
 
-    private var topDeals: List<TopDealData> = listOf()
-    fun populateTopDeals(list: List<TopDealData>) {
-        this.topDeals = list
+    private var topDealAndHotels: List<TopDealAndHotelData> = listOf()
+    fun populateTopDeals(list: List<TopDealAndHotelData>) {
+        this.topDealAndHotels = list
         notifyDataSetChanged()
     }
 
@@ -38,19 +38,19 @@ class TopDealsAdapter():
             }
         }
 
-        fun populateTopDeals(topDeals: TopDealData) {
+        fun populateTopDeals(topDealsAndHotel: TopDealAndHotelData) {
             Glide.with(itemView)
-                .load(topDeals.thumbnail)
+                .load(topDealsAndHotel.thumbnail)
                 .into(topDealImage)
 
-            if (topDeals.name.length > 15){
-                topDealName.text = String.format("${topDeals.name.substring(0,15)}...")
+            if (topDealsAndHotel.name.length > 15){
+                topDealName.text = String.format("${topDealsAndHotel.name.substring(0,15)}...")
             } else{
-                topDealName.text = topDeals.name
+                topDealName.text = topDealsAndHotel.name
             }
-            topDealPrice.text = String.format("$${topDeals.price}")
-            topDealRating.text = topDeals.name
-            topDealPercent.text = topDeals.percentageRating.toString()
+            topDealPrice.text = String.format("$${topDealsAndHotel.price}")
+            topDealRating.text = topDealsAndHotel.name
+            topDealPercent.text = topDealsAndHotel.percentageRating.toString()
 
 
         }
@@ -63,7 +63,7 @@ class TopDealsAdapter():
     }
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
-        holder.populateTopDeals(topDeals[position])
+        holder.populateTopDeals(topDealAndHotels[position])
 
             holder.itemView.apply {
                 holder.topDealButton.setOnClickListener {
@@ -74,7 +74,7 @@ class TopDealsAdapter():
         }
 
         override fun getItemCount(): Int {
-            return topDeals.size
+            return topDealAndHotels.size
         }
 
     interface SetItemClickListener{

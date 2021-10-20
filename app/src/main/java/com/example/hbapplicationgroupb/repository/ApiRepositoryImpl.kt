@@ -11,7 +11,7 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import retrofit2.Response
 import javax.inject.Inject
@@ -46,7 +46,7 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.getAllHotels(pageSize,currentPage)
     }
 
-    override suspend fun getTopDeals(pageSize: Int, pageNumber: Int): Response<TopDeals> {
+    override suspend fun getTopDeals(pageSize: Int, pageNumber: Int): Response<TopDealsAndHotel> {
         return  hotelServices.getListOfTopDealsHotel(pageSize, pageNumber)
     }
 
