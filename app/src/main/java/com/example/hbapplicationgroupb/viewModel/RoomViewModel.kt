@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.Data
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -71,7 +69,7 @@ class RoomViewModel @Inject constructor(
 
    init {
       getTopHotels()
-      getAll()
+      getAllHotels()
    }
 
 
@@ -209,7 +207,7 @@ class RoomViewModel @Inject constructor(
       }
    }
 
-   fun getAll(){
+   fun getAllHotels(){
       viewModelScope.launch {
          try {
              val response = apiRepository.fetchAllHotels(10,1)

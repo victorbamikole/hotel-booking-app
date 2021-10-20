@@ -39,6 +39,7 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
             topName.text = allhotel.name
             topPrice.text = "$${allhotel.roomTypes[0].price}"
             description.text = allhotel.description
+            topPercent.text = allhotel.rating.toString()
         }
     }
 
