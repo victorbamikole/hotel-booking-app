@@ -35,16 +35,6 @@ object RegistrationValidation {
     }
 
 
-
-    fun validatePassword(password: String) : Boolean {
-        val passwordPattern = "^(?=.*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9])(?=.*[a-z]).{8}\$\n".toRegex()
-        if (password.matches(passwordPattern)&&password.isNotEmpty()){
-            return true
-        }
-        return false
-    }
-
-
     fun validateRadioButtonIsChecked(radioButton: RadioButton) : Boolean {
         if (!radioButton.isChecked) {
             return false

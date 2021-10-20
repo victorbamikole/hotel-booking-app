@@ -19,18 +19,6 @@ class RegistrationValidationTest{
         assertEquals(true,result)
     }
 
-
-    @Test
-    fun validatePassword() {
-        var result = RegistrationValidation.validatePassword("PPassword891$")
-        assertEquals(true, result)
-    }
-    @Test
-    fun validatePassword_shouldReturnFalseIfPasswordIsNotValid_return_false() {
-        var result = RegistrationValidation.validatePassword("Pid90$")
-        assertEquals(false, result)
-    }
-
 //    @Test
 //    fun validateRadioButtonIsChecked() {
 //        var result = RegistrationValidation.validateRadioButtonIsChecked()
