@@ -9,7 +9,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UIViewModel @Inject constructor(
-    private val UiRepository : UiRepositoryInterface
+    private val uiRepository: UiRepositoryInterface
 ) : ViewModel(){
+
+//fun saveTopHotel(topHotelData: TopHotelData) = viewModelScope.launch {
+//    uiRepository.insertHotelToDatabase(topHotelData)
+//}
+//
+//    fun getAllTopHotel() = uiRepository.getAllTopHotels()
+//
 
 }

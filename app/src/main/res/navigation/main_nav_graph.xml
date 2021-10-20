@@ -269,6 +269,9 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />
+        <argument
+            android:name="hotelName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"

@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.repository
 
+import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -11,7 +12,11 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+
 import retrofit2.Response
 
 
@@ -28,8 +33,14 @@ interface ApiRepositoryInterface {
     suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel>
     suspend fun getTopDeals(pageSize: Int, pageNumber:Int): Response<TopDeals>
     suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
-    suspend fun getTopHotels(PageSize: Int, PageNumber:Int) : Response<AllTopHotels>
+    suspend fun getTopHotels() : Response<AllTopHotels>
 
     suspend fun userLoginDetails(userLoginDetails : PostLoginUserData) : Response<LoginUserDataResponse>
+
+
+
+    suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>)
+
+    fun getAllTopHotels() : LiveData<List<TopHotelData>>
 
 }
