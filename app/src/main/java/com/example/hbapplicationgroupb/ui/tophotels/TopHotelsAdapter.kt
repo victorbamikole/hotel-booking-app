@@ -33,6 +33,7 @@ class TopHotelsAdapter() :
                 .load(topHotel.thumbnail)
                 .into(topImage)
             "${topHotel.percentageRating}%".also { topPercent.text = it }
+            topPrice.text = "$${topHotel.price}"
             topHotel.price.toString() .also { topPrice.text = it }
             description.text = topHotel.description
             topName.text = topHotel.name
@@ -49,6 +50,7 @@ class TopHotelsAdapter() :
                 .inflate(R.layout.top_hotels_recyclerview, parent, false)
         return HotelsViewHolder(view,listener)
     }
+
     override fun onBindViewHolder(holder: HotelsViewHolder, position: Int) {
         val topHotel = differ.currentList[position]
         holder.bind(topHotel)
@@ -60,6 +62,7 @@ class TopHotelsAdapter() :
     }
     fun submitList(list: List<TopDealAndHotelData>) = differ.submitList(list)
     override fun getItemCount() = differ.currentList.size
+
     fun topHotelClickListener(topHotelClickListener: TopHotelClickListener){
         listener = topHotelClickListener
     }

@@ -49,7 +49,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         }
 
         binding.viewButton.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
+            findNavController().navigate(R.id.action_exploreFragment2_to_allHotelsFragment)
         }
         binding.viewAllTopDeals.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)

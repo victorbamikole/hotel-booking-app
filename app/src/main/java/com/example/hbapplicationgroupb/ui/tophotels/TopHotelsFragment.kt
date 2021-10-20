@@ -23,7 +23,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
    private var _binding: FragmentTopHotelsBinding? = null
     private val binding  get() = _binding!!
     private val roomViewModel : RoomViewModel by viewModels()
-    private val uiViewModel: UIViewModel by viewModels()
+//    private val uiViewModel: UIViewModel by viewModels()
     val myAdapter = TopHotelsAdapter()
 
 
