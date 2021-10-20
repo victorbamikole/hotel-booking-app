@@ -13,7 +13,7 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import retrofit2.Response
@@ -51,8 +51,8 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.getAllHotels(pageSize,currentPage)
     }
 
-    override suspend fun getTopDeals(pageSize: Int, pageNumber: Int): Response<TopDeals> {
-        return  hotelServices.getListOfTopDealsHotel(pageSize, pageNumber)
+    override suspend fun getTopDeals(): Response<TopDealsAndHotel> {
+        return  hotelServices.getListOfTopDealsHotel()
     }
 
 
@@ -60,7 +60,7 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.resetPassword(password)
     }
 
-    override suspend fun getTopHotels(): Response<AllTopHotels> {
+    override suspend fun getTopHotels(): Response<TopDealsAndHotel> {
         return hotelServices.getTopHotels()
     }
 

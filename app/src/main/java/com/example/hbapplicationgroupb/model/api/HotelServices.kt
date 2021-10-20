@@ -12,7 +12,7 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -21,9 +21,6 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface HotelServices {
-
-    @GET ("api/Hotel/all-hotels?")
-    suspend fun getAllHotel() : Response<GetAllHotel>
 
     @GET("api/Hotel/all-hotels")
     suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
@@ -39,9 +36,10 @@ interface HotelServices {
         @Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int
     ) : Response<AllTopHotels>
     suspend fun getTopHotels() : Response<AllTopHotels>
+//    suspend fun getTopHotels() : Response<TopDealsAndHotel>
 
     @GET("api/Hotel/top-deals")
-    suspend fun getListOfTopDealsHotel(@Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int) : Response<TopDeals>
+    suspend fun getListOfTopDealsHotel() : Response<TopDealsAndHotel>
 
     //Fetch description for a particular hotel
     @GET("api/Hotel/{hotelId}")
