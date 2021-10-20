@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -22,14 +23,8 @@ import retrofit2.http.*
 
 interface HotelServices {
 
-    @GET ("api/Hotel/all-hotels?")
-    suspend fun getAllHotel() : Response<GetAllHotel>
-
     @GET("api/Hotel/all-hotels")
     suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
-
-
-
 
     @GET
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
@@ -46,6 +41,12 @@ interface HotelServices {
     //Fetch description for a particular hotel
     @GET("api/Hotel/{hotelId}")
     suspend fun getHotelDescriptionResponse(@Path("hotelId") hotelId :String) : Response<HotelDescriptionResponse>
+
+    /**
+     * Search hotel by @location
+     * */
+    @GET("/api/Hotel/search/{location}")
+    suspend fun searchHotelLocation(@Path("location") location: String) : Response<HotelSearchResponse>
 
     @GET
     suspend fun getHotelAmenities() : Response<HotelAmenitiesResponse>

@@ -25,11 +25,5 @@ object ResetPasswordValidationFunctions {
         val matcher: Matcher = pattern.matcher(password)
         return matcher.matches()
     }
-    fun checkIfPassWordIsValid(string: String):Boolean {
-        if (string.length >= 8 ) {
-            return true
-        }
-        return false
-    }
 
 }

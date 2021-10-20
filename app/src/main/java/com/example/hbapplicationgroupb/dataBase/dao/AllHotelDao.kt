@@ -12,7 +12,8 @@ interface AllHotelDao {
 
 
     @Insert( onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addAllHotelsToDatabase(hotelList : List<HotelData>)
+    fun addAllHotelsToDatabase(hotelList : List<HotelData>)
+
 
     //Retrieve hotel with given id from room database
     @Query("SELECT * FROM hotel_detail WHERE id ==:hotelId")

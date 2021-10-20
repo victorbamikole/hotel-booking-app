@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
+import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,10 +20,12 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     private val roomViewModel : RoomViewModel by viewModels()
     val myAdapter = ExploreHomeAdapter()
     val myAdapter2 = ExploreHomeAdapter2()
+    private val UIViewModel: UIViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
+
 
         initViewModel()
         initViewModel2()
@@ -51,6 +54,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding.viewAllTopDeals.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
         }
+        UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
+            
+        })
     }
 
     //This function observes the TopHotels LiveData and populates the RecyclerView UI
@@ -61,7 +67,8 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
                 Log.d("Homefrag", "${it.data}")
                 myAdapter.notifyDataSetChanged()
                 binding.recyclerView.adapter = myAdapter
-
+               UIViewModel.addAllHotelsToDb(it.data)
+                Log.d("DATABASE", " ${it.data} ")
             }
              })
     }

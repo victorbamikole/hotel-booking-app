@@ -35,15 +35,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
-        roomViewModel.userLoginDetails.observe(viewLifecycleOwner, Observer {
+        roomViewModel.userLoginDetails.observe(viewLifecycleOwner,Observer {
 
             if (it.succeeded) {
                 lifecycleScope.launch {
                     findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                     Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_LONG).show()
                 }
-            }
-            else{
+            } else {
                 Toast.makeText(requireActivity(), "Invalid login details", Toast.LENGTH_LONG).show()
             }
         })
@@ -53,47 +52,54 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
         binding.btnLogin.setOnClickListener {
-<<<<<<< HEAD
             val usersEmail = binding.tvUserLoginEmail.text.toString().trim()
             val usersPassword = binding.tvUserPassword.text.toString().trim()
 
-            if(LoginValidation.validateEmailPattern(usersEmail)) {
+            if (LoginValidation.validateEmailPattern(usersEmail)) {
                 if (LoginValidation.validatePasswordPattern(usersPassword)) {
-                    roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
+                    roomViewModel.sendUserLoginDetailsToApi(
+                        PostLoginUserData(
+                            usersEmail,
+                            usersPassword
+                        )
+                    )
                     roomViewModel.userLoginDetails.observe(
                         viewLifecycleOwner, {
-                            if(it.succeeded) {
+                            if (it.succeeded) {
                                 findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                             }
                         }
                     )
+                } else {
+                    binding.regPasswordInput.error =
+                        "Password does not match with any email address"
                 }
-                else{
-                    binding.regPasswordInput.error = "Password does not match with any email address"
-                }
-=======
-            login()
+                login()
+            }
         }
-    }
 
+
+    }
     private fun login() {
         val usersEmail = binding.tvUserLoginEmail.text.toString().trim()
         val usersPassword = binding.tvUserPassword.text.toString().trim()
-        if(LoginValidation.validateEmailPattern(usersEmail)){
-            if (LoginValidation.validatePasswordPattern(usersPassword)){
-                roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
->>>>>>> 114f2fc33fd30a616b04a2da419305ae2a106126
+        if (LoginValidation.validateEmailPattern(usersEmail)) {
+            if (LoginValidation.validatePasswordPattern(usersPassword)) {
+                roomViewModel.sendUserLoginDetailsToApi(
+                    PostLoginUserData(
+                        usersEmail,
+                        usersPassword
+                    )
+                )
+            } else {
+                binding.regPasswordInput.error =
+                    "Password does not match with any email address"
             }
-            else{
-                binding.regPasswordInput.error = "Password does not match with any email address"
-            }
-        }
-        else{
+        } else {
             binding.regEmailInput.error = "Invalid email address"
         }
 
     }
-
 
     //Login button handler
 //    If the two text fields are empty, the login button will be disabled

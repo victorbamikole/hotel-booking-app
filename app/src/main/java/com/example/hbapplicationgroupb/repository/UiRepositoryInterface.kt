@@ -11,6 +11,7 @@ interface UiRepositoryInterface {
 
     //Fetches hotel with given id from room database
     fun getHotelByIdFromDatabase(hotelId :String) : LiveData<HotelData>
+    fun addAllHotelsToDb(hotelList : List<HotelData>)
 
 
 }

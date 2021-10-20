@@ -1,12 +1,14 @@
 package com.example.hbapplicationgroupb.repository
 
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -36,6 +38,10 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.userLoginDetails(userLoginDetails)
     }
 
+    override suspend fun searchHotelLocation(location: String): Response<HotelSearchResponse> {
+        return hotelServices.searchHotelLocation(location)
+    }
+
     override suspend fun registerAUser(userData: UserDataResponseItem
     ): Response<UserDataResponseItem> {
 
@@ -61,4 +67,8 @@ class ApiRepositoryImpl @Inject constructor (
     ): Response<AllTopHotels> {
         return hotelServices.getTopHotels(PageSize, PageNumber)
     }
+
+//    override suspend fun AddAllHotelsToDb(allHotels: ArrayList<HotelData>): Response<GetAllHotel> {
+//        return hote
+//    }
 }

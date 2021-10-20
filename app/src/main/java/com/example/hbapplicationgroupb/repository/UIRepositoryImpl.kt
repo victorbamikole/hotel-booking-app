@@ -16,4 +16,13 @@ class UIRepositoryImpl @Inject constructor(
         return db.allHotelsDao().getHotelFromDatabase(hotelId)
     }
 
+    override fun addAllHotelsToDb(hotelList: List<HotelData>) {
+        return db.allHotelsDao().addAllHotelsToDatabase(hotelList)
+    }
+
+
+//    override fun getAllHotels(pageSize: Int, currentPage: Int): LiveData<HotelData> {
+//        return db.allHotelsDao().addHotelsToDatabase(pageSize,currentPage)
+//    }
+
 }

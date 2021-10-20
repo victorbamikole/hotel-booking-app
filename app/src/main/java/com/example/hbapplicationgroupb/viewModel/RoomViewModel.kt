@@ -9,15 +9,14 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
-import com.example.hbapplicationgroupb.model.tophoteldata.HotelTopDealItems
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
-import com.example.hbapplicationgroupb.model.tophotelresponse.Data
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -59,6 +58,9 @@ class RoomViewModel @Inject constructor(
 
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
+
+   private var _hotelLocation: MutableLiveData<HotelSearchResponse> = MutableLiveData()
+   val hotelLocation: MutableLiveData<HotelSearchResponse> = _hotelLocation
 
 
 
@@ -204,6 +206,23 @@ class RoomViewModel @Inject constructor(
                _hotelDescription.postValue(null)
             }
          } catch (e: Exception) {
+            e.printStackTrace()
+         }
+      }
+   }
+
+   //fetch hotel location
+   fun searchHotelLocation(location: String) {
+      viewModelScope.launch(Dispatchers.IO){
+         try {
+             val response = apiRepository.searchHotelLocation(location)
+            if (response.isSuccessful){
+               val responseBody = response.body()
+               _hotelLocation.postValue(responseBody)
+            }else{
+               _hotelLocation.postValue(null)
+            }
+         }catch (e:Exception){
             e.printStackTrace()
          }
       }
