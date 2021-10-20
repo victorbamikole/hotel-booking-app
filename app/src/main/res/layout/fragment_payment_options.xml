@@ -130,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <View
-        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
+        android:id="@+id/fragment_paymentOptions_nextArrow_Icon"
         android:layout_width="30dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -165,7 +165,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_VISA_textView"
+        android:id="@+id/fragment_paymentOptions_Visa_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -177,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
     <View
-        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
+        android:id="@+id/fragment_paymentOptions_nextArrow_View"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -198,7 +198,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_Visa_textView" />
 
 
     <View
@@ -224,7 +224,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view12" />
 
     <View
-        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
+        android:id="@+id/fragment_paymentOptions_nextArrow_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -271,7 +271,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <View
-        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
+        android:id="@+id/fragment_paymentOptions_nextArrowDebit_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"

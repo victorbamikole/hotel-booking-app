@@ -120,7 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/fragment_bookingDetails_ChildrenText_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="In order to effectively use the xyz application, we collect some information to operate and provide support as regards services we provide"

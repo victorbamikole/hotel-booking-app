@@ -30,6 +30,14 @@ class RoomViewModel @Inject constructor(
    private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
 
+   var _adultCount : MutableLiveData<Int> = MutableLiveData(5)
+   var adultCount : LiveData<Int> = _adultCount
+
+   fun updateAdultCount (){
+      _adultCount.value = _adultCount.value!!.plus(1)
+   }
+
+
    //User Added
    val newUser: MutableLiveData<Response<UserDataResponseItem>> = MutableLiveData()
 
