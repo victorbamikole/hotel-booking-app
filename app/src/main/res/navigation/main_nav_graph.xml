@@ -144,6 +144,9 @@
         <action
             android:id="@+id/action_exploreFragment2_to_topDealsFragment"
             app:destination="@id/topDealsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_allHotelsFragment"
+            app:destination="@id/allHotelsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingHistoryFragment"
@@ -317,5 +320,20 @@
             app:destination="@id/bookingDetailsScreenFragment2"
             app:popUpTo="@id/bookingDetailsScreenFragment2"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allHotelsFragment"
+        android:name="com.example.hbapplicationgroupb.AllHotelsFragment"
+        android:label="fragment_all_hotels"
+        tools:layout="@layout/fragment_all_hotels" >
+        <action
+            android:id="@+id/action_allHotelsFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2" />
+        <action
+            android:id="@+id/action_allHotelsFragment_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
+        <action
+            android:id="@+id/action_allHotelsFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment" />
     </fragment>
 </navigation>

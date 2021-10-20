@@ -37,7 +37,8 @@ class TopHotelsAdapter() :
                 .into(topImage)
 
             "${topHotel.percentageRating}%".also { topPercent.text = it }
-           topHotel.price.toString() .also { topPrice.text = it }
+//           topHotel.price.toString() .also { topPrice.text = it }
+            topPrice.text = "$${topHotel.price}"
             description.text = topHotel.description
             topName.text = topHotel.name
         }
