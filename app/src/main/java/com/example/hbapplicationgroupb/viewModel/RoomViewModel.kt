@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -64,9 +65,13 @@ class RoomViewModel @Inject constructor(
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
+   private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
+   val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
+
 
    init {
       getTopHotels()
+      getAllHotels()
    }
 
 
@@ -203,6 +208,22 @@ class RoomViewModel @Inject constructor(
          }
       }
    }
+
+   fun getAllHotels(){
+      viewModelScope.launch {
+         try {
+             val response = apiRepository.fetchAllHotels(10,1)
+            if (response.isSuccessful){
+               _fetchAllHotelResponse.postValue(response)
+            }else{
+               _fetchAllHotelResponse.postValue(null)
+            }
+         }catch (e:Exception){
+            e.printStackTrace()
+         }
+      }
+   }
+
 
       //Fetch hotel description from api
       fun getHotelDescription(id: String) {

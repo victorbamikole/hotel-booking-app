@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -52,6 +53,11 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.getAllHotels(pageSize,currentPage)
     }
 
+    override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {
+        return hotelServices.fetchAllHotels(pageSize,currentPage)
+
+    }
+
     override suspend fun getTopDeals(): Response<TopDealsAndHotel> {
         return  hotelServices.getListOfTopDealsHotel()
     }
@@ -64,9 +70,6 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun getTopHotels(): Response<TopDealsAndHotel> {
         return hotelServices.getTopHotels()
     }
-
-
-
 
 
     override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
