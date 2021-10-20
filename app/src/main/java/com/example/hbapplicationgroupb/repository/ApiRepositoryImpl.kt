@@ -1,5 +1,7 @@
 package com.example.hbapplicationgroupb.repository
 
+import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -13,11 +15,13 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import retrofit2.Response
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor (
-    private val hotelServices: HotelServices
+    private val hotelServices: HotelServices,
+    private val db : HBDataBase
 ) : ApiRepositoryInterface {
 
     override suspend fun resetForgetPasswordEmail(email: String): Response<ForgotPasswordDataResponse> {
@@ -35,6 +39,7 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun userLoginDetails(userLoginDetails: PostLoginUserData): Response<LoginUserDataResponse> {
         return hotelServices.userLoginDetails(userLoginDetails)
     }
+
 
     override suspend fun registerAUser(userData: UserDataResponseItem
     ): Response<UserDataResponseItem> {
@@ -58,4 +63,12 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun getTopHotels(): Response<TopDealsAndHotel> {
         return hotelServices.getTopHotels()
     }
+
+
+
+
+
+    override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
+
+    override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 }

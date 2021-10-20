@@ -15,9 +15,9 @@ class TopDealsAdapter():
 
     lateinit var listener :SetItemClickListener
 
-    private var topDealAndHotels: List<TopDealAndHotelData> = listOf()
+    private var topDeals: List<TopDealAndHotelData> = listOf()
     fun populateTopDeals(list: List<TopDealAndHotelData>) {
-        this.topDealAndHotels = list
+        this.topDeals = list
         notifyDataSetChanged()
     }
 
@@ -63,18 +63,22 @@ class TopDealsAdapter():
     }
 
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
-        holder.populateTopDeals(topDealAndHotels[position])
+        holder.populateTopDeals(topDeals[position])
 
             holder.itemView.apply {
+
                 holder.topDealButton.setOnClickListener {
-                    findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
+                    val name = topDeals[position].name
+                    val action = TopDealsFragmentDirections
+                        .actionTopDealsFragmentToBookingDetailsScreenFragment2(name)
+                    findNavController().navigate(action)
                 }
 
             }
         }
 
         override fun getItemCount(): Int {
-            return topDealAndHotels.size
+            return topDeals.size
         }
 
     interface SetItemClickListener{
