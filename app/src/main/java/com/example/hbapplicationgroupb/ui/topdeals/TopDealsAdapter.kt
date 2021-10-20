@@ -50,7 +50,7 @@ class TopDealsAdapter():
             }
             topDealPrice.text = String.format("$${topDealsAndHotel.price}")
             topDealRating.text = topDealsAndHotel.name
-            topDealPercent.text = topDealsAndHotel.percentageRating.toString()
+            "${topDealsAndHotel.percentageRating}%".also { topDealPercent.text = it }
 
 
         }
