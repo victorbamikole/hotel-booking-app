@@ -77,9 +77,9 @@ class RoomViewModel @Inject constructor(
                   val response = apiRepository.registerAUser(userData)
                   if (response.isSuccessful) {
                      val responseBody = response.body()
-                     _newUser.postValue(responseBody)
-                  } else {
-                     _newUser.postValue(null)
+                          _newUser.postValue(responseBody)
+                  }else{
+                      _newUser.postValue(null)
                   }
 
                } catch (e: Exception) {
@@ -186,16 +186,6 @@ class RoomViewModel @Inject constructor(
 
             }
          }
-
-//   fun getTopDeals() {
-//
-//      viewModelScope.launch {
-//         try {
-//            val response = apiRepository.getTopDeals()
-//         }
-//      }
-//   }
-//
 
 
    fun getTopHotels() {

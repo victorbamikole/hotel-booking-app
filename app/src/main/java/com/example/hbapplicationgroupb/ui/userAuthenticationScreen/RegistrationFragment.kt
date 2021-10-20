@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.aminography.primedatepicker.utils.gone
@@ -19,6 +20,7 @@ import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -42,7 +44,7 @@ class RegistrationFragment : Fragment() {
 //        val progressBar = binding.fragmentRegistrationProgressBar
 //        progressBar.visibility = View.GONE
 
-        registrationResponseObserver()
+
         //Set click listener on login link
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
@@ -120,34 +122,38 @@ class RegistrationFragment : Fragment() {
             binding.registerProgressBar.visibility = View.VISIBLE
 
             viewModel.registerUser(userDataTest)
+            registrationResponseObserver()
+
+            val coverScreenTimeout = 5000
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.viewCover.visibility = View.GONE
+                binding.registerProgressBar.visibility = View.GONE
+
+            }, coverScreenTimeout.toLong())
+
         }
 
             binding.tvPrivacyPolicy.setOnClickListener {
                 findNavController()
                     .navigate(R.id.action_registrationFragment_to_privacyPolicyFragment)
             }
+
         }
 
     private fun registrationResponseObserver() {
 
         viewModel.newUser.observe(viewLifecycleOwner, {
-            binding.viewCover.visibility = View.GONE
-            binding.registerProgressBar.visibility = View.GONE
+            Log.d("registrationResponse", "registrationResponseObserver: $it ")
+            if (it != null) {
+                        binding.viewCover.visibility = View.GONE
+                        binding.registerProgressBar.visibility = View.GONE
+                        Toast.makeText(requireContext(), "Haleluyah", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_registrationFragment_to_registrationIsSuccessfulFragment)
 
-            if (it != null){
-                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                Log.d("yyyyyyyyyyyy", "registrationResponseObserver: ${it.message} and ${it.succeeded}")
-                if (it.succeeded){
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-
-                    findNavController().navigate(R.id.action_registrationFragment_to_registrationIsSuccessfulFragment)
                 }else{
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                }
+                    Toast.makeText(requireContext(), "it.message", Toast.LENGTH_SHORT).show()
+
             }
-
-
-
         })
 
     }
