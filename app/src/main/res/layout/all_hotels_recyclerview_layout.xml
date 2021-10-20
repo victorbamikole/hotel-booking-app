@@ -96,18 +96,18 @@
             tools:text="@string/_96" />
 
 
-        <ImageView
-            android:id="@+id/topDealRecyclerViewlike"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_baseline_thumb_up_24"
-            android:text="@string/_96"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
-            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealPercent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/topDealRecyclerViewlike"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginStart="28dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:src="@drawable/ic_baseline_thumb_up_24"-->
+<!--            android:text="@string/_96"-->
+<!--            android:textColor="@color/grey"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealPercent" />-->
 
 
         <TextView

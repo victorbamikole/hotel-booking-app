@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
+import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -31,6 +32,8 @@ interface ApiRepositoryInterface {
     suspend fun getHotelDescriptionResponse(id :String) : Response<HotelDescriptionResponse>
 
     suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel>
+    suspend fun fetchAllHotels(pageSize:Int,currentPage:Int): Response<AllHotel>
+
     suspend fun getTopDeals(): Response<TopDealsAndHotel>
     suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
     suspend fun getTopHotels() : Response<TopDealsAndHotel>
