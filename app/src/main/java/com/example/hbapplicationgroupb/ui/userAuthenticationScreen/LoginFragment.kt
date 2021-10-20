@@ -62,8 +62,26 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
         binding.btnLogin.setOnClickListener {
+            val usersEmail = binding.tvUserLoginEmail.text.toString().trim()
+            val usersPassword = binding.tvUserPassword.text.toString().trim()
+
+            if(LoginValidation.validateEmailPattern(usersEmail)) {
+                if (LoginValidation.validatePasswordPattern(usersPassword)) {
+                    roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
+                    roomViewModel.userLoginDetails.observe(
+                        viewLifecycleOwner, {
+                            if(it.succeeded) {
+                                findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+                            }
+                        }
+                    )
+                }
+                else{
+                    binding.regPasswordInput.error = "Password does not match with any email address"
+                }
             login()
         }
+    }
     }
 
 

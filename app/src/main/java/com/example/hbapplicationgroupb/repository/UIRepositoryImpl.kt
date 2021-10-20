@@ -14,5 +14,4 @@ class UIRepositoryImpl @Inject constructor(
     override fun getHotelByIdFromDatabase(hotelId: String): LiveData<HotelData> {
         return db.allHotelsDao().getHotelFromDatabase(hotelId)
     }
-
 }

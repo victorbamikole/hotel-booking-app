@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.RecyclerviewRowBinding
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDealData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 
 class ExploreHomeAdapter2() :
     RecyclerView.Adapter<ExploreHomeAdapter2.HotelsViewHolder>() {
 
-    private var hotels: List<TopDealData> = listOf()
-    fun populateTopDeals(list: List<TopDealData>) {
+    private var hotels: List<TopDealAndHotelData> = listOf()
+    fun populateTopDeals(list: List<TopDealAndHotelData>) {
         this.hotels = list
         notifyDataSetChanged()
     }
@@ -25,12 +25,12 @@ class ExploreHomeAdapter2() :
         val hotelName = binding.hotelName
         val hotelPrice = binding.hotelPrice
 
-        fun populateTopDeals(topDeals: TopDealData) {
+        fun populateTopDeals(topDealsAndHotel: TopDealAndHotelData) {
             Glide.with(itemView)
-                .load(topDeals.thumbnail)
+                .load(topDealsAndHotel.thumbnail)
                 .into(hotelImage)
-            hotelName.text = topDeals.name
-            hotelPrice.text = topDeals.price.toString()//.price
+            hotelName.text = topDealsAndHotel.name
+            hotelPrice.text = topDealsAndHotel.price.toString()//.price
         }
 
     }

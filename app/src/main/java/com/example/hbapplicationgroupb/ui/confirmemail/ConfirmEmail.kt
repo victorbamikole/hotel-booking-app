@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.ui.confirmemail
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,6 +17,8 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
     private lateinit var binding:FragmentConfirmEmailBinding
     private val roomViewModel: RoomViewModel by viewModels()
     private lateinit var emailAndToken:ConfirmEmailAddress
+//    private val args:ConfirmEmailArgs by navArgs()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,6 +32,8 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
                 email = userEmail,
                 token = userToken
             )
+        Toast.makeText(requireContext(),"email and token is $emailAndToken",Toast.LENGTH_SHORT)
+            .show()
 
         roomViewModel.confirmEmailAddress(emailAndToken)
 

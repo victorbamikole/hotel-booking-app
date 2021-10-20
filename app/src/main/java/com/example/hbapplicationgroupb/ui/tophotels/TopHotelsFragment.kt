@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -22,7 +23,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
    private var _binding: FragmentTopHotelsBinding? = null
     private val binding  get() = _binding!!
     private val roomViewModel : RoomViewModel by viewModels()
-    private val uiViewModel: UIViewModel by viewModels()
+//    private val uiViewModel: UIViewModel by viewModels()
     val myAdapter = TopHotelsAdapter()
 
 
@@ -33,6 +34,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
         initializeViewModel()
 
+        roomViewModel.getTopHotels()
 
         binding.topHotelsRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 
@@ -62,7 +64,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
 
         myAdapter.topHotelClickListener(object : TopHotelClickListener{
-            override fun onItemSelected(position: Int, item: TopHotelData) {
+            override fun onItemSelected(position: Int, item: TopDealAndHotelData) {
                 val id = item.id
                 val price = item.price.toString()
                 findNavController()
@@ -77,7 +79,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
             }
 
-            override fun bookNow(position: Int, item: TopHotelData) {
+            override fun bookNow(position: Int, item: TopDealAndHotelData) {
 
                 val name = item.name
                 val action =TopHotelsFragmentDirections

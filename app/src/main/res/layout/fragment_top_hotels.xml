@@ -120,7 +120,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:listitem="@layout/top_hotel_layout_rv" />
+                tools:listitem="@layout/top_hotels_recyclerview" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
