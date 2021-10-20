@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
 import com.example.hbapplicationgroupb.model.topdealsnew.TopDealData
+import com.example.hbapplicationgroupb.ui.tophotels.TopHotelsFragmentDirections
 
 class TopDealsAdapter():
     RecyclerView.Adapter<TopDealsAdapter.DealsViewHolder>(){
@@ -66,8 +67,12 @@ class TopDealsAdapter():
         holder.populateTopDeals(topDeals[position])
 
             holder.itemView.apply {
+
                 holder.topDealButton.setOnClickListener {
-                    findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsScreenFragment2)
+                    val name = topDeals[position].name
+                    val action = TopDealsFragmentDirections
+                        .actionTopDealsFragmentToBookingDetailsScreenFragment2(name)
+                    findNavController().navigate(action)
                 }
 
             }
