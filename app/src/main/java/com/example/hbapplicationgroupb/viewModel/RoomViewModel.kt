@@ -84,7 +84,7 @@ class RoomViewModel @Inject constructor(
                      val responseBody = response.body()
                           _newUser.postValue(responseBody)
                   }else{
-                      _newUser.postValue(null)
+                      _newUser.postValue(response.body())
                   }
 
                } catch (e: Exception) {

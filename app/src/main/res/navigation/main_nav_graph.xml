@@ -323,6 +323,8 @@
         <action
             android:id="@+id/action_allHotelsFragment_to_hotelDescriptionFragment"
             app:destination="@id/hotelDescriptionFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/confirmEmail"
         android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
         android:label="fragment_confirm_email"

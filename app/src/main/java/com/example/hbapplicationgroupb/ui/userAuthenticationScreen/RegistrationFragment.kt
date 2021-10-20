@@ -143,16 +143,17 @@ class RegistrationFragment : Fragment() {
     private fun registrationResponseObserver() {
 
         viewModel.newUser.observe(viewLifecycleOwner, {
-            Log.d("registrationResponse", "registrationResponseObserver: $it ")
             if (it != null) {
-                        binding.viewCover.visibility = View.GONE
-                        binding.registerProgressBar.visibility = View.GONE
-                        Toast.makeText(requireContext(), "Haleluyah", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_registrationFragment_to_registrationIsSuccessfulFragment)
-
+                if (it.succeeded){
+                    binding.viewCover.visibility = View.GONE
+                    binding.registerProgressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_registrationFragment_to_registrationIsSuccessfulFragment)
                 }else{
-                    Toast.makeText(requireContext(), "it.message", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+                }else{
+                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
             }
         })
 
