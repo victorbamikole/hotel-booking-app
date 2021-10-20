@@ -70,7 +70,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             allHotelsFragmentBackAroow.setOnClickListener {
                 findNavController()
-                    .navigate(R.id.action_topHotelsFragment_to_exploreFragment2)
+                    .navigate(R.id.action_allHotelsFragment_to_exploreFragment2)
             }
 
 

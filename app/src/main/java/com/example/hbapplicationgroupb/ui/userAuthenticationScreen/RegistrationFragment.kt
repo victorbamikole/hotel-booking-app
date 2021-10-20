@@ -165,18 +165,20 @@ class RegistrationFragment : Fragment() {
 
         viewModel.newUser.observe(viewLifecycleOwner, {
             if (it != null) {
-                if (it.succeeded) {
+                if (it.succeeded){
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     val action = RegistrationFragmentDirections
                         .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
                     findNavController().navigate(action)
-                } else {
+                }else{
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
                 }
+                }else{
+                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
             }
         })
 

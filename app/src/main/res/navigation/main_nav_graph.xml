@@ -275,8 +275,7 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
-            app:popUpTo="@id/exploreFragment2"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/exploreFragment2" />
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />
