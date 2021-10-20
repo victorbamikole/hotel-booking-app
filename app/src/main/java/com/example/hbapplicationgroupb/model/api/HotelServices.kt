@@ -36,8 +36,7 @@ interface HotelServices {
 
     @GET("api/Hotel/top-hotels")
     suspend fun getTopHotels(
-        @Query("PageSize") PageSize: Int,
-        @Query("PageNumber") PageNumber:Int
+        @Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int
     ) : Response<AllTopHotels>
 
     @GET("api/Hotel/top-deals")
