@@ -65,9 +65,6 @@ class ApiRepositoryImpl @Inject constructor (
     }
 
 
-
-
-
     override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
