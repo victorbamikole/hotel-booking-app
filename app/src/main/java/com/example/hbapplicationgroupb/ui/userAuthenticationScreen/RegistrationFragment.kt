@@ -18,6 +18,7 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.validation.RegistrationValidation
+import com.example.hbapplicationgroupb.validation.ResetPasswordValidationFunctions
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,6 +29,7 @@ class RegistrationFragment : Fragment() {
     private lateinit var _binding: FragmentRegistrationBinding
     private val binding get() = _binding
     private val viewModel: RoomViewModel by viewModels()
+    private  lateinit var userDataTest:UserDataResponseItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,20 +52,20 @@ class RegistrationFragment : Fragment() {
             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
         }
         binding.editTextRegUserAge.setText("0")
-
+        registrationResponseObserver()
         binding.btnRegister.setOnClickListener {
 
-            val firstName = binding.editTextViewRegUsername.text.toString()
-            val lastName = binding.editTextUserLastName.text.toString()
-            val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString()
-            val gender = binding.editTextRegUserGender.text.toString()
-            val email = binding.editTextRegUserEmail.text.toString()
-            val password = binding.editTextRegUserPassword.text.toString()
+            val firstName = binding.editTextViewRegUsername.text.toString().trim()
+            val lastName = binding.editTextUserLastName.text.toString().trim()
+            val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString().trim()
+            val gender = binding.editTextRegUserGender.text.toString().trim()
+            val email = binding.editTextRegUserEmail.text.toString().trim()
+            val password = binding.editTextRegUserPassword.text.toString().trim()
             val radioButton = binding.btnRadio
             val age = binding.editTextRegUserAge.text.toString().toInt()
-            val userName = binding.editTextUserUserName.text.toString()
+            val userName = binding.editTextUserUserName.text.toString().trim()
 
-            val userDataTest = UserDataResponseItem(
+        userDataTest = UserDataResponseItem(
                 firstName, lastName, email,
                 userName, password, phoneNumber, gender, age
             )
@@ -105,9 +107,30 @@ class RegistrationFragment : Fragment() {
             }
 
 
-            if (!RegistrationValidation.validatePassword(password)) {
-                binding.editTextRegUserPassword.error = "Enter a valid password"
-                binding.editTextRegUserPassword.isFocusable
+            if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(password) != 0) {
+                when(ResetPasswordValidationFunctions.checkIfPassWordIsValid(password)){
+                    1 -> {
+                        binding.editTextRegUserPassword.error = "password must be more than 8"
+                        binding.editTextRegUserPassword.isFocusable
+                    }
+                    2 -> {
+                        binding.editTextRegUserPassword.error = "password must contain number"
+                        binding.editTextRegUserPassword.isFocusable
+                    }
+                    3 -> {
+                        binding.editTextRegUserPassword.error = "password must contain special character"
+                        binding.editTextRegUserPassword.isFocusable
+                    }
+                    4 -> {
+                        binding.editTextRegUserPassword.error = "password must contain at least 1 lowercase alphabet"
+                        binding.editTextRegUserPassword.isFocusable
+                    }
+                    5 -> {
+                        binding.editTextRegUserPassword.error = "password must contain at least 1 uppercase alphabet"
+                        binding.editTextRegUserPassword.isFocusable
+                    }
+                }
+
                 return@setOnClickListener
             }
 
@@ -122,7 +145,7 @@ class RegistrationFragment : Fragment() {
             binding.registerProgressBar.visibility = View.VISIBLE
 
             viewModel.registerUser(userDataTest)
-            registrationResponseObserver()
+
 
             val coverScreenTimeout = 5000
             Handler(Looper.getMainLooper()).postDelayed({
@@ -148,7 +171,9 @@ class RegistrationFragment : Fragment() {
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_registrationFragment_to_registrationIsSuccessfulFragment)
+                    val action = RegistrationFragmentDirections
+                        .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
+                    findNavController().navigate(action)
                 }else{
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }

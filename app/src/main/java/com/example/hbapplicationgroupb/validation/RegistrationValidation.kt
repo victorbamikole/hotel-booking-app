@@ -37,8 +37,8 @@ object RegistrationValidation {
 
 
     fun validatePassword(password: String) : Boolean {
-        val passwordPattern = "^(?=.[0-9])(?=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{4,}$".toRegex()
-        if (password.matches(passwordPattern)||password.isNotEmpty()){
+        val passwordPattern = "^(?=.*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9])(?=.*[a-z]).{8}\$\n".toRegex()
+        if (password.matches(passwordPattern)&&password.isNotEmpty()){
             return true
         }
         return false
