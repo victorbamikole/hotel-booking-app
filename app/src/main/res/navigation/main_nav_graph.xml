@@ -50,8 +50,7 @@
         <action
             android:id="@+id/action_loginFragment_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -149,6 +148,11 @@
         <action
             android:id="@+id/action_exploreFragment2_to_allHotelsFragment"
             app:destination="@id/allHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingHistoryFragment"

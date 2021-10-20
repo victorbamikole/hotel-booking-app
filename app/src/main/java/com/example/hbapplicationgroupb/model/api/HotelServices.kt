@@ -36,10 +36,6 @@ interface HotelServices {
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
 
     @GET("api/Hotel/top-hotels")
-    suspend fun getTopHotels(
-        @Query("PageSize") PageSize: Int, @Query("PageNumber") PageNumber:Int
-    ) : Response<AllTopHotels>
-//    suspend fun getTopHotels() : Response<AllTopHotels>
     suspend fun getTopHotels() : Response<TopDealsAndHotel>
 
     @GET("api/Hotel/top-deals")

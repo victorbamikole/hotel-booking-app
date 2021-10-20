@@ -13,8 +13,9 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationIsSuccessfulBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragmentArgs
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegistrationIsSuccessfulFragment : Fragment(R.layout.fragment_registration_is_successful) {
     private lateinit var binding:FragmentRegistrationIsSuccessfulBinding
     private val safeArgs : RegistrationIsSuccessfulFragmentArgs by navArgs()
