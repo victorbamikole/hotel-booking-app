@@ -15,6 +15,25 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/emailiconsucess"
         />
+    <View
+        android:id="@+id/viewCover"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_grey"
+        android:elevation="100dp"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/registerProgressBar"
+        android:elevation="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,13 +80,24 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resendMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resend_email"
+            android:padding="10dp"
+            android:background="@drawable/custom_drawable_shadow"
+            android:textSize="15sp"
+            android:textColor="@color/custom_orange"
+            />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goToLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:text="@string/resend_email"
+        android:text="@string/go_back_to_home"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp"

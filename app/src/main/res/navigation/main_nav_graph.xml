@@ -245,7 +245,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_profileFragment2_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"
@@ -341,11 +343,13 @@
         android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationIsSuccessfulFragment"
         android:label="fragment_registration_is_successful"
         tools:layout="@layout/fragment_registration_is_successful" >
-        <action
-            android:id="@+id/action_registrationIsSuccessfulFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
         <argument
             android:name="userData"
             app:argType="com.example.hbapplicationgroupb.model.userData.UserDataResponseItem" />
+        <action
+            android:id="@+id/action_registrationIsSuccessfulFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
