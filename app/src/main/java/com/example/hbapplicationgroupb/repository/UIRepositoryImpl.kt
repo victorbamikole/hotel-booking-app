@@ -3,8 +3,8 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
-import retrofit2.Response
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+
 import javax.inject.Inject
 
 class UIRepositoryImpl @Inject constructor(
@@ -13,11 +13,15 @@ class UIRepositoryImpl @Inject constructor(
 
     //Fetch hotel with given id from room database
     override fun getHotelByIdFromDatabase(hotelId: String): LiveData<HotelData> {
-        return db.allHotelsDao().getHotelFromDatabase(hotelId)
+        return db.addAllHotelsToDatabase().getHotelFromDatabase(hotelId)
     }
 
-    override fun addAllHotelsToDb(hotelList: List<HotelData>) {
-        return db.allHotelsDao().addAllHotelsToDatabase(hotelList)
+//    override fun addAllHotelsToDb(hotelList: List<TopDealAndHotelData>) {
+//        return db.addAllHotelsToDatabase().addAllHotelsToDatabase(hotelList)
+//    }
+
+    override fun insertAllHotelsToDb(hotelList: ArrayList<TopDealAndHotelData>) {
+        return db.addAllHotelsToDatabase().addAllHotelsToDb(hotelList)
     }
 
 

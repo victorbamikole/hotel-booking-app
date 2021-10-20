@@ -6,13 +6,17 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 
 @Dao
 interface AllHotelDao {
 
 
+//    @Insert( onConflict = OnConflictStrategy.REPLACE)
+//    fun addAllHotelsToDatabase(hotelList: List<TopDealAndHotelData>)
+
     @Insert( onConflict = OnConflictStrategy.REPLACE)
-    fun addAllHotelsToDatabase(hotelList : List<HotelData>)
+    fun addAllHotelsToDb(hotelList: ArrayList<TopDealAndHotelData>)
 
 
     //Retrieve hotel with given id from room database

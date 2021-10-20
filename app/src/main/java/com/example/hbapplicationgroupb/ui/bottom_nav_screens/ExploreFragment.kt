@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
-import com.example.hbapplicationgroupb.model.allHotels.HotelData
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,9 +30,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         initViewModel()
         initViewModel2()
         //Fetch All Hotels From APi
-        roomViewModel.getAllHotels(10,1)
+        roomViewModel.getTopHotels()
         //Fetch Top Deals From APi
-        roomViewModel.getTopDeals(10, 1)
+        roomViewModel.getTopDeals()
 
         //Inflate the top hotels recycler view layout to the fragment class
         binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -61,13 +61,13 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     //This function observes the TopHotels LiveData and populates the RecyclerView UI
     private fun initViewModel() {
-        roomViewModel.allHotelsList.observe(viewLifecycleOwner,{
+        roomViewModel.topHotels.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter.populateHotels(it.data)
                 Log.d("Homefrag", "${it.data}")
                 myAdapter.notifyDataSetChanged()
                 binding.recyclerView.adapter = myAdapter
-               UIViewModel.addAllHotelsToDb(it.data)
+               UIViewModel.insertAllHotelsToDb(it.data as ArrayList<TopDealAndHotelData>)
                 Log.d("DATABASE", " ${it.data} ")
             }
              })

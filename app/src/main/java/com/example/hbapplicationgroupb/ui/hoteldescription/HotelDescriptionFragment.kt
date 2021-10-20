@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentHotelDescriptionBinding
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.RoomsViewPagerAdapter
+import com.example.hbapplicationgroupb.ui.topdeals.TopDealsFragmentDirections
 import com.example.hbapplicationgroupb.util.HorizontalMarginDecorationForViewPager
 import com.example.hbapplicationgroupb.util.getListOfHotelImages
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -36,8 +38,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         setUpViewPagerTransition()
 
         binding.bookNowButton.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_hotelDescriptionFragment_to_bookingDetailsScreenFragment2)
+            val name = binding.HotelName.text.toString()
+            val action = HotelDescriptionFragmentDirections
+                .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(name)
+            findNavController().navigate(action)
         }
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
             binding.addStarRatingContainer.setOnClickListener {

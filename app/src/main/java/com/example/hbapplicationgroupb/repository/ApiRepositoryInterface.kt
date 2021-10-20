@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.repository
 
+import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -11,9 +12,13 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topdealsnew.TopDeals
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+
 import retrofit2.Response
 
 
@@ -28,15 +33,19 @@ interface ApiRepositoryInterface {
     suspend fun getHotelDescriptionResponse(id :String) : Response<HotelDescriptionResponse>
 
     suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel>
-    suspend fun getTopDeals(pageSize: Int, pageNumber:Int): Response<TopDeals>
+    suspend fun getTopDeals(): Response<TopDealsAndHotel>
     suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
-    suspend fun getTopHotels(PageSize: Int, PageNumber:Int) : Response<AllTopHotels>
-
+    suspend fun getTopHotels() : Response<TopDealsAndHotel>
     suspend fun userLoginDetails(userLoginDetails : PostLoginUserData) : Response<LoginUserDataResponse>
 
     suspend fun searchHotelLocation(location: String) : Response<HotelSearchResponse>
 
     //fetching data into Database
 //    suspend fun AddAllHotelsToDb(allHotels: ArrayList<HotelData>): Response<GetAllHotel>
+
+
+    suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>)
+
+    fun getAllTopHotels() : LiveData<List<TopHotelData>>
 
 }

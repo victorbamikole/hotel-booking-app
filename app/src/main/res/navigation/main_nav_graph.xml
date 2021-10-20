@@ -75,7 +75,6 @@
         tools:layout="@layout/fragment_reset_password">
         <deepLink
             android:id="@+id/deepLink"
-            app:action="ACTION_VIEW"
             app:uri="http://www.example.com/reset-password/{token}/{email}" />
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
@@ -238,6 +237,9 @@
             app:destination="@id/exploreFragment2"
             app:popUpTo="@id/exploreFragment2"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"
@@ -266,6 +268,9 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />
+        <argument
+            android:name="hotelName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"
@@ -285,20 +290,6 @@
             app:destination="@id/bookingDetailsScreenFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/confirmEmail"
-        android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
-        android:label="fragment_confirm_email"
-        tools:layout="@layout/fragment_confirm_email">
-        <deepLink
-            android:id="@+id/deepLink2"
-            app:action="ACTION_VIEW"
-            app:uri="http://www.example.com/confirm-email/{emailConfirmationToken}/{emailConfirmation}" />
-        <action
-            android:id="@+id/action_confirmEmail_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
         android:id="@+id/paymentCheckoutFragment"
         android:name="com.example.hbapplicationgroupb.ui.paymentcheckout.PaymentCheckoutFragment"
         android:label="fragment_payment_checkout"
@@ -311,5 +302,17 @@
             app:destination="@id/bookingDetailsScreenFragment2"
             app:popUpTo="@id/bookingDetailsScreenFragment2"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmEmail"
+        android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
+        android:label="fragment_confirm_email"
+        tools:layout="@layout/fragment_confirm_email">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="http://www.example.com/confirm-email/{emailConfirmationToken}/{emailConfirmation}" />
+        <action
+            android:id="@+id/action_confirmEmail_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
