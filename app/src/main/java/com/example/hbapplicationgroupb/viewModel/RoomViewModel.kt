@@ -18,6 +18,7 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.Resource
@@ -33,7 +34,8 @@ class RoomViewModel @Inject constructor(
 ) : ViewModel() {
 
    //User Added
-   val newUser: MutableLiveData<Response<UserDataResponseItem>> = MutableLiveData()
+  private val _newUser: MutableLiveData<UserDataResponse> = MutableLiveData()
+   val newUser:LiveData<UserDataResponse> = _newUser
 
    //Hotel description livedata
    private val _hotelDescription: MutableLiveData<HotelDescriptionData> = MutableLiveData()
@@ -79,9 +81,10 @@ class RoomViewModel @Inject constructor(
                try {
                   val response = apiRepository.registerAUser(userData)
                   if (response.isSuccessful) {
-                     newUser.value = response
-                  } else {
-                     newUser.value = null
+                     val responseBody = response.body()
+                          _newUser.postValue(responseBody)
+                  }else{
+                      _newUser.postValue(response.body())
                   }
 
                } catch (e: Exception) {
@@ -188,7 +191,6 @@ class RoomViewModel @Inject constructor(
 
             }
          }
-
 
 
    fun getTopHotels() {

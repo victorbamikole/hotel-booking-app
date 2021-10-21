@@ -51,10 +51,30 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                         binding.tvResetPassword.error = "password does not match"
                         binding.tvConfirmPassword.error = "password does not match"
                     }
-                }else if (ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==1){
+                }else {
+                    when(ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())){
+                        1 -> {
+                            binding.tvResetPassword.error = "password must be more than 8"
+                            binding.tvResetPassword.isFocusable
+                        }
+                        2 -> {
+                            binding.tvResetPassword.error = "password must contain number"
+                            binding.tvResetPassword.isFocusable
+                        }
+                        3 -> {
+                            binding.tvResetPassword.error = "password must contain special character"
+                            binding.tvResetPassword.isFocusable
+                        }
+                        4 -> {
+                            binding.tvResetPassword.error = "password must contain at least 1 lowercase alphabet"
+                            binding.tvResetPassword.isFocusable
+                        }
+                        5 -> {
+                            binding.tvResetPassword.error = "password must contain at least 1 uppercase alphabet"
+                            binding.tvResetPassword.isFocusable
+                        }
+                    }
                     binding.tvResetPassword.error = "password must be more than six characters"
-                }else if(ResetPasswordValidationFunctions.checkIfPassWordIsValid(binding.tvResetPassword.text.toString())==2){
-                    binding.tvResetPassword.error = "password must contain number, letter and special characters"
                 }
 
             }else{

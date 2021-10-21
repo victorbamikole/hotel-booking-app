@@ -40,10 +40,6 @@ class ViewPagerFragmentTest{
         onView(withId(R.id.onboardingViewPager)).perform(swipeRight())
     }
 
-//        @Test
-//        fun on_click_performs_action() {
-//            onView(withId(R.id.btn_next)).perform(ViewActions.click())
-//            onView(withId(R.id.btn_skip)).perform(ViewActions.click())
-//        }
+
 
 }
