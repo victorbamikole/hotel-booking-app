@@ -33,6 +33,69 @@ class RoomViewModel @Inject constructor(
    private val apiRepository : ApiRepositoryInterface,private val db: HBDataBase
 ) : ViewModel() {
 
+
+   /**Live data for Adult*/
+   private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
+   val numAdults : LiveData<Int> = _numAdults
+
+
+   /**Live data for Teens*/
+   private var _numTeens : MutableLiveData<Int> = MutableLiveData(0)
+   val numTeens : LiveData<Int> =  _numTeens
+
+
+   /**Live data for Children*/
+   private var _numChildren : MutableLiveData<Int> = MutableLiveData(0)
+   val numChildren: LiveData<Int> =  _numChildren
+
+
+   /**Live data for Infants*/
+   private var _numInfant:MutableLiveData<Int> = MutableLiveData(0)
+   val numInfant:LiveData<Int> = _numInfant
+
+
+
+
+   /**Update Adult count*/
+   fun addToAdultCount () {
+      _numAdults.value = _numAdults.value!!.plus(1)
+   }
+
+   fun subtractFromAdultCount () {
+      _numAdults.value = _numAdults.value!!.minus(1)
+   }
+
+
+
+   /**Update Teens count*/
+   fun addToTeensCount () {
+      _numTeens.value = _numTeens.value!!.plus(1)
+   }
+
+   fun subtractFromTeensCount () {
+      _numTeens.value = _numTeens.value!!.minus(1)
+   }
+
+
+   /**Update Children count*/
+   fun addToChildrenCount () {
+      _numChildren.value = _numChildren.value!!.plus(1)
+   }
+
+   fun subtractFromChildrenCount () {
+      _numChildren.value = _numChildren.value!!.minus(1)
+   }
+
+
+   /**Update Infant count*/
+   fun addToInfantCount (){
+      _numInfant.value = _numInfant.value!!.plus(1)
+   }
+   fun subtractFromInfantCount (){
+      _numInfant.value = _numInfant.value!!.minus(1)
+   }
+
+
    //User Added
   private val _newUser: MutableLiveData<UserDataResponse> = MutableLiveData()
    val newUser:LiveData<UserDataResponse> = _newUser

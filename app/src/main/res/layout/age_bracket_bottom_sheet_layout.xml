@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        android:id="@+id/fragment_bookingDetails_CancelText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -23,7 +23,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_done_textView"
+        android:id="@+id/fragment_booking_details_doneText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -42,11 +42,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_CancelText_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_GooglePay_textView"
+        android:id="@+id/fragment_bookingDetails_AdultsText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -55,7 +55,7 @@
         android:textColor="@color/OffBlack"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_CancelText_textView" />
 
     <TextView
         android:id="@+id/fragment_booking_details_16_plus_years_Textview"
@@ -65,10 +65,10 @@
         android:layout_marginTop="5dp"
         android:text="@string/_16_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_GooglePay_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_AdultsText_textView" />
 
     <View
-        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
+        android:id="@+id/fragment_bookingDetails_AddAdults_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -78,24 +78,24 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <View
-        android:id="@+id/fragment_booking_details_room1_countButton_subtract"
+        android:id="@+id/fragment_booking_details_subtractAdults_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
         android:background="@drawable/ic_baseline_remove_circle_24"
         android:backgroundTint="@color/custom_dark_ash"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_room1_count_TextView"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_booking_details_Adult_count_TextView"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
-        android:id="@+id/fragment_booking_details_room1_count_TextView"
+        android:id="@+id/fragment_booking_details_Adult_count_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="1"
+        android:text="0"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_bookingDetails_AddAdults_Icon"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
@@ -112,7 +112,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_VISA_textView"
+        android:id="@+id/fragment_bookingDetails_TeensText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -130,33 +130,34 @@
         android:layout_marginLeft="16dp"
         android:text="@string/_12_15_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_TeensText_textView" />
 
 
     <View
+        android:id="@+id/fragment_bookingDetails_SubtractTeens_View"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
         android:background="@drawable/ic_baseline_remove_circle_24"
         android:backgroundTint="@color/custom_dark_ash"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_bookingDetails_teensCount_textView"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/fragment_bookingDetails_teensCount_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="1"
+        android:text="0"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_BookingDetails_AddTeens_View"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
     <View
-        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
+        android:id="@+id/fragment_BookingDetails_AddTeens_View"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -178,7 +179,7 @@
 
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/fragment_bookingDetails_ChildrenText_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -196,33 +197,34 @@
         android:layout_marginLeft="16dp"
         android:text="@string/_2_11_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_ChildrenText_textView" />
 
 
     <View
+        android:id="@+id/fragment_bookingDetails_SubtractChildren_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
         android:background="@drawable/ic_baseline_remove_circle_24"
         android:backgroundTint="@color/custom_dark_ash"
-        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_bookingDetails_ChildrenCount_textView"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/fragment_bookingDetails_ChildrenCount_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="1"
+        android:text="0"
         android:textColor="@color/black"
         android:textSize="29sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_bookingDetails_AddChildren_view"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
 
     <View
-        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
+        android:id="@+id/fragment_bookingDetails_AddChildren_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -234,7 +236,7 @@
     <View
         android:id="@+id/view5"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_margin="15dp"
         android:background="@color/custom_dark_ash"
         app:layout_constraintEnd_toEndOf="parent"
@@ -244,7 +246,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_DebitCard_TextView"
+        android:id="@+id/fragment_BookingDetails_InfantText_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -261,33 +263,34 @@
         android:layout_marginLeft="16dp"
         android:text="@string/under_2_years"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_DebitCard_TextView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_BookingDetails_InfantText_TextView" />
 
 
     <View
+        android:id="@+id/fragment_BookingDetails_SubtractInfants_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
         android:background="@drawable/ic_baseline_remove_circle_24"
         android:backgroundTint="@color/custom_dark_ash"
-        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_BookingDetails_InfantsCount_textView"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/fragment_BookingDetails_InfantsCount_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="0"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_BookingDetails_AddInfants_view"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 
 
     <View
-        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
+        android:id="@+id/fragment_BookingDetails_AddInfants_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"

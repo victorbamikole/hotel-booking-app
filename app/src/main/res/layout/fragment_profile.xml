@@ -199,7 +199,7 @@
     <!--    Privacy and Policy-->
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        android:id="@+id/fragment_bookingDetails_Cancel_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -216,7 +216,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:src="@drawable/ic_arrow_forward"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_bookingDetails_Cancel_textView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <View
@@ -228,7 +228,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/custom_dark_ash"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Cancel_textView" />
 
     <!--    Log out-->
     <TextView

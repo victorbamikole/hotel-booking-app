@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_AmountToBePaid_textView"
+        android:id="@+id/fragment_bookingDetails_Cancel_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -47,11 +47,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_AmountToBePaid_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Cancel_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_GooglePay_textView"
+        android:id="@+id/fragment_bookingDetails_Adults_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <RadioButton
-        android:id="@+id/fragment_paymentOptions_GooglePayNextArrow_Icon"
+        android:id="@+id/fragment_bookingDetails_AddAdults_Icon"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -82,11 +82,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_GooglePay_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Adults_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_VISA_textView"
+        android:id="@+id/fragment_bookingDetails_Teens_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -98,7 +98,7 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_paymentOptions_VISA_NextArrow_Icon"
+        android:id="@+id/fragment_BookingDetails_AddTeens_View"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -118,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_VISA_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Teens_textView" />
 
 
     <TextView
@@ -134,7 +134,7 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_paymentOptions_MasterCardNextArrow_Icon"
+        android:id="@+id/fragment_bookingDetails_AddChildren_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
@@ -169,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <RadioButton
-        android:id="@+id/fragment_paymentOptions_DebitCardNextArrow_icon"
+        android:id="@+id/fragment_BookingDetails_AddInfants_view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
