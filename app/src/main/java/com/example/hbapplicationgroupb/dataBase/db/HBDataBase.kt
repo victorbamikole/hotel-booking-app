@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupb.model.allHotels.HotelData
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListItem
 import com.example.hbapplicationgroupb.model.hotelAmenities.GetHotelAmenitiesItem
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataItem
 import com.example.hbapplicationgroupb.util.HotelTypeConverter
@@ -19,12 +20,13 @@ import com.example.hbapplicationgroupb.util.HotelTypeConverter
     CustomerWishListItem::class,
     GetHotelAmenitiesItem::class,
     TopHotelData::class,
+    TopDealAndHotelData::class,
     UserHotelDataItem::class], version = 1, exportSchema = false)
 
 @TypeConverters(HotelTypeConverter::class)
 abstract class HBDataBase : RoomDatabase() {
 
-    abstract fun allHotelsDao() : AllHotelDao
+    abstract fun addAllHotelsToDatabase() : AllHotelDao
     abstract fun CustomerBookingDataItemDao() : CustomerBookingDataItemDao
     abstract fun CustomerWishListItemDao() : CustomerWishListItemDao
     abstract fun GetHotelAmenitiesItemDao() : GetHotelAmenitiesItemDao

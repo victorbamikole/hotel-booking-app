@@ -3,10 +3,7 @@ package com.example.hbapplicationgroupb.di
 
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.api.HotelServices
-import com.example.hbapplicationgroupb.repository.ApiRepositoryImpl
-import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
-import com.example.hbapplicationgroupb.repository.UIRepositoryImpl
-import com.example.hbapplicationgroupb.repository.UiRepositoryInterface
+import com.example.hbapplicationgroupb.repository.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +26,12 @@ object RepositoryModule {
         return UIRepositoryImpl(db)
 
     }
+
+//    @Provides
+//    @Singleton
+//    fun providesDbRepository(db: HBDataBase): DbRepositoryInterface {
+//        return DbRepositoryImpl(db)
+//    }
 
 
 

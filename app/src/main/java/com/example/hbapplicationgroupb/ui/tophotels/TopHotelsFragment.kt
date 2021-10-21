@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -27,10 +28,13 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
     val myAdapter = TopHotelsAdapter()
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTopHotelsBinding.bind(view)
+
+        // locations
+        var listOfStateNames = resources.getStringArray(R.array.filter_by)
+        var filterAdapter = ArrayAdapter(requireContext(),R.layout.support_simple_spinner_dropdown_item, listOfStateNames)
 
         initializeViewModel()
 

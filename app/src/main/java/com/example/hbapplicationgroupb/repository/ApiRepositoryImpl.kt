@@ -10,6 +10,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -42,6 +43,9 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.userLoginDetails(userLoginDetails)
     }
 
+    override suspend fun searchHotelLocation(location: String): Response<HotelSearchResponse> {
+        return hotelServices.searchHotelLocation(location)
+    }
 
     override suspend fun registerAUser(userData: UserDataResponseItem
     ): Response<UserDataResponse> {
@@ -75,4 +79,5 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
+
 }
