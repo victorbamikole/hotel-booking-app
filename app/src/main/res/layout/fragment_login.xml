@@ -206,11 +206,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_here"
                 app:layout_constraintVertical_bias="0.78" />
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:elevation="5dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                local:layout_constraintBottom_toBottomOf="parent"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent"
+                local:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
 
-
+    <View
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="@color/translucent_grey"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        local:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
