@@ -11,8 +11,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
+import com.example.hbapplicationgroupb.util.constants.SHARED_PREF_KEY
 import com.example.hbapplicationgroupb.validation.LoginValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,6 +42,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             if (it.succeeded) {
                 lifecycleScope.launch {
+
+                    //Save user auth token to shared preference
+                    activity?.let { it1 ->
+                        UserPreferences(it1).saveSession(it.data.token)
+                    }
+
                     findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                     Toast.makeText(requireContext(), "Login successful", Toast.LENGTH_LONG).show()
                 }
@@ -53,8 +62,32 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
         binding.btnLogin.setOnClickListener {
+            val usersEmail = binding.tvUserLoginEmail.text.toString().trim()
+            val usersPassword = binding.tvUserPassword.text.toString().trim()
+
+            if(LoginValidation.validateEmailPattern(usersEmail)) {
+                if (LoginValidation.validatePasswordPattern(usersPassword)) {
+                    roomViewModel.sendUserLoginDetailsToApi(PostLoginUserData(usersEmail, usersPassword))
+                    roomViewModel.userLoginDetails.observe(
+                        viewLifecycleOwner, {
+                            if(it.succeeded) {
+                                findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+                            }
+                        }
+                    )
+                }
+                else{
+                    binding.regPasswordInput.error = "Password does not match with any email address"
+                }
             login()
         }
+    }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        navigateToExploreScreen()
     }
 
     private fun login() {
@@ -89,5 +122,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         override fun afterTextChanged(p0: Editable?) {}
 
+    }
+
+    //Navigate to Explore Screen
+    private fun navigateToExploreScreen(){
+        //check if user is already logged in and move to app if true
+        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        if (userSession != DEFAULT_TOKEN){
+            //Move into the App
+            findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+
+        }
     }
 }

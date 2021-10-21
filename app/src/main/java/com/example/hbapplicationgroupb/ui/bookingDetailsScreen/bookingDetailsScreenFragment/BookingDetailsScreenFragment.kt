@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.aminography.primecalendar.PrimeCalendar
+import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
@@ -18,6 +19,7 @@ import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterf
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
+import com.example.hbapplicationgroupb.ui.hoteldescription.HotelDescriptionFragmentArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,13 +28,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface {
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+    private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
 
+        val hotelName = safeArgs.hotelName
 
-
+        binding.bookingDetailsScreenTextViewName.setText(hotelName)
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
         binding.bookingDetailsScreenTextViewStartDate.setOnClickListener {
             val rangeDaysPickCallback = RangeDaysPickCallback { startDay, endDay ->

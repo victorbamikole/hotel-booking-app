@@ -50,8 +50,7 @@
         <action
             android:id="@+id/action_loginFragment_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -66,6 +65,9 @@
         <action
             android:id="@+id/action_registrationFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_registrationIsSuccessfulFragment"
+            app:destination="@id/registrationIsSuccessfulFragment" />
 
     </fragment>
     <fragment
@@ -75,7 +77,6 @@
         tools:layout="@layout/fragment_reset_password">
         <deepLink
             android:id="@+id/deepLink"
-            app:action="ACTION_VIEW"
             app:uri="http://www.example.com/reset-password/{token}/{email}" />
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
@@ -144,6 +145,14 @@
         <action
             android:id="@+id/action_exploreFragment2_to_topDealsFragment"
             app:destination="@id/topDealsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_allHotelsFragment"
+            app:destination="@id/allHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingHistoryFragment"
@@ -238,6 +247,11 @@
             app:destination="@id/exploreFragment2"
             app:popUpTo="@id/exploreFragment2"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"
@@ -266,6 +280,9 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />
+        <argument
+            android:name="hotelName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"
@@ -285,20 +302,6 @@
             app:destination="@id/bookingDetailsScreenFragment2" />
     </fragment>
     <fragment
-        android:id="@+id/confirmEmail"
-        android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
-        android:label="fragment_confirm_email"
-        tools:layout="@layout/fragment_confirm_email">
-        <deepLink
-            android:id="@+id/deepLink2"
-            app:action="ACTION_VIEW"
-            app:uri="http://www.example.com/confirm-email/{emailConfirmationToken}/{emailConfirmation}" />
-        <action
-            android:id="@+id/action_confirmEmail_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpToInclusive="false" />
-    </fragment>
-    <fragment
         android:id="@+id/paymentCheckoutFragment"
         android:name="com.example.hbapplicationgroupb.ui.paymentcheckout.PaymentCheckoutFragment"
         android:label="fragment_payment_checkout"
@@ -310,6 +313,47 @@
             android:id="@+id/action_paymentCheckoutFragment_to_bookingDetailsScreenFragment2"
             app:destination="@id/bookingDetailsScreenFragment2"
             app:popUpTo="@id/bookingDetailsScreenFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/allHotelsFragment"
+        android:name="com.example.hbapplicationgroupb.ui.allHotel.AllHotelsFragment"
+        android:label="fragment_all_hotels"
+        tools:layout="@layout/fragment_all_hotels" >
+        <action
+            android:id="@+id/action_allHotelsFragment_to_exploreFragment2"
+            app:destination="@id/exploreFragment2" />
+        <action
+            android:id="@+id/action_allHotelsFragment_to_bookingDetailsScreenFragment2"
+            app:destination="@id/bookingDetailsScreenFragment2" />
+        <action
+            android:id="@+id/action_allHotelsFragment_to_hotelDescriptionFragment"
+            app:destination="@id/hotelDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmEmail"
+        android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
+        android:label="fragment_confirm_email"
+        tools:layout="@layout/fragment_confirm_email">
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="http://www.example.com/confirm-email/{emailConfirmationToken}/{emailConfirmation}" />
+        <action
+            android:id="@+id/action_confirmEmail_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationIsSuccessfulFragment"
+        android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationIsSuccessfulFragment"
+        android:label="fragment_registration_is_successful"
+        tools:layout="@layout/fragment_registration_is_successful" >
+        <argument
+            android:name="userData"
+            app:argType="com.example.hbapplicationgroupb.model.userData.UserDataResponseItem" />
+        <action
+            android:id="@+id/action_registrationIsSuccessfulFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

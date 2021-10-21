@@ -159,6 +159,7 @@ dependencies {
     implementation 'androidx.room:room-common:2.3.0'
 
 
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
 
 
     //Fragment Test Ui
