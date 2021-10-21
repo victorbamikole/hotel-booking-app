@@ -4,23 +4,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.R
-import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
-import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
-import com.example.hbapplicationgroupb.util.constants.SHARED_PREF_KEY
 import com.example.hbapplicationgroupb.validation.LoginValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -40,6 +33,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         //Observe live data in view model
         roomViewModel.userLoginDetails.observe(viewLifecycleOwner,  {
             if (it ==null) {
+                binding.loadingView.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
                 Snackbar.make(
                     binding.root, "Login failed; Invalid email address or password.", Snackbar.LENGTH_LONG
                 ).show()
@@ -47,6 +42,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             else {
                 findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                 Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
+                binding.loadingView.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
             }
         })
 
@@ -55,6 +52,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
         binding.btnLogin.setOnClickListener {
+            binding.loadingView.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
             login()
         }
     }
@@ -80,7 +79,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
 
     //Login button handler
-//    If the two text fields are empty, the login button will be disabled
+    // If the two text fields are empty, the login button will be disabled
     private val loginButtonHandler: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
