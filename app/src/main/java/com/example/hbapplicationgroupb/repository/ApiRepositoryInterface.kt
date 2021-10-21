@@ -7,6 +7,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
@@ -40,6 +41,10 @@ interface ApiRepositoryInterface {
     suspend fun getTopHotels() : Response<TopDealsAndHotel>
     suspend fun userLoginDetails(userLoginDetails : PostLoginUserData) : Response<LoginUserDataResponse>
 
+    suspend fun searchHotelLocation(location: String) : Response<HotelSearchResponse>
+
+    //fetching data into Database
+//    suspend fun AddAllHotelsToDb(allHotels: ArrayList<HotelData>): Response<GetAllHotel>
 
 
     suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>)

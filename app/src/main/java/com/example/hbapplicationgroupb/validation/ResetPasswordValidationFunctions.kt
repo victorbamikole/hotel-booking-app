@@ -1,5 +1,8 @@
 package com.example.hbapplicationgroupb.validation
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 object ResetPasswordValidationFunctions {
     fun checkIfFieldNotEmpty(string: String):Boolean{
         if (string.isNotEmpty()||string.isNotBlank()){
@@ -13,6 +16,16 @@ object ResetPasswordValidationFunctions {
         }
         return false
     }
+
+     fun isValidPassword(password: String): Boolean {
+        val pattern: Pattern
+        val specialCharacters = "-@%\\[\\}+'!/#$^?:;,\\(\"\\)~`.*=&\\{>\\]<_"
+        val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[$specialCharacters])(?=\\S+$).{8,20}$"
+        pattern = Pattern.compile(PASSWORD_REGEX)
+        val matcher: Matcher = pattern.matcher(password)
+        return matcher.matches()
+    }
+
     fun checkIfPassWordIsValid(string: String):Int{
         if (string.length < 8){
             // one means throw error password less than 8

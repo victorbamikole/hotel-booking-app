@@ -11,15 +11,16 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -128,6 +129,8 @@ class RoomViewModel @Inject constructor(
    private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
    val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
 
+   private var _hotelLocation: MutableLiveData<HotelSearchResponse> = MutableLiveData()
+   val hotelLocation: MutableLiveData<HotelSearchResponse> = _hotelLocation
    private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
    val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
@@ -323,7 +326,24 @@ class RoomViewModel @Inject constructor(
       fun getAllTopHotel() = viewModelScope.launch {
          apiRepository.getAllTopHotels()
       }
+
+   //fetch hotel location
+   fun searchHotelLocation(location: String) {
+      viewModelScope.launch(Dispatchers.IO){
+         try {
+             val response = apiRepository.searchHotelLocation(location)
+            if (response.isSuccessful){
+               val responseBody = response.body()
+               _hotelLocation.postValue(responseBody)
+            }else{
+               _hotelLocation.postValue(null)
+            }
+         }catch (e:Exception){
+            e.printStackTrace()
+         }
+      }
    }
+}
 
 
 

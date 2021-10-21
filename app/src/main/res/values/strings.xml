@@ -1,4 +1,45 @@
 <resources>
+<!--    String Array of different states in Nigeria-->
+    <string-array name="filter_by">
+        <item>Abia</item>
+        <item>Adamawa</item>
+        <item>Akwa-Ibom</item>
+        <item>Anambra</item>
+        <item>Bauchi</item>
+        <item>Bayelsa</item>
+        <item>Benue</item>
+        <item>Borno</item>
+        <item>Cross River</item>
+        <item>Delta</item>
+        <item>Ebonyi</item>
+        <item>Edo</item>
+        <item>Ekiti</item>
+        <item>Enugu</item>
+        <item>Gombe</item>
+        <item>Imo</item>
+        <item>Jigawa</item>
+        <item>Kaduna</item>
+        <item>kano</item>
+        <item>Katsina</item>
+        <item>Kebbi</item>
+        <item>Kogi</item>
+        <item>Kwara</item>
+        <item>Lagos</item>
+        <item>Nasarawa</item>
+        <item>Niger</item>
+        <item>Ogun</item>
+        <item>Ondo</item>
+        <item>Osun</item>
+        <item>Oyo</item>
+        <item>Plateau</item>
+        <item>Rivers</item>
+        <item>Sokoto</item>
+        <item>Taraba</item>
+        <item>Yobe</item>
+        <item>Zamfara</item>
+        <item>Abuja</item>
+
+    </string-array>
     <string name="app_name">HBApplicationGroupB</string>
     <string name="hello_android_group_b_texting_branching_stuff">Hello Android Group B!, texting branching stuff</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -111,7 +152,7 @@ This policy was last updated October 20th, 2021.</string>
     <string name="explore_hotel_name">Sheraton Grand</string>
     <string name="explore_hotel_price">$599</string>
     <string name="filter_by">Filter By</string>
-    <string name="bangalore">Bangalore</string>
+    <string name="bangalore">Abia</string>
     <string name="view">View</string>
     <string name="we_have_deals_for">We have deals for</string>
     <string name="your_favorite_and_relaxing">your favorite and relaxing</string>
