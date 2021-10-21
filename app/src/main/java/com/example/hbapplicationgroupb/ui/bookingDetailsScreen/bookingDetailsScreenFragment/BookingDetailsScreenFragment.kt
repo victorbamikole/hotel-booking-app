@@ -3,25 +3,18 @@ package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsSc
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.aminography.primecalendar.PrimeCalendar
 import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
-import com.aminography.primedatepicker.picker.callback.SingleDayPickCallback
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
-import com.example.hbapplicationgroupb.viewModel.RoomViewModel
-import com.example.hbapplicationgroupb.ui.hoteldescription.HotelDescriptionFragmentArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.snackbar.BaseTransientBottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

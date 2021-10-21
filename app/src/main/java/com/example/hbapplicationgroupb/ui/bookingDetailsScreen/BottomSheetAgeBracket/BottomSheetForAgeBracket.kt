@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface): BottomSheetDialogFragment() {
-    private val viewModel: RoomViewModel by activityViewModels()
+    private val viewModel: RoomViewModel by viewModels()
     lateinit var cancelText : TextView
     lateinit var doneText : TextView
 
@@ -224,9 +225,8 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
         doneText.setOnClickListener {
             listener.OnclickOfDoneTextView(convertArrayToString(personsBooked))
                 dismiss()
-
         }
-
+        
         cancelText.setOnClickListener {
             dismiss()
         }
