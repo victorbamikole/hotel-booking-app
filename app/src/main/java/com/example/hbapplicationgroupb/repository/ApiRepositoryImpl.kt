@@ -18,6 +18,7 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -47,7 +48,7 @@ class ApiRepositoryImpl @Inject constructor (
     }
 
     override suspend fun registerAUser(userData: UserDataResponseItem
-    ): Response<UserDataResponseItem> {
+    ): Response<UserDataResponse> {
 
         return hotelServices.registerAUser(userData)
     }

@@ -50,8 +50,7 @@
         <action
             android:id="@+id/action_loginFragment_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -66,6 +65,9 @@
         <action
             android:id="@+id/action_registrationFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registrationFragment_to_registrationIsSuccessfulFragment"
+            app:destination="@id/registrationIsSuccessfulFragment" />
 
     </fragment>
     <fragment
@@ -146,6 +148,11 @@
         <action
             android:id="@+id/action_exploreFragment2_to_allHotelsFragment"
             app:destination="@id/allHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreFragment2_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingHistoryFragment"
@@ -242,7 +249,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_profileFragment2_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"
@@ -320,6 +329,8 @@
         <action
             android:id="@+id/action_allHotelsFragment_to_hotelDescriptionFragment"
             app:destination="@id/hotelDescriptionFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/confirmEmail"
         android:name="com.example.hbapplicationgroupb.ui.confirmemail.ConfirmEmail"
         android:label="fragment_confirm_email"
@@ -330,5 +341,19 @@
         <action
             android:id="@+id/action_confirmEmail_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationIsSuccessfulFragment"
+        android:name="com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationIsSuccessfulFragment"
+        android:label="fragment_registration_is_successful"
+        tools:layout="@layout/fragment_registration_is_successful" >
+        <argument
+            android:name="userData"
+            app:argType="com.example.hbapplicationgroupb.model.userData.UserDataResponseItem" />
+        <action
+            android:id="@+id/action_registrationIsSuccessfulFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

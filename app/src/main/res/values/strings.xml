@@ -197,4 +197,8 @@ This policy was last updated October 20th, 2021.</string>
     <string name="contact">If you have any questions or more clarification about the privacy and policy, you can contact us through
         app@hotelvoyage.com or call +2349033017453. You can also visit our office at 7, Asajon way, Eti-Osa, Sangotedo, Lagos State, Nigeria.
 </string>
+    <string name="check_your_email_and_click_on_the_n_confirmation_link_to_continue">Check your email and click on the \n confirmation link to continue</string>
+    <string name="confirm_your_email_address">Confirm Your Email Address</string>
+    <string name="we_sent_an_email_to">we sent an email to:</string>
+    <string name="resend_email">Resend Email</string>
 </resources>

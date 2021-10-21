@@ -6,6 +6,25 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.userAuthenticationScreen.RegistrationFragment">
+    <View
+        android:id="@+id/viewCover"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_grey"
+        android:elevation="100dp"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/registerProgressBar"
+        android:elevation="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:layout_constraintTop_toTopOf="parent"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/reg_toolbar"
@@ -107,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     style="@style/TopUserAuthCard"
-                    app:layout_constraintBottom_toTopOf="@+id/reg_phone_number_card"
+                    app:layout_constraintBottom_toTopOf="@+id/reg_user_name_card"
                     app:layout_constraintTop_toBottomOf="@+id/reg_name_card">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -130,11 +149,40 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/reg_user_name_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    style="@style/TopUserAuthCard"
+                    app:layout_constraintBottom_toTopOf="@+id/reg_phone_number_card"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_last_name_card">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reg_user_name_input"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="User Name"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                        app:startIconDrawable="@drawable/icon_person">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextUserUserName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textSize="19sp"
+                            android:textCursorDrawable="@null" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/reg_phone_number_card"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     style="@style/TopUserAuthCard"
-                    app:layout_constraintTop_toBottomOf="@+id/reg_last_name_card">
+                    app:layout_constraintTop_toBottomOf="@+id/reg_user_name_card"
+                    local:layout_constraintBottom_toTopOf="@+id/reg_gender_card"
+                    >
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/reg_phone_number_input"
@@ -220,6 +268,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="**********"
+                        local:passwordToggleEnabled="true"
                         app:layout_constraintTop_toBottomOf="@+id/iv_registration"
                         app:startIconDrawable="@drawable/icon_padlock">
 
@@ -233,17 +282,46 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/reg_age_card"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    local:layout_constraintBottom_toTopOf="@id/btn_radio"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_password_field_card"
+                    local:layout_constraintStart_toStartOf="@+id/email_field_card">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editTextRegAge"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Age"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                        app:startIconDrawable="@drawable/icon_padlock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextRegUserAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:textCursorDrawable="@null"
+                            android:textSize="19sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+
                 <RadioButton
                     android:id="@+id/btn_radio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="40dp"
                     android:buttonTint="@color/btn_color"
                     android:checked="false"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/reg_password_field_card"
+                    app:layout_constraintTop_toBottomOf="@+id/reg_age_card"
                     local:layout_constraintBottom_toTopOf="@+id/btn_register"
                     />
 
@@ -312,6 +390,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
                     app:layout_constraintTop_toTopOf="@+id/textView3" />
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_register"
