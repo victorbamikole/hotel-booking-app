@@ -16,11 +16,11 @@ import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
+import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -200,6 +200,9 @@ class RoomViewModel @Inject constructor(
                      val responseBody = response.body()
                      _confirmEmailAddress.postValue(responseBody)
                   }
+                   else{
+                       _confirmEmailAddress.postValue(null)
+                   }
                } catch (e: Exception) {
                   e.printStackTrace()
                }
