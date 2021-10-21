@@ -1,8 +1,12 @@
 package com.example.hbapplicationgroupb.ui.allHotel
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -22,12 +26,42 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
 
     private val myAdapter = AllHotelAdapter()
 
+    override fun onResume() {
+        super.onResume()
+        // locations filters
+        val listOfStateNames = resources.getStringArray(R.array.filter_by)
+        val filterAdapter = ArrayAdapter(requireContext(),R.layout.array_adapter_of_state, listOfStateNames)
+        binding.fragmentAllHotelsActv.setAdapter(filterAdapter)
+//        val stateName = binding.fragmentAllHotelsActv.text.toString()
+
+        binding.fragmentAllHotelsActv.onItemClickListener = object : AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                val selectedState = listOfStateNames[position].toString()
+                binding.fragmentAllHotelsStateName.text = selectedState
+                Log.d("SELECTED STATE", selectedState)
+            }
+
+        }
+
+//        binding.fragmentAllHotelsActv.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+//                Log.d("BEFORE STATE NAME", stateName[position].toString())
+//                binding.fragmentAllHotelsStateName.text = stateName[position].toString()
+//                Log.d("AFTER STATE NAME", stateName[position].toString())
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
 
-        fetchAllHotels()
+            fetchAllHotels()
         roomViewModel.getAllHotels()
 
         binding.apply {

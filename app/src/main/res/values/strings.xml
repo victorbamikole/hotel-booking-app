@@ -1,7 +1,6 @@
 <resources>
 <!--    String Array of different states in Nigeria-->
     <string-array name="filter_by">
-        <item>filter by</item>
         <item>Abia</item>
         <item>Adamawa</item>
         <item>Akwa-Ibom</item>
@@ -153,7 +152,7 @@ This policy was last updated October 20th, 2021.</string>
     <string name="explore_hotel_name">Sheraton Grand</string>
     <string name="explore_hotel_price">$599</string>
     <string name="filter_by">Filter By</string>
-    <string name="bangalore">Bangalore</string>
+    <string name="bangalore">Abia</string>
     <string name="view">View</string>
     <string name="we_have_deals_for">We have deals for</string>
     <string name="your_favorite_and_relaxing">your favorite and relaxing</string>
