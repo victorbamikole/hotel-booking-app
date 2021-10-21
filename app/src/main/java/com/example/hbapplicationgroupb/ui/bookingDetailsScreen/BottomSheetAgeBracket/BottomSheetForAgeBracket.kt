@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
@@ -8,13 +10,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
+import com.example.hbapplicationgroupb.validation.convertArrayToString
+import com.example.hbapplicationgroupb.validation.removerWhereArrayContain
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BottomSheetForAgeBracket: BottomSheetDialogFragment() {
+class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface): BottomSheetDialogFragment() {
     private val viewModel: RoomViewModel by activityViewModels()
     lateinit var cancelText : TextView
     lateinit var doneText : TextView
@@ -40,25 +46,17 @@ class BottomSheetForAgeBracket: BottomSheetDialogFragment() {
     lateinit var subtractInfant : View
 
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.age_bracket_bottom_sheet_layout, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        var numAdult = 1
-        var numTeens = 1
-        var numChildren = 1
-        var numInfant = 1
-
 
         cancelText = view.findViewById(R.id.fragment_bookingDetails_CancelText_textView)
         doneText = view.findViewById(R.id.fragment_booking_details_doneText_textView)
@@ -77,116 +75,185 @@ class BottomSheetForAgeBracket: BottomSheetDialogFragment() {
         childrenCount = view.findViewById(R.id.fragment_bookingDetails_ChildrenCount_textView)
         addChildrenButton = view.findViewById(R.id.fragment_bookingDetails_AddChildren_view)
         subtractChildren = view.findViewById(R.id.fragment_bookingDetails_SubtractChildren_view)
-
         infantText = view.findViewById(R.id.fragment_BookingDetails_InfantText_TextView)
         infantCount = view.findViewById(R.id.fragment_BookingDetails_InfantsCount_textView)
         addInfantButton = view.findViewById(R.id.fragment_BookingDetails_AddInfants_view)
         subtractInfant = view.findViewById(R.id.fragment_BookingDetails_SubtractInfants_view)
 
 
+        /**Observing the text for all counts*/
+        observeAdultCount()
+        observerTeensCount()
+        observeChildrenCount()
+        observeInfantCount()
+
+
+        /**Selected Booking Details from Age bottom Sheet*/
+        var personsBooked : ArrayList<String> = ArrayList(emptyList())
+        var ageBracket = "Selected Option"
+        var numberOfPersons = 0
+        var addedAdult = ""
+        var addedTeen = ""
+        var addedChildren = ""
+        var addedInfant = ""
 
 
         /**Adults-Bottom Sheet Implementation for clicks and selection*/
-        addAdultsButton.setOnClickListener{
-           numAdult++
-            adultCount.text = numAdult.toString()
+        addAdultsButton.setOnClickListener {
+            if(personsBooked.contains(addedAdult)){
+                personsBooked.remove(addedAdult)
+            viewModel.addToAdultCount()
+            addedAdult = "${adultCount.text} Adults"
+            personsBooked.add(addedAdult)
+            }
+
+            else{
+                viewModel.addToAdultCount()
+                addedAdult = "${adultCount.text} Adults"
+                personsBooked.add(addedAdult)
+            }
         }
 
         subtractAdult.setOnClickListener{
-            if (numAdult==1){
-                Toast.makeText(requireContext(), "Value must not be less than one", Toast.LENGTH_SHORT).show()
+            if (adultCount.text.toString().toInt()==0){
+                removerWhereArrayContain(personsBooked, "t")
+                Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
             }
-            else{
-                numAdult--
-                adultCount.text = numAdult.toString()
+
+            else if (personsBooked.contains(addedAdult)){
+                personsBooked.remove(addedAdult)
+                viewModel.subtractFromAdultCount()
+                addedAdult = "${adultCount.text} Adults"
+                personsBooked.add(addedAdult)
             }
         }
 
 
         /**Teens-Bottom Sheet Implementation for clicks and selection*/
         addTeenButton.setOnClickListener{
-            numTeens++
-            teensCount.text = numTeens.toString()
+            if(personsBooked.contains(addedTeen)){
+                personsBooked.remove(addedTeen)
+                viewModel.addToTeensCount()
+                addedTeen = "${teensCount.text} Teen(s)"
+                personsBooked.add(addedTeen)
+            }
+            else{
+                viewModel.addToTeensCount()
+                addedTeen = "${teensCount.text} Teen(s)"
+                personsBooked.add(addedTeen)
+            }
         }
 
         subtractTeen.setOnClickListener{
-            if (numTeens==1){
-                Toast.makeText(requireContext(), "Value must not be less than one", Toast.LENGTH_SHORT).show()
+            if (teensCount.text.toString().toInt()==0){
+                Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
             }
-            else{
-                numTeens--
-                teensCount.text = numTeens.toString()
+
+            else if (personsBooked.contains(addedTeen)){
+                personsBooked.remove(addedTeen)
+                viewModel.subtractFromTeensCount()
+                addedTeen = "${teensCount.text} Teen(s)"
+                personsBooked.add(addedTeen)
             }
         }
+
 
 
         /**Children-Bottom Sheet Implementation for clicks and selection*/
         addChildrenButton.setOnClickListener{
-            numChildren++
-            childrenCount.text = numChildren.toString()
-        }
-
-        subtractChildren.setOnClickListener{
-            if (numChildren==1){
-                Toast.makeText(requireContext(), "Value must not be less than one", Toast.LENGTH_SHORT).show()
+            if(personsBooked.contains(addedChildren)){
+                personsBooked.remove(addedChildren)
+                viewModel.addToChildrenCount()
+                addedChildren = "${childrenCount.text} Children"
+                personsBooked.add(addedChildren)
             }
             else{
-                numChildren--
-                childrenCount.text = numChildren.toString()
+                viewModel.addToChildrenCount()
+                addedChildren = "${childrenCount.text} Children"
+                personsBooked.add(addedChildren)
             }
         }
+
+
+        subtractChildren.setOnClickListener {
+            if (childrenCount.text.toString().toInt()==0){
+                Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
+            }
+
+            else if (personsBooked.contains(addedChildren)){
+                personsBooked.remove(addedChildren)
+                viewModel.subtractFromChildrenCount()
+                addedChildren = "${childrenCount.text} Children"
+                personsBooked.add(addedChildren)
+            }
+        }
+
 
 
         /**Infant-Bottom Sheet Implementation for clicks and selection*/
-        addInfantButton.setOnClickListener{
-            numInfant++
-            infantCount.text = numInfant.toString()
-        }
-
-        subtractInfant.setOnClickListener{
-            if (numInfant==1){
-                Toast.makeText(requireContext(), "Value must not be less than one", Toast.LENGTH_SHORT).show()
+        addInfantButton.setOnClickListener {
+            if(personsBooked.contains(addedInfant)){
+                personsBooked.remove(addedInfant)
+                viewModel.addToInfantCount()
+                addedInfant = "${infantCount.text} Infant"
+                personsBooked.add(addedInfant)
             }
             else{
-                numInfant--
-                infantCount.text = numInfant.toString()
+                viewModel.addToInfantCount()
+                addedInfant = "${infantCount.text} Infant"
+                personsBooked.add(addedInfant)
             }
         }
 
 
-        /**Selected Booking Details from Age bottom Sheet*/
-        var ageBracket = "Selected Option"
-        var numberOfPersons = 0
+        subtractInfant.setOnClickListener{
+            if (infantCount.text.toString().toInt()==0){
+                Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
+            }
 
-
-        adultText.setOnClickListener {
-            ageBracket = "Adult"
-            numberOfPersons = numAdult
-            Toast.makeText(requireContext(), "$numberOfPersons $ageBracket selected", Toast.LENGTH_LONG).show()
+            else if (personsBooked.contains(addedInfant)){
+                personsBooked.remove(addedInfant)
+                viewModel.subtractFromInfantCount()
+                addedInfant = "${infantCount.text} Infant"
+                personsBooked.add(addedInfant)
+            }
         }
 
-        childrenText.setOnClickListener {
-            ageBracket = "Children"
-            numberOfPersons = numChildren
-            Toast.makeText(requireContext(), "$numberOfPersons $ageBracket selected", Toast.LENGTH_LONG).show()
-        }
 
-        teenText.setOnClickListener {
-            ageBracket = "Teens"
-            numberOfPersons = numTeens
-            Toast.makeText(requireContext(), "$numberOfPersons $ageBracket selected", Toast.LENGTH_LONG).show()
-        }
 
-        infantText.setOnClickListener {
-            ageBracket = "Infant"
-            numberOfPersons = numInfant
-            Toast.makeText(requireContext(), " $numberOfPersons $ageBracket selected", Toast.LENGTH_LONG).show()
-        }
+        doneText.setOnClickListener {
+            listener.OnclickOfDoneTextView(convertArrayToString(personsBooked))
+                dismiss()
 
+        }
 
         cancelText.setOnClickListener {
-            
+            dismiss()
         }
+    }
 
+
+    private fun observeAdultCount() {
+        viewModel.numAdults.observe(viewLifecycleOwner,{
+            adultCount.text = it.toString()
+        })
+    }
+
+    private fun observerTeensCount () {
+        viewModel.numTeens.observe(viewLifecycleOwner,{
+            teensCount.text = it.toString()
+        })
+    }
+
+    private fun observeChildrenCount () {
+        viewModel.numChildren.observe(viewLifecycleOwner,{
+            childrenCount.text = it.toString()
+        })
+    }
+
+    private fun observeInfantCount() {
+        viewModel.numInfant.observe(viewLifecycleOwner,{
+            infantCount.text = it.toString()
+        })
     }
 }

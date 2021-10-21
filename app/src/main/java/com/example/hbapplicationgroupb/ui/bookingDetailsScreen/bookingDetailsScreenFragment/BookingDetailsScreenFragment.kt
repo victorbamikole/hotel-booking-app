@@ -14,22 +14,18 @@ import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
 import com.aminography.primedatepicker.picker.callback.SingleDayPickCallback
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
+import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen) {
+class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface {
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    private val viewModel: RoomViewModel by activityViewModels()
-
-//    private val rangeDaysPickCallback = RangeDaysPickCallback { startDay, endDay ->
-//        Toast.makeText(requireContext(), String.format("From: %s\nTo: %s",startDay.longDateString,
-//            endDay.longDateString), Toast.LENGTH_LONG).show()
-//        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +74,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
 
         /** Method to pop bottom Sheet for Age Selection */
         binding.bookingDetailsScreenTextViewAgeBracket.setOnClickListener {
-            val bottomSheet : BottomSheetForAgeBracket = BottomSheetForAgeBracket()
+            val bottomSheet : BottomSheetForAgeBracket = BottomSheetForAgeBracket(this)
             fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG")}
         }
 
@@ -90,13 +86,6 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
         }
 
 
-
-//        viewModel._adultCount.observe(this, {
-//             binding.bookingDetailsScreenTextViewAgeBracket.setText(it)
-//        })
-
-
-
         binding.fragmentBookingBookNowButton.setOnClickListener {
             val nameForBooking = binding.bookingDetailsScreenTextViewName.text.toString()
             val phoneNumberForBooking = binding.bookingDetailsScreenTextViewPhoneNumber.text.toString()
@@ -104,6 +93,10 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             val checkout = binding.bookingDetailsScreenTextViewEndDate.text.toString()
             val roomType = binding.bookingDetailsScreenTextViewRoomType.text.toString()
         }
-
 }
+
+
+    override fun OnclickOfDoneTextView(numberOfPersons: String) {
+        binding.bookingDetailsScreenTextViewAgeBracket.setText(numberOfPersons)
+    }
 }
