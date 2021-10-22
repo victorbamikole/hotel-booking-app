@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_all_hotels.xml" value="0.13076923076923078" />
         <entry key="app/src/main/res/layout/fragment_boarding03.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_details_screen.xml" value="0.13333333333333333" />

@@ -6,5 +6,7 @@ val message : String? = null
 ){
     class Loading<T> : Resource<T>()
     class Success<T>(data:T) : Resource<T>(data)
-    class Error<Nothing>(val exception: String) : Resource<Nothing>()
+    class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
+//    apiRepository.getTopHotels()
+
 }

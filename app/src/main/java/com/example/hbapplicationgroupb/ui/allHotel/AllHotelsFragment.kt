@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
+import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private var _binding: FragmentAllHotelsBinding? = null
     private val binding get() = _binding!!
     private val roomViewModel: RoomViewModel by viewModels()
+    var arrayList = listOf<PageItem>()
 
     private val myAdapter = AllHotelAdapter()
 
@@ -38,6 +40,11 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 val selectedState = listOfStateNames[position].toString()
                 binding.fragmentAllHotelsStateName.text = selectedState
+                for (i in arrayList){
+                    if (i.state == selectedState){
+
+                    }
+                }
                 Log.d("SELECTED STATE", selectedState)
             }
 
@@ -82,6 +89,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private fun fetchAllHotels() {
         roomViewModel.fetchAllHotelResponse.observe(viewLifecycleOwner, Observer {
             if (it != null){
+                arrayList = it.body()?.data!!.pageItems
                 myAdapter.submitList(it.body()?.data!!.pageItems)
                 myAdapter.notifyDataSetChanged()
                 binding.allHotelsRecyclerView.adapter = myAdapter
