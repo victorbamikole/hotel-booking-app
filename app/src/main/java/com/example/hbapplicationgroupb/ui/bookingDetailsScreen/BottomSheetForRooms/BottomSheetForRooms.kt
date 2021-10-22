@@ -31,10 +31,6 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
     lateinit var roomNo24RadBtn : CheckBox
     lateinit var roomNo26RadBtn : CheckBox
 
-
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,11 +61,11 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
 
 
         var roomsBooked : ArrayList<String> = ArrayList(0)
-        var room1Booked = " Room No. 1"
-        var room2Booked = " Room No. 2"
-        var room22Booked = " Room No. 22"
-        var room24Booked = " Room No. 24"
-        var room26Booked = " Room No. 26"
+        var room1Booked = " Room No.1"
+        var room2Booked = " Room No.2"
+        var room22Booked = " Room No.22"
+        var room24Booked = " Room No.24"
+        var room26Booked = " Room No.26"
 
         cancelTextBtn.setOnClickListener {
             dismiss()
@@ -116,20 +112,5 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
             listener.OnclickOfDoneTextViewRoomTypes(roomsBooked.joinToString(","))
             dismiss()
         }
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
 }

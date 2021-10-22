@@ -29,15 +29,13 @@ import java.util.*
 class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface , RoomTypeListenerInterface{
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    //private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
+    private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
-
-     //   val hotelName = safeArgs.hotelName
-
-       // binding.bookingDetailsScreenTextViewName.setText(hotelName)
+        val hotelName = safeArgs.hotelName
+        binding.bookingDetailsScreenTextViewName.setText(hotelName)
 
         lateinit var datePicker : PrimeDatePicker
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */

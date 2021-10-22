@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
+package com.example.hbapplicationgroupb.validation
 
 import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import org.junit.Assert.*
