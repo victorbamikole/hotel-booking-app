@@ -54,7 +54,6 @@ class RegistrationFragment : Fragment() {
         binding.editTextRegUserAge.setText("0")
         registrationResponseObserver()
         binding.btnRegister.setOnClickListener {
-
             val firstName = binding.editTextViewRegUsername.text.toString().trim()
             val lastName = binding.editTextUserLastName.text.toString().trim()
             val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString().trim()
@@ -130,7 +129,6 @@ class RegistrationFragment : Fragment() {
                         binding.editTextRegUserPassword.isFocusable
                     }
                 }
-
                 return@setOnClickListener
             }
 

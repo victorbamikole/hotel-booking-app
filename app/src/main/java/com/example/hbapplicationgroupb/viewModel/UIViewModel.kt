@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class UIViewModel @Inject constructor(
+class UIViewModel @Inject constructor (
     private val uiRepository: UiRepositoryInterface
 ) : ViewModel(){
 private var _listOfHotels:MutableLiveData<List<HotelData>> = MutableLiveData()

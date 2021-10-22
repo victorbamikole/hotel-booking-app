@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
+package com.example.hbapplicationgroupb.validation
 
 import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import org.junit.Assert.*
@@ -9,7 +9,7 @@ class RegistrationValidationTest{
 
     @Test
     fun validateUserName() {
-        var result = RegistrationValidation.validateUserFirstName ("we")
+        var result = RegistrationValidation.validateUserFirstName ("wehvcvvcvb")
         assertEquals(true,result)
     }
 

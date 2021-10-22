@@ -1,8 +1,10 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
@@ -90,8 +93,6 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
 
         /**Selected Booking Details from Age bottom Sheet*/
         var personsBooked : ArrayList<String> = ArrayList(emptyList())
-        var ageBracket = "Selected Option"
-        var numberOfPersons = 0
         var addedAdult = ""
         var addedTeen = ""
         var addedChildren = ""
@@ -99,34 +100,46 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
 
 
         /**Adults-Bottom Sheet Implementation for clicks and selection*/
-        addAdultsButton.setOnClickListener {
+        addAdultsButton.setOnClickListener{
             if(personsBooked.contains(addedAdult)){
                 personsBooked.remove(addedAdult)
-            viewModel.addToAdultCount()
-            addedAdult = "${adultCount.text} Adults"
-            personsBooked.add(addedAdult)
+                viewModel.addToAdultCount()
+                if(adultCount.text.toString().toInt()>1){
+                    addedAdult = "${adultCount.text} Adults"
+                } else{
+                    addedAdult = "${adultCount.text} Adult"
+                }
+                personsBooked.add(addedAdult)
             }
-
             else{
                 viewModel.addToAdultCount()
-                addedAdult = "${adultCount.text} Adults"
+                if(adultCount.text.toString().toInt()>1){
+                    addedAdult = "${adultCount.text} Adults"
+                } else{
+                    addedAdult = "${adultCount.text} Adult"
+                }
                 personsBooked.add(addedAdult)
             }
         }
 
-        subtractAdult.setOnClickListener{
+
+        subtractAdult.setOnClickListener {
             if (adultCount.text.toString().toInt()==0){
-                removerWhereArrayContain(personsBooked, "t")
                 Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
             }
 
             else if (personsBooked.contains(addedAdult)){
                 personsBooked.remove(addedAdult)
                 viewModel.subtractFromAdultCount()
-                addedAdult = "${adultCount.text} Adults"
+                if(adultCount.text.toString().toInt()>1){
+                    addedAdult = "${adultCount.text} Adults"
+                } else{
+                    addedAdult = "${adultCount.text} Adult"
+                }
                 personsBooked.add(addedAdult)
             }
         }
+
 
 
         /**Teens-Bottom Sheet Implementation for clicks and selection*/
@@ -134,17 +147,26 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
             if(personsBooked.contains(addedTeen)){
                 personsBooked.remove(addedTeen)
                 viewModel.addToTeensCount()
-                addedTeen = "${teensCount.text} Teen(s)"
+                if(teensCount.text.toString().toInt()>1){
+                    addedTeen = "${teensCount.text} Teens"
+                } else{
+                    addedTeen = "${teensCount.text} Teen"
+                }
                 personsBooked.add(addedTeen)
             }
             else{
                 viewModel.addToTeensCount()
-                addedTeen = "${teensCount.text} Teen(s)"
+                if(teensCount.text.toString().toInt()>1){
+                    addedTeen = "${teensCount.text} Teens"
+                } else{
+                    addedTeen = "${teensCount.text} Teen"
+                }
                 personsBooked.add(addedTeen)
             }
         }
 
-        subtractTeen.setOnClickListener{
+
+        subtractTeen.setOnClickListener {
             if (teensCount.text.toString().toInt()==0){
                 Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
             }
@@ -152,11 +174,14 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
             else if (personsBooked.contains(addedTeen)){
                 personsBooked.remove(addedTeen)
                 viewModel.subtractFromTeensCount()
-                addedTeen = "${teensCount.text} Teen(s)"
+                if(teensCount.text.toString().toInt()>1){
+                    addedTeen = "${teensCount.text} Teens"
+                } else{
+                    addedTeen = "${teensCount.text} Teen"
+                }
                 personsBooked.add(addedTeen)
             }
         }
-
 
 
         /**Children-Bottom Sheet Implementation for clicks and selection*/
@@ -164,12 +189,20 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
             if(personsBooked.contains(addedChildren)){
                 personsBooked.remove(addedChildren)
                 viewModel.addToChildrenCount()
-                addedChildren = "${childrenCount.text} Children"
+                if(childrenCount.text.toString().toInt()>1){
+                    addedChildren = "${childrenCount.text} Children"
+                } else{
+                    addedChildren = "${childrenCount.text} Child"
+                }
                 personsBooked.add(addedChildren)
             }
             else{
                 viewModel.addToChildrenCount()
-                addedChildren = "${childrenCount.text} Children"
+                if(childrenCount.text.toString().toInt()>1){
+                    addedChildren = "${childrenCount.text} Children"
+                } else{
+                    addedChildren = "${childrenCount.text} Child"
+                }
                 personsBooked.add(addedChildren)
             }
         }
@@ -183,7 +216,11 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
             else if (personsBooked.contains(addedChildren)){
                 personsBooked.remove(addedChildren)
                 viewModel.subtractFromChildrenCount()
-                addedChildren = "${childrenCount.text} Children"
+                if(childrenCount.text.toString().toInt()>1){
+                    addedChildren = "${childrenCount.text} Children"
+                } else{
+                    addedChildren = "${childrenCount.text} Child"
+                }
                 personsBooked.add(addedChildren)
             }
         }
@@ -195,36 +232,46 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
             if(personsBooked.contains(addedInfant)){
                 personsBooked.remove(addedInfant)
                 viewModel.addToInfantCount()
-                addedInfant = "${infantCount.text} Infant"
+                if(infantCount.text.toString().toInt()>1){
+                    addedInfant = "${infantCount.text} Infants"
+                } else{
+                    addedInfant = "${infantCount.text} Infant"
+                }
                 personsBooked.add(addedInfant)
             }
             else{
                 viewModel.addToInfantCount()
-                addedInfant = "${infantCount.text} Infant"
+                if(infantCount.text.toString().toInt()>1){
+                    addedInfant = "${infantCount.text} Infants"
+                } else{
+                    addedInfant = "${infantCount.text} Infant"
+                }
                 personsBooked.add(addedInfant)
             }
         }
 
 
         subtractInfant.setOnClickListener{
-            if (infantCount.text.toString().toInt()==0){
+            if (infantCount.text.toString().toInt()==0) {
                 Toast.makeText(requireContext(), "Value must not be less than zero", Toast.LENGTH_SHORT).show()
             }
 
-            else if (personsBooked.contains(addedInfant)){
+            else if (personsBooked.contains(addedInfant)) {
                 personsBooked.remove(addedInfant)
                 viewModel.subtractFromInfantCount()
-                addedInfant = "${infantCount.text} Infant"
+                if(infantCount.text.toString().toInt()>1){
+                    addedInfant = "${infantCount.text} Infants"
+                } else{
+                    addedInfant = "${infantCount.text} Infant"
+                }
                 personsBooked.add(addedInfant)
             }
         }
 
 
-
         doneText.setOnClickListener {
-            listener.OnclickOfDoneTextView(convertArrayToString(personsBooked))
+            listener.OnclickOfDoneTextView(personsBooked.joinToString(","))
                 dismiss()
-
         }
 
         cancelText.setOnClickListener {

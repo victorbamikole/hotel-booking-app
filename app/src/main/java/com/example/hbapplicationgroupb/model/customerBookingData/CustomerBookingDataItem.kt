@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Customer_Booking_History_Table")
 data class CustomerBookingDataItem(
     @PrimaryKey
-    val id: Int,
+    val Id: Int,
     val bookingReference: String,
     val checkIn: String,
     val checkOut: String,
-    val numberOfPeople: Int,
-    val serviceName: String
+    val noOfPeople: Int,
+    val paymentService: String
 )
