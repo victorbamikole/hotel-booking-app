@@ -2,7 +2,6 @@ package com.example.hbapplicationgroupb.ui.confirmemail
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,7 +22,6 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentConfirmEmailBinding.bind(view)
-       initView()
 
         val userToken = arguments?.getString("emailConfirmationToken")!!
         val userEmail = arguments?.getString("emailConfirmation")!!
@@ -32,23 +30,15 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
                 email = userEmail,
                 token = userToken
             )
-        Toast.makeText(requireContext(),"email and token is $emailAndToken",Toast.LENGTH_SHORT)
-            .show()
 
         roomViewModel.confirmEmailAddress(emailAndToken)
 
         roomViewModel.confirmEmailAddress.observe(viewLifecycleOwner,{
-            if(it.succeeded){
-                binding.fragmentEmailConfirmationErrorTextview.visibility = View.GONE
-                binding.emailConfirmationProgressBar.visibility = View.GONE
-                binding.fragmentEmailCongratulationTextView.visibility = View.VISIBLE
-                binding.fragmentEmailHaveBeenConfirmedTextview.visibility = View.VISIBLE
-            }else{
-                binding.fragmentEmailConfirmationImage.visibility = View.GONE
-                binding.fragmentEmailConfirmationErrorTextview.visibility = View.VISIBLE
-                binding.emailConfirmationProgressBar.visibility = View.GONE
-                binding.fragmentEmailCongratulationTextView.visibility = View.GONE
-                binding.fragmentEmailHaveBeenConfirmedTextview.visibility = View.GONE
+            if(it == null){
+                binding.errorTextViewId.visibility = View.VISIBLE
+            }
+            else{
+                binding.errorTextViewId.visibility = View.GONE
             }
         })
 
@@ -57,11 +47,4 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
         }
     }
 
-    private fun initView() {
-        binding.emailConfirmationProgressBar.visibility = View.VISIBLE
-        binding.fragmentEmailConfirmationImage.visibility = View.GONE
-        binding.fragmentEmailConfirmationErrorTextview.visibility = View.GONE
-        binding.fragmentEmailCongratulationTextView.visibility = View.GONE
-        binding.fragmentEmailHaveBeenConfirmedTextview.visibility = View.GONE
-    }
 }
