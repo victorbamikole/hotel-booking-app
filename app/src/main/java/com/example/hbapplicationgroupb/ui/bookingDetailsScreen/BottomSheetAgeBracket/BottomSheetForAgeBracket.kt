@@ -226,7 +226,7 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
 
 
         doneText.setOnClickListener {
-            listener.OnclickOfDoneTextView(convertArrayToString(personsBooked))
+            listener.OnclickOfDoneTextView(personsBooked.joinToString(","))
                 dismiss()
         }
 

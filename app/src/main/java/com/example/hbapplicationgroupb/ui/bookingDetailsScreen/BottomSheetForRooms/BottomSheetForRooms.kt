@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.TextView
 import com.example.hbapplicationgroupb.R
@@ -24,11 +25,11 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
     lateinit var RoomNo24Text : TextView
     lateinit var RoomNo26Text : TextView
 
-    lateinit var roomNo1RadBtn : RadioButton
-    lateinit var roomNo2RadBtn : RadioButton
-    lateinit var roomNo22RadBtn : RadioButton
-    lateinit var roomNo24RadBtn : RadioButton
-    lateinit var roomNo26RadBtn : RadioButton
+    lateinit var roomNo1RadBtn : CheckBox
+    lateinit var roomNo2RadBtn : CheckBox
+    lateinit var roomNo22RadBtn : CheckBox
+    lateinit var roomNo24RadBtn : CheckBox
+    lateinit var roomNo26RadBtn : CheckBox
 
 
 
@@ -64,15 +65,16 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
 
 
         var roomsBooked : ArrayList<String> = ArrayList(0)
-        var room1Booked = "Room No. 1"
-        var room2Booked = "Room No. 2"
-        var room22Booked = "Room No. 22"
-        var room24Booked = "Room No. 24"
-        var room26Booked = "Room No. 26"
+        var room1Booked = " Room No. 1"
+        var room2Booked = " Room No. 2"
+        var room22Booked = " Room No. 22"
+        var room24Booked = " Room No. 24"
+        var room26Booked = " Room No. 26"
 
         cancelTextBtn.setOnClickListener {
             dismiss()
         }
+
 
         doneTextBtn.setOnClickListener {
             if (roomNo1RadBtn.isChecked){
@@ -82,14 +84,12 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
                 roomsBooked.remove(room1Booked)
             }
 
-
             if (roomNo2RadBtn.isChecked){
                 roomsBooked.add(room2Booked)
             }
             else{
                 roomsBooked.remove(room2Booked)
             }
-
 
             if (roomNo22RadBtn.isChecked){
                 roomsBooked.add(room22Booked)
@@ -113,10 +113,7 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
             else{
                 roomsBooked.remove(room26Booked)
             }
-
-
-            listener.OnclickOfDoneTextViewRoomTypes(convertArrayToString(roomsBooked))
-
+            listener.OnclickOfDoneTextViewRoomTypes(roomsBooked.joinToString(","))
             dismiss()
         }
 

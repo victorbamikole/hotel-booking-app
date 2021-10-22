@@ -1,22 +1,29 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment
 
 import android.os.Bundle
+import android.util.SparseIntArray
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
+import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
+import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.RoomTypeListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
+import com.example.hbapplicationgroupb.validation.BookingDetailsValidation
+import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface , RoomTypeListenerInterface{
@@ -31,32 +38,30 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
      //   val hotelName = safeArgs.hotelName
 
        // binding.bookingDetailsScreenTextViewName.setText(hotelName)
+
+        lateinit var datePicker : PrimeDatePicker
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
         binding.bookingDetailsScreenTextViewStartDate.setOnClickListener {
-            val rangeDaysPickCallback = RangeDaysPickCallback { startDay, endDay ->
-                binding.bookingDetailsScreenTextViewStartDate.setText(startDay.longDateString)
-                binding.bookingDetailsScreenTextViewEndDate.setText(endDay.longDateString)
-            }
             val today = CivilCalendar()
-            val datePicker = PrimeDatePicker.bottomSheetWith(today)
-                .pickRangeDays(rangeDaysPickCallback)
-                .build()
-                 fragmentManager?.let { datePicker.show(it, "SOME_TAG")}
+             datePicker = PrimeDatePicker.bottomSheetWith(today)
+                .pickRangeDays{ startDay, endDay ->
+                    binding.bookingDetailsScreenTextViewStartDate.setText(startDay.longDateString)
+                    binding.bookingDetailsScreenTextViewEndDate.setText(endDay.longDateString)
+                }.applyTheme(themeFactory).build()
+            datePicker.show(parentFragmentManager, "dateRange")
         }
+
 
 
         /** Method to pop bottom Sheet for Calender End-date EditTexView */
         binding.bookingDetailsScreenTextViewEndDate.setOnClickListener{
-            val rangeDaysPickCallback = RangeDaysPickCallback { startDay, endDay ->
-                binding.bookingDetailsScreenTextViewStartDate.setText(startDay.longDateString)
-                binding.bookingDetailsScreenTextViewEndDate.setText(endDay.longDateString)
-            }
             val today = CivilCalendar()
-            val datePicker = PrimeDatePicker.bottomSheetWith(today)
-                .pickRangeDays(rangeDaysPickCallback)
-                .build()
-            fragmentManager?.let { datePicker.show(it, "SOME_TAG")
-        }
+            datePicker = PrimeDatePicker.bottomSheetWith(today)
+                .pickRangeDays{ startDay, endDay ->
+                    binding.bookingDetailsScreenTextViewStartDate.setText(startDay.longDateString)
+                    binding.bookingDetailsScreenTextViewEndDate.setText(endDay.longDateString)
+                }.applyTheme(themeFactory).build()
+            datePicker.show(parentFragmentManager, "dateRange")
     }
 
 
@@ -89,7 +94,52 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             val phoneNumberForBooking = binding.bookingDetailsScreenTextViewPhoneNumber.text.toString()
             val checkIn = binding.bookingDetailsScreenTextViewStartDate.text.toString()
             val checkout = binding.bookingDetailsScreenTextViewEndDate.text.toString()
+            val people = binding.bookingDetailsScreenTextViewAgeBracket.text.toString()
             val roomType = binding.bookingDetailsScreenTextViewRoomType.text.toString()
+
+
+            /**Was about creating a booking details Data when I noticed that the endPoint is
+             * not the same as the given UI information*/
+           // val bookingDetails = CustomerBookingDataItem (1, checkIn, checkout, people,)
+            if (!BookingDetailsValidation.validateName(nameForBooking)) {
+                binding.bookingDetailsScreenTextViewName.error = "A name must be entered"
+                binding.bookingDetailsScreenTextViewName.isFocusable
+                return@setOnClickListener
+            }
+
+
+            if (!BookingDetailsValidation.validatePhoneNumber(phoneNumberForBooking)) {
+                binding.bookingDetailsScreenTextViewPhoneNumber.error = "Enter a Phone Number"
+                binding.bookingDetailsScreenTextViewPhoneNumber.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!BookingDetailsValidation.validateStartDate(checkIn)) {
+                binding.bookingDetailsScreenTextViewStartDate.error = "Enter a Start Date"
+                binding.bookingDetailsScreenTextViewStartDate.isFocusable
+                return@setOnClickListener
+            }
+
+
+            if (!BookingDetailsValidation.validateEndDate(checkout)) {
+                binding.bookingDetailsScreenTextViewEndDate.error = "Enter an End Date"
+                binding.bookingDetailsScreenTextViewEndDate.isFocusable
+                return@setOnClickListener
+            }
+
+
+            if (!BookingDetailsValidation.validateAgeBracket(people)) {
+                binding.bookingDetailsScreenTextViewAgeBracket.error = "Enter the number of persons"
+                binding.bookingDetailsScreenTextViewAgeBracket.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!BookingDetailsValidation.validateRoomType(roomType)) {
+                binding.bookingDetailsScreenTextViewRoomType.error = "Select a room type"
+                binding.bookingDetailsScreenTextViewRoomType.isFocusable
+                return@setOnClickListener
+            }
+
         }
 }
 
@@ -102,5 +152,35 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
         binding.bookingDetailsScreenTextViewRoomType.setText(selectedRooms)
     }
 
+
+
+
+    private val themeFactory = object : LightThemeFactory() {
+        override val pickedDayBackgroundShapeType: BackgroundShapeType
+            get() = BackgroundShapeType.CIRCLE
+        override val calendarViewPickedDayInRangeBackgroundColor: Int
+           get() = getColor(R.color.custom_orange)
+
+        override val actionBarTodayTextColor: Int
+            get() = getColor(R.color.white)
+
+        override val actionBarNegativeTextColor: Int
+            get() = getColor(R.color.black)
+
+        override val actionBarPositiveTextColor: Int
+            get() = getColor(R.color.lightButtonBarNegativeTextColor)
+
+        override val calendarViewMonthLabelTextColor: Int
+            get() = getColor(R.color.white)
+
+        override val calendarViewShowAdjacentMonthDays : Boolean
+            get() = true
+
+        override val selectionBarBackgroundColor : Int
+            get() = getColor(R.color.custom_orange)
+
+        override val selectionBarRangeDaysItemBackgroundColor: Int
+            get() = getColor(R.color.custom_orange)
+    }
 
 }

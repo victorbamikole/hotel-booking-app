@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/fragment_bookingDetails_Room1_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -69,7 +69,9 @@
         android:checked="false"
         android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.RadioButton"
+        />
 
 
     <View
@@ -98,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/fragment_bookingDetails_Room2_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -106,7 +108,8 @@
         android:checked="false"
         android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view11" />
+        app:layout_constraintTop_toBottomOf="@+id/view11"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.RadioButton" />
 
 
     <View
@@ -135,7 +138,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view12" />
 
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/fragment_bookingDetails_Room22_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -143,7 +146,9 @@
         android:checked="false"
         android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view12" />
+        app:layout_constraintTop_toBottomOf="@+id/view12"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.RadioButton"
+        />
 
 
     <View
@@ -171,7 +176,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/fragment_bookingDetails_Room24_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -179,7 +184,9 @@
         android:checked="false"
         android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view13" />
+        app:layout_constraintTop_toBottomOf="@+id/view13"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.RadioButton"
+        />
 
 
     <View
@@ -207,7 +214,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/fragment_bookingDetails_Room26_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -215,6 +222,8 @@
         android:checked="false"
         android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view14" />
+        app:layout_constraintTop_toBottomOf="@+id/view14"
+        style="@android:style/Widget.DeviceDefault.Light.CompoundButton.RadioButton"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
