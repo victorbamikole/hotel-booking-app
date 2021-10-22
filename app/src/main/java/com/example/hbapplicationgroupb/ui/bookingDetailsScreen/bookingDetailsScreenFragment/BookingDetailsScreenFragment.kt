@@ -108,6 +108,8 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             }
 
 
+
+            /**Validation for Booking details Fields*/
             if (!BookingDetailsValidation.validatePhoneNumber(phoneNumberForBooking)) {
                 binding.bookingDetailsScreenTextViewPhoneNumber.error = "Enter a Phone Number"
                 binding.bookingDetailsScreenTextViewPhoneNumber.isFocusable
@@ -151,8 +153,6 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     override fun OnclickOfDoneTextViewRoomTypes(selectedRooms: String) {
         binding.bookingDetailsScreenTextViewRoomType.setText(selectedRooms)
     }
-
-
 
 
     private val themeFactory = object : LightThemeFactory() {
