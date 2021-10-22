@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_bookingDetails_Cancel_textView"
+        android:id="@+id/fragment_bookingDetails_CancelBtn_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -24,7 +24,7 @@
 
 
     <TextView
-        android:id="@+id/fragment_booking_details_done_textView"
+        android:id="@+id/fragment_BookingDetails_doneBtn_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -47,11 +47,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Cancel_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_CancelBtn_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_bookingDetails_Adults_textView"
+        android:id="@+id/fragment_bookingDetails_Room1Text_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -62,11 +62,12 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <RadioButton
-        android:id="@+id/fragment_bookingDetails_AddAdults_Icon"
+        android:id="@+id/fragment_bookingDetails_Room1_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:checked="false"
+        android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -82,11 +83,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Adults_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Room1Text_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_bookingDetails_Teens_textView"
+        android:id="@+id/fragment_bookingDetails_Room2Text_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -98,11 +99,12 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_BookingDetails_AddTeens_View"
+        android:id="@+id/fragment_bookingDetails_Room2_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:checked="false"
+        android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view11" />
 
@@ -118,11 +120,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Teens_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Room2Text_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_MasterCard_textView"
+        android:id="@+id/fragment_bookingDetails_Room22Text_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -134,11 +136,12 @@
 
 
     <RadioButton
-        android:id="@+id/fragment_bookingDetails_AddChildren_view"
+        android:id="@+id/fragment_bookingDetails_Room22_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:checked="false"
+        android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view12" />
 
@@ -154,11 +157,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_MasterCard_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Room22Text_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_DebitCard_TextView"
+        android:id="@+id/fragment_bookingDetails_Room24Text_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -169,11 +172,12 @@
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
     <RadioButton
-        android:id="@+id/fragment_BookingDetails_AddInfants_view"
+        android:id="@+id/fragment_bookingDetails_Room24_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:checked="false"
+        android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view13" />
 
@@ -189,11 +193,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_paymentOptions_DebitCard_TextView" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_bookingDetails_Room24Text_textView" />
 
 
     <TextView
-        android:id="@+id/fragment_paymentOptions_Paytm_TextView"
+        android:id="@+id/fragment_bookingDetails_Room26Text_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -204,11 +208,12 @@
         app:layout_constraintTop_toBottomOf="@+id/view14" />
 
     <RadioButton
-        android:id="@+id/fragment_paymentOptions_PaytmNextArrow_Icon"
+        android:id="@+id/fragment_bookingDetails_Room26_RadioButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/custom_orange"
+        android:checked="false"
+        android:buttonTint="@color/btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view14" />
 

@@ -5,11 +5,10 @@ fun convertArrayToString(array:ArrayList<String>):String{
 
     if(array.size >0){
         for (i in array){
-            stringHolder += "$i,"
+            stringHolder += "$i "
 
         }
     }
-
     return stringHolder
 }
 

@@ -12,24 +12,25 @@ import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
+import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.RoomTypeListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface {
+class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_screen), AgeBracketListenerInterface , RoomTypeListenerInterface{
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-    private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
+    //private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
 
-        val hotelName = safeArgs.hotelName
+     //   val hotelName = safeArgs.hotelName
 
-        binding.bookingDetailsScreenTextViewName.setText(hotelName)
+       // binding.bookingDetailsScreenTextViewName.setText(hotelName)
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
         binding.bookingDetailsScreenTextViewStartDate.setOnClickListener {
             val rangeDaysPickCallback = RangeDaysPickCallback { startDay, endDay ->
@@ -78,7 +79,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
 
         /** Method to pop bottom Sheet for Room type Selection */
         binding.bookingDetailsScreenTextViewRoomType.setOnClickListener {
-            val bottomSheet : BottomSheetForRooms = BottomSheetForRooms()
+            val bottomSheet : BottomSheetForRooms = BottomSheetForRooms(this)
             fragmentManager?.let { it1 -> bottomSheet.show(it1, "TAG")}
         }
 
@@ -96,4 +97,10 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     override fun OnclickOfDoneTextView(numberOfPersons: String) {
         binding.bookingDetailsScreenTextViewAgeBracket.setText(numberOfPersons)
     }
+
+    override fun OnclickOfDoneTextViewRoomTypes(selectedRooms: String) {
+        binding.bookingDetailsScreenTextViewRoomType.setText(selectedRooms)
+    }
+
+
 }
