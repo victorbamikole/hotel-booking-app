@@ -322,8 +322,7 @@
                     android:checked="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/reg_age_card"
-                    local:layout_constraintBottom_toTopOf="@+id/btn_register"
-                    />
+                    local:layout_constraintBottom_toTopOf="@+id/btn_register"/>
 
                 <TextView
                     android:id="@+id/textView3"
