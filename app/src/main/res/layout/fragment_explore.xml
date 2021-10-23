@@ -65,6 +65,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/networkErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/shadow_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/custom_orange"
+        android:text="@string/no_internet_connection"
+        />
 
     <View
         android:id="@+id/shadow_view"
@@ -226,6 +237,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="10dp"
+                android:elevation="200dp"
+                android:visibility="gone"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp"
@@ -275,6 +288,8 @@
             <ProgressBar
                 android:id="@+id/progressBarTwo"
                 android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:elevation="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"

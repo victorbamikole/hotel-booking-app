@@ -9,7 +9,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
+import com.example.hbapplicationgroupb.di.application.HotelApplication
+import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
+import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,18 +25,26 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     val myAdapter = ExploreHomeAdapter()
     val myAdapter2 = ExploreHomeAdapter2()
     private val UIViewModel: UIViewModel by viewModels()
+    private lateinit var connectivityLiveData: ConnectivityLiveData
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        connectivityLiveData = ConnectivityLiveData(application)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
 
 
+
         initViewModel()
         initViewModel2()
-        //Fetch All Hotels From APi
-        roomViewModel.getTopHotels()
-        //Fetch Top Deals From APi
-        roomViewModel.getTopDeals()
+//        doThisWhenNetworkIsAvailable()
+//        doThisWhenNetworkIsLost()
+        observeNetworkConnection(connectivityLiveData,viewLifecycleOwner,
+            { doThisWhenNetworkIsAvailable() }, { doThisWhenNetworkIsLost() })
+
 
         //Inflate the top hotels recycler view layout to the fragment class
         binding.recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -57,6 +69,22 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
             
         })
+    }
+
+    private fun doThisWhenNetworkIsLost() {
+        binding.progressBarOne.visibility = View.VISIBLE
+        binding.progressBarTwo.visibility = View.VISIBLE
+        binding.networkErrorMessage.visibility= View.VISIBLE
+    }
+
+    private fun doThisWhenNetworkIsAvailable() {
+        binding.progressBarOne.visibility = View.GONE
+        binding.progressBarTwo.visibility = View.GONE
+        binding.networkErrorMessage.visibility=View.GONE
+        //Fetch All Hotels From APi
+        roomViewModel.getTopHotels()
+        //Fetch Top Deals From APi
+        roomViewModel.getTopDeals()
     }
 
     //This function observes the TopHotels LiveData and populates the RecyclerView UI
