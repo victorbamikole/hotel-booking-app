@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 class HotelTypeConverter {
 
     @TypeConverter
-    fun fromString(value :String?) :List<String>{
+    fun fromString(value :String) :List<String>{
 
         val listType = object : TypeToken<List<String>>(){}.type
         return Gson().fromJson(value,listType)
@@ -18,17 +18,17 @@ class HotelTypeConverter {
     }
 
     @TypeConverter
-    fun fromList(list :List<String?>) :String{
+    fun fromList(list :List<String>) :String{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromRoomType(list :MutableList<RoomType>) : String{
+    fun fromRoomType(list :List<RoomType>) : String{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromStringToRoomType(value :String?) :MutableList<RoomType>{
+    fun fromStringToRoomType(value :String?) :List<RoomType>{
         val roomType = object : TypeToken<List<RoomType>>(){}.type
         return Gson().fromJson(value,roomType)
     }

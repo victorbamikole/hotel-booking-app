@@ -43,8 +43,6 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val progressBar = binding.fragmentRegistrationProgressBar
-//        progressBar.visibility = View.GONE
 
 
         //Set click listener on login link
@@ -143,12 +141,6 @@ class RegistrationFragment : Fragment() {
             binding.registerProgressBar.visibility = View.VISIBLE
 
             viewModel.registerUser(userDataTest)
-
-
-            val coverScreenTimeout = 5000
-            Handler(Looper.getMainLooper()).postDelayed({
-
-            }, coverScreenTimeout.toLong())
 
         }
 

@@ -11,13 +11,12 @@ data class PageItem(
     val description: String,
     val email: String,
     val featuredImage: String,
-    val gallery: MutableList<String>,
+    val gallery: List<String>,
     @PrimaryKey
     val id: String,
     val name: String,
     val phone: String,
     val rating: Double,
-//    @Embedded
-    val roomTypes: MutableList<RoomType>,
+    val roomTypes: List<RoomType>,
     val state: String
 )
