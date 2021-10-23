@@ -34,11 +34,13 @@ class ConfirmEmail : Fragment(R.layout.fragment_confirm_email) {
         roomViewModel.confirmEmailAddress(emailAndToken)
 
         roomViewModel.confirmEmailAddress.observe(viewLifecycleOwner,{
-            if(it == null){
-                binding.errorTextViewId.visibility = View.VISIBLE
+            if(it != null){
+                binding.errorTextViewId.visibility = View.GONE
             }
             else{
-                binding.errorTextViewId.visibility = View.GONE
+                binding.errorTextViewId.visibility = View.VISIBLE
+                binding.verifyMeText.visibility = View.GONE
+                binding.fragmentConfirmationScreenBackButton.visibility = View.GONE
             }
         })
 

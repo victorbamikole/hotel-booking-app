@@ -85,6 +85,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/reg_email_input"
                     style="@style/TextInputLayout"
+                    app:endIconMode="clear_text"
+                    local:errorEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="example@email.dev"
@@ -114,7 +116,9 @@
                     style="@style/TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    local:errorEnabled="true"
                     android:hint="password"
+                    local:endIconMode="password_toggle"
                     app:layout_constraintTop_toBottomOf="@+id/iv_registration"
                     app:startIconDrawable="@drawable/icon_padlock">
 
@@ -208,8 +212,9 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
                 android:elevation="5dp"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/circular_progress_bar"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -68,11 +68,19 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             else{
                 binding.regPasswordInput.error = "Password does not match with any email address"
                 Snackbar.make(binding.root, "Invalid password", Snackbar.LENGTH_LONG).show()
+                binding.regPasswordInput.error = null
+                binding.loadingView.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+
             }
         }
         else{
             binding.regEmailInput.error = "Invalid email address"
             Snackbar.make(binding.root, "Invalid email address", Snackbar.LENGTH_LONG).show()
+            binding.regPasswordInput.error = null
+            binding.loadingView.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
+
         }
 
     }
