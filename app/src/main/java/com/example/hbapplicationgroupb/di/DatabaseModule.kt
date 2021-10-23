@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
@@ -19,13 +20,13 @@ object DatabaseModule {
 
     @Singleton
     @Provides
-    fun getDataBase(@ApplicationContext context: Context): HBDataBase {
+    fun getDataBase(app:Application): HBDataBase {
         val tempInstance = INSTANCE
         if(tempInstance!=null){
             return tempInstance
         }
         synchronized(this){
-            val instance = Room.databaseBuilder(context.applicationContext,
+            val instance = Room.databaseBuilder(app.applicationContext,
                 HBDataBase::class.java,
                 "app_database").build()
             INSTANCE = instance

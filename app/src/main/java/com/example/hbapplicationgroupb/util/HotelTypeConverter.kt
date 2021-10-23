@@ -1,10 +1,12 @@
 package com.example.hbapplicationgroupb.util
 
+import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.example.hbapplicationgroupb.model.allHotels.RoomType
+import com.example.hbapplicationgroupb.model.allhotel.RoomType
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+//@ProvidedTypeConverter
 class HotelTypeConverter {
 
     @TypeConverter
@@ -17,17 +19,16 @@ class HotelTypeConverter {
 
     @TypeConverter
     fun fromList(list :List<String?>) :String{
-
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromRoomType(list :List<RoomType>) : String{
+    fun fromRoomType(list :MutableList<RoomType>) : String{
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromStringToRoomType(value :String?) :List<RoomType>{
+    fun fromStringToRoomType(value :String?) :MutableList<RoomType>{
         val roomType = object : TypeToken<List<RoomType>>(){}.type
         return Gson().fromJson(value,roomType)
     }

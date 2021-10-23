@@ -40,8 +40,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
         initViewModel()
         initViewModel2()
-//        doThisWhenNetworkIsAvailable()
-//        doThisWhenNetworkIsLost()
+
         observeNetworkConnection(connectivityLiveData,viewLifecycleOwner,
             { doThisWhenNetworkIsAvailable() }, { doThisWhenNetworkIsLost() })
 
@@ -66,20 +65,20 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding.viewAllTopDeals.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
         }
-        UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
-            
-        })
+//        UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
+//
+//        })
     }
 
     private fun doThisWhenNetworkIsLost() {
-        binding.progressBarOne.visibility = View.VISIBLE
-        binding.progressBarTwo.visibility = View.VISIBLE
+//        binding.progressBarOne.visibility = View.VISIBLE
+//        binding.progressBarTwo.visibility = View.VISIBLE
         binding.networkErrorMessage.visibility= View.VISIBLE
     }
 
     private fun doThisWhenNetworkIsAvailable() {
-        binding.progressBarOne.visibility = View.GONE
-        binding.progressBarTwo.visibility = View.GONE
+//        binding.progressBarOne.visibility = View.GONE
+//        binding.progressBarTwo.visibility = View.GONE
         binding.networkErrorMessage.visibility=View.GONE
         //Fetch All Hotels From APi
         roomViewModel.getTopHotels()
@@ -95,8 +94,8 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
                 Log.d("Homefrag", "${it.data}")
                 myAdapter.notifyDataSetChanged()
                 binding.recyclerView.adapter = myAdapter
-               UIViewModel.insertAllHotelsToDb(it.data as ArrayList<TopDealAndHotelData>)
-                Log.d("DATABASE", " ${it.data} ")
+//               UIViewModel.insertAllHotelsToDb(it.data as ArrayList<TopDealAndHotelData>)
+//                Log.d("DATABASE", " ${it.data} ")
             }
              })
     }

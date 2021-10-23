@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,6 +17,7 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,7 +72,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         _binding = FragmentAllHotelsBinding.bind(view)
 
             fetchAllHotels()
-        roomViewModel.getAllHotels()
+//        roomViewModel.getAllHotels()
 
         binding.apply {
             allHotelsRecyclerView.adapter = myAdapter
@@ -87,13 +90,19 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     }
 
     private fun fetchAllHotels() {
-        roomViewModel.fetchAllHotelResponse.observe(viewLifecycleOwner, Observer {
-            if (it != null){
-                arrayList = it.body()?.data!!.pageItems
-                myAdapter.submitList(it.body()?.data!!.pageItems)
+        roomViewModel.getAllHotel.observe(viewLifecycleOwner, Observer {
+
+
+//            Toast.makeText(requireContext(),it.data!![0].email,Toast.LENGTH_SHORT).show()
+                myAdapter.submitList(it.data!!)
+                binding.allHotelProgressBar.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
+                binding.allHotelTextViewError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()
+                binding.allHotelTextViewError.text = it.error?.localizedMessage
                 myAdapter.notifyDataSetChanged()
                 binding.allHotelsRecyclerView.adapter = myAdapter
-            }
+
+
+
         })
 
         myAdapter.allHotelClickListener(object : AllHotelClickListener{
