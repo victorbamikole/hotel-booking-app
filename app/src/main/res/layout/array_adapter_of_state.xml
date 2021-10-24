@@ -3,6 +3,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/selected_state_tv"
     android:text="filter by"
+    android:visibility="visible"
     android:padding="14sp"
     android:paddingRight="10dp"
     android:textStyle="bold"
