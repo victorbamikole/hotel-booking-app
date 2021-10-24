@@ -80,8 +80,6 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
             }else{
                 binding.tvResetPassword.error = "this field cannot be empty"
             }
-
-//            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
         }
 
 

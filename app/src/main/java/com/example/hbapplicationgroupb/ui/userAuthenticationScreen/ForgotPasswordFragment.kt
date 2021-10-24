@@ -34,7 +34,6 @@ class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
                     roomViewModel.sendForgetPasswordEmailToApi(
                         binding.tvForgotPasswordEmail.text.toString()
                     )
-                    Log.d("PASSWORD", "PASSWORD")
                 }else{
                     binding.tvForgotPasswordEmail.error = "enter a valid email"
                 }

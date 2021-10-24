@@ -42,16 +42,9 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         roomViewModel.topHotels.observe(viewLifecycleOwner,{
             if (it != null){
                 myAdapter.populateTopDeals(it.data)
-                Log.d("Homefrag", "${it.data}")
 
                 binding!!.topDealsRecyclerView.adapter = myAdapter
                 myAdapter.notifyDataSetChanged()
-
-                Log.d("hotelId", "hotel id: ${it.data[0].id}")
-                Log.d("hotelId", "name: ${it.data[0].name}")
-                Log.d("hotelId", "hotel name: ${it.data[0].percentageRating}")
-                Log.d("hotelId", "Price: ${it.data[0].price}")
-                Log.d("hotelId", "Price: ${it.data[0].thumbnail}")
 
                 //Set Click Listener on adapter list items
                 myAdapter.setOnItemClickListener(object : TopDealsAdapter.SetItemClickListener{

@@ -186,7 +186,6 @@ class RegistrationFragment : Fragment() {
                 is ApiCallNetworkResource.Success ->{
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
-                    Log.d("message", "registrationResponseObserver: success message ${it.message}")
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     val action = RegistrationFragmentDirections
                         .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
@@ -194,14 +193,10 @@ class RegistrationFragment : Fragment() {
                 }
                 is ApiCallNetworkResource.Error ->{
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    Log.d("message", "registrationResponseObserver: failure message ${it.message}")
-
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
                 }
                 is ApiCallNetworkResource.Loading ->{
-                    Log.d("message", "registrationResponseObserver: loading message Loading")
-
                     binding.viewCover.visibility = View.VISIBLE
                     binding.registerProgressBar.visibility = View.VISIBLE
 

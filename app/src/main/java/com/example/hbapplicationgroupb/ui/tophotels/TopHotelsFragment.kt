@@ -62,7 +62,6 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                 myAdapter.submitList(it.data)
                 myAdapter.notifyDataSetChanged()
                 binding.topHotelsRecyclerView.adapter = myAdapter
-                Log.d("TTT", "initializeViewModel:${it.data} ")
             }
         })
 
@@ -93,30 +92,6 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
         })
     }
-
-//    private fun initializeViewModel() {
-//        roomViewModel.topHotels.observe(viewLifecycleOwner,{ response ->
-//            when (response){
-//              is Resource.Success -> {
-//                  //hide progress bar
-//                  //add to recyclerView
-//                  response.data?.let { topHotelResponse ->
-//                      myAdapter.submitList(topHotelResponse.data)
-//                      roomViewModel.saveTopHotels(topHotelResponse.data)
-//                  }
-//              }
-//                is Resource.Error -> {
-//                    //hide progress bar
-//                    response.exception?.let { message ->
-//                        Log.d("TOP HOTEL", "error occured: $message")
-//                    }
-//                }
-//                is Resource.Loading -> {
-//                    //show progress bar
-//                }
-//            }
-//        })
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
