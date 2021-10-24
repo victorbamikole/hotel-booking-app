@@ -16,7 +16,12 @@ import androidx.navigation.fragment.findNavController
 import com.aminography.primedatepicker.utils.gone
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationBinding
+import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
+import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
+import com.example.hbapplicationgroupb.util.resource.Resource
+import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
 import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.example.hbapplicationgroupb.validation.ResetPasswordValidationFunctions
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -30,6 +35,12 @@ class RegistrationFragment : Fragment() {
     private val binding get() = _binding
     private val viewModel: RoomViewModel by viewModels()
     private  lateinit var userDataTest:UserDataResponseItem
+    private lateinit var connectivityLiveData:ConnectivityLiveData
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        connectivityLiveData = ConnectivityLiveData(application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +55,9 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //observe network state
+        observeNetworkConnection(connectivityLiveData,viewLifecycleOwner,
+            { doThisWhenNetworkIsAvailable() }, { doThisWhenNetworkIsLost() })
 
         //Set click listener on login link
         binding.tvLogin.setOnClickListener {
@@ -137,8 +151,6 @@ class RegistrationFragment : Fragment() {
                 return@setOnClickListener
 
             }
-            binding.viewCover.visibility = View.VISIBLE
-            binding.registerProgressBar.visibility = View.VISIBLE
 
             viewModel.registerUser(userDataTest)
 
@@ -154,23 +166,46 @@ class RegistrationFragment : Fragment() {
     private fun registrationResponseObserver() {
 
         viewModel.newUser.observe(viewLifecycleOwner, {
-            if (it != null) {
-                if (it.succeeded){
+
+            when(it){
+                is ApiCallNetworkResource.Success ->{
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
+                    Log.d("message", "registrationResponseObserver: success message ${it.message}")
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     val action = RegistrationFragmentDirections
                         .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
                     findNavController().navigate(action)
-                }else{
+                }
+                is ApiCallNetworkResource.Error ->{
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    Log.d("message", "registrationResponseObserver: failure message ${it.message}")
+
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
                 }
-                }else{
-                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
+                is ApiCallNetworkResource.Loading ->{
+                    Log.d("message", "registrationResponseObserver: loading message Loading")
+
+                    binding.viewCover.visibility = View.VISIBLE
+                    binding.registerProgressBar.visibility = View.VISIBLE
+
+                }
             }
+
         })
+
+    }
+    private fun doThisWhenNetworkIsLost() {
+        binding.regnetworkErrorMessage.visibility= View.VISIBLE
+        binding.btnRegister.isEnabled = false
+        binding.registerProgressBar.visibility = View.GONE
+        binding.viewCover.visibility = View.GONE
+    }
+
+    private fun doThisWhenNetworkIsAvailable() {
+        binding.regnetworkErrorMessage.visibility=View.GONE
+        binding.btnRegister.isEnabled = true
 
     }
 }

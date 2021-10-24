@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentRegistrationIsSuccessfulBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragmentArgs
+import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,16 +40,22 @@ class RegistrationIsSuccessfulFragment : Fragment(R.layout.fragment_registration
     private fun registrationResponseObserver() {
 
         viewModel.newUser.observe(viewLifecycleOwner, {
-            if (it != null) {
-                if (it.succeeded){
+            when(it){
+                is ApiCallNetworkResource.Success ->{
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }else{
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
+                is ApiCallNetworkResource.Error ->{
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    binding.viewCover.visibility = View.GONE
+                    binding.registerProgressBar.visibility = View.GONE
+                }
+                is ApiCallNetworkResource.Loading ->{
+                    binding.viewCover.visibility = View.VISIBLE
+                    binding.registerProgressBar.visibility = View.VISIBLE
+
+                }
             }
         })
 

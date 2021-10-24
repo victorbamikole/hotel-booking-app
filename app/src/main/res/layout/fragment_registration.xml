@@ -25,6 +25,17 @@
         local:layout_constraintEnd_toEndOf="parent"
         local:layout_constraintStart_toStartOf="parent"
         />
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/regnetworkErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/custom_orange"
+        android:text="@string/no_internet_connection"
+        />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/reg_toolbar"
@@ -32,6 +43,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:elevation="5dp"
+            android:layout_marginTop="25dp"
             android:minHeight="?attr/actionBarSize"
             android:padding="0dp"
             local:layout_constraintEnd_toEndOf="parent"

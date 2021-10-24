@@ -71,14 +71,10 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     }
 
     private fun doThisWhenNetworkIsLost() {
-//        binding.progressBarOne.visibility = View.VISIBLE
-//        binding.progressBarTwo.visibility = View.VISIBLE
         binding.networkErrorMessage.visibility= View.VISIBLE
     }
 
     private fun doThisWhenNetworkIsAvailable() {
-//        binding.progressBarOne.visibility = View.GONE
-//        binding.progressBarTwo.visibility = View.GONE
         binding.networkErrorMessage.visibility=View.GONE
         //Fetch All Hotels From APi
         roomViewModel.getTopHotels()

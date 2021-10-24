@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
-import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -13,16 +12,17 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
-import com.example.hbapplicationgroupb.util.resource.Resource
+import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -94,16 +94,12 @@ class RoomViewModel @Inject constructor(
 
 
     //User Added
-    private val _newUser: MutableLiveData<UserDataResponse> = MutableLiveData()
-    val newUser:LiveData<UserDataResponse> = _newUser
+    private val _newUser: MutableLiveData<ApiCallNetworkResource<UserDataResponse?>> = MutableLiveData()
+    val newUser:LiveData<ApiCallNetworkResource<UserDataResponse?>> = _newUser
 
     //Hotel description livedata
     private val _hotelDescription: MutableLiveData<HotelDescriptionData> = MutableLiveData()
     val hotelDescription: LiveData<HotelDescriptionData> get() = _hotelDescription
-
-
-//    private val _allHotelsList = MutableLiveData<GetAllHotel?>()
-//    val allHotelsList: LiveData<GetAllHotel?> = _allHotelsList
 
     private val _allTopDeals = MutableLiveData<TopDealsAndHotel?>()
     val allTopDeals: LiveData<TopDealsAndHotel?> = _allTopDeals
@@ -132,7 +128,7 @@ class RoomViewModel @Inject constructor(
 
 
     init {
-        getTopHotels()
+//        getTopHotels()
 //        getAllHotels()
     }
 
@@ -140,17 +136,35 @@ class RoomViewModel @Inject constructor(
 
     fun registerUser(userData: UserDataResponseItem) {
         viewModelScope.launch {
+            _newUser.postValue(ApiCallNetworkResource.Loading())
             try {
+                delay(2000)
                 val response = apiRepository.registerAUser(userData)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    _newUser.postValue(responseBody)
+                    _newUser.postValue(ApiCallNetworkResource.Success(responseBody!!.message))
                 }else{
-                    _newUser.postValue(response.body())
+                    _newUser.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
                 }
 
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
                 e.printStackTrace()
+                when(e){
+                    is IOException ->{
+                        _newUser.postValue(ApiCallNetworkResource.Error(message =
+                        "Network Failure, please check your internet connection"))
+                    }
+                    is NullPointerException ->{
+                        _newUser.postValue(ApiCallNetworkResource.Error(
+                            "email has already been registered"
+                        ))
+                    }
+                    else->{
+                        _newUser.postValue(ApiCallNetworkResource.Error(message =
+                        "an error occur please try again later"))
+                    }
+                }
+
             }
         }
     }
@@ -203,24 +217,6 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-//    fun getAllHotels(pageSize: Int, currentPage: Int) {
-//
-//        viewModelScope.launch {
-//            try {
-//                val response = apiRepository.getAllHotels(pageSize, currentPage)
-//                if (response.isSuccessful) {
-//                    _allHotelsList.postValue(response.body())
-//                } else {
-//                    _allHotelsList.postValue(null)
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//
-//        }
-//    }
-
-
     fun sendNewPasswordToAPI(password: PostResetPasswordData) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -272,21 +268,6 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-//    fun getAllHotels(){
-//        viewModelScope.launch {
-//            try {
-//                val response = apiRepository.fetchAllHotels(10,1)
-//                if (response.isSuccessful){
-//                    _fetchAllHotelResponse.postValue(response)
-//                }else{
-//                    _fetchAllHotelResponse.postValue(null)
-//                }
-//            }catch (e:Exception){
-//                e.printStackTrace()
-//            }
-//        }
-//    }
-
 
     //Fetch hotel description from api
     fun getHotelDescription(id: String) {
@@ -304,16 +285,7 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-//    private fun handleTopHotelResponse(response: Response<AllTopHotels>): Resource<AllTopHotels> {
-//
-//        if (response.isSuccessful) {
-//            response.body()?.let { result ->
-//                return Resource.Success(result)
-//            }
-//        }
-//        return Resource.Error(response.message())
-//    }
-
+    //get all hotel
     val getAllHotel = apiRepository.getAllHotelsFomApiToDB().asLiveData()
 
 
@@ -375,13 +347,7 @@ class RoomViewModel @Inject constructor(
 
 //when(it){
 //    is Resource.Success ->{
-////                    if (it != null){
-////                        myAdapter.populateHotels(it.data)
-////                        myAdapter.notifyDataSetChanged()
-////                        binding.recyclerView.adapter = myAdapter
-////                        UIViewModel.insertAllHotelsToDb(it.data as ArrayList<TopDealAndHotelData>)
-////                        Log.d("DATABASE", " ${it.data} ")
-////                    }
+//
 //    }
 //    is Resource.Error ->{
 //
