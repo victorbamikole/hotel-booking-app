@@ -13,6 +13,7 @@
         android:id="@+id/fragment_PaymentOptions_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarDivider"
+        android:layout_marginTop="25dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:elevation="4dp"
