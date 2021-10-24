@@ -4,10 +4,11 @@
     android:id="@+id/selected_state_tv"
     android:text="filter by"
     android:visibility="visible"
+    android:focusable="false"
     android:padding="14sp"
     android:paddingRight="10dp"
     android:textStyle="bold"
     android:textColor="@color/profile_text_dark"
-    android:textSize="12sp">
+    android:textSize="16sp">
 
 </TextView>
