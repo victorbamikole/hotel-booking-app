@@ -142,7 +142,7 @@ class RoomViewModel @Inject constructor(
                 val response = apiRepository.registerAUser(userData)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    _newUser.postValue(ApiCallNetworkResource.Success(responseBody!!.message))
+                    _newUser.postValue(ApiCallNetworkResource.Success("Registration Successful"))
                 }else{
                     _newUser.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
                 }
