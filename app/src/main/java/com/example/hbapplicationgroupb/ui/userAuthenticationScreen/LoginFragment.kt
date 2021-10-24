@@ -1,15 +1,19 @@
 package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupb.MainActivity
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.util.BackPressedListener
 import com.example.hbapplicationgroupb.validation.LoginValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -19,6 +23,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val roomViewModel: RoomViewModel by viewModels()
+    private lateinit var listener:BackPressedListener
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            listener = context as BackPressedListener
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,6 +70,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             binding.progressBar.visibility = View.VISIBLE
             login()
         }
+
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+            listener.onBackPressedFromFragment()
+            }
+        })
+
     }
 
     private fun login() {

@@ -7,13 +7,17 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
+import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +27,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private var _binding: FragmentAllHotelsBinding? = null
     private val binding get() = _binding!!
     private val roomViewModel: RoomViewModel by viewModels()
+    var arrayList = listOf<PageItem>()
 
     private val myAdapter = AllHotelAdapter()
 
@@ -38,6 +43,11 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 val selectedState = listOfStateNames[position].toString()
                 binding.fragmentAllHotelsStateName.text = selectedState
+                for (i in arrayList){
+                    if (i.state == selectedState){
+
+                    }
+                }
                 Log.d("SELECTED STATE", selectedState)
             }
 
@@ -62,7 +72,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         _binding = FragmentAllHotelsBinding.bind(view)
 
             fetchAllHotels()
-        roomViewModel.getAllHotels()
 
         binding.apply {
             allHotelsRecyclerView.adapter = myAdapter
@@ -70,7 +79,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                 LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             allHotelsFragmentBackAroow.setOnClickListener {
                 findNavController()
-                    .navigate(R.id.action_topHotelsFragment_to_exploreFragment2)
+                    .navigate(R.id.action_allHotelsFragment_to_exploreFragment2)
             }
 
 
@@ -80,12 +89,17 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     }
 
     private fun fetchAllHotels() {
-        roomViewModel.fetchAllHotelResponse.observe(viewLifecycleOwner, Observer {
-            if (it != null){
-                myAdapter.submitList(it.body()?.data!!.pageItems)
+        roomViewModel.getAllHotel.observe(viewLifecycleOwner, Observer {
+
+                myAdapter.submitList(it.data!!)
+                binding.allHotelProgressBar.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
+                binding.allHotelTextViewError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()
+                binding.allHotelTextViewError.text = it.error?.localizedMessage
                 myAdapter.notifyDataSetChanged()
                 binding.allHotelsRecyclerView.adapter = myAdapter
-            }
+
+
+
         })
 
         myAdapter.allHotelClickListener(object : AllHotelClickListener{

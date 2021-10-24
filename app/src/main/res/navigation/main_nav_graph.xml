@@ -51,6 +51,11 @@
             android:id="@+id/action_loginFragment_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_loginFragment_to_splashScreenFragment"
+            app:destination="@id/splashScreenFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -275,8 +280,7 @@
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_exploreFragment2"
             app:destination="@id/exploreFragment2"
-            app:popUpTo="@id/exploreFragment2"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/exploreFragment2" />
         <action
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />

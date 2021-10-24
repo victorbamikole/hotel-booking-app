@@ -1,7 +1,7 @@
 package com.example.hbapplicationgroupb.model.api
 
-import com.example.hbapplicationgroupb.model.allHotels.GetAllHotel
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
+import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -25,12 +25,12 @@ import retrofit2.http.*
 
 interface HotelServices {
 
-    @GET("api/Hotel/all-hotels")
-    suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
+//    @GET("api/Hotel/all-hotels")
+//    suspend fun getAllHotels(@Query("PageSize") PageSize:Int, @Query("CurrentPage") CurrentPage:Int) : Response<GetAllHotel>
 
     @GET("api/Hotel/all-hotels")
     suspend fun fetchAllHotels(@Query("PageSize") PageSize:Int,
-    @Query("CurrentPage") CurrentPage:Int): Response<AllHotel>
+    @Query("CurrentPage") CurrentPage:Int): AllHotel
 
     @GET
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>
