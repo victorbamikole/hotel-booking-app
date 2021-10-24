@@ -40,6 +40,12 @@
         <item>Abuja</item>
 
     </string-array>
+
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
     <string name="app_name">HBApplicationGroupB</string>
     <string name="hello_android_group_b_texting_branching_stuff">Hello Android Group B!, texting branching stuff</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

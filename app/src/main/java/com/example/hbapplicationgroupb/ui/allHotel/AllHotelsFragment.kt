@@ -72,7 +72,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         _binding = FragmentAllHotelsBinding.bind(view)
 
             fetchAllHotels()
-//        roomViewModel.getAllHotels()
 
         binding.apply {
             allHotelsRecyclerView.adapter = myAdapter
@@ -92,8 +91,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private fun fetchAllHotels() {
         roomViewModel.getAllHotel.observe(viewLifecycleOwner, Observer {
 
-
-//            Toast.makeText(requireContext(),it.data!![0].email,Toast.LENGTH_SHORT).show()
                 myAdapter.submitList(it.data!!)
                 binding.allHotelProgressBar.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
                 binding.allHotelTextViewError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()

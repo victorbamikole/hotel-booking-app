@@ -25,6 +25,8 @@
         <entry key="app/src/main/res/font/adamina.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/age_bracket_bottom_sheet_layout.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/array_adapter_for_gender_layout.xml" value="0.1252136752136752" />
+        <entry key="app/src/main/res/layout/array_adapter_of_state.xml" value="0.1252136752136752" />
         <entry key="app/src/main/res/layout/booking_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />

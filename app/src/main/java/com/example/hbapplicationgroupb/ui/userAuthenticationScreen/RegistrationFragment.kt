@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -36,6 +38,7 @@ class RegistrationFragment : Fragment() {
     private val viewModel: RoomViewModel by viewModels()
     private  lateinit var userDataTest:UserDataResponseItem
     private lateinit var connectivityLiveData:ConnectivityLiveData
+    private lateinit var selectedGender:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,18 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //set content of gender field
+        val listOfGender = resources.getStringArray(R.array.Gender)
+        val genderAdapter = ArrayAdapter(requireContext(),R.layout.array_adapter_for_gender_layout,
+            listOfGender)
+        binding.editTextRegUserGender.setAdapter(genderAdapter)
+
+        binding.editTextRegUserGender.onItemClickListener = object :AdapterView.OnItemClickListener{
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedGender = listOfGender[p2].toString()
+            }
+
+        }
 
         //observe network state
         observeNetworkConnection(connectivityLiveData,viewLifecycleOwner,
@@ -63,18 +78,18 @@ class RegistrationFragment : Fragment() {
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.action_registrationFragment_to_loginFragment)
         }
-        binding.editTextRegUserAge.setText("0")
+
         registrationResponseObserver()
         binding.btnRegister.setOnClickListener {
             val firstName = binding.editTextViewRegUsername.text.toString().trim()
             val lastName = binding.editTextUserLastName.text.toString().trim()
             val phoneNumber = binding.editTextRegUserPhoneNumber.text.toString().trim()
-            val gender = binding.editTextRegUserGender.text.toString().trim()
+            val gender = selectedGender
             val email = binding.editTextRegUserEmail.text.toString().trim()
             val password = binding.editTextRegUserPassword.text.toString().trim()
             val radioButton = binding.btnRadio
-            val age = binding.editTextRegUserAge.text.toString().toInt()
-            val userName = binding.editTextUserUserName.text.toString().trim()
+            val age = 20
+            val userName = createUserName(firstName,lastName)
 
         userDataTest = UserDataResponseItem(
                 firstName, lastName, email,
