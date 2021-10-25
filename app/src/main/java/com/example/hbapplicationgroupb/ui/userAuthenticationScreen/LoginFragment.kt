@@ -11,9 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.MainActivity
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.util.BackPressedListener
+import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
 import com.example.hbapplicationgroupb.validation.LoginValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -32,6 +34,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             e.printStackTrace()
         }
 
+    }
+    override fun onStart() {
+        super.onStart()
+        navigateToExploreScreen()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,6 +60,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 ).show()
             }
             else {
+
+                activity?.let { it1 ->
+                    UserPreferences(it1).saveSession(it.data.token)
+                }
+
                 findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                 Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
                 binding.loadingView.visibility = View.GONE
@@ -121,5 +132,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         override fun afterTextChanged(p0: Editable?) {}
 
+    }
+
+    //Navigate to Explore Screen
+    private fun navigateToExploreScreen(){
+        //check if user is already logged in and move to app if true
+        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        if (userSession != DEFAULT_TOKEN){
+            //Move into the App
+            findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
+
+        }
     }
 }
