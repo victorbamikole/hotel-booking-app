@@ -1,6 +1,7 @@
 <resources>
 <!--    String Array of different states in Nigeria-->
     <string-array name="filter_by">
+        <item>All Hotels</item>
         <item>Abia</item>
         <item>Adamawa</item>
         <item>Akwa-Ibom</item>
