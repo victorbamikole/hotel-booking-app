@@ -33,9 +33,13 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
+//class RoomViewModel @Inject constructor(
+//    private val apiRepository : ApiRepositoryInterface, app: Application
+//) : AndroidViewModel(app) {
+
 class RoomViewModel @Inject constructor(
-    private val apiRepository : ApiRepositoryInterface, app: Application
-) : AndroidViewModel(app) {
+    private val apiRepository : ApiRepositoryInterface
+) : ViewModel() {
 
 
     /**Live data for Adult*/
@@ -194,7 +198,17 @@ class RoomViewModel @Inject constructor(
 
     fun sendUserLoginDetailsToApi(userLoginDetails: PostLoginUserData) {
         viewModelScope.launch {
-            safeLoginNetworkHandler(userLoginDetails)
+            try {
+                val response = apiRepository.userLoginDetails(userLoginDetails)
+                if (response.isSuccessful) {
+                    _userLoginDetails.postValue(response.body())
+                } else {
+                    _userLoginDetails.postValue(null)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+            }
         }
     }
 
@@ -309,56 +323,56 @@ class RoomViewModel @Inject constructor(
     }
 
     //Response to network successfully connection or error in connection to the API
-    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
-        try {
-            val response = apiRepository.userLoginDetails(userLoginDetails)
-            if(networkHandler()){
-                if(response.isSuccessful){
-                    _userLoginDetails.postValue(response.body())
-                }else {
-                    _userLoginDetails.postValue(null)
-                }
-            }else{
-                _userLoginDetails.postValue(null)
-            }
-        }catch (t: Throwable){
-            when(t){
-                is IOException -> _userLoginDetails.postValue(null)
-                else -> _userLoginDetails.postValue(null)
-            }
-        }
+//    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
+//        try {
+//            val response = apiRepository.userLoginDetails(userLoginDetails)
+//            if(networkHandler()){
+//                if(response.isSuccessful){
+//                    _userLoginDetails.postValue(response.body())
+//                }else {
+//                    _userLoginDetails.postValue(null)
+//                }
+//            }else{
+//                _userLoginDetails.postValue(null)
+//            }
+//        }catch (t: Throwable){
+//            when(t){
+//                is IOException -> _userLoginDetails.postValue(null)
+//                else -> _userLoginDetails.postValue(null)
+//            }
+//        }
+//
+//    }
 
-    }
-
-    //Handle network connectivity
-
-    private fun networkHandler() : Boolean{
-        val connectivityManager = getApplication<HotelApplication>().getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            val activeNetwork = connectivityManager.activeNetwork ?: return false
-            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-            return when{
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                else -> false
-            }
-        }
-        else{
-            connectivityManager.activeNetworkInfo?.run {
-                return when(type){
-                    ConnectivityManager.TYPE_WIFI -> true
-                    ConnectivityManager.TYPE_MOBILE -> true
-                    ConnectivityManager.TYPE_ETHERNET -> true
-                    else -> false
-                }
-            }
-        }
-        return false
-    }
+//    //Handle network connectivity
+//
+//    private fun networkHandler() : Boolean{
+//        val connectivityManager = getApplication<HotelApplication>().getSystemService(
+//            Context.CONNECTIVITY_SERVICE
+//        ) as ConnectivityManager
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//            val activeNetwork = connectivityManager.activeNetwork ?: return false
+//            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+//            return when{
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+//                else -> false
+//            }
+//        }
+//        else{
+//            connectivityManager.activeNetworkInfo?.run {
+//                return when(type){
+//                    ConnectivityManager.TYPE_WIFI -> true
+//                    ConnectivityManager.TYPE_MOBILE -> true
+//                    ConnectivityManager.TYPE_ETHERNET -> true
+//                    else -> false
+//                }
+//            }
+//        }
+//        return false
+//    }
 }
 
 
