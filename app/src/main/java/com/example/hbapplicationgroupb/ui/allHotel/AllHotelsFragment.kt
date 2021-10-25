@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -15,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
-import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -27,44 +24,43 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private var _binding: FragmentAllHotelsBinding? = null
     private val binding get() = _binding!!
     private val roomViewModel: RoomViewModel by viewModels()
-    var arrayList = listOf<PageItem>()
+    var stateList = mutableListOf<PageItem>()
 
     private val myAdapter = AllHotelAdapter()
 
     override fun onResume() {
         super.onResume()
+
         // locations filters
         val listOfStateNames = resources.getStringArray(R.array.filter_by)
         val filterAdapter = ArrayAdapter(requireContext(),R.layout.array_adapter_of_state, listOfStateNames)
         binding.fragmentAllHotelsActv.setAdapter(filterAdapter)
-//        val stateName = binding.fragmentAllHotelsActv.text.toString()
 
         binding.fragmentAllHotelsActv.onItemClickListener = object : AdapterView.OnItemClickListener{
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+            override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, id: Long) {
                 val selectedState = listOfStateNames[position].toString()
-                binding.fragmentAllHotelsStateName.text = selectedState
-                for (i in arrayList){
-                    if (i.state == selectedState){
-
+                if (selectedState != "All Hotels") {
+                    binding.fragmentAllHotelsStateName.text = selectedState
+                    binding.fragmentAllHotelsActv.text.clear()
+                    var temptList = mutableListOf<PageItem>()
+                    for (i in stateList) {
+                        if (i.state == selectedState) {
+                            temptList.add(i)
+                        }
                     }
+                    myAdapter.submitList(temptList)
+                    myAdapter.notifyDataSetChanged()
+                    binding.allHotelsRecyclerView.adapter = myAdapter
+                    Log.d("NewList ", "NewList = $temptList")
+                }else{
+                    binding.fragmentAllHotelsStateName.text = ""
+                    binding.fragmentAllHotelsActv.text.clear()
+                    fetchAllHotels()
                 }
-                Log.d("SELECTED STATE", selectedState)
             }
 
         }
 
-//        binding.fragmentAllHotelsActv.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-//                Log.d("BEFORE STATE NAME", stateName[position].toString())
-//                binding.fragmentAllHotelsStateName.text = stateName[position].toString()
-//                Log.d("AFTER STATE NAME", stateName[position].toString())
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -91,6 +87,8 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private fun fetchAllHotels() {
         roomViewModel.getAllHotel.observe(viewLifecycleOwner, Observer {
 
+                it.data?.let { it1 -> stateList.addAll(it1) }
+                Log.d("STATE LIST", "$stateList")
                 myAdapter.submitList(it.data!!)
                 binding.allHotelProgressBar.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
                 binding.allHotelTextViewError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()

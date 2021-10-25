@@ -27,21 +27,6 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="8dp">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="All Hotels"
-                android:padding="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="24dp"
-                android:textColor="@color/custom_orange"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -58,6 +43,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/linkToAllHotelFragmment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Hotels"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/custom_orange"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_review_page_toolbar" />
     <TextView
         android:visibility="visible"
         android:id="@+id/networkErrorMessage"
@@ -93,7 +91,7 @@
         app:cardCornerRadius="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/networkErrorMessage">
+        app:layout_constraintTop_toBottomOf="@id/linkToAllHotelFragmment">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">

@@ -36,7 +36,7 @@ interface ApiRepositoryInterface {
     suspend fun getHotelDescriptionResponse(id :String) : Response<HotelDescriptionResponse>
 
 //    suspend fun getAllHotels(pageSize:Int,currentPage:Int): Response<GetAllHotel>
-    suspend fun fetchAllHotels(pageSize:Int,currentPage:Int): AllHotel
+    suspend fun fetchAllHotels(pageSize:Int,currentPage:Int): Response<AllHotel>
 
     suspend fun getTopDeals(): Response<TopDealsAndHotel>
     suspend fun resetPassword(password: PostResetPasswordData): Response<ResetPasswordDataResponse>
