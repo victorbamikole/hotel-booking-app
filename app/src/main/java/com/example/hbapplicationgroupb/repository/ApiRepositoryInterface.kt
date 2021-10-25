@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.model.addCustomerRating.hotelRating.RatingResponse
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -53,5 +54,7 @@ interface ApiRepositoryInterface {
 
     fun getAllTopHotels() : LiveData<List<TopHotelData>>
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
+
+    suspend fun getHotelReview(id : String) : Response<RatingResponse>
 
 }

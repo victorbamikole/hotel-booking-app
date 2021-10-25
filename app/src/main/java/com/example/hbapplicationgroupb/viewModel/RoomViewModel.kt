@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
+import com.example.hbapplicationgroupb.model.addCustomerRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -18,6 +19,7 @@ import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
+import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -125,6 +127,9 @@ class RoomViewModel @Inject constructor(
     val hotelLocation: MutableLiveData<HotelSearchResponse> = _hotelLocation
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
+
+    private var _hotelReview : MutableLiveData<Resource<ArrayList<HotelRating>>> = MutableLiveData<Resource<ArrayList<HotelRating>>>()
+    val hotelReview : LiveData<Resource<ArrayList<HotelRating>>> = _hotelReview
 
 
     init {
@@ -306,6 +311,25 @@ class RoomViewModel @Inject constructor(
                     _hotelLocation.postValue(responseBody)
                 }else{
                     _hotelLocation.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    //fetch hotel review
+    fun getHotelReview(id : String){
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _hotelReview.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelReview(id)
+                if (response.isSuccessful){
+                    _hotelReview.postValue(response.body()?.let { Resource.Success(it.data) })
+                }else{
+                    
+                    //Handle error
+//                    _hotelReview.postValue(Resource.Error(throw(response.errorBody())))
                 }
             }catch (e:Exception){
                 e.printStackTrace()

@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.addCustomerRating.hotelRating.RatingResponse
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
@@ -82,5 +83,8 @@ interface HotelServices {
 
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
+
+    @GET("/api/Hotel/{hotelId}/reviews")
+    suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<RatingResponse>
 
 }
