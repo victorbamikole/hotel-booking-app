@@ -19,6 +19,7 @@ import com.example.hbapplicationgroupb.util.getListOfHotelImages
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
@@ -27,6 +28,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
     private lateinit var roomViewPagerAdapter: RoomsViewPagerAdapter
     private val roomViewModel : RoomViewModel by viewModels()
     private val safeArgs :HotelDescriptionFragmentArgs by navArgs()
+//    private var hotelRating by Delegates.notNull<Double>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,16 +66,21 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = it.rating.toFloat()
                 binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
 
+                val hotelRating = it.rating
                 //Set Room types for roomViewPagerAdapter
                 roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
 
                 //Set Hotel Images on hotelViewPagerAdapter
                 hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
+
+                navigateToHotelReviews(hotelId,hotelRating)
+
             } else{
                 Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
             }
 
         })
+
 
     }
 
@@ -149,6 +156,17 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         )
         binding.fragmentImageDescriptionViewPager.addItemDecoration(itemDecoration)
 
+    }
+
+
+    //Navigate to hotel review page
+    private fun navigateToHotelReviews(hotelId : String, rating: Double){
+        binding.reviewsHolder.setOnClickListener {
+            findNavController()
+                .navigate(HotelDescriptionFragmentDirections
+                    .actionHotelDescriptionFragmentToReviewPageFragment
+                        (hotelId,rating.toFloat()))
+        }
     }
 
 }

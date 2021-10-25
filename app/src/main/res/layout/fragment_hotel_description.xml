@@ -430,6 +430,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/reviews_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
@@ -519,8 +520,6 @@
                                 android:layout_height="match_parent"
                                 android:text="@string/_1"
                                 />
-
-
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
