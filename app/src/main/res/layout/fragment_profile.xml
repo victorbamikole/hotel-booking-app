@@ -200,7 +200,7 @@
     <!--    Privacy and Policy-->
 
     <TextView
-        android:id="@+id/fragment_bookingDetails_Cancel_textView"
+        android:id="@+id/fragment_privacy_policy_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

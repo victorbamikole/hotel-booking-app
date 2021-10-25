@@ -30,7 +30,7 @@ interface HotelServices {
 
     @GET("api/Hotel/all-hotels")
     suspend fun fetchAllHotels(@Query("PageSize") PageSize:Int,
-    @Query("CurrentPage") CurrentPage:Int): AllHotel
+    @Query("CurrentPage") CurrentPage:Int): Response<AllHotel>
 
     @GET
     suspend fun getEachHotelDetails() : Response<UserHotelDataResponse>

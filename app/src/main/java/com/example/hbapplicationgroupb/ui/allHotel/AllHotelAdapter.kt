@@ -18,7 +18,7 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
 
     class AllHotelViewHolder(itemView:View, val allHotelClickListener: AllHotelClickListener): RecyclerView.ViewHolder(itemView) {
-        private val binding : AllHotelsRecyclerviewLayoutBinding=
+        private val binding: AllHotelsRecyclerviewLayoutBinding =
             AllHotelsRecyclerviewLayoutBinding.bind(itemView)
 
         private val topImage = binding.topDealsRecyclerViewImage
@@ -28,20 +28,29 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
 
-        fun bind(allhotel: PageItem){
-           itemView.setOnClickListener {
-               allHotelClickListener.onItemSelected(adapterPosition,allhotel)
-           }
+        fun bind(allhotel: PageItem) {
 
-            Glide.with(itemView)
-                .load(allhotel.featuredImage)
-                .into(topImage)
-            topName.text = allhotel.name
-            topPrice.text = "$${allhotel.roomTypes[0].price}"
-            description.text = allhotel.description
-            topPercent.text = allhotel.rating.toString()
+
+
+                itemView.setOnClickListener {
+                    allHotelClickListener.onItemSelected(adapterPosition, allhotel)
+                }
+
+                    Glide.with(itemView)
+                        .load(allhotel.featuredImage)
+                        .into(topImage)
+
+
+                topName.text = allhotel.name
+
+                topPrice.text = "$${allhotel.roomTypes[0].price}"
+
+
+                description.text = allhotel.description
+                topPercent.text = allhotel.rating.toString()
+            }
         }
-    }
+
 
     private val differCallBack = object : DiffUtil.ItemCallback<PageItem>(){
         override fun areItemsTheSame(oldItem: PageItem, newItem: PageItem): Boolean {
@@ -63,7 +72,10 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
     override fun onBindViewHolder(holder: AllHotelViewHolder, position: Int) {
         val allhotel = differ.currentList[position]
-        holder.bind(allhotel)
+
+            holder.bind(allhotel)
+
+
 
         holder.itemView.apply {
             holder.bookTopHotelNow.setOnClickListener {
