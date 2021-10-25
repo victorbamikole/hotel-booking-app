@@ -50,7 +50,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 binding.loadingView.visibility = View.GONE
                 binding.progressBar.visibility = View.GONE
                 Snackbar.make(
-                    binding.root, "Login failed; Invalid email address or password.", Snackbar.LENGTH_LONG
+                    binding.root,
+                    "An error occurred: Check your internet connection or your login details",
+                    Snackbar.LENGTH_LONG
                 ).show()
             }
             else {
