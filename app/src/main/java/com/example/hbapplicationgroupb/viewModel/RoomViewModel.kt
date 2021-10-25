@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
+import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -116,7 +117,6 @@ class RoomViewModel @Inject constructor(
     //get top hotels
     private val _topHotel : MutableLiveData<TopDealsAndHotel> = MutableLiveData()
     val topHotels : LiveData<TopDealsAndHotel> = _topHotel
-
 
     private var _confirmEmailAddress: MutableLiveData<ConfirmEmailAddressResponse> = MutableLiveData()
     val confirmEmailAddress: LiveData<ConfirmEmailAddressResponse> = _confirmEmailAddress
@@ -250,7 +250,6 @@ class RoomViewModel @Inject constructor(
 
         }
     }
-
 
     fun getTopHotels() {
         viewModelScope.launch {

@@ -44,6 +44,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_helpAndSupportFragment)
         }
+        binding?.fragmentPrivacyPolicyTextView?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)
+        }
         binding?.fragmentProfilePrivacyIcon?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)

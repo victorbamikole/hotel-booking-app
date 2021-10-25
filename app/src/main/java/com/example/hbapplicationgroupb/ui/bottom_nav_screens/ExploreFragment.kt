@@ -58,6 +58,9 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding.tvViewAllHotel.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_topHotelsFragment)
         }
+        binding.linkToAllHotelFragmment.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreFragment2_to_allHotelsFragment)
+        }
 
         binding.viewButton.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_allHotelsFragment)

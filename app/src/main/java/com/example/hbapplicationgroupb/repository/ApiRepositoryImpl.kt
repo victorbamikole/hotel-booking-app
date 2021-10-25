@@ -69,13 +69,13 @@ class ApiRepositoryImpl @Inject constructor (
         saveFetchedResultToDb = {
                 db.withTransaction {
                     db.addAllHotelsToDatabase().deleteAllFromDb()
-                    db.addAllHotelsToDatabase().addAllHotelsToDb(it.data.pageItems)
+                    db.addAllHotelsToDatabase().addAllHotelsToDb(it.body()?.data!!.pageItems)
                 }
         },
 //        shouldFetch = {}
     )
 
-    override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): AllHotel {
+    override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {
         return hotelServices.fetchAllHotels(pageSize,currentPage)
 
     }
