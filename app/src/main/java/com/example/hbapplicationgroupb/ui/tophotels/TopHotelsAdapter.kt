@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupb.ui.tophotels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +27,10 @@ class TopHotelsAdapter() :
         private val description = binding.topDealRecyclerViewtopDealRating
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
+        val saveText = binding.topDealSaveHotelRecyclerViewSaveText
+        val saveImage = binding.topDealSaveHotelRecyclerViewImage
+        val layoutForToggle = binding.layoutForSaving
+
         fun bind(topHotel : TopDealAndHotelData){
             itemView.setOnClickListener {
                 topHotelClickListener.onItemSelected(adapterPosition,topHotel)
@@ -59,6 +65,11 @@ class TopHotelsAdapter() :
                 listener.bookNow(position, topHotel)
             }
         }
+        holder.itemView.apply {
+            holder.layoutForToggle.setOnClickListener {
+                listener.toggleSaveItemToWishList(position, holder.saveText,holder.saveImage,topHotel)
+            }
+        }
     }
     fun submitList(list: List<TopDealAndHotelData>) = differ.submitList(list)
     override fun getItemCount() = differ.currentList.size
@@ -70,4 +81,6 @@ class TopHotelsAdapter() :
 interface TopHotelClickListener{
     fun onItemSelected(position: Int, item:TopDealAndHotelData)
     fun bookNow(position: Int, item:TopDealAndHotelData)
+    fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: TopDealAndHotelData)
+
 }
