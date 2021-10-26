@@ -70,16 +70,36 @@ class TopHotelsAdapter() :
             }
         }
     }
+
     fun submitList(list: List<TopDealAndHotelData>) = differ.submitList(list)
     override fun getItemCount() = differ.currentList.size
 
-    fun topHotelClickListener(topHotelClickListener: TopHotelClickListener){
+    fun topHotelClickListener(topHotelClickListener: TopHotelClickListener) {
         listener = topHotelClickListener
     }
 }
-interface TopHotelClickListener{
-    fun onItemSelected(position: Int, item:TopDealAndHotelData)
-    fun bookNow(position: Int, item:TopDealAndHotelData)
-    fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: TopDealAndHotelData)
+
+
+interface TopHotelClickListener {
+    fun onItemSelected(position: Int, item: TopDealAndHotelData)
+    fun bookNow(position: Int, item: TopDealAndHotelData)
+    fun toggleSaveItemToWishList(
+        position: Int,
+        saveItemTextBox: TextView,
+        saveItemImage: ImageView,
+        item: TopDealAndHotelData
+    )
 
 }
+
+//interface TopHotelClickListener {
+//    fun onItemSelected(position: Int, item: TopDealAndHotelData)
+//    fun bookNow(position: Int, item: TopDealAndHotelData)
+//    fun toggleSaveItemToWishList(
+//        position: Int,
+//        saveItemTextBox: TextView,
+//        saveItemImage: ImageView,
+//        item: TopDealAndHotelData
+//    )
+//
+//}

@@ -49,8 +49,8 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
                 .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
         }
         binding.ratingBackArrow.setOnClickListener {
-//            findNavController()
-//                .navigate(R.id.action_reviewPageFragment_to_)
+            findNavController()
+                .navigate(R.id.action_reviewPageFragment_to_hotelDescriptionFragment)
         }
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it
