@@ -78,7 +78,7 @@ class TopHotelsAdapter() :
         listener = topHotelClickListener
     }
 }
-<<<<<<< HEAD
+
 
 interface TopHotelClickListener {
     fun onItemSelected(position: Int, item: TopDealAndHotelData)
