@@ -8,7 +8,7 @@ import android.os.Build
 import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -40,7 +40,6 @@ import javax.inject.Inject
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
-
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -316,6 +315,27 @@ class RoomViewModel @Inject constructor(
                 }else{
                     _hotelLocation.postValue(null)
                 }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun getAllWishList(token:String) = apiRepository.getAllWishList(token)
+
+    
+    fun insertWishListToDb(item: WishListDataClass){
+        viewModelScope.launch { 
+            try {
+                apiRepository.insertWishToDataBase(item)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun deleteWishListFromDb(wishItem: WishListDataClass){
+        viewModelScope.launch {
+            try {
+                apiRepository.deleteWishFromDataBase(wishItem)
             }catch (e:Exception){
                 e.printStackTrace()
             }

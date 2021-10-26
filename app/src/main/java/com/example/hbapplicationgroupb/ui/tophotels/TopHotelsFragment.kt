@@ -5,14 +5,18 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
@@ -24,13 +28,18 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
    private var _binding: FragmentTopHotelsBinding? = null
     private val binding  get() = _binding!!
     private val roomViewModel : RoomViewModel by viewModels()
-//    private val uiViewModel: UIViewModel by viewModels()
     val myAdapter = TopHotelsAdapter()
+    private var token:String? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTopHotelsBinding.bind(view)
+
+        token = activity?.let { UserPreferences(it).getSessionUser() }
+        if (token == null){
+            token = "1"
+        }
 
         // locations
         var listOfStateNames = resources.getStringArray(R.array.filter_by)
@@ -88,6 +97,43 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                 val action =TopHotelsFragmentDirections
                     .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
                 findNavController().navigate(action)
+            }
+
+            override fun toggleSaveItemToWishList(
+                position: Int,
+                saveItemTextBox: TextView,
+                saveItemImage: ImageView,
+                item: TopDealAndHotelData
+            ) {
+                if (saveItemImage.visibility == View.INVISIBLE){
+                    saveItemTextBox.text = "Saved!"
+                    saveItemImage.visibility = View.VISIBLE
+                    val wishListData = WishListDataClass(
+                        id = item.id,
+                        hotelName = item.name,
+                        hotelPrice = item.price,
+                        description = item.description,
+                        percentage = item.percentageRating.toString(),
+                        token = token!!,
+                        featureImage = item.thumbnail,
+                        saved = true
+                    )
+                    roomViewModel.insertWishListToDb(wishListData)
+                }else{
+                    saveItemTextBox.text = "Save"
+                    saveItemImage.visibility = View.INVISIBLE
+                    val wishListData = WishListDataClass(
+                        id = item.id,
+                        hotelName = item.name,
+                        hotelPrice = item.price,
+                        description = item.description,
+                        percentage = item.percentageRating.toString(),
+                        token = token!!,
+                        featureImage = item.thumbnail,
+                        saved = false
+                    )
+                    roomViewModel.deleteWishListFromDb(wishListData)
+                }
             }
 
         })
