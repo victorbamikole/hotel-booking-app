@@ -3,8 +3,12 @@ package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
@@ -71,7 +75,21 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 //        UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
 //
 //        })
+        //Handle on Back Press
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                showExitAlert()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
+
+
+
+
+
+
+
 
     private fun doThisWhenNetworkIsLost() {
         binding.networkErrorMessage.visibility= View.VISIBLE
@@ -111,5 +129,30 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             }
         })
     }
+
+    //App Exit Dialogue
+    private fun showExitAlert(){
+        val dialogView = layoutInflater.inflate(R.layout.custom_exit_dialog, null)
+        val customDialog = activity?.let {
+            AlertDialog.Builder(it)
+                .setView(dialogView)
+                .show()
+        }
+
+        val btnAppExit = dialogView.findViewById<Button>(R.id.fragment_profile_exit_btn)
+        btnAppExit.setOnClickListener {
+            customDialog?.dismiss()
+
+            //Finish the app here
+            activity?.moveTaskToBack(true)
+            activity?.finish()
+        }
+
+        val btnExitBtn = dialogView.findViewById<Button>(R.id.fragment_exit_cancel_btn)
+        btnExitBtn.setOnClickListener {
+            customDialog?.dismiss()
+        }
+    }
+
 
 }
