@@ -35,15 +35,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
 
-        <ImageView
-            android:id="@+id/topDealSaveHotelRecyclerViewImage"
+       <LinearLayout
+           android:id="@+id/layoutForSaving"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"
+           android:padding="5dp"
+           >
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+           <ImageView
+            android:id="@+id/topDealSaveHotelRecyclerViewImage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_baseline_bookmark_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
+            />
+            <ImageView
+                android:visibility="invisible"
+                android:id="@+id/topDealSaveHotelRecyclerViewImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_baseline_bookmark_24_orange"
+                />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/topDealSaveHotelRecyclerViewSaveText"
@@ -53,10 +75,8 @@
             android:text="@string/save"
             android:textColor="@color/custom_orange"
             android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/topDealSaveHotelRecyclerViewImage"
-            app:layout_constraintTop_toBottomOf="@+id/topDealsRecyclerViewImage"/>
+            android:textStyle="bold"/>
+       </LinearLayout>
 
 
         <TextView
@@ -126,12 +146,12 @@
             android:id="@+id/topDealRecyclerViewPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="20dp"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
-            app:layout_constraintEnd_toEndOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/_499" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

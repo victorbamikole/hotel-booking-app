@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupb.ui.allHotel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -27,11 +29,11 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
         private val description = binding.topDealRecyclerViewtopDealRating
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
+        val saveText = binding.topDealSaveHotelRecyclerViewSaveText
+        val saveImage = binding.topDealSaveHotelRecyclerViewImage
+        val layoutForToggle = binding.layoutForSaving
 
         fun bind(allhotel: PageItem) {
-
-
-
                 itemView.setOnClickListener {
                     allHotelClickListener.onItemSelected(adapterPosition, allhotel)
                 }
@@ -75,7 +77,11 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
             holder.bind(allhotel)
 
-
+        holder.itemView.apply {
+            holder.layoutForToggle.setOnClickListener {
+                listener.toggleSaveItemToWishList(position, holder.saveText,holder.saveImage,allhotel)
+            }
+        }
 
         holder.itemView.apply {
             holder.bookTopHotelNow.setOnClickListener {
@@ -100,4 +106,5 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 interface AllHotelClickListener{
     fun onItemSelected(position: Int, item: PageItem)
     fun bookNow(position: Int, item: PageItem)
+    fun toggleSaveItemToWishList(position: Int, saveItemTextBox:TextView, saveItemImage:ImageView, item: PageItem)
 }

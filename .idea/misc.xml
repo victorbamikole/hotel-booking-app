@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/drawable-hdpi/bg_button.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_ads_click_24.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_thumb_up_24.xml" value="0.16510416666666666" />
+        <entry key="app/src/main/res/drawable-v24/ic_baseline_bookmark_24_orange.xml" value="0.12606837606837606" />
+        <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/custom_background.xml" value="0.29384615384615387" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/custom_drawable_shadow.xml" value="0.21197916666666666" />
@@ -16,6 +18,8 @@
         <entry key="app/src/main/res/drawable/food_ratingbar_full_empty.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/food_ratingbar_full_filled.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_ads_click_24.xml" value="0.6604166666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.2482905982905983" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2482905982905983" />
         <entry key="app/src/main/res/drawable/ic_baseline_redStar_24.xml" value="0.18072916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_redstar_24.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.18385416666666668" />
@@ -26,6 +30,7 @@
         <entry key="app/src/main/res/font/adamina.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/age_bracket_bottom_sheet_layout.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/all_hotels_recyclerview_layout.xml" value="0.32546494992846925" />
         <entry key="app/src/main/res/layout/array_adapter_for_gender_layout.xml" value="0.1252136752136752" />
         <entry key="app/src/main/res/layout/array_adapter_of_state.xml" value="0.1252136752136752" />
         <entry key="app/src/main/res/layout/booking_history_item.xml" value="0.22" />
@@ -53,7 +58,7 @@
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_registration_is_successful.xml" value="0.13076923076923078" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.10894941634241245" />
+        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
