@@ -49,14 +49,11 @@ class TopDealsAdapter():
                 .load(topDealsAndHotel.thumbnail)
                 .into(topDealImage)
 
-            if (topDealsAndHotel.name.length > 15){
-                topDealName.text = String.format("${topDealsAndHotel.name.substring(0,15)}...")
-            } else{
-                topDealName.text = topDealsAndHotel.name
-            }
-            topDealPrice.text = String.format("$${topDealsAndHotel.price}")
-            topDealRating.text = topDealsAndHotel.name
+
+            topDealName.text = topDealsAndHotel.name
+            topDealPrice.text = "${topDealsAndHotel.price}"
             "${topDealsAndHotel.percentageRating}%".also { topDealPercent.text = it }
+            topDealRating.text = topDealsAndHotel.description
 
 
         }

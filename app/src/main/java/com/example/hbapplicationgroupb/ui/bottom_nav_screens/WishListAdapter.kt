@@ -33,11 +33,15 @@ class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
         val saveImage = binding.topDealSaveHotelRecyclerViewImage
         val layoutForToggle = binding.layoutForSaving
 
+
+
         fun bind(wishList: WishListDataClass) {
 
             itemView.setOnClickListener {
                 allWishesClickListener.onItemSelected(adapterPosition, wishList)
             }
+            saveText.text = "Remove"
+            saveImage.visibility = View.VISIBLE
 
             Glide.with(itemView)
                 .load(wishList.featureImage)

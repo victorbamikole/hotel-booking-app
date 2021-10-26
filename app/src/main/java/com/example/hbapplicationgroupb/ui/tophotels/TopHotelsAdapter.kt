@@ -18,7 +18,7 @@ class TopHotelsAdapter() :
     RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
     private lateinit var listener: TopHotelClickListener
 
-    class HotelsViewHolder(itemView: View,private val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
+    class HotelsViewHolder(itemView: View,val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
         private val binding: TopDealRecyclerViewLayoutBinding =
             TopDealRecyclerViewLayoutBinding.bind(itemView)
         private val topImage = binding.topDealsRecyclerViewImage
@@ -39,7 +39,6 @@ class TopHotelsAdapter() :
                 .load(topHotel.thumbnail)
                 .into(topImage)
             "${topHotel.percentageRating}%".also { topPercent.text = it }
-            topPrice.text = "$${topHotel.price}"
             topHotel.price.toString() .also { topPrice.text = it }
             description.text = topHotel.description
             topName.text = topHotel.name
@@ -53,7 +52,7 @@ class TopHotelsAdapter() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelsViewHolder {
         val view =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_hotels_recyclerview, parent, false)
+                .inflate(R.layout.top_deal_recycler_view_layout, parent, false)
         return HotelsViewHolder(view,listener)
     }
 

@@ -107,7 +107,6 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
             instanceOfWishListAdapter.submitList(it)
             instanceOfWishListAdapter.notifyDataSetChanged()
             binding.wishListRecyclerViewId.adapter = instanceOfWishListAdapter
-            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
         })
     }
 
