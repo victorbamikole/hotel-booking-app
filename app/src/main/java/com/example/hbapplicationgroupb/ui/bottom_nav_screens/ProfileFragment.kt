@@ -69,13 +69,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             //Navigate to the login screen
             findNavController().navigate(R.id.action_profileFragment2_to_loginFragment)
 
-            Toast.makeText(activity,"Log out Button Clicked", Toast.LENGTH_LONG).show()
-
         }
 
         val btnProfileCancelDialog = dialogView.findViewById<Button>(R.id.fragment_profile_cancel_btn)
         btnProfileCancelDialog.setOnClickListener {
-            Toast.makeText(activity,"Cancel Button Clicked", Toast.LENGTH_LONG).show()
             customDialog?.dismiss()
         }
     }

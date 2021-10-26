@@ -18,5 +18,6 @@ data class PageItem(
     val phone: String,
     val rating: Double,
     val roomTypes: List<RoomType>,
-    val state: String
+    val state: String,
+    val saved:Boolean = false
 )

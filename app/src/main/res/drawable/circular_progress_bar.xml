@@ -19,6 +19,7 @@
             android:type="sweep"
             android:useLevel="false"
             android:startColor="@color/custom_orange"
+            android:endColor="@color/translucent_grey"
             android:angle="90"/>
     </shape>
 
