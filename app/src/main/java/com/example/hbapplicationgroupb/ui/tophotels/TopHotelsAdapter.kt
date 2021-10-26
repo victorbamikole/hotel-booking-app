@@ -83,11 +83,23 @@ class TopHotelsAdapter() :
 interface TopHotelClickListener {
     fun onItemSelected(position: Int, item: TopDealAndHotelData)
     fun bookNow(position: Int, item: TopDealAndHotelData)
-=======
-interface TopHotelClickListener{
-    fun onItemSelected(position: Int, item:TopDealAndHotelData)
-    fun bookNow(position: Int, item:TopDealAndHotelData)
-    fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: TopDealAndHotelData)
+    fun toggleSaveItemToWishList(
+        position: Int,
+        saveItemTextBox: TextView,
+        saveItemImage: ImageView,
+        item: TopDealAndHotelData
+    )
 
->>>>>>> 66164227f269c273ef3ad43389f5cafe639248d7
 }
+
+//interface TopHotelClickListener {
+//    fun onItemSelected(position: Int, item: TopDealAndHotelData)
+//    fun bookNow(position: Int, item: TopDealAndHotelData)
+//    fun toggleSaveItemToWishList(
+//        position: Int,
+//        saveItemTextBox: TextView,
+//        saveItemImage: ImageView,
+//        item: TopDealAndHotelData
+//    )
+//
+//}
