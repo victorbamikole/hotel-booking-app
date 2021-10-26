@@ -49,10 +49,12 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             findNavController().navigate(action)
         }
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
-//            binding.addStarRatingContainer.setOnClickListener {
-//                findNavController()
-//                    .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
-//            }
+
+            binding.addStarRatingContainer.setOnClickListener {
+                val action = HotelDescriptionFragmentDirections.actionHotelDescriptionFragmentToReviewPageFragment(hotelId, 0f)
+                findNavController()
+                    .navigate(action)
+            }
         binding.addRatingBackArrow.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_hotelDescriptionFragment_to_exploreFragment2)

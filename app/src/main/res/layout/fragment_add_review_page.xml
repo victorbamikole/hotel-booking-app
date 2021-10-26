@@ -106,6 +106,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragmentAddReviewCommentTi"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:padding="20dp"
