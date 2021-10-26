@@ -1,8 +1,7 @@
 package com.example.hbapplicationgroupb.model.api
 
-import com.example.hbapplicationgroupb.model.addCustomerRating.hotelRating.RatingResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -16,7 +15,6 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -85,6 +83,6 @@ interface HotelServices {
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
 
     @GET("/api/Hotel/{hotelId}/reviews")
-    suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<RatingResponse>
+    suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
 
 }

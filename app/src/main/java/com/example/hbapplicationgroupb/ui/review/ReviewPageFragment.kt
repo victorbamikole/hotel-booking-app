@@ -6,14 +6,12 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
 import com.example.hbapplicationgroupb.ui.review.adapter.ReviewPageFragmentRVAdapter
-import com.example.hbapplicationgroupb.util.getListOfUserReview
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,9 +32,11 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
 
         binding = FragmentReviewPageBinding.bind(view)
         reviewAdapter = ReviewPageFragmentRVAdapter()
-        reviewAdapter.getListOfReviews(getListOfUserReview())
         binding.fragmentReviewPageRecyclerView.adapter = reviewAdapter
         binding.fragmentReviewPageRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.fragmentReviewPageStarViewRatingBar1.numStars = hotelRating.toInt()
+        binding.fragmentReviewPageTvAverageRating.text = hotelRating.toString().substring(0,3)
+
 
         //to remove extra colour on top of toolbar
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
@@ -54,7 +54,22 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
         }
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it
+            if (it.data == null){
+                binding.tvUiStateMessage.text = String.format("Loading ...")
+                binding.tvUiStateMessage.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.VISIBLE
 
+            }else if (it.data.isNotEmpty()){
+                reviewAdapter.getListOfReviews(it.data)
+                binding.tvUiStateMessage.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+                binding.fragmentReviewPageTvTwentyFiveRatings.text = String.format("${it.data.size} reviews")
+            }else{
+                binding.tvUiStateMessage.text = String.format("There are no reviews for this hotel")
+                binding.tvUiStateMessage.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.VISIBLE
+                binding.fragmentReviewPageTvTwentyFiveRatings.text = String.format("0 reviews")
+            }
 
         })
 

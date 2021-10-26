@@ -1,9 +1,8 @@
 package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
-import com.example.hbapplicationgroupb.model.addCustomerRating.hotelRating.HotelRating
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -128,8 +127,8 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
-    private var _hotelReview : MutableLiveData<Resource<ArrayList<HotelRating>>> = MutableLiveData<Resource<ArrayList<HotelRating>>>()
-    val hotelReview : LiveData<Resource<ArrayList<HotelRating>>> = _hotelReview
+    private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
+    val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
 
     init {
@@ -325,7 +324,7 @@ class RoomViewModel @Inject constructor(
                 _hotelReview.postValue(Resource.Loading(null))
                 val response = apiRepository.getHotelReview(id)
                 if (response.isSuccessful){
-                    _hotelReview.postValue(response.body()?.let { Resource.Success(it.data) })
+                    _hotelReview.postValue(response.body()?.data?.let { Resource.Success(it.pageItems) })
                 }else{
                     
                     //Handle error
