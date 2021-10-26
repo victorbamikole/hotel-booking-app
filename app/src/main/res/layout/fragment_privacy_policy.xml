@@ -31,7 +31,7 @@
             android:textStyle="bold" />
 
         <View
-            android:id="@+id/topHotelsFragmentBackAroow"
+            android:id="@+id/fragmentPrivacyPolicyBackArrowViev"
             android:layout_width="@dimen/toolbar_leftBackArrow_widthAndSizer"
             android:layout_height="@dimen/toolbar_leftBackArrow_widthAndSizer"
             android:background="@drawable/ic_left_arrow_back"/>

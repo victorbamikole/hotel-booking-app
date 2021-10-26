@@ -238,6 +238,9 @@
             app:destination="@id/profileFragment2"
             app:popUpTo="@id/profileFragment2"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_privacyPolicyFragment_to_profileFragment22"
+            app:destination="@id/profileFragment2" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment2"
