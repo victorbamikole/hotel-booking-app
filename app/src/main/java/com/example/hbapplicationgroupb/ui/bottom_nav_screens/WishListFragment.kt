@@ -78,6 +78,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
                     )
                     roomViewModel.deleteWishListFromDb(wishListData)
                     loadListData()
+
             }
 
         })
