@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.*
-import com.example.hbapplicationgroupb.di.application.HotelApplication
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -24,6 +24,7 @@ import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
+import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -134,6 +135,9 @@ class RoomViewModel @Inject constructor(
     val hotelLocation: MutableLiveData<HotelSearchResponse> = _hotelLocation
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
+
+    private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
+    val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
 
     init {
@@ -320,6 +324,23 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+
+    //fetch hotel review
+    fun getHotelReview(id : String){
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _hotelReview.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelReview(id)
+                if (response.isSuccessful){
+                    _hotelReview.postValue(response.body()?.data?.let { Resource.Success(it.pageItems) })
+                }else{
+                    
+                    //Handle error
+//                    _hotelReview.postValue(Resource.Error(throw(response.errorBody())))
+                }}catch (e : Exception){
+                    e.printStackTrace()
+            }
+        }              }
     fun getAllWishList(token:String) = apiRepository.getAllWishList(token)
 
     

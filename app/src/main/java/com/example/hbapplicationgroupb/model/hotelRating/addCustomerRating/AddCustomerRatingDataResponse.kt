@@ -1,4 +1,6 @@
-package com.example.hbapplicationgroupb.model.addCustomerRating
+package com.example.hbapplicationgroupb.model.hotelRating.addCustomerRating
+
+import com.example.hbapplicationgroupb.model.hotelRating.addCustomerRating.AddCustomerRatingDataItem
 
 data class AddCustomerRatingDataResponse(
     val statusCode: String,

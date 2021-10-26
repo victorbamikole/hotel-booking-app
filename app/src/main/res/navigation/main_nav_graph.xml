@@ -274,6 +274,12 @@
             app:destination="@id/hotelDescriptionFragment"
             app:popUpTo="@id/hotelDescriptionFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
+        <argument
+            android:name="rating"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/bookingDetailsScreenFragment2"

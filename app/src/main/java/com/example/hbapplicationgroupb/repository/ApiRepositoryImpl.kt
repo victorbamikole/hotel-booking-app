@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
@@ -75,6 +76,10 @@ class ApiRepositoryImpl @Inject constructor (
         },
 //        shouldFetch = {}
     )
+
+    override suspend fun getHotelReview(id: String): Response<HotelReview> {
+        return  hotelServices.getHotelReview(id)
+    }
 
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {
         return hotelServices.fetchAllHotels(pageSize,currentPage)

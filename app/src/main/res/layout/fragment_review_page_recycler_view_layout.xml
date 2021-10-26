@@ -42,6 +42,7 @@
             android:textStyle="bold"
             />
         <TextView
+            android:id="@+id/review_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/feb_2020"
@@ -59,7 +60,7 @@
             android:layout_gravity="end"
             >
             <RatingBar
-                android:id="@+id/fragment_review_page_star_view_ratingBar1"
+                android:id="@+id/fragment_review_page1_star_view_ratingBar1"
                 style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -430,6 +430,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/reviews_holder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
@@ -446,6 +447,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp">
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_first_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             app:cardCornerRadius="15dp"
@@ -462,6 +464,7 @@
 
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_second_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             app:cardCornerRadius="15dp"
@@ -474,18 +477,19 @@
                                 android:id="@+id/tinyImageView2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:elevation="1dp"
                                 android:background="@color/purple_200"
                                 />
 
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_third_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             app:cardCornerRadius="15dp"
                             android:layout_marginStart="60dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-
                             >
 
                             <ImageView
@@ -496,6 +500,7 @@
 
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_fourth_image"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             app:cardCornerRadius="15dp"
@@ -519,8 +524,6 @@
                                 android:layout_height="match_parent"
                                 android:text="@string/_1"
                                 />
-
-
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

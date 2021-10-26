@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.ui.hoteldescription
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentHotelDescriptionBinding
 import com.example.hbapplicationgroupb.ui.hoteldescription.adapter.HotelViewPagerAdapter
@@ -19,6 +21,7 @@ import com.example.hbapplicationgroupb.util.getListOfHotelImages
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
@@ -33,6 +36,8 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding = FragmentHotelDescriptionBinding.bind(view)
         val hotelId = safeArgs.hotelId
         roomViewModel.getHotelDescription(hotelId)
+        roomViewModel.getHotelReview(hotelId)
+        observeHotelReview()
 
         initialiseViewPager()
         setUpViewPagerTransition()
@@ -44,10 +49,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             findNavController().navigate(action)
         }
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
-            binding.addStarRatingContainer.setOnClickListener {
-                findNavController()
-                    .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
-            }
+//            binding.addStarRatingContainer.setOnClickListener {
+//                findNavController()
+//                    .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
+//            }
         binding.addRatingBackArrow.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_hotelDescriptionFragment_to_exploreFragment2)
@@ -64,16 +69,23 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = it.rating.toFloat()
                 binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
 
+                val hotelRating = it.rating
                 //Set Room types for roomViewPagerAdapter
                 roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
 
                 //Set Hotel Images on hotelViewPagerAdapter
                 hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
+
+                navigateToHotelReviews(hotelId,hotelRating,binding.reviewsHolder)
+                navigateToHotelReviews(hotelId,hotelRating,binding.addStarRatingContainer )
+
             } else{
                 Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
             }
 
         })
+
+
 
     }
 
@@ -149,6 +161,163 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         )
         binding.fragmentImageDescriptionViewPager.addItemDecoration(itemDecoration)
 
+    }
+
+
+    //Navigate to hotel review page
+    private fun navigateToHotelReviews(hotelId : String, rating: Double,view : View){
+        view.setOnClickListener {
+            findNavController()
+                .navigate(HotelDescriptionFragmentDirections
+                    .actionHotelDescriptionFragmentToReviewPageFragment
+                        (hotelId,rating.toFloat()))
+        }
+    }
+
+
+    //Observe hotelReview in roomViewModel
+    @SuppressLint("ResourceAsColor")
+    private fun observeHotelReview(){
+        binding.apply {
+            cvFourthImage.visibility = View.GONE
+            cvThirdImage.visibility = View.GONE
+            cvSecondImage.visibility = View.GONE
+            cvFirstImage.visibility = View.GONE
+            imageReviewCount.text = String.format("0")
+        }
+        roomViewModel.hotelReview.observe(viewLifecycleOwner,{
+            if(it.data != null){
+                if(it.data.isEmpty()){
+                    binding.apply {
+                        tinyImageView4.visibility = View.GONE
+                        tinyImageView3.visibility = View.GONE
+                        tinyImageView2.visibility = View.GONE
+                        imageReviewCount.text = String.format("0")
+                    }
+                } else if (it.data.size == 1)
+                    {
+                        binding.apply {
+                            cvFirstImage.visibility = View.VISIBLE
+                            cvSecondImage.visibility = View.GONE
+                            cvThirdImage.visibility = View.GONE
+                            cvFourthImage.visibility = View.GONE
+                            imageReviewCount.visibility = View.GONE
+                        }
+
+                } else if (it.data.size == 2)
+                    {
+                        binding.apply {
+                            cvFirstImage.visibility = View.VISIBLE
+                            cvSecondImage.visibility = View.VISIBLE
+                            cvFourthImage.visibility = View.GONE
+                            tinyImageView2.visibility = View.VISIBLE
+                            imageReviewCount.visibility = View.GONE
+                            cvThirdImage.visibility = View.GONE
+                            activity?.let { fragment ->
+                                Glide.with(fragment)
+                                    .load(it.data[0].avatar)
+                                    .into(tinyImageView1)
+                                Glide.with(fragment)
+                                    .load(it.data[1].avatar)
+                                    .into(tinyImageView2)
+                            }
+                        }
+
+                } else if (it.data.size == 3)
+                {
+                    binding.apply {
+                        cvFirstImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.GONE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvSecondImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.GONE
+                        tinyImageView2.visibility = View.VISIBLE
+                        tinyImageView3.visibility = View.VISIBLE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvThirdImage.visibility = View.VISIBLE
+
+                        activity?.let { fragment ->
+                            Glide.with(fragment)
+                                .load(it.data[0].avatar)
+                                .into(binding.tinyImageView1)
+                            Glide.with(fragment)
+                                .load(it.data[1].avatar)
+                                .into(binding.tinyImageView2)
+                            Glide.with(fragment)
+                                .load(it.data[2].avatar)
+                                .into(binding.tinyImageView3)
+
+                        }
+                    }
+
+                }else if (it.data.size == 4) {
+                    binding.apply {
+                        cvFirstImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.VISIBLE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvSecondImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.GONE
+                        tinyImageView2.visibility = View.VISIBLE
+                        tinyImageView3.visibility = View.VISIBLE
+                        tinyImageView4.visibility = View.VISIBLE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvThirdImage.visibility = View.VISIBLE
+
+                        activity?.let { fragment ->
+                            Glide.with(fragment)
+                                .load(it.data[0].avatar)
+                                .into(binding.tinyImageView1)
+                            Glide.with(fragment)
+                                .load(it.data[1].avatar)
+                                .into(binding.tinyImageView2)
+                            Glide.with(fragment)
+                                .load(it.data[2].avatar)
+                                .into(binding.tinyImageView3)
+                            Glide.with(fragment)
+                                .load(it.data[3].avatar)
+                                .into(binding.tinyImageView4)
+                    } }
+
+                } else{
+                    binding.apply {
+                        cvFirstImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.VISIBLE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvSecondImage.visibility = View.VISIBLE
+                        cvFourthImage.visibility = View.GONE
+                        tinyImageView2.visibility = View.VISIBLE
+                        tinyImageView3.visibility = View.VISIBLE
+                        tinyImageView4.visibility = View.VISIBLE
+                        binding.imageReviewCount.visibility = View.GONE
+                        cvThirdImage.visibility = View.VISIBLE
+
+                        activity?.let { fragment ->
+                            Glide.with(fragment)
+                                .load(it.data[0].avatar)
+                                .into(binding.tinyImageView1)
+                            Glide.with(fragment)
+                                .load(it.data[1].avatar)
+                                .into(binding.tinyImageView2)
+                            Glide.with(fragment)
+                                .load(it.data[2].avatar)
+                                .into(binding.tinyImageView3)
+                            Glide.with(fragment)
+                                .load(it.data[3].avatar)
+                                .into(binding.tinyImageView4)
+                        }
+
+
+                    }
+                }
+
+            }else{
+                binding.apply {
+                    tinyImageView4.visibility = View.GONE
+                    tinyImageView3.visibility = View.GONE
+                    tinyImageView2.visibility = View.GONE
+                    imageReviewCount.text = String.format("0")}
+            }
+        })
     }
 
 }

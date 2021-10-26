@@ -57,7 +57,7 @@
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_registration_is_successful.xml" value="0.13076923076923078" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.10894941634241245" />
+        <entry key="app/src/main/res/layout/fragment_review_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
