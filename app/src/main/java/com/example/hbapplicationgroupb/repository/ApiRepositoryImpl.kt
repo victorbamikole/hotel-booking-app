@@ -5,7 +5,7 @@ import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
-import com.example.hbapplicationgroupb.model.dataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -95,12 +95,14 @@ class ApiRepositoryImpl @Inject constructor (
     }
 
 
-    override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
+    override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao()
+        .insertTopHotel(topHotel)
 
 
     //wishList query
 
-    override val getAllWishList: LiveData<List<WishListDataClass>> = db.wishListDao().getAllHotelsFromRoom()
+    override fun getAllWishList(token:String): LiveData<List<WishListDataClass>> = db.wishListDao()
+        .getAllHotelsFromRoom(token)
     override suspend fun insertWishToDataBase(item: WishListDataClass) {
         return db.wishListDao().addWishedItemToDb(item)
     }

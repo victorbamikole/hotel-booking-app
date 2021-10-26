@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.model.dataclass
+package com.example.hbapplicationgroupb.model.wishlistdataclass
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,5 +10,8 @@ data class WishListDataClass(
     val hotelName: String,
     val hotelPrice: Double,
     val description:String,
-    val percentage:String
+    val featureImage:String,
+    val percentage:String,
+    val token:String,
+    val saved:Boolean = false
 )

@@ -2,8 +2,7 @@ package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
-import com.example.hbapplicationgroupb.model.dataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -31,20 +30,6 @@ import javax.inject.Inject
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
-
-    private var _wishList:MutableLiveData<MutableSet<WishListDataClass>> = MutableLiveData()
-    var wishList:LiveData<MutableSet<WishListDataClass>> = _wishList
-    val arrayListOfWishList:MutableSet<WishListDataClass> = mutableSetOf()
-
-    fun addToWishList(item:WishListDataClass){
-      arrayListOfWishList.add(item)
-        _wishList.value = arrayListOfWishList
-    }
-    fun removeFromWishList(item:WishListDataClass){
-        arrayListOfWishList.remove(item)
-        _wishList.value = arrayListOfWishList
-    }
-
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -326,7 +311,7 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-    val getAllWishList = apiRepository.getAllWishList
+    fun getAllWishList(token:String) = apiRepository.getAllWishList(token)
 
     
     fun insertWishListToDb(item: WishListDataClass){

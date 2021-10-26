@@ -11,9 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
-import com.example.hbapplicationgroupb.model.dataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     private val binding get() = _binding!!
     private val roomViewModel: RoomViewModel by viewModels()
     var stateList = mutableListOf<PageItem>()
+    private var token:String? = null
 
     private val myAdapter = AllHotelAdapter()
 
@@ -66,6 +68,10 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
+        token = activity?.let { UserPreferences(it).getSessionUser() }
+        if (token == null){
+            token = "1"
+        }
 
             fetchAllHotels()
 
@@ -134,7 +140,10 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         hotelName = item.name,
                         hotelPrice = item.roomTypes[0].price,
                         description = item.description,
-                        percentage = item.rating.toString()
+                        percentage = item.rating.toString(),
+                        token = token!!,
+                        featureImage = item.featuredImage,
+                        saved = true
                     )
                     roomViewModel.insertWishListToDb(wishListData)
                 }else{
@@ -145,13 +154,13 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         hotelName = item.name,
                         hotelPrice = item.roomTypes[0].price,
                         description = item.description,
-                        percentage = item.rating.toString()
+                        percentage = item.rating.toString(),
+                        token = token!!,
+                        featureImage = item.featuredImage,
+                        saved = false
                     )
                     roomViewModel.deleteWishListFromDb(wishListData)
                 }
-
-
-                Toast.makeText(requireContext(),"botton at position $position clicked",Toast.LENGTH_SHORT).show()
             }
 
         })

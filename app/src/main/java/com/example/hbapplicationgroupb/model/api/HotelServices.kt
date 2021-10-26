@@ -3,7 +3,6 @@ package com.example.hbapplicationgroupb.model.api
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
-import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -56,9 +55,6 @@ interface HotelServices {
 
     @POST
     suspend fun bookHotelData() : Response<CustomerBookingDataResponse>
-
-    @POST
-    suspend fun addToCustomerWishList() : Response<CustomerWishListResponse>
 
     @POST("api/Authentication/register")
     suspend fun registerAUser(@Body userData: UserDataResponseItem) : Response<UserDataResponse>
