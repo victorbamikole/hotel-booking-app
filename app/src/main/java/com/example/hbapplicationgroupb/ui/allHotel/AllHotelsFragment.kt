@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentAllHotelsBinding
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.dataclass.WishListDataClass
 import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -118,6 +118,40 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                 val action =AllHotelsFragmentDirections
                     .actionAllHotelsFragmentToBookingDetailsScreenFragment2(name)
                 findNavController().navigate(action)
+            }
+
+            override fun toggleSaveItemToWishList(
+                position: Int,
+                saveItemTextBox: TextView,
+                saveItemImage: ImageView,
+                item: PageItem
+            ) {
+                if (saveItemImage.visibility == View.INVISIBLE){
+                    saveItemTextBox.text = "Saved!"
+                    saveItemImage.visibility = View.VISIBLE
+                    val wishListData = WishListDataClass(
+                        id = item.id,
+                        hotelName = item.name,
+                        hotelPrice = item.roomTypes[0].price,
+                        description = item.description,
+                        percentage = item.rating.toString()
+                    )
+                    roomViewModel.addToWishList(wishListData)
+                }else{
+                    saveItemTextBox.text = "Save"
+                    saveItemImage.visibility = View.INVISIBLE
+                    val wishListData = WishListDataClass(
+                        id = item.id,
+                        hotelName = item.name,
+                        hotelPrice = item.roomTypes[0].price,
+                        description = item.description,
+                        percentage = item.rating.toString()
+                    )
+                    roomViewModel.removeFromWishList(wishListData)
+                }
+
+
+                Toast.makeText(requireContext(),"botton at position $position clicked",Toast.LENGTH_SHORT).show()
             }
 
         })

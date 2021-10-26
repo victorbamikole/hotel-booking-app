@@ -1,6 +1,9 @@
 package com.example.hbapplicationgroupb.model.dataclass
 
-data class WishListDataClass (
-    var hotelName: String,
-    var hotelPrice: String
+data class WishListDataClass(
+    val id:String,
+    val hotelName: String,
+    val hotelPrice: Double,
+    val description:String,
+    val percentage:String
 )
