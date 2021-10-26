@@ -4,11 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentTopDealsBinding
+import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,11 +23,17 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
     var binding: FragmentTopDealsBinding? = null
     private val roomViewModel : RoomViewModel by viewModels()
     private val myAdapter = TopDealsAdapter()
+    private var token:String? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTopDealsBinding.bind(view)
+
+        token = activity?.let { UserPreferences(it).getSessionUser() }
+        if (token == null){
+            token = "1"
+        }
 
         initViewModel()
         //Fetch Top Deals From APi
@@ -59,6 +71,45 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
                                 )
                             )
                     }
+
+
+                    override fun toggleSaveItemToWishList(
+                        position: Int,
+                        saveItemTextBox: TextView,
+                        saveItemImage: ImageView,
+                        item: TopDealAndHotelData
+                    ) {
+                        if (saveItemImage.visibility == View.INVISIBLE){
+                            saveItemTextBox.text = "Saved!"
+                            saveItemImage.visibility = View.VISIBLE
+                            val wishListData = WishListDataClass(
+                                id = item.id,
+                                hotelName = item.name,
+                                hotelPrice = item.price,
+                                description = item.description,
+                                percentage = item.percentageRating.toString(),
+                                token = token!!,
+                                featureImage = item.thumbnail,
+                                saved = true
+                            )
+                            roomViewModel.insertWishListToDb(wishListData)
+                        }else{
+                            saveItemTextBox.text = "Save"
+                            saveItemImage.visibility = View.INVISIBLE
+                            val wishListData = WishListDataClass(
+                                id = item.id,
+                                hotelName = item.name,
+                                hotelPrice = item.price,
+                                description = item.description,
+                                percentage = item.percentageRating.toString(),
+                                token = token!!,
+                                featureImage = item.thumbnail,
+                                saved = false
+                            )
+                            roomViewModel.deleteWishListFromDb(wishListData)
+                        }
+
+                }
 
                 })
 

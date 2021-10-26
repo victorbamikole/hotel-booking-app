@@ -3,11 +3,14 @@ package com.example.hbapplicationgroupb.ui.topdeals
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.TopDealRecyclerViewLayoutBinding
+import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 
 class TopDealsAdapter():
@@ -30,6 +33,9 @@ class TopDealsAdapter():
         private val topDealRating = binding.topDealRecyclerViewtopDealRating
         private val topDealPercent = binding.topDealRecyclerViewtopDealPercent
         val topDealButton = binding.topDealRecyclerviewBookNowButton
+        val saveText = binding.topDealSaveHotelRecyclerViewSaveText
+        val saveImage = binding.topDealSaveHotelRecyclerViewImage
+        val layoutForToggle = binding.layoutForSaving
 
 
         init {
@@ -75,6 +81,11 @@ class TopDealsAdapter():
                 }
 
             }
+        holder.itemView.apply {
+            holder.layoutForToggle.setOnClickListener {
+                listener.toggleSaveItemToWishList(position, holder.saveText,holder.saveImage,topDeals[position])
+            }
+        }
         }
 
         override fun getItemCount(): Int {
@@ -83,6 +94,7 @@ class TopDealsAdapter():
 
     interface SetItemClickListener{
         fun setOnItemClick(position: Int,myView: View?)
+        fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: TopDealAndHotelData)
     }
 
     fun setOnItemClickListener(itemListener : SetItemClickListener){
