@@ -326,6 +326,27 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+    val getAllWishList = apiRepository.getAllWishList
+
+    
+    fun insertWishListToDb(item: WishListDataClass){
+        viewModelScope.launch { 
+            try {
+                apiRepository.insertWishToDataBase(item)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun deleteWishListFromDb(wishItem: WishListDataClass){
+        viewModelScope.launch {
+            try {
+                apiRepository.deleteWishFromDataBase(wishItem)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }
 
 

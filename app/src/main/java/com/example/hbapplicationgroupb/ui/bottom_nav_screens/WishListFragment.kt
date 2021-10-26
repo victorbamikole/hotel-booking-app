@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,9 +30,9 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
      */
 
     private fun setUpWishListRecyclerView() {
-        roomViewModel.wishList.observe(viewLifecycleOwner,{
-            val list:List<WishListDataClass> = it.toList()
-            instanceOfWishListAdapter.hotels = list
+        roomViewModel.getAllWishList.observe(viewLifecycleOwner,{
+            instanceOfWishListAdapter.hotels = it
+            Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
         })
 
         instanceOfWishListAdapter = WishListAdapter()

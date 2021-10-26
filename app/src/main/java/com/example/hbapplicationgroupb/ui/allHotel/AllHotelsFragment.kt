@@ -136,7 +136,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         description = item.description,
                         percentage = item.rating.toString()
                     )
-                    roomViewModel.addToWishList(wishListData)
+                    roomViewModel.insertWishListToDb(wishListData)
                 }else{
                     saveItemTextBox.text = "Save"
                     saveItemImage.visibility = View.INVISIBLE
@@ -147,7 +147,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         description = item.description,
                         percentage = item.rating.toString()
                     )
-                    roomViewModel.removeFromWishList(wishListData)
+                    roomViewModel.deleteWishListFromDb(wishListData)
                 }
 
 
