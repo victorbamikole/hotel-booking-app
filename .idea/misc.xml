@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../.gradle/caches/transforms-3/f149a6d1b06a6550b4594f9fa6c5dbe1/transformed/appcompat-1.3.1/res/layout/support_simple_spinner_dropdown_item.xml" value="0.14447463768115942" />
+        <entry key="../../../../../layout/custom_preview.xml" value="0.35555555555555557" />
         <entry key="app/src/main/res/drawable-anydpi/ic_profile.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/drawable-hdpi/bg_button.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/drawable-hdpi/ic_baseline_ads_click_24.xml" value="0.2984375" />
@@ -32,7 +32,7 @@
         <entry key="app/src/main/res/layout/custom_profile_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_review_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_all_hotels.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_all_hotels.xml" value="0.13076923076923078" />
         <entry key="app/src/main/res/layout/fragment_boarding03.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_booking_details_screen.xml" value="0.13333333333333333" />
@@ -47,7 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_payment_checkout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_payment_options.xml" value="0.234375" />
-        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_profile_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_registration.xml" value="0.2" />
@@ -57,12 +57,12 @@
         <entry key="app/src/main/res/layout/fragment_review_page_recycler_view_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2269021739130435" />
         <entry key="app/src/main/res/layout/fragment_top_deals.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/hotel_view_pager_design.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/recyclerview2_explore_screen.xml" value="0.25427350427350426" />
-        <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/recyclerview_row.xml" value="0.22" />
         <entry key="app/src/main/res/layout/room_number_bottom_sheet.xml" value="0.18888888888888888" />
         <entry key="app/src/main/res/layout/room_viewpager_design.xml" value="0.26132246376811596" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.18" />
@@ -76,4 +76,11 @@
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2" />
+      </ProjectState>
+    </option>
+  </component>
 </project>
