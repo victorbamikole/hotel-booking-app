@@ -3,13 +3,10 @@ package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-<<<<<<< HEAD
 import android.widget.Toast
-=======
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
->>>>>>> 2c506f78dd2dd42bdaa210c60c57c0e86b6ab467
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
@@ -77,7 +74,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
         binding.viewAllTopDeals.setOnClickListener {
             findNavController().navigate(R.id.action_exploreFragment2_to_topDealsFragment)
         }
-<<<<<<< HEAD
 
         myAdapter.topHotelClickListener(object : TopItemClickListener {
             override fun onItemClick(position: Int, objectData: TopDealAndHotelData) {
@@ -93,7 +89,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
 
         })
 
-=======
 //        UIViewModel.listOfHotels.observe(viewLifecycleOwner,{
 //
 //        })
@@ -104,7 +99,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
->>>>>>> 2c506f78dd2dd42bdaa210c60c57c0e86b6ab467
     }
 
 
@@ -151,7 +145,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
         })
     }
 
-<<<<<<< HEAD
 
     override fun onItemClick(position: Int, objectData: TopDealAndHotelData) {
         val id = objectData.id
@@ -164,7 +157,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
             )
     }
 
-=======
     //App Exit Dialogue
     private fun showExitAlert(){
         val dialogView = layoutInflater.inflate(R.layout.custom_exit_dialog, null)
@@ -190,5 +182,4 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
     }
 
 
->>>>>>> 2c506f78dd2dd42bdaa210c60c57c0e86b6ab467
 }
