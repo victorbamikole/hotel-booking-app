@@ -69,7 +69,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
                 //Set Hotel Images on hotelViewPagerAdapter
                 hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
-            } else{
+            } else {
                 Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
             }
 
