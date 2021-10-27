@@ -9,6 +9,7 @@ import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -135,6 +136,9 @@ class RoomViewModel @Inject constructor(
     val hotelLocation: MutableLiveData<HotelSearchResponse> = _hotelLocation
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
+
+    private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
+    val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
 
 
     init {

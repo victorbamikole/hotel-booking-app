@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupb.model.api
 
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -77,10 +78,12 @@ interface HotelServices {
     @PATCH("api/Authentication/reset-password")
     suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>
 
-    @POST
-    suspend fun loginAUser() : Response<LoginUserDataResponse>
-
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
+
+    @GET("/api/Customer/{userId}/bookings")
+    suspend fun bookingHistory(
+        @Path("userId", encoded = true) userId: String
+    ) : Response<CustomerBookingDataItem>
 
 }

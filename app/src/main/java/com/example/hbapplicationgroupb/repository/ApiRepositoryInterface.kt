@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -53,5 +55,7 @@ interface ApiRepositoryInterface {
 
     fun getAllTopHotels() : LiveData<List<TopHotelData>>
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
+
+    suspend fun bookingHistory(userId : String) : Response<CustomerBookingDataItem>
 
 }
