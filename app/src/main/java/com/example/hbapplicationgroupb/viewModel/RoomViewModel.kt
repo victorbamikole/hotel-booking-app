@@ -6,7 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.*
-import com.example.hbapplicationgroupb.di.application.HotelApplication
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -20,15 +20,19 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
+import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import retrofit2.http.Body
 import java.io.IOException
 import javax.inject.Inject
 
@@ -135,6 +139,12 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
+    private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
+    val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
+
+    private var _updatedDetails : MutableLiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = MutableLiveData()
+    val updatedDetails : LiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = _updatedDetails
+
 
     init {
 //        getTopHotels()
@@ -173,7 +183,6 @@ class RoomViewModel @Inject constructor(
                         "an error occur please try again later"))
                     }
                 }
-
             }
         }
     }
@@ -320,6 +329,23 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+
+    //fetch hotel review
+    fun getHotelReview(id : String){
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _hotelReview.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelReview(id)
+                if (response.isSuccessful){
+                    _hotelReview.postValue(response.body()?.data?.let { Resource.Success(it.pageItems) })
+                }else{
+                    
+                    //Handle error
+//                    _hotelReview.postValue(Resource.Error(throw(response.errorBody())))
+                }}catch (e : Exception){
+                    e.printStackTrace()
+            }
+        }              }
     fun getAllWishList(token:String) = apiRepository.getAllWishList(token)
 
     
@@ -341,6 +367,41 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+
+
+
+    fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) {
+        viewModelScope.launch {
+            _updatedDetails.postValue(ApiCallNetworkResource.Loading())
+
+            try {
+                delay(2000)
+                val response = apiRepository.updateUserDetails(updatedUserData, token)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    _updatedDetails.postValue(ApiCallNetworkResource.Success("Profile Updated"))
+                }else{
+                    _updatedDetails.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
+                }
+
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                when(e){
+                    is IOException ->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "Network Failure, please check your internet connection"))
+                    }
+                    else->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "an error occur please try again later"))
+                    }
+                }
+            }
+
+
+        }
+    }
+
 
     //Response to network successfully connection or error in connection to the API
 //    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){

@@ -1,7 +1,7 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -14,7 +14,8 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -59,6 +60,9 @@ interface HotelServices {
     @POST("api/Authentication/register")
     suspend fun registerAUser(@Body userData: UserDataResponseItem) : Response<UserDataResponse>
 
+    @PUT ("api/Customer/update")
+    suspend fun updateUserDetails (@Body updatedUserData: PostUpdateUserData, @Header("token") token: String) : Response<UpdateUserDataResponse>
+
     @POST("api/Authentication/forgot-password")
     suspend fun resetForgetPasswordEmail(@Query("email") email: String):Response<ForgotPasswordDataResponse>
 
@@ -78,5 +82,8 @@ interface HotelServices {
 
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
+
+    @GET("/api/Hotel/{hotelId}/reviews")
+    suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
 
 }

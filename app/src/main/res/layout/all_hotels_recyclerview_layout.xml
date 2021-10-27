@@ -83,10 +83,10 @@
             android:id="@+id/topDealtopDealNameHotelRecyclerViewSaveText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="32dp"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toStartOf="@+id/topDealsRecyclerViewImage"
             tools:text="@string/top_hotel_name" />
@@ -95,28 +95,16 @@
             android:id="@+id/topDealRecyclerViewtopDealRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="4dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/rating" />
 
-        <TextView
-            android:id="@+id/topDealRecyclerViewtopDealPercent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
-            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealRating"
-            tools:text="@string/_96" />
 
-
-<!--        <ImageView-->
+        <!--        <ImageView-->
 <!--            android:id="@+id/topDealRecyclerViewlike"-->
 <!--            android:layout_width="20dp"-->
 <!--            android:layout_height="20dp"-->
@@ -131,12 +119,24 @@
 
 
         <TextView
+            android:id="@+id/topDealRecyclerViewtopDealPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
+            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealRating"
+            tools:text="@string/_96" />
+
+        <TextView
             android:id="@+id/topDealRecyclerViewPeriod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintEnd_toEndOf="parent"
@@ -147,9 +147,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/_499" />

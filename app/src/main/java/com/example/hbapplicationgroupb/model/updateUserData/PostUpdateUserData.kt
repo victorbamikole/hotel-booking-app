@@ -1,5 +1,10 @@
 package com.example.hbapplicationgroupb.model.updateUserData
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class PostUpdateUserData (
     val firstName: String,
     val lastName: String,
@@ -9,4 +14,4 @@ data class PostUpdateUserData (
     val address: String,
     val state: String,
     val updatedAt: String,
-)
+): Parcelable

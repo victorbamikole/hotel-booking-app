@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
@@ -16,6 +17,8 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -23,9 +26,13 @@ import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
+import retrofit2.http.Body
 
 
 interface ApiRepositoryInterface {
+
+    //Update User Profile
+    suspend fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) : Response<UpdateUserDataResponse>
 
     //Register user
     suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponse>
@@ -59,5 +66,7 @@ interface ApiRepositoryInterface {
 
     fun getAllTopHotels() : LiveData<List<TopHotelData>>
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
+
+    suspend fun getHotelReview(id : String) : Response<HotelReview>
 
 }

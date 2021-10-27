@@ -8,6 +8,40 @@
     tools:context=".ui.userAuthenticationScreen.RegistrationFragment">
 
 
+    <View
+        android:id="@+id/editProfileViewCover"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_grey"
+        android:elevation="100dp"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/editProfileProgressBar"
+        android:elevation="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:layout_constraintTop_toTopOf="parent"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        />
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/editProfileNetworkErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/custom_orange"
+        android:text="@string/no_internet_connection"
+        />
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/reg_toolbar"
