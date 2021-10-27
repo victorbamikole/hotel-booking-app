@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
@@ -54,6 +56,10 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun addReviews(addReview: AddReviewsPost): Response<AddReviewsResponse> {
         return hotelServices.addReviews(addReview)
+    }
+
+    override suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse> {
+        return hotelServices.addRatings(hotelId,rating, token)
     }
 
     override suspend fun registerAUser(userData: UserDataResponseItem

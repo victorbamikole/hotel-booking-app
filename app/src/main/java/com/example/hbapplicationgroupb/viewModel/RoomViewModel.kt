@@ -6,6 +6,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.*
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
@@ -143,6 +145,8 @@ class RoomViewModel @Inject constructor(
 
     private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
+    private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
+    val addRatings: LiveData<AddRatingsResponse> = _addRatings
 
 
     init {
@@ -379,6 +383,22 @@ class RoomViewModel @Inject constructor(
                     _addReviews.postValue(null)
                 }
 
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun addRatingsVM(hotelId: String, addRatings: AddRatingsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addRating(hotelId,addRatings,token)
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    _addRatings.postValue(responseBody)
+                }else{
+                    _addRatings.postValue(null)
+                }
             }catch (e:Exception){
                 e.printStackTrace()
             }
