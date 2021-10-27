@@ -81,7 +81,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
                 showExitAlert()
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
     }
 
 
