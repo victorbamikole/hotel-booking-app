@@ -53,6 +53,12 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
             val updatedAddress = binding?.EditProfileFragmentEditTextAddress?.text?.trim().toString()
             val updatedState = binding?.EditProfileFragmentEditTextState?.text?.trim().toString()
 
+
+
+
+
+
+
             updatedUserData = PostUpdateUserData(updatedFirstName, updatedLastName
                 ,updatedPhoneNumber,20,"53998340155555",
                 updatedAddress,updatedState, "2021-10-25T20:38:57.794Z")
