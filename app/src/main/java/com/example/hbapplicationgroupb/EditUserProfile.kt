@@ -12,12 +12,15 @@ import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentEditUserProfileBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.PostUserData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationFragmentDirections
+import com.example.hbapplicationgroupb.ui.userAuthenticationScreen.UpdateUserValidation
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
 import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
+import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,15 +56,39 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
             val updatedAddress = binding?.EditProfileFragmentEditTextAddress?.text?.trim().toString()
             val updatedState = binding?.EditProfileFragmentEditTextState?.text?.trim().toString()
 
-
-
-
-
-
-
             updatedUserData = PostUpdateUserData(updatedFirstName, updatedLastName
                 ,updatedPhoneNumber,20,"53998340155555",
                 updatedAddress,updatedState, "2021-10-25T20:38:57.794Z")
+
+            if (!UpdateUserValidation.validateUpdatedUserFirstName(updatedFirstName)) {
+                binding?.EditProfileFragmentEditTextViewFirstName?.error = "Enter a First Name"
+                binding?.EditProfileFragmentEditTextViewFirstName?.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!UpdateUserValidation.validateUpdatedUserLastName(updatedLastName)) {
+                binding?.EditProfileFragmentEditTexLastName?.error = "Enter a Last Name"
+                binding?.EditProfileFragmentEditTexLastName?.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!UpdateUserValidation.validateUpdatedUserPhoneNumber(updatedPhoneNumber)) {
+                binding?.EditProfileFragmentEditTextPhoneNumber?.error = "Enter a Phone Number"
+                binding?.EditProfileFragmentEditTextPhoneNumber?.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!UpdateUserValidation.validateUpdatedUserAddress(updatedAddress)) {
+                binding?.EditProfileFragmentEditTextAddress?.error = "Enter a valid Address"
+                binding?.EditProfileFragmentEditTextAddress?.isFocusable
+                return@setOnClickListener
+            }
+
+            if (!UpdateUserValidation.validateUpdatedUserState(updatedState)) {
+                binding?.EditProfileFragmentEditTextState?.error = "Enter a valid State"
+                binding?.EditProfileFragmentEditTextState?.isFocusable
+                return@setOnClickListener
+            }
             viewModel.updateUserDetails(updatedUserData,userToken!!)
 
         }
