@@ -62,7 +62,7 @@
             android:layout_marginTop="130dp"
             android:text="@string/top_hotel_name"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/topDealRating"
@@ -71,7 +71,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="170dp"
             android:text="@string/rating"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_marginStart="95dp"
             android:layout_marginTop="170dp"
             android:text="@string/_96"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <ImageView
@@ -100,10 +100,10 @@
             android:id="@+id/topDealPeriod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
+            android:layout_marginStart="285dp"
             android:layout_marginTop="170dp"
             android:text="@string/per_night"
-            android:textColor="@color/grey"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
 
@@ -111,11 +111,21 @@
             android:id="@+id/topDealPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
+            android:layout_marginStart="310dp"
             android:layout_marginTop="131dp"
             android:text="@string/_499"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="295dp"
+            android:layout_marginTop="131dp"
+            android:text="$"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
 
     </androidx.cardview.widget.CardView>

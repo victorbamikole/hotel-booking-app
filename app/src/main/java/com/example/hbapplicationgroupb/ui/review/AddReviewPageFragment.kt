@@ -36,8 +36,6 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
                     5 -> "Excellent".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     else -> "click to change rating value".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                 }
-
-
             }
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             findNavController()
@@ -45,6 +43,11 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         }
         binding.addRatingBackArrow.setOnClickListener {
             findNavController().navigate(R.id.action_addReviewPageFragment_to_reviewPageFragment)
+        }
+
+        binding.addRatingBackArrow.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_addReviewPageFragment_to_hotelDescriptionFragment)
         }
     }
     override fun onDetach() {

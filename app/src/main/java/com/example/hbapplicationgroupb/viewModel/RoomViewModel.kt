@@ -1,19 +1,13 @@
 package com.example.hbapplicationgroupb.viewModel
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.lifecycle.*
-import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -23,8 +17,10 @@ import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
+import com.example.hbapplicationgroupb.util.resource.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -34,14 +30,9 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-//class RoomViewModel @Inject constructor(
-//    private val apiRepository : ApiRepositoryInterface, app: Application
-//) : AndroidViewModel(app) {
-
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
-
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -139,6 +130,8 @@ class RoomViewModel @Inject constructor(
 
     private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
     val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
+    private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
+    val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
 
     init {
@@ -326,57 +319,43 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    //Response to network successfully connection or error in connection to the API
-//    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
-//        try {
-//            val response = apiRepository.userLoginDetails(userLoginDetails)
-//            if(networkHandler()){
-//                if(response.isSuccessful){
-//                    _userLoginDetails.postValue(response.body())
-//                }else {
-//                    _userLoginDetails.postValue(null)
-//                }
-//            }else{
-//                _userLoginDetails.postValue(null)
-//            }
-//        }catch (t: Throwable){
-//            when(t){
-//                is IOException -> _userLoginDetails.postValue(null)
-//                else -> _userLoginDetails.postValue(null)
-//            }
-//        }
-//
-//    }
+    //fetch hotel review
+    fun getHotelReview(id : String){
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _hotelReview.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelReview(id)
+                if (response.isSuccessful){
+                    _hotelReview.postValue(response.body()?.data?.let { Resource.Success(it.pageItems) })
+                }else{
+                    
+                    //Handle error
+//                    _hotelReview.postValue(Resource.Error(throw(response.errorBody())))
+                }}catch (e : Exception){
+                    e.printStackTrace()
+            }
+        }              }
+    fun getAllWishList(token:String) = apiRepository.getAllWishList(token)
 
-//    //Handle network connectivity
-//
-//    private fun networkHandler() : Boolean{
-//        val connectivityManager = getApplication<HotelApplication>().getSystemService(
-//            Context.CONNECTIVITY_SERVICE
-//        ) as ConnectivityManager
-//
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//            val activeNetwork = connectivityManager.activeNetwork ?: return false
-//            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-//            return when{
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-//                else -> false
-//            }
-//        }
-//        else{
-//            connectivityManager.activeNetworkInfo?.run {
-//                return when(type){
-//                    ConnectivityManager.TYPE_WIFI -> true
-//                    ConnectivityManager.TYPE_MOBILE -> true
-//                    ConnectivityManager.TYPE_ETHERNET -> true
-//                    else -> false
-//                }
-//            }
-//        }
-//        return false
-//    }
+    
+    fun insertWishListToDb(item: WishListDataClass){
+        viewModelScope.launch { 
+            try {
+                apiRepository.insertWishToDataBase(item)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun deleteWishListFromDb(wishItem: WishListDataClass){
+        viewModelScope.launch {
+            try {
+                apiRepository.deleteWishFromDataBase(wishItem)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }
 
 

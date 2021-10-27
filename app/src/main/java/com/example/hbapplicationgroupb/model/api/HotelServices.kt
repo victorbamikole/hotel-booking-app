@@ -1,10 +1,9 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
-import com.example.hbapplicationgroupb.model.customerWishList.CustomerWishListResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -16,7 +15,6 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -58,9 +56,6 @@ interface HotelServices {
     @POST
     suspend fun bookHotelData() : Response<CustomerBookingDataResponse>
 
-    @POST
-    suspend fun addToCustomerWishList() : Response<CustomerWishListResponse>
-
     @POST("api/Authentication/register")
     suspend fun registerAUser(@Body userData: UserDataResponseItem) : Response<UserDataResponse>
 
@@ -85,5 +80,8 @@ interface HotelServices {
     suspend fun bookingHistory(
         @Path("userId", encoded = true) userId: String
     ) : Response<CustomerBookingDataItem>
+
+    @GET("/api/Hotel/{hotelId}/reviews")
+    suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
 
 }

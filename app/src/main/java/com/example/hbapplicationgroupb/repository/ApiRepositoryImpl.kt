@@ -3,9 +3,11 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -76,6 +78,10 @@ class ApiRepositoryImpl @Inject constructor (
 //        shouldFetch = {}
     )
 
+    override suspend fun getHotelReview(id: String): Response<HotelReview> {
+        return  hotelServices.getHotelReview(id)
+    }
+
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {
         return hotelServices.fetchAllHotels(pageSize,currentPage)
 
@@ -95,7 +101,21 @@ class ApiRepositoryImpl @Inject constructor (
     }
 
 
-    override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao().insertTopHotel(topHotel)
+    override suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>) = db.getAllTopHotelsDao()
+        .insertTopHotel(topHotel)
+
+
+    //wishList query
+
+    override fun getAllWishList(token:String): LiveData<List<WishListDataClass>> = db.wishListDao()
+        .getAllHotelsFromRoom(token)
+    override suspend fun insertWishToDataBase(item: WishListDataClass) {
+        return db.wishListDao().addWishedItemToDb(item)
+    }
+
+    override suspend fun deleteWishFromDataBase(wishId: WishListDataClass) {
+        return db.wishListDao().deleteWishList(wishId)
+    }
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 

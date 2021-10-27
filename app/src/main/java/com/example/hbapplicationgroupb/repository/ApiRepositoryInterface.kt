@@ -1,10 +1,11 @@
 package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -15,7 +16,6 @@ import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
-import com.example.hbapplicationgroupb.model.tophotelresponse.AllTopHotels
 
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
@@ -53,9 +53,18 @@ interface ApiRepositoryInterface {
 
     suspend fun insertHotelToDatabase(topHotel: List<TopHotelData>)
 
+    //wish list query
+    fun getAllWishList(token:String):LiveData<List<WishListDataClass>>
+    suspend fun insertWishToDataBase(item:WishListDataClass)
+    suspend fun deleteWishFromDataBase(wishId:WishListDataClass)
+
+
     fun getAllTopHotels() : LiveData<List<TopHotelData>>
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
 
+
     suspend fun bookingHistory(userId : String) : Response<CustomerBookingDataItem>
+
+    suspend fun getHotelReview(id : String) : Response<HotelReview>
 
 }
