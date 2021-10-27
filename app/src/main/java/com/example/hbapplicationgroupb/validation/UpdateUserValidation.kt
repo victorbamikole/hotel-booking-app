@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupb.ui.userAuthenticationScreen
+package com.example.hbapplicationgroupb.validation
 
 object UpdateUserValidation {
 

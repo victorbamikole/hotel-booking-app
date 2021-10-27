@@ -2,9 +2,7 @@ package com.example.hbapplicationgroupb
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,15 +10,10 @@ import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentEditUserProfileBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
-import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
-import com.example.hbapplicationgroupb.model.userData.PostUserData
-import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
-import com.example.hbapplicationgroupb.ui.userAuthenticationScreen.RegistrationFragmentDirections
-import com.example.hbapplicationgroupb.ui.userAuthenticationScreen.UpdateUserValidation
+import com.example.hbapplicationgroupb.validation.UpdateUserValidation
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
 import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
-import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
