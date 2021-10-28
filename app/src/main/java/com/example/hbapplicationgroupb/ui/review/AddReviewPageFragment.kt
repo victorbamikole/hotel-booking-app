@@ -52,9 +52,6 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         if (token==null){
             token="1"
         }
-//        val ratings =  binding.fragmentReviewPageStarViewRatingBar1.rating.toInt()
-//        roomViewModel.addRatingsVM(_hotelId, AddRatingsPost(ratings), token!!)
-//        Log.d("COMMENT","$ratings")
 
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             val comment = binding.fragmentAddReviewCommentTi.text.toString()
