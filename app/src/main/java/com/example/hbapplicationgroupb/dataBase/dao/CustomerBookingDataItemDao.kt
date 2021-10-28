@@ -12,6 +12,6 @@ interface CustomerBookingDataItemDao {
     @Insert( onConflict = OnConflictStrategy.REPLACE)
     suspend fun addListOfCustomerBookingDataItem(listOfCustomerBookingDataItem: ArrayList<CustomerBookingDataItem>)
 
-    @Query("SELECT * FROM Customer_Booking_History_Table ORDER BY Id ASC")
+    @Query("SELECT * FROM Customer_Booking_History_Table ORDER BY roomId ASC")
     fun readAllCustomerBookingDataItem(): LiveData<List<CustomerBookingDataItem>>
 }
