@@ -1,13 +1,17 @@
 package com.example.hbapplicationgroupb.viewModel
 
 import androidx.lifecycle.*
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
-import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -132,6 +136,11 @@ class RoomViewModel @Inject constructor(
     val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
+
+    private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
+    val addReviews: LiveData<AddReviewsResponse> = _addReviews
+    private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
+    val addRatings: LiveData<AddRatingsResponse> = _addRatings
 
 
     init {
@@ -356,6 +365,91 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+
+    fun addReviewsVM(addReviews: AddReviewsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addReviews(addReviews, token)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    _addReviews.postValue(responseBody)
+                }else{
+                    _addReviews.postValue(null)
+                }
+
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun addRatingsVM(hotelId: String, addRatings: AddRatingsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addRating(hotelId,addRatings,token)
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    _addRatings.postValue(responseBody)
+                }else{
+                    _addRatings.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    //Response to network successfully connection or error in connection to the API
+//    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
+//        try {
+//            val response = apiRepository.userLoginDetails(userLoginDetails)
+//            if(networkHandler()){
+//                if(response.isSuccessful){
+//                    _userLoginDetails.postValue(response.body())
+//                }else {
+//                    _userLoginDetails.postValue(null)
+//                }
+//            }else{
+//                _userLoginDetails.postValue(null)
+//            }
+//        }catch (t: Throwable){
+//            when(t){
+//                is IOException -> _userLoginDetails.postValue(null)
+//                else -> _userLoginDetails.postValue(null)
+//            }
+//        }
+//
+//    }
+
+//    //Handle network connectivity
+//
+//    private fun networkHandler() : Boolean{
+//        val connectivityManager = getApplication<HotelApplication>().getSystemService(
+//            Context.CONNECTIVITY_SERVICE
+//        ) as ConnectivityManager
+//
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//            val activeNetwork = connectivityManager.activeNetwork ?: return false
+//            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+//            return when{
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+//                else -> false
+//            }
+//        }
+//        else{
+//            connectivityManager.activeNetworkInfo?.run {
+//                return when(type){
+//                    ConnectivityManager.TYPE_WIFI -> true
+//                    ConnectivityManager.TYPE_MOBILE -> true
+//                    ConnectivityManager.TYPE_ETHERNET -> true
+//                    else -> false
+//                }
+//            }
+//        }
+//        return false
+//    }
 }
 
 

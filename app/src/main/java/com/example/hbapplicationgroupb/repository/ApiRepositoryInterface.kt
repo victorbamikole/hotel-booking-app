@@ -1,6 +1,10 @@
 package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
@@ -46,6 +50,10 @@ interface ApiRepositoryInterface {
     suspend fun userLoginDetails(userLoginDetails : PostLoginUserData) : Response<LoginUserDataResponse>
 
     suspend fun searchHotelLocation(location: String) : Response<HotelSearchResponse>
+
+    suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse>
+
+    suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse>
 
     //fetching data into Database
 //    suspend fun AddAllHotelsToDb(allHotels: ArrayList<HotelData>): Response<GetAllHotel>

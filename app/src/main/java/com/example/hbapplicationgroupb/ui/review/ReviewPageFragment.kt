@@ -45,8 +45,10 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
 
 
         binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
+            val action = ReviewPageFragmentDirections
+                .actionReviewPageFragmentToAddReviewPageFragment(hotelId)
             findNavController()
-                .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+                .navigate(action)
         }
         binding.ratingBackArrow.setOnClickListener {
             findNavController()

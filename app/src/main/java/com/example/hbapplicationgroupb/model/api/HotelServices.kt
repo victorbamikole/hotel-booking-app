@@ -1,5 +1,9 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
@@ -83,5 +87,10 @@ interface HotelServices {
 
     @GET("/api/Hotel/{hotelId}/reviews")
     suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
+
+    @POST("api/Review/add-reviews")
+    suspend fun addReviews(@Body addReview: AddReviewsPost, @Header("Authorization")token: String):Response<AddReviewsResponse>
+    @POST("api/Hotel/{hotelId}/add-ratings")
+    suspend fun addRatings(@Path("hotelId") hotelId: String, @Body ratings: AddRatingsPost, @Header("Authorization")token: String): Response<AddRatingsResponse>
 
 }
