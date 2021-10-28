@@ -395,12 +395,12 @@
                         android:text="@string/price"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_hotel_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_6999"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_hotel_price"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/_6999"-->
+<!--                        android:textStyle="bold" />-->
                 </LinearLayout>
 
                 <LinearLayout

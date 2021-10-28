@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.ui.review
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -49,8 +50,14 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
                 .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
         }
         binding.ratingBackArrow.setOnClickListener {
-//            findNavController()
-//                .navigate(R.id.action_reviewPageFragment_to_)
+            findNavController()
+                .navigate(R.id.action_reviewPageFragment_to_hotelDescriptionFragment)
+        }
+
+        binding.ratingBackArrow.setOnClickListener {
+            findNavController().navigate(
+                ReviewPageFragmentDirections.actionReviewPageFragmentToHotelDescriptionFragment(
+                    hotelId))
         }
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it

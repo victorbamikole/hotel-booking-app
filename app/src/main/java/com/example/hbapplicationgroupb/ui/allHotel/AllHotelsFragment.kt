@@ -109,12 +109,11 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         myAdapter.allHotelClickListener(object : AllHotelClickListener{
             override fun onItemSelected(position: Int, item: PageItem) {
                 val id = item.id
-                val price = item.roomTypes[0].price.toString()
                 findNavController()
                     .navigate(
                         AllHotelsFragmentDirections
                             .actionAllHotelsFragmentToHotelDescriptionFragment(
-                                id,price
+                                id
                             )
                     )
             }
