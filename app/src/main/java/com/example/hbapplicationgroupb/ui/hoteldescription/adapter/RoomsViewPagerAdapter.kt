@@ -12,7 +12,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 
 class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPagerHolder>() {
 
-    val hotelRooms :  MutableList<HotelDescriptionRoomType> = mutableListOf()
+    private val hotelRooms :  MutableList<HotelDescriptionRoomType> = mutableListOf()
 
     inner class ViewPagerHolder(viewItems: View): RecyclerView.ViewHolder(viewItems){
         val image: ImageView = viewItems.findViewById(R.id.bottom_viewPager_imageView)
@@ -34,7 +34,7 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
             .load(roomPosition.thumbnail)
             .into(holder.image)
         holder.title.text = roomPosition.name
-        holder.price.text = roomPosition.price.toString()
+        holder.price.text = String.format("#${roomPosition.price}")
     }
 
     override fun getItemCount(): Int {

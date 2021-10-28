@@ -62,12 +62,11 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
                 myAdapter.setOnItemClickListener(object : TopDealsAdapter.SetItemClickListener{
                     override fun setOnItemClick(position: Int, myView: View?) {
                         val id = it.data[position].id
-                        val price = it.data[position].price.toString()
                         findNavController()
                             .navigate(
                             TopDealsFragmentDirections
                                 .actionTopDealsFragmentToHotelDescriptionFragment(
-                                    id,price
+                                    id
                                 )
                             )
                     }
