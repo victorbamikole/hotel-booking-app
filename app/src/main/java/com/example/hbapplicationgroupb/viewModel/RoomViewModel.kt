@@ -1,10 +1,5 @@
 package com.example.hbapplicationgroupb.viewModel
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
 import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
@@ -12,7 +7,7 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -26,6 +21,7 @@ import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.Resource
@@ -38,10 +34,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-//class RoomViewModel @Inject constructor(
-//    private val apiRepository : ApiRepositoryInterface, app: Application
-//) : AndroidViewModel(app) {
-
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
@@ -140,6 +132,8 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
+    private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
+    val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
