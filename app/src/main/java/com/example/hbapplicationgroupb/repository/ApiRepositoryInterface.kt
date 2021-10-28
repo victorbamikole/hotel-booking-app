@@ -1,9 +1,14 @@
 package com.example.hbapplicationgroupb.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -46,6 +51,10 @@ interface ApiRepositoryInterface {
 
     suspend fun searchHotelLocation(location: String) : Response<HotelSearchResponse>
 
+    suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse>
+
+    suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse>
+
     //fetching data into Database
 //    suspend fun AddAllHotelsToDb(allHotels: ArrayList<HotelData>): Response<GetAllHotel>
 
@@ -60,6 +69,9 @@ interface ApiRepositoryInterface {
 
     fun getAllTopHotels() : LiveData<List<TopHotelData>>
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
+
+
+    suspend fun bookingHistory(userId : String) : Response<CustomerBookingDataItem>
 
     suspend fun getHotelReview(id : String) : Response<HotelReview>
 

@@ -3,9 +3,14 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -48,6 +53,14 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun searchHotelLocation(location: String): Response<HotelSearchResponse> {
         return hotelServices.searchHotelLocation(location)
+    }
+
+    override suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse> {
+        return hotelServices.addReviews(addReview, token)
+    }
+
+    override suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse> {
+        return hotelServices.addRatings(hotelId,rating, token)
     }
 
     override suspend fun registerAUser(userData: UserDataResponseItem
@@ -118,5 +131,8 @@ class ApiRepositoryImpl @Inject constructor (
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 
+    override suspend fun bookingHistory(userId: String): Response<CustomerBookingDataItem> {
+        return hotelServices.bookingHistory(userId)
+    }
 
 }

@@ -1,14 +1,13 @@
 package com.example.hbapplicationgroupb.viewModel
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.lifecycle.*
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -22,6 +21,7 @@ import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.Resource
@@ -34,10 +34,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-//class RoomViewModel @Inject constructor(
-//    private val apiRepository : ApiRepositoryInterface, app: Application
-//) : AndroidViewModel(app) {
-
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
@@ -136,8 +132,15 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
+    private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
+    val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
+
+    private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
+    val addReviews: LiveData<AddReviewsResponse> = _addReviews
+    private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
+    val addRatings: LiveData<AddRatingsResponse> = _addRatings
 
 
     init {
@@ -357,6 +360,39 @@ class RoomViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 apiRepository.deleteWishFromDataBase(wishItem)
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun addReviewsVM(addReviews: AddReviewsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addReviews(addReviews, token)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    _addReviews.postValue(responseBody)
+                }else{
+                    _addReviews.postValue(null)
+                }
+
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun addRatingsVM(hotelId: String, addRatings: AddRatingsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addRating(hotelId,addRatings,token)
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    _addRatings.postValue(responseBody)
+                }else{
+                    _addRatings.postValue(null)
+                }
             }catch (e:Exception){
                 e.printStackTrace()
             }
