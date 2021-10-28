@@ -54,8 +54,8 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.searchHotelLocation(location)
     }
 
-    override suspend fun addReviews(addReview: AddReviewsPost): Response<AddReviewsResponse> {
-        return hotelServices.addReviews(addReview)
+    override suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse> {
+        return hotelServices.addReviews(addReview, token)
     }
 
     override suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse> {

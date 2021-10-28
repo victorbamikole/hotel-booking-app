@@ -86,8 +86,8 @@ interface HotelServices {
     suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
 
     @POST("api/Review/add-reviews")
-    suspend fun addReviews(@Body addReview: AddReviewsPost):Response<AddReviewsResponse>
+    suspend fun addReviews(@Body addReview: AddReviewsPost, @Header("Authorization")token: String):Response<AddReviewsResponse>
     @POST("api/Hotel/{hotelId}/add-ratings")
-    suspend fun addRatings(@Path("hotelId") hotelId: String, @Body ratings: AddRatingsPost, token: String): Response<AddRatingsResponse>
+    suspend fun addRatings(@Path("hotelId") hotelId: String, @Body ratings: AddRatingsPost, @Header("Authorization")token: String): Response<AddRatingsResponse>
 
 }

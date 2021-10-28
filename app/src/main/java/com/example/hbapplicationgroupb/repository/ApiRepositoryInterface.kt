@@ -50,7 +50,7 @@ interface ApiRepositoryInterface {
 
     suspend fun searchHotelLocation(location: String) : Response<HotelSearchResponse>
 
-    suspend fun addReviews(addReview: AddReviewsPost): Response<AddReviewsResponse>
+    suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse>
 
     suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse>
 

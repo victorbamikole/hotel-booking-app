@@ -372,10 +372,10 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    fun addReviewsVM(addReviews: AddReviewsPost){
+    fun addReviewsVM(addReviews: AddReviewsPost, token: String){
         viewModelScope.launch(Dispatchers.IO){
             try {
-                val response = apiRepository.addReviews(addReviews)
+                val response = apiRepository.addReviews(addReviews, token)
                 if (response.isSuccessful){
                     val responseBody = response.body()
                     _addReviews.postValue(responseBody)
