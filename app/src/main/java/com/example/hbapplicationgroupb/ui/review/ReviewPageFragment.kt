@@ -46,7 +46,6 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
 
        setBarRatingAndProgressBar()
 
-
         binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
             val action = ReviewPageFragmentDirections
                 .actionReviewPageFragmentToAddReviewPageFragment(hotelId)
