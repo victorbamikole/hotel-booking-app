@@ -82,7 +82,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
                 findNavController()
                     .navigate(
                         ExploreFragmentDirections.actionExploreFragment2ToHotelDescriptionFragment(
-                            id, price
+                            id
                         )
                     )
             }
@@ -152,7 +152,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
         findNavController()
             .navigate(
                 ExploreFragmentDirections.actionExploreFragment2ToHotelDescriptionFragment(
-                    id, price
+                    id
                 )
             )
     }

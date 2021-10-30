@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupb.ui.review
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -20,6 +21,8 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
     //var of type of binding class created for xml file
     private lateinit var binding: FragmentReviewPageBinding
     private lateinit var reviewAdapter:ReviewPageFragmentRVAdapter
+//    private val safeArgs : Review
+
     private val safeArgs : ReviewPageFragmentArgs by navArgs()
     private val roomViewModel : RoomViewModel by viewModels()
     var userRatings = 0
@@ -43,14 +46,21 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
 
        setBarRatingAndProgressBar()
 
-
         binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
+            val action = ReviewPageFragmentDirections
+                .actionReviewPageFragmentToAddReviewPageFragment(hotelId)
             findNavController()
-                .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+                .navigate(action)
         }
         binding.ratingBackArrow.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_reviewPageFragment_to_hotelDescriptionFragment)
+        }
+
+        binding.ratingBackArrow.setOnClickListener {
+            findNavController().navigate(
+                ReviewPageFragmentDirections.actionReviewPageFragmentToHotelDescriptionFragment(
+                    hotelId))
         }
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it

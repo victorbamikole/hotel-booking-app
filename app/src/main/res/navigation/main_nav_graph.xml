@@ -117,9 +117,6 @@
         <argument
             android:name="hotelId"
             app:argType="string" />
-        <argument
-            android:name="hotelPrice"
-            app:argType="string" />
 
     </fragment>
     <fragment
@@ -205,6 +202,13 @@
             app:destination="@id/reviewPageFragment"
             app:popUpTo="@id/reviewPageFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
+        <argument
+            android:name="rating"
+            app:argType="float"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
