@@ -134,6 +134,7 @@ class RoomViewModel @Inject constructor(
 
     private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
     val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
+
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
@@ -225,6 +226,9 @@ class RoomViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     _confirmEmailAddress.postValue(responseBody)
+                }
+                else{
+                    _confirmEmailAddress.postValue(null)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -366,6 +370,23 @@ class RoomViewModel @Inject constructor(
         }
     }
 
+    fun getBookingHistory(userId : String){
+        viewModelScope.launch {
+            try {
+                val response = apiRepository.bookingHistory(userId)
+                if (response.isSuccessful) {
+//                    _userLoginDetails.postValue(response.body())
+                    _bookingHistory.postValue(response.body())
+                } else {
+                    _userLoginDetails.postValue(null)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+
+            }
+        }
+    }
+
     fun addReviewsVM(addReviews: AddReviewsPost, token: String){
         viewModelScope.launch(Dispatchers.IO){
             try {
@@ -398,58 +419,6 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-
-    //Response to network successfully connection or error in connection to the API
-//    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
-//        try {
-//            val response = apiRepository.userLoginDetails(userLoginDetails)
-//            if(networkHandler()){
-//                if(response.isSuccessful){
-//                    _userLoginDetails.postValue(response.body())
-//                }else {
-//                    _userLoginDetails.postValue(null)
-//                }
-//            }else{
-//                _userLoginDetails.postValue(null)
-//            }
-//        }catch (t: Throwable){
-//            when(t){
-//                is IOException -> _userLoginDetails.postValue(null)
-//                else -> _userLoginDetails.postValue(null)
-//            }
-//        }
-//
-//    }
-
-//    //Handle network connectivity
-//
-//    private fun networkHandler() : Boolean{
-//        val connectivityManager = getApplication<HotelApplication>().getSystemService(
-//            Context.CONNECTIVITY_SERVICE
-//        ) as ConnectivityManager
-//
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//            val activeNetwork = connectivityManager.activeNetwork ?: return false
-//            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-//            return when{
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-//                else -> false
-//            }
-//        }
-//        else{
-//            connectivityManager.activeNetworkInfo?.run {
-//                return when(type){
-//                    ConnectivityManager.TYPE_WIFI -> true
-//                    ConnectivityManager.TYPE_MOBILE -> true
-//                    ConnectivityManager.TYPE_ETHERNET -> true
-//                    else -> false
-//                }
-//            }
-//        }
-//        return false
-//    }
 }
 
 
