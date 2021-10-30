@@ -130,6 +130,7 @@ class RoomViewModel @Inject constructor(
 
     private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
     val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
+
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
@@ -216,6 +217,9 @@ class RoomViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     _confirmEmailAddress.postValue(responseBody)
+                }
+                else{
+                    _confirmEmailAddress.postValue(null)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -353,6 +357,23 @@ class RoomViewModel @Inject constructor(
                 apiRepository.deleteWishFromDataBase(wishItem)
             }catch (e:Exception){
                 e.printStackTrace()
+            }
+        }
+    }
+
+    fun getBookingHistory(userId : String){
+        viewModelScope.launch {
+            try {
+                val response = apiRepository.bookingHistory(userId)
+                if (response.isSuccessful) {
+//                    _userLoginDetails.postValue(response.body())
+                    _bookingHistory.postValue(response.body())
+                } else {
+                    _userLoginDetails.postValue(null)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+
             }
         }
     }
