@@ -80,6 +80,9 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
 
+    //dexter multiple permission request
+    implementation 'com.karumi:dexter:6.2.3'
+
     //to use LiveData to convert flow
     def lifecycle_version = "2.2.0"
 
