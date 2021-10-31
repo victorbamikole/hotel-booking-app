@@ -49,10 +49,12 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             findNavController().navigate(action)
         }
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
-//            binding.addStarRatingContainer.setOnClickListener {
-//                findNavController()
-//                    .navigate(R.id.action_hotelDescriptionFragment_to_reviewPageFragment)
-//            }
+
+            binding.addStarRatingContainer.setOnClickListener {
+                val action = HotelDescriptionFragmentDirections.actionHotelDescriptionFragmentToReviewPageFragment(hotelId, 0f)
+                findNavController()
+                    .navigate(action)
+            }
         binding.addRatingBackArrow.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_hotelDescriptionFragment_to_exploreFragment2)
@@ -67,9 +69,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 binding.fragmentHotelDescriptionTvEmail.text = it.email
                 binding.hotelDescExpandableTv.text = it.description
                 binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = it.rating.toFloat()
-                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
+//                binding.tvHotelPrice.text = String.format("$ ${safeArgs.hotelPrice}")
 
                 val hotelRating = it.rating
+
                 //Set Room types for roomViewPagerAdapter
                 roomViewPagerAdapter.populateHotelRooms(it.roomTypes.toMutableList())
 
@@ -80,11 +83,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                 navigateToHotelReviews(hotelId,hotelRating,binding.addStarRatingContainer )
 
             } else{
-                Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view,"No data retrieved for this hotel", Snackbar.LENGTH_SHORT).show()
             }
 
         })
-
 
 
     }
@@ -104,8 +106,10 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         binding.fragmentImageDescriptionViewPagerOurServices.offscreenPageLimit = 1
 
         roomViewPagerAdapter = RoomsViewPagerAdapter()
+        setClickListenerOnGalleryIcon()
 
         binding.fragmentImageDescriptionViewPagerOurServices.adapter = roomViewPagerAdapter
+
     }
     private fun setUpViewPagerTransition() {
         setTopViewPagerForListOfHotels()
@@ -165,7 +169,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
 
     //Navigate to hotel review page
-    private fun navigateToHotelReviews(hotelId : String, rating: Double,view : View){
+    private fun navigateToHotelReviews(hotelId : String, rating: Double, view : View){
         view.setOnClickListener {
             findNavController()
                 .navigate(HotelDescriptionFragmentDirections
@@ -318,6 +322,17 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                     imageReviewCount.text = String.format("0")}
             }
         })
+    }
+
+    private fun setClickListenerOnGalleryIcon(){
+        binding.fragmentHotelDescriptionCardClickToGallery.setOnClickListener {
+            if (binding.fragmentImageDescriptionViewPager.currentItem+1 < hotelViewPagerAdapter.itemCount){
+                binding.fragmentImageDescriptionViewPager.currentItem ++
+            }else{
+                binding.fragmentImageDescriptionViewPager.currentItem = 1
+
+            }
+        }
     }
 
 }

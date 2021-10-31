@@ -136,7 +136,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 Snackbar.make(binding.root, "Invalid password", Snackbar.LENGTH_LONG).show()
                 binding.regPasswordInput.error = null
                 loadingStateInvisibilityHandler()
-
             }
         }
         else{

@@ -41,12 +41,11 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         instanceOfWishListAdapter.allWishClickListener(object : WishListAdapter.AllWishesClickListener{
             override fun onItemSelected(position: Int, item: WishListDataClass) {
                 val id = item.id
-                val price = item.hotelPrice.toString()
                 findNavController()
                     .navigate(
                         WishListFragmentDirections
                             .actionWishListFragment2ToHotelDescriptionFragment(
-                                id,price
+                                id
                             )
                     )
             }
