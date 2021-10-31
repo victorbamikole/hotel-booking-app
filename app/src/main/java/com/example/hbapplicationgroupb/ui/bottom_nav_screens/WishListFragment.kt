@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +12,6 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
-import com.example.hbapplicationgroupb.ui.allHotel.AllHotelsFragmentDirections
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +27,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWishListBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSessionUser() }
+        token = activity?.let { UserPreferences(it).getSavedToken() }
         if (token == null){
             token = "1"
         }
@@ -98,7 +96,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         }
     }
     private fun loadListData(){
-        var token = activity?.let { UserPreferences(it).getSessionUser() }
+        var token = activity?.let { UserPreferences(it).getSavedToken() }
         if (token == null){
             token = "1"
         }

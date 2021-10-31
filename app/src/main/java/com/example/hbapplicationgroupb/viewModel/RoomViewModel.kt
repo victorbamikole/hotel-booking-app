@@ -15,6 +15,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -37,6 +38,9 @@ import javax.inject.Inject
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
+
+    private var _refreshToken: MutableLiveData<RefreshTokenResponse> = MutableLiveData()
+    val refreshToken:LiveData<RefreshTokenResponse> = _refreshToken
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -142,13 +146,6 @@ class RoomViewModel @Inject constructor(
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
     private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
     val addRatings: LiveData<AddRatingsResponse> = _addRatings
-
-
-    init {
-//        getTopHotels()
-//        getAllHotels()
-    }
-
 
 
     fun registerUser(userData: UserDataResponseItem) {
@@ -413,6 +410,23 @@ class RoomViewModel @Inject constructor(
                     _addRatings.postValue(responseBody)
                 }else{
                     _addRatings.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    fun refreshToken(userId: String,refreshToken:String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.refreshTokenRequest(userId,refreshToken)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    _refreshToken.postValue(responseBody)
+                }else{
+                    _refreshToken.postValue(null)
                 }
             }catch (e:Exception){
                 e.printStackTrace()

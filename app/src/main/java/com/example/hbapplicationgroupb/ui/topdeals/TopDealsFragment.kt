@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupb.ui.topdeals
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ImageView
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentTopDealsBinding
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -30,7 +28,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTopDealsBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSessionUser() }
+        token = activity?.let { UserPreferences(it).getSavedToken() }
         if (token == null){
             token = "1"
         }

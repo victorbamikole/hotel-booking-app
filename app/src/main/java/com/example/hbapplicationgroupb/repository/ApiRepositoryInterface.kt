@@ -17,6 +17,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -29,6 +30,7 @@ import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
+import retrofit2.http.Query
 
 
 interface ApiRepositoryInterface {
@@ -75,4 +77,7 @@ interface ApiRepositoryInterface {
 
     suspend fun getHotelReview(id : String) : Response<HotelReview>
 
+    //refresh token
+    suspend fun refreshTokenRequest(userId: String, refreshToken:String):
+            Response<RefreshTokenResponse>
 }

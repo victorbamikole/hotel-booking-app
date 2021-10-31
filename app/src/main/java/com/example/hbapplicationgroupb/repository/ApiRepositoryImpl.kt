@@ -20,6 +20,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -92,6 +93,13 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun getHotelReview(id: String): Response<HotelReview> {
         return  hotelServices.getHotelReview(id)
+    }
+
+    override suspend fun refreshTokenRequest(
+        userId: String,
+        refreshToken: String
+    ): Response<RefreshTokenResponse> {
+        return hotelServices.refreshTokenRequest(userId,refreshToken)
     }
 
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {

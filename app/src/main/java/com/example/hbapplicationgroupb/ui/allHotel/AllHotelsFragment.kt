@@ -68,7 +68,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
-        token = activity?.let { UserPreferences(it).getSessionUser() }
+        token = activity?.let { UserPreferences(it).getSavedToken() }
         if (token == null){
             token = "1"
         }

@@ -3,9 +3,7 @@ package com.example.hbapplicationgroupb.dataBase.db
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
-import com.example.hbapplicationgroupb.util.constants.PREFERENCE_NAME
-import com.example.hbapplicationgroupb.util.constants.DEFAULT_TOKEN
-import com.example.hbapplicationgroupb.util.constants.SHARED_PREF_KEY
+import com.example.hbapplicationgroupb.util.constants.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -20,16 +18,21 @@ class UserPreferences @Inject constructor(
     fun returnSharedPref() = sharedPreferences
 
     //Save user session whenever user is logged in
-    fun saveSession(token : String){
-        editor.putString(SHARED_PREF_KEY, token).commit()
-
+    fun saveSession(token : String,userId:String,refreshToken:String){
+        editor.putString(SHARED_PREF_KEY_TOKEN, token).commit()
+        editor.putString(SHARED_PREF_KEY_REFRESH_TOKEN, refreshToken).commit()
+        editor.putString(SHARED_PREF_KEY_USER_ID, userId).commit()
     }
 
-    fun getSessionUser() : String? {
-        return sharedPreferences.getString(SHARED_PREF_KEY, DEFAULT_TOKEN)
+    fun getSavedToken() : String{
+        val userId = sharedPreferences.getString(SHARED_PREF_KEY_USER_ID, DEFAULT_TOKEN)
+        val refreshToken = sharedPreferences.getString(SHARED_PREF_KEY_REFRESH_TOKEN, DEFAULT_TOKEN)
+        return "$userId,$refreshToken"
     }
 
     fun clearUserSession(){
-        editor.putString(SHARED_PREF_KEY, DEFAULT_TOKEN).commit()
+        editor.putString(SHARED_PREF_KEY_TOKEN, DEFAULT_TOKEN).commit()
+        editor.putString(SHARED_PREF_KEY_REFRESH_TOKEN, DEFAULT_TOKEN).commit()
+        editor.putString(SHARED_PREF_KEY_USER_ID, DEFAULT_TOKEN).commit()
     }
 }

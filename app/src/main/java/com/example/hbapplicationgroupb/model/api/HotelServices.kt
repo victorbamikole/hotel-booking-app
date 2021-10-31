@@ -16,6 +16,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -93,4 +94,9 @@ interface HotelServices {
     @POST("api/Hotel/{hotelId}/add-ratings")
     suspend fun addRatings(@Path("hotelId") hotelId: String, @Body ratings: AddRatingsPost, @Header("Authorization")token: String): Response<AddRatingsResponse>
 
+    @POST("/api/Authentication/refresh-token")
+    suspend fun refreshTokenRequest(
+        @Query("UserId") userId: String,
+        @Query("RefreshToken") refreshToken:String
+    ):Response<RefreshTokenResponse>
 }
