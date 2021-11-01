@@ -233,10 +233,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                         Log.d("imageUri", "onActivityResult: $imageBitmap")
 
 //
-//                        val userToken = activity?.let { it1 ->
-//                            UserPreferences(it1).getUserToken()
-//                        }
-//                        roomViewModel.uploadImageToAPI("Bearer $userToken",imageUri.toString())
+
                         saveImageToInternalStorage(imageBitmap)
                         Glide.with(this)
                             .load(imageUri)
@@ -265,6 +262,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }catch (e:IOException){
             e.printStackTrace()
         }
+        val userToken = activity?.let { it1 ->
+            UserPreferences(it1).getUserToken()
+        }
+        roomViewModel.uploadImageToAPI("Bearer $userToken","${Uri.parse(file.absolutePath)}")
+        Log.d("imageUri", "saveImageToInternalStorage: ${Uri.parse(file.absolutePath)} ")
         return Uri.parse(file.absolutePath)
     }
 
