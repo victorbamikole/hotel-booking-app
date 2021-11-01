@@ -34,13 +34,15 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         if (token == null){
             token = "1"
         }
-        Log.d("tokenQuery", "refreshUserToken: oldToken = $token")
 
-        refreshUserToken()
+//        refreshUserToken()
+        roomViewModel.deleteCustomerWish.observe(viewLifecycleOwner,{
+            if (it != null){
+                roomViewModel.getAllWishLIstFromAPi("Bearer ${token!!}")
+            }
+        })
 
         setUpWishListRecyclerView()
-        Log.d("tokenQuery", "refreshUserToken: newToken = $token")
-
         roomViewModel.getAllWishLIstFromAPi("Bearer ${token!!}")
 
 
@@ -75,7 +77,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
                 saveItemTextBox.text = "Remove"
                     saveItemImage.visibility = View.VISIBLE
                 roomViewModel.deleteCustomerWishFromWishList("Bearer ${token!!}",item.hotelId)
-                roomViewModel.getAllWishLIstFromAPi(token!!)
+
                 loadListData()
 
             }
@@ -112,9 +114,6 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         val userRefreshToken = activity.let { UserPreferences(it!!).getUserRefreshToken() }
         roomViewModel.refreshToken(userId, userRefreshToken)
 
-        val newToken = activity.let { UserPreferences(it!!).getUserToken() }
-
-        Log.d("tokenQuery", "refreshUserToken: newToken = $newToken")
 
         roomViewModel.refreshToken.observe(viewLifecycleOwner, { refreshToken ->
             activity.let {

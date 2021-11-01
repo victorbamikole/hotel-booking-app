@@ -33,13 +33,9 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
 
     override fun onResume() {
         super.onResume()
-        val oldToken = activity.let { UserPreferences(it!!).getUserToken() }
-        Log.d("testingToken", "toggleSaveItemToWishList: Bearer $oldToken")
 
-        refreshUserToken()
+//        refreshUserToken()
 
-        val newToken = activity.let { UserPreferences(it!!).getUserToken() }
-        Log.d("testingToken", "toggleSaveItemToWishList: Bearer $newToken")
 
 
         // locations filters
@@ -155,8 +151,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                     )
                     val userToken = activity.let { UserPreferences(it!!).getUserToken() }
                     roomViewModel.addCustomerWishToWishList("Bearer $userToken",item.id)
-                    Log.d("testingToken", "toggleSaveItemToWishList: Bearer $userToken")
-                    Log.d("testingToken", "toggleSaveItemToWishList: Bearer ${item.id}")
 
                     roomViewModel.addCustomerWish.observe(viewLifecycleOwner,{
                         Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
