@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentWishListBinding
+import com.example.hbapplicationgroupb.model.wishlistdataclass.HotelData
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +28,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWishListBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSavedToken() }
+        token = activity?.let { UserPreferences(it).getUserToken() }
         if (token == null){
             token = "1"
         }
@@ -37,8 +38,8 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
 
         loadListData()
         instanceOfWishListAdapter.allWishClickListener(object : WishListAdapter.AllWishesClickListener{
-            override fun onItemSelected(position: Int, item: WishListDataClass) {
-                val id = item.id
+            override fun onItemSelected(position: Int, item: HotelData) {
+                val id = item.hotelId
                 findNavController()
                     .navigate(
                         WishListFragmentDirections
@@ -48,7 +49,7 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
                     )
             }
 
-            override fun bookNow(position: Int, item: WishListDataClass) {
+            override fun bookNow(position: Int, item: HotelData) {
                 val name = item.hotelName
                 val action =WishListFragmentDirections
                     .actionWishListFragment2ToBookingDetailsScreenFragment2(name)
@@ -59,22 +60,17 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
                 position: Int,
                 saveItemTextBox: TextView,
                 saveItemImage: ImageView,
-                item: WishListDataClass
+                item: HotelData
             ) {
-                    saveItemTextBox.text = "Remove"
+
+                var userId = activity?.let { UserPreferences(it).getUserId() }
+
+
+                saveItemTextBox.text = "Remove"
                     saveItemImage.visibility = View.VISIBLE
-                    val wishListData = WishListDataClass(
-                        id = item.id,
-                        hotelName = item.hotelName,
-                        hotelPrice = item.hotelPrice,
-                        description = item.description,
-                        percentage = item.percentage,
-                        token = token!!,
-                        featureImage = item.featureImage,
-                        saved = true
-                    )
-                    roomViewModel.deleteWishListFromDb(wishListData)
-                    loadListData()
+                roomViewModel.deleteCustomerWishFromWishList(token!!,item.hotelId)
+                roomViewModel.getAllWishLIstFromAPi(userId!!)
+                loadListData()
 
             }
 
@@ -96,12 +92,9 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
         }
     }
     private fun loadListData(){
-        var token = activity?.let { UserPreferences(it).getSavedToken() }
-        if (token == null){
-            token = "1"
-        }
-        roomViewModel.getAllWishList(token).observe(viewLifecycleOwner,{
-            instanceOfWishListAdapter.submitList(it)
+
+        roomViewModel.getAllWishListFromApi.observe(viewLifecycleOwner,{
+            instanceOfWishListAdapter.submitList(it.Data)
             instanceOfWishListAdapter.notifyDataSetChanged()
             binding.wishListRecyclerViewId.adapter = instanceOfWishListAdapter
         })

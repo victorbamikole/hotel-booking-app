@@ -31,7 +31,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTopHotelsBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSavedToken() }
+        token = activity?.let { UserPreferences(it).getUserToken() }
         if (token == null){
             token = "1"
         }

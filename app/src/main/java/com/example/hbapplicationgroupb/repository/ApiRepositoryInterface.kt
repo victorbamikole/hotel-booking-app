@@ -26,11 +26,12 @@ import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface ApiRepositoryInterface {
@@ -80,4 +81,13 @@ interface ApiRepositoryInterface {
     //refresh token
     suspend fun refreshTokenRequest(userId: String, refreshToken:String):
             Response<RefreshTokenResponse>
+
+
+    suspend fun addCustomerWishToWishList(token: String, hotelId: String):Response<String>
+
+    suspend fun deleteCustomerWishFromWishList(token: String,hotelId: String):Response<String>
+    suspend fun uploadImageToAPI(token:String,uri: String):Response<String>
+
+    suspend fun getAllWishListFromApi(userid:String):Response<WishListResponse>
+
 }

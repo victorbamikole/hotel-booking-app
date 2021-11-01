@@ -30,8 +30,12 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
 
     private val myAdapter = AllHotelAdapter()
 
+
     override fun onResume() {
         super.onResume()
+
+        refreshUserToken()
+
 
         // locations filters
         val listOfStateNames = resources.getStringArray(R.array.filter_by)
@@ -68,7 +72,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
-        token = activity?.let { UserPreferences(it).getSavedToken() }
+        token = activity?.let { UserPreferences(it).getUserToken()}
         if (token == null){
             token = "1"
         }
@@ -94,7 +98,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         roomViewModel.getAllHotel.observe(viewLifecycleOwner, Observer {
 
                 it.data?.let { it1 -> stateList.addAll(it1) }
-                Log.d("STATE LIST", "$stateList")
                 myAdapter.submitList(it.data!!)
                 binding.allHotelProgressBar.isVisible = it is Resource.Loading && it.data.isNullOrEmpty()
                 binding.allHotelTextViewError.isVisible = it is Resource.Error && it.data.isNullOrEmpty()
@@ -131,6 +134,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                 saveItemImage: ImageView,
                 item: PageItem
             ) {
+
                 if (saveItemImage.visibility == View.INVISIBLE){
                     saveItemTextBox.text = "Saved!"
                     saveItemImage.visibility = View.VISIBLE
@@ -144,6 +148,12 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         featureImage = item.featuredImage,
                         saved = true
                     )
+                  refreshUserToken()
+                    val userToken = activity.let { UserPreferences(it!!).getUserToken() }
+                    roomViewModel.addCustomerWishToWishList(userToken,item.id)
+                    roomViewModel.addCustomerWish.observe(viewLifecycleOwner,{
+                        Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                    })
                     roomViewModel.insertWishListToDb(wishListData)
                 }else{
                     saveItemTextBox.text = "Save"
@@ -158,10 +168,36 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         featureImage = item.featuredImage,
                         saved = false
                     )
+                    val userId = activity.let { UserPreferences(it!!).getUserId() }
+                    val userRefreshToken = activity.let { UserPreferences(it!!).getUserRefreshToken() }
+                    roomViewModel.refreshToken(userId,userRefreshToken)
+
+                    val userToken = activity.let { UserPreferences(it!!).getUserToken() }
+                    roomViewModel.deleteCustomerWishFromWishList(userToken,item.id)
+                    roomViewModel.deleteCustomerWish.observe(viewLifecycleOwner,{
+                        Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                    })
                     roomViewModel.deleteWishListFromDb(wishListData)
                 }
             }
 
+        })
+    }
+
+    private fun refreshUserToken() {
+        val oldToken = activity.let { UserPreferences(it!!).getUserToken() }
+        Log.d("tokenQuery", "refreshUserToken: oldToken = $oldToken ")
+        val userId = activity.let { UserPreferences(it!!).getUserId() }
+        val userRefreshToken = activity.let { UserPreferences(it!!).getUserRefreshToken() }
+        roomViewModel.refreshToken(userId,userRefreshToken)
+
+        val newToken = activity.let { UserPreferences(it!!).getUserToken() }
+
+        Log.d("tokenQuery", "refreshUserToken: newToken = $newToken")
+
+        roomViewModel.refreshToken.observe(viewLifecycleOwner,{refreshToken->
+            activity.let { UserPreferences(it!!).saveSession(refreshToken.data.newJwtAccessToken,userId, refreshToken.data.newRefreshToken) }
+            Log.d("tokenQuery", "refreshUserToken: newToken in viewObserve = ${refreshToken.data.newJwtAccessToken}")
         })
     }
 

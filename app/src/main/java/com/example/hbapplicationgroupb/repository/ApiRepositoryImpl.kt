@@ -26,6 +26,7 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
 import retrofit2.Response
@@ -100,6 +101,22 @@ class ApiRepositoryImpl @Inject constructor (
         refreshToken: String
     ): Response<RefreshTokenResponse> {
         return hotelServices.refreshTokenRequest(userId,refreshToken)
+    }
+
+    override suspend fun addCustomerWishToWishList(token: String, hotelId: String):Response<String> {
+        return hotelServices.addCustomerWishToWishList(token,hotelId)
+    }
+
+    override suspend fun deleteCustomerWishFromWishList(token: String, hotelId: String):Response<String> {
+        return hotelServices.deleteCustomerWishFromWishList(token,hotelId)
+    }
+
+    override suspend fun uploadImageToAPI(token: String, uri: String):Response<String> {
+        return hotelServices.uploadImageToAPI(token,uri)
+    }
+
+    override suspend fun getAllWishListFromApi(userid: String): Response<WishListResponse> {
+        return hotelServices.getAllWishListFromApi(userid)
     }
 
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {

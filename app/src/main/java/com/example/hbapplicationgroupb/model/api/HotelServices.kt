@@ -24,6 +24,7 @@ import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPa
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -99,4 +100,17 @@ interface HotelServices {
         @Query("UserId") userId: String,
         @Query("RefreshToken") refreshToken:String
     ):Response<RefreshTokenResponse>
+
+    @POST("/api/Customer/{hotelId}/add-wishlist")
+    suspend fun addCustomerWishToWishList(@Header("token")token: String,
+                                          @Path("hotelId") hotelId: String):Response<String>
+
+    @DELETE("/api/Customer/{hotelId}/remove-wishlist")
+    suspend fun deleteCustomerWishFromWishList(@Header("token")token: String,
+                                               @Path("hotelId") hotelId: String):Response<String>
+    @PATCH("/api/Customer/update-image")
+    suspend fun uploadImageToAPI(@Header("token") token:String, @Body uri: String):Response<String>
+
+    @GET("/api/v1/Customer/{userId}/wishlist")
+    suspend fun getAllWishListFromApi(@Path("userId") userid:String):Response<WishListResponse>
 }

@@ -28,7 +28,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTopDealsBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSavedToken() }
+        token = activity?.let { UserPreferences(it).getUserToken() }
         if (token == null){
             token = "1"
         }

@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.viewModel
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
 import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
@@ -23,6 +24,7 @@ import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.Resource
@@ -39,8 +41,20 @@ class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
 
+    private var _getAllWishListFromAoi: MutableLiveData<WishListResponse> = MutableLiveData()
+    val getAllWishListFromApi:LiveData<WishListResponse> = _getAllWishListFromAoi
+
     private var _refreshToken: MutableLiveData<RefreshTokenResponse> = MutableLiveData()
     val refreshToken:LiveData<RefreshTokenResponse> = _refreshToken
+
+    private var _addCustomerWish: MutableLiveData<String> = MutableLiveData()
+    val addCustomerWish:LiveData<String> = _addCustomerWish
+
+    private var _deleteCustomerWish: MutableLiveData<String> = MutableLiveData()
+    val deleteCustomerWish:LiveData<String> = _deleteCustomerWish
+
+    private var _uploadImage: MutableLiveData<String> = MutableLiveData()
+    val uploadImage:LiveData<String> = _uploadImage
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -427,6 +441,69 @@ class RoomViewModel @Inject constructor(
                     _refreshToken.postValue(responseBody)
                 }else{
                     _refreshToken.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    fun addCustomerWishToWishList(token: String, hotelId: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addCustomerWishToWishList(token,hotelId)
+                if (response.isSuccessful){
+                    _addCustomerWish.postValue("wish added Successfully")
+                }else{
+                    _addCustomerWish.postValue("failed to add customer")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun deleteCustomerWishFromWishList(token: String, hotelId: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.deleteCustomerWishFromWishList(token,hotelId)
+                if (response.isSuccessful){
+                    _deleteCustomerWish.postValue("wish deleted Successfully")
+                }else{
+                    _deleteCustomerWish.postValue("failed to delete customer")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun uploadImageToAPI(token: String, uri: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.uploadImageToAPI(token,uri)
+                if (response.isSuccessful){
+                    _uploadImage.postValue("image uploaded Successful")
+                }else{
+                    _uploadImage.postValue("failed to upload image")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun getAllWishLIstFromAPi(userId: String){
+
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.getAllWishListFromApi(userId)
+                if (response.isSuccessful){
+                    Log.d("tokenQuery", "allWishList = ${response.body()}")
+
+                    _getAllWishListFromAoi.postValue(response.body())
+                }else{
+                    _getAllWishListFromAoi.postValue(null)
                 }
             }catch (e:Exception){
                 e.printStackTrace()

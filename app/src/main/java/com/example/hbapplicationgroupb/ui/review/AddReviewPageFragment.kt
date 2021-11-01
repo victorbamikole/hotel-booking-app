@@ -47,7 +47,7 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         _hotelId = hotelId
         val rating = args.rating
         token = activity?.let {
-            UserPreferences(it).getSavedToken()
+            UserPreferences(it).getUserToken()
         }
         if (token==null){
             token="1"
