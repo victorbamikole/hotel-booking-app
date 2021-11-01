@@ -1,10 +1,7 @@
 package com.example.hbapplicationgroupb.ui.bottom_nav_screens
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.ContextWrapper
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
@@ -21,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -29,20 +27,24 @@ import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.util.constants.*
+import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
 
-
+@AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     var binding : FragmentProfileBinding? = null
+    private val roomViewModel: RoomViewModel by viewModels()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,7 +88,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 "Select picture from gallery","Capture photo from camera")
             addPictureDialogue.setItems(addPictureDialogueItem){
                     _,which ->
-                Toast.makeText(requireContext(), "clicked $which", Toast.LENGTH_SHORT).show()
 
                 when(which){
                     0 -> {
@@ -102,8 +103,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun openCamera() {
-        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
-
         checkIfCameraPermissionIsGranted()
     }
 
@@ -222,13 +221,22 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             if (requestCode == CAMERA_REQUEST_CODE){
                 val thumbNail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 binding?.fragmentProfileIv?.setImageBitmap(thumbNail)
+                Log.d("imageUri", "onActivityResult: $thumbNail")
                 saveImageToInternalStorage(thumbNail)
 
             }else if (requestCode == GALLERY_REQUEST_CODE){
                 if(data != null){
                     val imageUri = data.data
+                    Log.d("imageUri", "onActivityResult: $imageUri")
                     try{
                         val imageBitmap = MediaStore.Images.Media.getBitmap(this.activity?.contentResolver ,imageUri)
+                        Log.d("imageUri", "onActivityResult: $imageBitmap")
+
+//
+//                        val userToken = activity?.let { it1 ->
+//                            UserPreferences(it1).getUserToken()
+//                        }
+//                        roomViewModel.uploadImageToAPI("Bearer $userToken",imageUri.toString())
                         saveImageToInternalStorage(imageBitmap)
                         Glide.with(this)
                             .load(imageUri)
