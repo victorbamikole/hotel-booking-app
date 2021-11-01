@@ -83,11 +83,11 @@ interface ApiRepositoryInterface {
             Response<RefreshTokenResponse>
 
 
-    suspend fun addCustomerWishToWishList(token: String, hotelId: String):Response<String>
+    suspend fun addCustomerWishToWishList(token: String,hotelId:String):Response<String>
 
-    suspend fun deleteCustomerWishFromWishList(token: String,hotelId: String):Response<String>
+    suspend fun deleteCustomerWishFromWishList(token: String, hotelId:String):Response<String>
     suspend fun uploadImageToAPI(token:String,uri: String):Response<String>
 
-    suspend fun getAllWishListFromApi(userid:String):Response<WishListResponse>
+    suspend fun getAllWishListFromApi(token: String):Response<WishListResponse>
 
 }

@@ -103,11 +103,11 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.refreshTokenRequest(userId,refreshToken)
     }
 
-    override suspend fun addCustomerWishToWishList(token: String, hotelId: String):Response<String> {
+    override suspend fun addCustomerWishToWishList(token: String,hotelId:String):Response<String> {
         return hotelServices.addCustomerWishToWishList(token,hotelId)
     }
 
-    override suspend fun deleteCustomerWishFromWishList(token: String, hotelId: String):Response<String> {
+    override suspend fun deleteCustomerWishFromWishList(token: String,hotelId:String):Response<String> {
         return hotelServices.deleteCustomerWishFromWishList(token,hotelId)
     }
 
@@ -115,8 +115,8 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.uploadImageToAPI(token,uri)
     }
 
-    override suspend fun getAllWishListFromApi(userid: String): Response<WishListResponse> {
-        return hotelServices.getAllWishListFromApi(userid)
+    override suspend fun getAllWishListFromApi(token: String): Response<WishListResponse> {
+        return hotelServices.getAllWishListFromApi(token)
     }
 
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {

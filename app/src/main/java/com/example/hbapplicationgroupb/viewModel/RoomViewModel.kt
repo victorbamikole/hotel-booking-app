@@ -449,7 +449,7 @@ class RoomViewModel @Inject constructor(
     }
 
 
-    fun addCustomerWishToWishList(token: String, hotelId: String) {
+    fun addCustomerWishToWishList(token: String,hotelId:String) {
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val response = apiRepository.addCustomerWishToWishList(token,hotelId)
@@ -464,7 +464,7 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    fun deleteCustomerWishFromWishList(token: String, hotelId: String) {
+    fun deleteCustomerWishFromWishList(token: String,hotelId:String) {
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val response = apiRepository.deleteCustomerWishFromWishList(token,hotelId)
@@ -493,11 +493,11 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-    fun getAllWishLIstFromAPi(userId: String){
+    fun getAllWishLIstFromAPi(token: String){
 
         viewModelScope.launch(Dispatchers.IO){
             try {
-                val response = apiRepository.getAllWishListFromApi(userId)
+                val response = apiRepository.getAllWishListFromApi(token)
                 if (response.isSuccessful){
                     Log.d("tokenQuery", "allWishList = ${response.body()}")
 

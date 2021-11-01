@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.AllHotelsRecyclerviewLayoutBinding
-import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.HotelData
-import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
-import com.example.hbapplicationgroupb.ui.allHotel.AllHotelAdapter
-import com.example.hbapplicationgroupb.ui.allHotel.AllHotelClickListener
+import com.example.hbapplicationgroupb.model.wishlistdataclass.PageItem
 
 class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
     private lateinit var listener: AllWishesClickListener
@@ -36,7 +33,7 @@ class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
 
 
 
-        fun bind(wishList: HotelData) {
+        fun bind(wishList: PageItem) {
 
             itemView.setOnClickListener {
                 allWishesClickListener.onItemSelected(adapterPosition, wishList)
@@ -45,24 +42,24 @@ class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
             saveImage.visibility = View.VISIBLE
 
             Glide.with(itemView)
-                .load(wishList.ImageUrl)
+                .load(wishList.imageUrl)
                 .into(topImage)
 
 
             topName.text = wishList.hotelName
         }
     }
-    private val differCallBack = object : DiffUtil.ItemCallback<HotelData>(){
+    private val differCallBack = object : DiffUtil.ItemCallback<PageItem>(){
         override fun areItemsTheSame(
-            oldItem: HotelData,
-            newItem: HotelData
+            oldItem: PageItem,
+            newItem: PageItem
         ): Boolean {
             return oldItem.hotelId == newItem.hotelId
         }
 
         override fun areContentsTheSame(
-            oldItem: HotelData,
-            newItem: HotelData
+            oldItem: PageItem,
+            newItem: PageItem
         ): Boolean {
             return  oldItem==newItem
         }
@@ -102,11 +99,11 @@ class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
     }
 
 
-    fun submitList(list: List<HotelData>) = differ.submitList(list)
+    fun submitList(list: List<PageItem>) = differ.submitList(list)
     interface AllWishesClickListener{
-        fun onItemSelected(position: Int, item: HotelData)
-        fun bookNow(position: Int, item: HotelData)
-        fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: HotelData)
+        fun onItemSelected(position: Int, item: PageItem)
+        fun bookNow(position: Int, item: PageItem)
+        fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: PageItem)
     }
 
 

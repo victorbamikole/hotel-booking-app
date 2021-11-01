@@ -83,6 +83,9 @@ dependencies {
     //dexter multiple permission request
     implementation 'com.karumi:dexter:6.2.3'
 
+    //work manager
+    implementation("androidx.work:work-runtime-ktx:2.7.0")
+
     //to use LiveData to convert flow
     def lifecycle_version = "2.2.0"
 

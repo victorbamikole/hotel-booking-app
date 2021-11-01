@@ -102,15 +102,14 @@ interface HotelServices {
     ):Response<RefreshTokenResponse>
 
     @POST("/api/Customer/{hotelId}/add-wishlist")
-    suspend fun addCustomerWishToWishList(@Header("token")token: String,
-                                          @Path("hotelId") hotelId: String):Response<String>
+    suspend fun addCustomerWishToWishList(@Header("Authorization")token: String, @Path("hotelId") hotelId:String):Response<String>
 
     @DELETE("/api/Customer/{hotelId}/remove-wishlist")
-    suspend fun deleteCustomerWishFromWishList(@Header("token")token: String,
-                                               @Path("hotelId") hotelId: String):Response<String>
-    @PATCH("/api/Customer/update-image")
-    suspend fun uploadImageToAPI(@Header("token") token:String, @Body uri: String):Response<String>
+    suspend fun deleteCustomerWishFromWishList(@Header("Authorization")token: String, @Path("hotelId") hotelId:String):Response<String>
 
-    @GET("/api/v1/Customer/{userId}/wishlist")
-    suspend fun getAllWishListFromApi(@Path("userId") userid:String):Response<WishListResponse>
+    @PATCH("/api/Customer/update-image")
+    suspend fun uploadImageToAPI(@Header("Authorization") token:String, @Body uri: String):Response<String>
+
+    @GET("/api/Customer/wishlist")
+    suspend fun getAllWishListFromApi(@Header("Authorization")token: String):Response<WishListResponse>
 }

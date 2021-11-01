@@ -33,8 +33,13 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
 
     override fun onResume() {
         super.onResume()
+        val oldToken = activity.let { UserPreferences(it!!).getUserToken() }
+        Log.d("testingToken", "toggleSaveItemToWishList: Bearer $oldToken")
 
         refreshUserToken()
+
+        val newToken = activity.let { UserPreferences(it!!).getUserToken() }
+        Log.d("testingToken", "toggleSaveItemToWishList: Bearer $newToken")
 
 
         // locations filters
@@ -148,9 +153,11 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         featureImage = item.featuredImage,
                         saved = true
                     )
-                  refreshUserToken()
                     val userToken = activity.let { UserPreferences(it!!).getUserToken() }
-                    roomViewModel.addCustomerWishToWishList(userToken,item.id)
+                    roomViewModel.addCustomerWishToWishList("Bearer $userToken",item.id)
+                    Log.d("testingToken", "toggleSaveItemToWishList: Bearer $userToken")
+                    Log.d("testingToken", "toggleSaveItemToWishList: Bearer ${item.id}")
+
                     roomViewModel.addCustomerWish.observe(viewLifecycleOwner,{
                         Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                     })
@@ -168,12 +175,8 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                         featureImage = item.featuredImage,
                         saved = false
                     )
-                    val userId = activity.let { UserPreferences(it!!).getUserId() }
-                    val userRefreshToken = activity.let { UserPreferences(it!!).getUserRefreshToken() }
-                    roomViewModel.refreshToken(userId,userRefreshToken)
-
                     val userToken = activity.let { UserPreferences(it!!).getUserToken() }
-                    roomViewModel.deleteCustomerWishFromWishList(userToken,item.id)
+                    roomViewModel.deleteCustomerWishFromWishList("Bearer $userToken",item.id)
                     roomViewModel.deleteCustomerWish.observe(viewLifecycleOwner,{
                         Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
                     })
@@ -185,8 +188,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     }
 
     private fun refreshUserToken() {
-        val oldToken = activity.let { UserPreferences(it!!).getUserToken() }
-        Log.d("tokenQuery", "refreshUserToken: oldToken = $oldToken ")
         val userId = activity.let { UserPreferences(it!!).getUserId() }
         val userRefreshToken = activity.let { UserPreferences(it!!).getUserRefreshToken() }
         roomViewModel.refreshToken(userId,userRefreshToken)
@@ -197,7 +198,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
 
         roomViewModel.refreshToken.observe(viewLifecycleOwner,{refreshToken->
             activity.let { UserPreferences(it!!).saveSession(refreshToken.data.newJwtAccessToken,userId, refreshToken.data.newRefreshToken) }
-            Log.d("tokenQuery", "refreshUserToken: newToken in viewObserve = ${refreshToken.data.newJwtAccessToken}")
         })
     }
 
