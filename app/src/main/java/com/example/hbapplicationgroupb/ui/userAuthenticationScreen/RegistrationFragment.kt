@@ -57,6 +57,7 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        selectedGender = "Male"
         //set content of gender field
         val listOfGender = resources.getStringArray(R.array.Gender)
         val genderAdapter = ArrayAdapter(requireContext(),R.layout.array_adapter_for_gender_layout,

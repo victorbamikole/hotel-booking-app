@@ -17,6 +17,7 @@ import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescripti
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -25,10 +26,12 @@ import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
+import retrofit2.http.*
 
 
 interface ApiRepositoryInterface {
@@ -74,5 +77,17 @@ interface ApiRepositoryInterface {
     suspend fun bookingHistory(userId : String) : Response<CustomerBookingDataItem>
 
     suspend fun getHotelReview(id : String) : Response<HotelReview>
+
+    //refresh token
+    suspend fun refreshTokenRequest(userId: String, refreshToken:String):
+            Response<RefreshTokenResponse>
+
+
+    suspend fun addCustomerWishToWishList(token: String,hotelId:String):Response<String>
+
+    suspend fun deleteCustomerWishFromWishList(token: String, hotelId:String):Response<String>
+    suspend fun uploadImageToAPI(token:String,uri: String):Response<String>
+
+    suspend fun getAllWishListFromApi(token: String):Response<WishListResponse>
 
 }

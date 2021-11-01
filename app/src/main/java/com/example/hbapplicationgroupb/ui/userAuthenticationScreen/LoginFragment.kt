@@ -115,7 +115,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
             else {
                 activity?.let { it1 ->
-                    UserPreferences(it1).saveSession(it.data.token)
+                    UserPreferences(it1).saveSession(it.data.token,it.data.id,it.data.refreshToken)
                 }
                 findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                 Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
@@ -168,7 +168,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     //Navigate to Explore Screen
     private fun navigateToExploreScreen(){
         //check if user is already logged in and move to app if true
-        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        val userSession = activity?.let { UserPreferences(it).getUserId() }
         if (userSession != DEFAULT_TOKEN){
             //Move into the App
             findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
