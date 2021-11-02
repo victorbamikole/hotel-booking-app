@@ -44,9 +44,9 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
 
         roomViewPagerAdapter.setOnClickListener(object :RoomsViewPagerAdapter.OnClickOfBookNowToBookRoom{
-            override fun bookNowButtonClicked(roomType: String) {
+            override fun bookNowButtonClicked(roomType: String,roomId:String) {
                 val action = HotelDescriptionFragmentDirections
-                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType)
+                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType,roomId)
                 findNavController().navigate(action)
             }
 

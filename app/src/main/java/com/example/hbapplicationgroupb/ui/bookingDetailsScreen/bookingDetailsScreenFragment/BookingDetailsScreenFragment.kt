@@ -15,6 +15,7 @@ import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingData
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.RoomTypeListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
@@ -30,11 +31,14 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
     private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
+    private lateinit var bookingDetail:HotelBookingData
+    private lateinit var hotelRoomId:String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
         val roomType = safeArgs.roomType
+        hotelRoomId = safeArgs.roomId
         binding.bookingDetailsScreenRoomType.setText("Room Type - $roomType")
 
         lateinit var datePicker : PrimeDatePicker
@@ -93,7 +97,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             val checkIn = binding.bookingDetailsScreenTextViewStartDate.text.toString()
             val checkout = binding.bookingDetailsScreenTextViewEndDate.text.toString()
             val people = binding.bookingDetailsScreenTextViewAgeBracket.text.toString()
-            val roomType = binding.bookingDetailsScreenTextViewRoomType.text.toString()
+            val roomNo = binding.bookingDetailsScreenTextViewRoomType.text.toString()
 
 
             /**Was about creating a booking details Data when I noticed that the endPoint is
@@ -134,11 +138,21 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
                 return@setOnClickListener
             }
 
-            if (!BookingDetailsValidation.validateRoomType(roomType)) {
+            if (!BookingDetailsValidation.validateRoomType(roomNo)) {
                 binding.bookingDetailsScreenTextViewRoomType.error = "Select a room type"
                 binding.bookingDetailsScreenTextViewRoomType.isFocusable
                 return@setOnClickListener
             }
+
+            bookingDetail = HotelBookingData(
+                roomId = hotelRoomId,
+                checkIn = checkIn,
+                checkOut = checkout,
+                noOfPeople = people
+            )
+            val action = BookingDetailsScreenFragmentDirections
+                .actionBookingDetailsScreenFragment2ToPaymentCheckoutFragment(bookingDetail)
+            findNavController().navigate(action)
 
         }
 }
