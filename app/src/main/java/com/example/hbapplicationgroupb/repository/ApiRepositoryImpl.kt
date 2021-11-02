@@ -15,6 +15,8 @@ import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
@@ -176,5 +178,7 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun getHotelRatings(id: String): Response<HotelRatingResponse> {
         return hotelServices.getHotelRating(id)
     }
-
+    override suspend fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType):Response<HotelBookingResponse>{
+        return hotelServices.bookAnHotel(token,roomToBook)
+    }
 }

@@ -116,7 +116,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
                 is ApiCallNetworkResource.Success ->{
                     binding?.editProfileViewCover?.visibility = View.GONE
                     binding?.editProfileProgressBar?.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.data, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     val action = EditUserProfileDirections.actionEditUserProfileToProfileFragment2()
                     findNavController().navigate(action)
                 }

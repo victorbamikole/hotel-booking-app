@@ -40,7 +40,7 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
         holder.title.text = roomPosition.name
         holder.price.text = String.format("#${roomPosition.price}")
         holder.bookNow.setOnClickListener {
-                listener.bookNowButtonClicked(roomPosition.name)
+                listener.bookNowButtonClicked(roomPosition.name,roomPosition.id,roomPosition.price.toString())
         }
     }
 
@@ -52,7 +52,7 @@ class RoomsViewPagerAdapter : RecyclerView.Adapter<RoomsViewPagerAdapter.ViewPag
     }
 
         interface OnClickOfBookNowToBookRoom {
-            fun bookNowButtonClicked(roomType:String)
+            fun bookNowButtonClicked(roomType:String,roomId:String, roomPrice:String)
         }
     fun populateHotelRooms(list:MutableList<HotelDescriptionRoomType>){
 
