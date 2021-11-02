@@ -56,11 +56,21 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                             temptList.add(i)
                         }
                     }
-                    myAdapter.submitList(temptList)
-                    myAdapter.notifyDataSetChanged()
-                    binding.allHotelsRecyclerView.adapter = myAdapter
-                    Log.d("NewList ", "NewList = $temptList")
+                    if (temptList.size <= 0) {
+                        binding.noHotelAvailable.visibility = View.VISIBLE
+                        binding.noHotelAvailableText.visibility = View.VISIBLE
+                        binding.allHotelsRecyclerView.visibility = View.GONE
+                    }else {
+                        binding.noHotelAvailable.visibility = View.GONE
+                        binding.noHotelAvailableText.visibility = View.GONE
+                        myAdapter.submitList(temptList)
+                        myAdapter.notifyDataSetChanged()
+                        binding.allHotelsRecyclerView.adapter = myAdapter
+                    }
                 }else{
+                    binding.noHotelAvailable.visibility = View.GONE
+                    binding.noHotelAvailableText.visibility = View.GONE
+                    binding.allHotelsRecyclerView.visibility = View.VISIBLE
                     binding.fragmentAllHotelsStateName.text = ""
                     binding.fragmentAllHotelsActv.text.clear()
                     fetchAllHotels()
