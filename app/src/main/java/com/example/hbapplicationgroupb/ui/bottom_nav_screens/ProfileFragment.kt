@@ -55,33 +55,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
 
         roomViewModel.getUserProfile( "Bearer $userToken")
-//        roomViewModel.userProfile.observe(viewLifecycleOwner, androidx.lifecycle.Observer { response ->
-//            if(response.succeeded){
-//                val userProfile : Data = response.data
-//                binding?.fragmentProfileEmailTv?.setText(userProfile.email)
-//                binding?.fragmentProfileNameTv?.setText(userProfile.firstName)
-//                binding?.fragmentProfileIv?.let {
-//                    context?.let { it1 ->
-//                        Glide.with(it1).load(userProfile.avatar)
-//                            .into(it)
-//                    }
-//                }
-//
-//            }
-//
-//        })
+        roomViewModel.userProfile.observe(viewLifecycleOwner,  { response ->
+            if(response.succeeded){
+                val userProfile : Data = response.data
+                binding?.fragmentProfileEmailTv?.setText(userProfile.email)
+                binding?.fragmentProfileNameTv?.text =  "${userProfile.firstName} ${userProfile.lastName}"
+                /** once the the implementation for uploading user image to API is done, uncomment this code*/
+                // Glide.with(requireActivity()).load(userProfile.avatar).into(binding!!.fragmentProfileIv)
+            }
+        })
 
-//        roomViewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
-//            if(response.succeeded){
-//                Log.d(ContentValues.TAG, "onCreate: $response")
-//                  var userProfile : Data = response.data
-////                binding?.EditProfileFragmentEditTextViewFirstName?.setText(userProfile.firstName)
-////                binding?.EditProfileFragmentEditTexLastName?.setText(userProfile.lastName)
-////                binding?.EditProfileFragmentEditTextPhoneNumber?.setText(userProfile.phoneNumber)
-////                binding?.EditProfileFragmentEditTextAddress?.setText(userProfile.address)
-////                binding?.EditProfileFragmentEditTextState?.setText(userProfile.state)
-//            }
-//        })
 
         binding?.fragmentProfileLogOutBtn?.setOnClickListener {
             //Clear user token from shared preferences
@@ -273,8 +256,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     try{
                         val imageBitmap = MediaStore.Images.Media.getBitmap(this.activity?.contentResolver ,imageUri)
                         Log.d("imageUri", "onActivityResult: $imageBitmap")
-
-//
 
                         saveImageToInternalStorage(imageBitmap)
                         Glide.with(this)

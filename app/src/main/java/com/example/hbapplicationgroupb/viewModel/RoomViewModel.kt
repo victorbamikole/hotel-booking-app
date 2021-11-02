@@ -417,7 +417,7 @@ class RoomViewModel @Inject constructor(
             _updatedDetails.postValue(ApiCallNetworkResource.Loading())
 
             try {
-                delay(5000)
+                delay(2000)
                 val response = apiRepository.updateUserDetails(updatedUserData, token)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
