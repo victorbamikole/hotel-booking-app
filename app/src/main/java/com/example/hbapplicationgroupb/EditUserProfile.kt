@@ -50,7 +50,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
             val updatedState = binding?.EditProfileFragmentEditTextState?.text?.trim().toString()
 
             updatedUserData = PostUpdateUserData(updatedFirstName, updatedLastName
-                ,updatedPhoneNumber,20,"53998340155555",
+                ,updatedPhoneNumber,20,"5399834540157534",
                 updatedAddress,updatedState, "2021-10-25T20:38:57.794Z")
 
             if (!UpdateUserValidation.validateUpdatedUserFirstName(updatedFirstName)) {
@@ -82,10 +82,9 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
                 binding?.EditProfileFragmentEditTextState?.isFocusable
                 return@setOnClickListener
             }
-            viewModel.updateUserDetails(updatedUserData,userToken!!)
 
+            viewModel.updateUserDetails(updatedUserData, "Bearer $userToken")
         }
-
     }
 
     private fun registrationResponseObserver() {
@@ -94,7 +93,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
                 is ApiCallNetworkResource.Success ->{
                     binding?.editProfileViewCover?.visibility = View.GONE
                     binding?.editProfileProgressBar?.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), it.data, Toast.LENGTH_SHORT).show()
                     val action = EditUserProfileDirections.actionEditUserProfileToProfileFragment2()
                     findNavController().navigate(action)
                 }

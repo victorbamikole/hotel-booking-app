@@ -9,31 +9,31 @@ class UpdateUserValidationTest {
     @Test
     fun validateUpdatedUserFirstName() {
 
-        var result = UpdateUserValidation.validateUpdatedUserFirstName ("Samuel")
+        val result = UpdateUserValidation.validateUpdatedUserFirstName ("Samuel")
         assertEquals(true,result)
     }
 
     @Test
     fun validateUpdatedUserLastName() {
-        var result = UpdateUserValidation.validateUpdatedUserLastName ("Ungbede")
+        val result = UpdateUserValidation.validateUpdatedUserLastName ("Ungbede")
         assertEquals(true,result)
     }
 
     @Test
     fun validateUpdatedUserPhoneNumber() {
-        var result = UpdateUserValidation.validateUpdatedUserPhoneNumber ("08091185347")
+        val result = UpdateUserValidation.validateUpdatedUserPhoneNumber ("08091185347")
         assertEquals(true,result)
     }
 
     @Test
     fun validateUpdatedUserAddress() {
-        var result = UpdateUserValidation.validateUpdatedUserAddress ("EdoTecPack")
+        val result = UpdateUserValidation.validateUpdatedUserAddress ("EdoTecPack")
         assertEquals(true,result)
     }
 
     @Test
     fun validateUpdatedUserState() {
-        var result = UpdateUserValidation.validateUpdatedUserState ("Edo State")
+        val result = UpdateUserValidation.validateUpdatedUserState ("Edo State")
         assertEquals(true,result)
     }
 }

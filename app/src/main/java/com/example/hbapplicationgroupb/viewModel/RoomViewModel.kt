@@ -358,11 +358,11 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-    fun deleteWishListFromDb(wishItem: WishListDataClass){
+    fun deleteWishListFromDb(wishItem: WishListDataClass) {
         viewModelScope.launch {
             try {
                 apiRepository.deleteWishFromDataBase(wishItem)
-            }catch (e:Exception){
+            } catch (e:Exception) {
                 e.printStackTrace()
             }
         }
@@ -375,11 +375,11 @@ class RoomViewModel @Inject constructor(
             _updatedDetails.postValue(ApiCallNetworkResource.Loading())
 
             try {
-                delay(2000)
+                delay(5000)
                 val response = apiRepository.updateUserDetails(updatedUserData, token)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    _updatedDetails.postValue(ApiCallNetworkResource.Success("Profile Updated"))
+                    _updatedDetails.postValue(ApiCallNetworkResource.Success("Profile Updated Succefully"))
                 }else{
                     _updatedDetails.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
                 }
