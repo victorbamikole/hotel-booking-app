@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
+import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -151,8 +152,8 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
-    private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
-    val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
+    private var _bookingHistory : MutableLiveData<BookingHistoryDataClass> = MutableLiveData()
+    val bookingHistory : LiveData<BookingHistoryDataClass> = _bookingHistory
 
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
@@ -386,19 +387,17 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    fun getBookingHistory(userId : String){
+    fun getBookingHistory(token : String){
         viewModelScope.launch {
             try {
-                val response = apiRepository.bookingHistory(userId)
+                val response = apiRepository.bookingHistory(token)
                 if (response.isSuccessful) {
-//                    _userLoginDetails.postValue(response.body())
                     _bookingHistory.postValue(response.body())
                 } else {
-                    _userLoginDetails.postValue(null)
+                    _bookingHistory.postValue(null)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-
             }
         }
     }
