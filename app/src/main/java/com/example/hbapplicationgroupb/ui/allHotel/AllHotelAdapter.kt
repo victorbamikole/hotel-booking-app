@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -34,9 +35,7 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
         val layoutForToggle = binding.layoutForSaving
 
         fun bind(allhotel: PageItem) {
-                itemView.setOnClickListener {
-                    allHotelClickListener.onItemSelected(adapterPosition, allhotel)
-                }
+
 
                     Glide.with(itemView)
                         .load(allhotel.featuredImage)
@@ -85,7 +84,8 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
         holder.itemView.apply {
             holder.bookTopHotelNow.setOnClickListener {
-                listener.bookNow(position, allhotel)
+                val action = AllHotelsFragmentDirections.actionAllHotelsFragmentToHotelDescriptionFragment(allhotel.id)
+                findNavController().navigate(action)
             }
         }
 
@@ -104,7 +104,5 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 }
 
 interface AllHotelClickListener{
-    fun onItemSelected(position: Int, item: PageItem)
-    fun bookNow(position: Int, item: PageItem)
     fun toggleSaveItemToWishList(position: Int, saveItemTextBox:TextView, saveItemImage:ImageView, item: PageItem)
 }

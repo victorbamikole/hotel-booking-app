@@ -51,10 +51,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
             }
 
         })
-        binding.bookNowButton.setOnClickListener {
-            val name = binding.HotelName.text.toString()
 
-        }
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
 
         binding.addStarRatingContainer.setOnClickListener {

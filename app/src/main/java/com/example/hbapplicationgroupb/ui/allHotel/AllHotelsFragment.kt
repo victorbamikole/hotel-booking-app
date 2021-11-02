@@ -113,23 +113,23 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         })
 
         myAdapter.allHotelClickListener(object : AllHotelClickListener{
-            override fun onItemSelected(position: Int, item: PageItem) {
-                val id = item.id
-                findNavController()
-                    .navigate(
-                        AllHotelsFragmentDirections
-                            .actionAllHotelsFragmentToHotelDescriptionFragment(
-                                id
-                            )
-                    )
-            }
-
-            override fun bookNow(position: Int, item: PageItem) {
-                val name = item.name
-                val action =AllHotelsFragmentDirections
-                    .actionAllHotelsFragmentToBookingDetailsScreenFragment2(name)
-                findNavController().navigate(action)
-            }
+//            override fun onItemSelected(position: Int, item: PageItem) {
+//                val id = item.id
+//                findNavController()
+//                    .navigate(
+//                        AllHotelsFragmentDirections
+//                            .actionAllHotelsFragmentToHotelDescriptionFragment(
+//                                id
+//                            )
+//                    )
+//            }
+//
+//            override fun bookNow(position: Int, item: PageItem) {
+//                val name = item.name
+//                val action =AllHotelsFragmentDirections
+//                    .actionAllHotelsFragmentToBookingDetailsScreenFragment2(name)
+//                findNavController().navigate(action)
+//            }
 
             override fun toggleSaveItemToWishList(
                 position: Int,
