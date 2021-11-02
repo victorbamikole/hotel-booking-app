@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +19,12 @@ class TopHotelsAdapter() :
     RecyclerView.Adapter<TopHotelsAdapter.HotelsViewHolder>() {
     private lateinit var listener: TopHotelClickListener
 
-    class HotelsViewHolder(itemView: View,val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
+    class HotelsViewHolder(itemView: View, private val topHotelClickListener: TopHotelClickListener) : RecyclerView.ViewHolder(itemView){
         private val binding: TopDealRecyclerViewLayoutBinding =
             TopDealRecyclerViewLayoutBinding.bind(itemView)
         private val topImage = binding.topDealsRecyclerViewImage
         private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        private val topPrice = binding.topDealRecyclerViewPrice
+        //        private val topPrice = binding.topDealRecyclerViewPrice
         private val description = binding.topDealRecyclerViewtopDealRating
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
@@ -32,14 +33,14 @@ class TopHotelsAdapter() :
         val layoutForToggle = binding.layoutForSaving
 
         fun bind(topHotel : TopDealAndHotelData){
-            itemView.setOnClickListener {
-                topHotelClickListener.onItemSelected(adapterPosition,topHotel)
-            }
+//            itemView.setOnClickListener {
+//                topHotelClickListener.onItemSelected(adapterPosition,topHotel)
+//            }
             Glide.with(itemView)
                 .load(topHotel.thumbnail)
                 .into(topImage)
             "${topHotel.percentageRating}%".also { topPercent.text = it }
-            topHotel.price.toString() .also { topPrice.text = it }
+            topHotel.price.toString() /*.also { topPrice.text = it }*/
             description.text = topHotel.description
             topName.text = topHotel.name
         }
@@ -61,7 +62,10 @@ class TopHotelsAdapter() :
         holder.bind(topHotel)
         holder.itemView.apply {
             holder.bookTopHotelNow.setOnClickListener {
-                listener.bookNow(position, topHotel)
+                val id = topHotel.id
+                val action = TopHotelsFragmentDirections
+                    .actionTopHotelsFragmentToHotelDescriptionFragment(id)
+                findNavController().navigate(action)
             }
         }
         holder.itemView.apply {
@@ -81,8 +85,8 @@ class TopHotelsAdapter() :
 
 
 interface TopHotelClickListener {
-    fun onItemSelected(position: Int, item: TopDealAndHotelData)
-    fun bookNow(position: Int, item: TopDealAndHotelData)
+    //    fun onItemSelected(position: Int, item: TopDealAndHotelData)
+//    fun bookNow(position: Int, item: TopDealAndHotelData)
     fun toggleSaveItemToWishList(
         position: Int,
         saveItemTextBox: TextView,
@@ -91,15 +95,3 @@ interface TopHotelClickListener {
     )
 
 }
-
-//interface TopHotelClickListener {
-//    fun onItemSelected(position: Int, item: TopDealAndHotelData)
-//    fun bookNow(position: Int, item: TopDealAndHotelData)
-//    fun toggleSaveItemToWishList(
-//        position: Int,
-//        saveItemTextBox: TextView,
-//        saveItemImage: ImageView,
-//        item: TopDealAndHotelData
-//    )
-//
-//}

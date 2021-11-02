@@ -1,16 +1,23 @@
 package com.example.hbapplicationgroupb.model.api
 
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -20,6 +27,7 @@ import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPa
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -77,13 +85,40 @@ interface HotelServices {
     @PATCH("api/Authentication/reset-password")
     suspend fun resetPassword(@Body password: PostResetPasswordData):Response<ResetPasswordDataResponse>
 
-    @POST
-    suspend fun loginAUser() : Response<LoginUserDataResponse>
-
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
+
+    @GET("/api/Customer/{userId}/bookings")
+    suspend fun bookingHistory(
+        @Path("userId", encoded = true) userId: String
+    ) : Response<CustomerBookingDataItem>
 
     @GET("/api/Hotel/{hotelId}/reviews")
     suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
 
+    @POST("api/Review/add-reviews")
+    suspend fun addReviews(@Body addReview: AddReviewsPost, @Header("Authorization")token: String):Response<AddReviewsResponse>
+    @POST("api/Hotel/{hotelId}/add-ratings")
+    suspend fun addRatings(@Path("hotelId") hotelId: String, @Body ratings: AddRatingsPost, @Header("Authorization")token: String): Response<AddRatingsResponse>
+
+    @POST("/api/Authentication/refresh-token")
+    suspend fun refreshTokenRequest(
+        @Query("UserId") userId: String,
+        @Query("RefreshToken") refreshToken:String
+    ):Response<RefreshTokenResponse>
+
+    @POST("/api/Customer/{hotelId}/add-wishlist")
+    suspend fun addCustomerWishToWishList(@Header("Authorization")token: String, @Path("hotelId") hotelId:String):Response<String>
+
+    @DELETE("/api/Customer/{hotelId}/remove-wishlist")
+    suspend fun deleteCustomerWishFromWishList(@Header("Authorization")token: String, @Path("hotelId") hotelId:String):Response<String>
+
+    @PATCH("/api/Customer/update-image")
+    suspend fun uploadImageToAPI(@Header("Authorization") token:String, @Body uri: String):Response<String>
+
+    @GET("/api/Customer/wishlist")
+    suspend fun getAllWishListFromApi(@Header("Authorization")token: String):Response<WishListResponse>
+
+    @GET("/api/Hotel/{hotelId}/ratings")
+    suspend fun getHotelRating(@Path("hotelId") hotelId : String) : Response<HotelRatingResponse>
 }

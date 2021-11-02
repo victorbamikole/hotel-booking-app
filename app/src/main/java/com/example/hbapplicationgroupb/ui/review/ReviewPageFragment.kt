@@ -1,7 +1,9 @@
 package com.example.hbapplicationgroupb.ui.review
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
@@ -20,6 +22,7 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
     //var of type of binding class created for xml file
     private lateinit var binding: FragmentReviewPageBinding
     private lateinit var reviewAdapter:ReviewPageFragmentRVAdapter
+
     private val safeArgs : ReviewPageFragmentArgs by navArgs()
     private val roomViewModel : RoomViewModel by viewModels()
     var userRatings = 0
@@ -28,7 +31,9 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
         super.onViewCreated(view, savedInstanceState)
         val hotelId = safeArgs.hotelId
         val hotelRating = safeArgs.rating
+
         roomViewModel.getHotelReview(hotelId)
+        roomViewModel.getHotelRatings(hotelId)
 
         binding = FragmentReviewPageBinding.bind(view)
         reviewAdapter = ReviewPageFragmentRVAdapter()
@@ -41,16 +46,30 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
         //to remove extra colour on top of toolbar
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-       setBarRatingAndProgressBar()
-
+        setBarRatingAndProgressBar()
 
         binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
+            val action = ReviewPageFragmentDirections
+                .actionReviewPageFragmentToAddReviewPageFragment(hotelId,hotelRating)
             findNavController()
-                .navigate(R.id.action_reviewPageFragment_to_addReviewPageFragment)
+                .navigate(action)
         }
         binding.ratingBackArrow.setOnClickListener {
+            val action = ReviewPageFragmentDirections
+                .actionReviewPageFragmentToHotelDescriptionFragment(hotelId)
             findNavController()
-                .navigate(R.id.action_reviewPageFragment_to_hotelDescriptionFragment)
+                .navigate(action)
+        }
+
+        binding.ratingBackArrow.setOnClickListener {
+            findNavController().navigate(
+                ReviewPageFragmentDirections.actionReviewPageFragmentToHotelDescriptionFragment(
+                    hotelId))
+        }
+        binding.tvWriteNewReview.setOnClickListener {
+            val action = ReviewPageFragmentDirections
+                .actionReviewPageFragmentToAddReviewPageFragment(hotelId,hotelRating)
+            findNavController().navigate(action)
         }
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it
@@ -69,6 +88,13 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
                 binding.tvUiStateMessage.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.VISIBLE
                 binding.fragmentReviewPageTvTwentyFiveRatings.text = String.format("0 reviews")
+            }
+
+        })
+
+        roomViewModel.rating.observe(viewLifecycleOwner,{
+            if (it.data != null){
+                reviewAdapter.getListOfRatings(it.data)
             }
 
         })

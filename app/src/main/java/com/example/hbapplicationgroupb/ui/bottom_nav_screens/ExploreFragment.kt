@@ -12,15 +12,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+import com.example.hbapplicationgroupb.util.HotelBookingWorkManagerClass
 import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
 import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener {
@@ -39,6 +45,16 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
+//        Log.d("doWork", "doWork: n")
+//
+//
+//        val uploadWorkRequest: WorkRequest =
+//            PeriodicWorkRequestBuilder<HotelBookingWorkManagerClass>(1,TimeUnit.MINUTES)
+//                .build()
+//
+//        WorkManager
+//            .getInstance(application)
+//            .enqueue(uploadWorkRequest)
 
 
 
@@ -82,7 +98,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
                 findNavController()
                     .navigate(
                         ExploreFragmentDirections.actionExploreFragment2ToHotelDescriptionFragment(
-                            id, price
+                            id
                         )
                     )
             }
@@ -152,7 +168,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
         findNavController()
             .navigate(
                 ExploreFragmentDirections.actionExploreFragment2ToHotelDescriptionFragment(
-                    id, price
+                    id
                 )
             )
     }

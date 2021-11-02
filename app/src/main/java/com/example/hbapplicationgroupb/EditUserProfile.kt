@@ -42,7 +42,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
         registrationResponseObserver()
 
         binding?.EditProfileFragmentUpdateButton?.setOnClickListener {
-            val userToken = activity?.let { UserPreferences(it).getSessionUser() }
+            val userToken = activity?.let { UserPreferences(it).getUserToken() }
             val updatedFirstName = binding?.EditProfileFragmentEditTextViewFirstName?.text?.trim().toString()
             val updatedLastName = binding?.EditProfileFragmentEditTexLastName?.text?.trim().toString()
             val updatedPhoneNumber = binding?.EditProfileFragmentEditTextPhoneNumber?.text?.trim().toString()

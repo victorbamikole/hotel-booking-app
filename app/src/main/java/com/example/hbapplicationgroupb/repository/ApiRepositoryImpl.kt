@@ -3,18 +3,25 @@ package com.example.hbapplicationgroupb.repository
 import androidx.lifecycle.LiveData
 import androidx.room.withTransaction
 import com.example.hbapplicationgroupb.dataBase.db.HBDataBase
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -22,6 +29,7 @@ import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
 import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
 import retrofit2.Response
@@ -56,6 +64,14 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.updateUserDetails(updatedUserData, token)
     }
 
+    override suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse> {
+        return hotelServices.addReviews(addReview, token)
+    }
+
+    override suspend fun addRating(hotelId: String, rating: AddRatingsPost, token: String): Response<AddRatingsResponse> {
+        return hotelServices.addRatings(hotelId,rating, token)
+    }
+
     override suspend fun registerAUser(userData: UserDataResponseItem
     ): Response<UserDataResponse> {
 
@@ -85,6 +101,29 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun getHotelReview(id: String): Response<HotelReview> {
         return  hotelServices.getHotelReview(id)
+    }
+
+    override suspend fun refreshTokenRequest(
+        userId: String,
+        refreshToken: String
+    ): Response<RefreshTokenResponse> {
+        return hotelServices.refreshTokenRequest(userId,refreshToken)
+    }
+
+    override suspend fun addCustomerWishToWishList(token: String,hotelId:String):Response<String> {
+        return hotelServices.addCustomerWishToWishList(token,hotelId)
+    }
+
+    override suspend fun deleteCustomerWishFromWishList(token: String,hotelId:String):Response<String> {
+        return hotelServices.deleteCustomerWishFromWishList(token,hotelId)
+    }
+
+    override suspend fun uploadImageToAPI(token: String, uri: String):Response<String> {
+        return hotelServices.uploadImageToAPI(token,uri)
+    }
+
+    override suspend fun getAllWishListFromApi(token: String): Response<WishListResponse> {
+        return hotelServices.getAllWishListFromApi(token)
     }
 
     override suspend fun fetchAllHotels(pageSize: Int, currentPage: Int): Response<AllHotel> {
@@ -124,5 +163,12 @@ class ApiRepositoryImpl @Inject constructor (
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 
+    override suspend fun bookingHistory(userId: String): Response<CustomerBookingDataItem> {
+        return hotelServices.bookingHistory(userId)
+    }
+
+    override suspend fun getHotelRatings(id: String): Response<HotelRatingResponse> {
+        return hotelServices.getHotelRating(id)
+    }
 
 }

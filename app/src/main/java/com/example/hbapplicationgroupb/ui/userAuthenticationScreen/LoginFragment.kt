@@ -28,6 +28,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val roomViewModel: RoomViewModel by viewModels()
     private lateinit var connectivityLiveData: ConnectivityLiveData
+    private var isNetworkAvailable : Boolean = true
 
 
     private lateinit var listener:BackPressedListener
@@ -38,17 +39,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
+
     override fun onStart() {
         super.onStart()
         navigateToExploreScreen()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        connectivityLiveData = ConnectivityLiveData(application)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
-        connectivityLiveData = ConnectivityLiveData(application)
 
         binding.tvRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
@@ -57,14 +62,39 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
-        initialiseNetworkObservers()
+        initiateViewModel()
 
-        //Toggle enable sign up button
+        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
+            when (isAvailable) {
+                true -> {
+                    binding.networkConnectionTextId.visibility = View.GONE
+                    isNetworkAvailable = true
+                }
+                false -> {
+                    binding.networkConnectionTextId.visibility = View.VISIBLE
+                    isNetworkAvailable = false
+                }
+            }
+        })
+
+        //Toggle enable sign in button
         binding.tvUserLoginEmail.addTextChangedListener(loginButtonHandler)
         binding.tvUserPassword.addTextChangedListener(loginButtonHandler)
 
+        binding.btnLogin.setOnClickListener {
+            if(isNetworkAvailable){
+                loadingStateVisibilityHandler()
+                login()
+            }
+            else{
+                Snackbar.make(
+                    binding.root,
+                    "Login in failed: Ensure you are have internet connection and try again",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
 
-
+        }
 
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -74,57 +104,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     }
 
-    //Observe live data from view model
-    private fun loginNetworkObserver(){
+    //Observe live data in view model
+    private fun initiateViewModel(){
         roomViewModel.userLoginDetails.observe(viewLifecycleOwner,  {
             if (it ==null) {
-                binding.loadingView.visibility = View.GONE
-                binding.progressBar.visibility = View.GONE
+                loadingStateInvisibilityHandler()
                 Snackbar.make(
-                    binding.root,
-                    "Login failed; Invalid email address or password.",
-                    Snackbar.LENGTH_LONG
+                    binding.root, "Login failed; Invalid email address or password.", Snackbar.LENGTH_LONG
                 ).show()
             }
             else {
                 activity?.let { it1 ->
-                    UserPreferences(it1).saveSession(it.data.token)
+                    UserPreferences(it1).saveSession(it.data.token,it.data.id,it.data.refreshToken)
                 }
                 findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
                 Snackbar.make(binding.root, "Login successful", Snackbar.LENGTH_LONG).show()
-                binding.loadingView.visibility = View.GONE
-                binding.progressBar.visibility = View.GONE
+                loadingStateInvisibilityHandler()
             }
         })
-    }
-
-
-    private fun initialiseNetworkObservers(){
-        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
-            when(isAvailable){
-                true -> {
-                    binding.networkConnectionTextId.visibility = View.GONE
-                    binding.btnLogin.setOnClickListener {
-                        binding.loadingView.visibility = View.VISIBLE
-                        binding.progressBar.visibility = View.VISIBLE
-                        login()
-                        loginNetworkObserver()
-                    }
-                }
-                false -> {
-                    binding.networkConnectionTextId.visibility = View.VISIBLE
-                    binding.btnLogin.setOnClickListener {
-                        Snackbar.make(
-                            binding.root,
-                            "Please check your internet connection",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                        return@setOnClickListener
-                    }
-                }
-            }
-        }
-        )
     }
 
     private fun login() {
@@ -138,17 +135,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 binding.regPasswordInput.error = "Password does not match with any email address"
                 Snackbar.make(binding.root, "Invalid password", Snackbar.LENGTH_LONG).show()
                 binding.regPasswordInput.error = null
-                binding.loadingView.visibility = View.GONE
-                binding.progressBar.visibility = View.GONE
-
+                loadingStateInvisibilityHandler()
             }
         }
         else{
             binding.regEmailInput.error = "Invalid email address"
             Snackbar.make(binding.root, "Invalid email address", Snackbar.LENGTH_LONG).show()
             binding.regPasswordInput.error = null
-            binding.loadingView.visibility = View.GONE
-            binding.progressBar.visibility = View.GONE
+            loadingStateInvisibilityHandler()
 
         }
 
@@ -174,11 +168,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     //Navigate to Explore Screen
     private fun navigateToExploreScreen(){
         //check if user is already logged in and move to app if true
-        val userSession = activity?.let { UserPreferences(it).getSessionUser() }
+        val userSession = activity?.let { UserPreferences(it).getUserId() }
         if (userSession != DEFAULT_TOKEN){
             //Move into the App
             findNavController().navigate(R.id.action_loginFragment_to_exploreFragment2)
 
         }
+    }
+
+    private fun loadingStateVisibilityHandler(){
+        binding.loadingView.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun loadingStateInvisibilityHandler(){
+        binding.loadingView.visibility = View.GONE
+        binding.progressBar.visibility = View.GONE
     }
 }

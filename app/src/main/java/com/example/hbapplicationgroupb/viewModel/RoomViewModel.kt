@@ -1,21 +1,23 @@
 package com.example.hbapplicationgroupb.viewModel
 
-import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
+import android.util.Log
 import androidx.lifecycle.*
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsResponse
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
-import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
+import com.example.hbapplicationgroupb.model.refreshToken.RefreshTokenResponse
 import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
@@ -24,6 +26,8 @@ import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
 import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.Resource
@@ -37,13 +41,24 @@ import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
-//class RoomViewModel @Inject constructor(
-//    private val apiRepository : ApiRepositoryInterface, app: Application
-//) : AndroidViewModel(app) {
-
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
+
+    private var _getAllWishListFromAoi: MutableLiveData<WishListResponse> = MutableLiveData()
+    val getAllWishListFromApi:LiveData<WishListResponse> = _getAllWishListFromAoi
+
+    private var _refreshToken: MutableLiveData<RefreshTokenResponse> = MutableLiveData()
+    val refreshToken:LiveData<RefreshTokenResponse> = _refreshToken
+
+    private var _addCustomerWish: MutableLiveData<String> = MutableLiveData()
+    val addCustomerWish:LiveData<String> = _addCustomerWish
+
+    private var _deleteCustomerWish: MutableLiveData<String> = MutableLiveData()
+    val deleteCustomerWish:LiveData<String> = _deleteCustomerWish
+
+    private var _uploadImage: MutableLiveData<String> = MutableLiveData()
+    val uploadImage:LiveData<String> = _uploadImage
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -63,8 +78,6 @@ class RoomViewModel @Inject constructor(
     /**Live data for Infants*/
     private var _numInfant:MutableLiveData<Int> = MutableLiveData(0)
     val numInfant:LiveData<Int> = _numInfant
-
-
 
 
     /**Update Adult count*/
@@ -139,18 +152,23 @@ class RoomViewModel @Inject constructor(
     private var _fetchAllHotelResponse: MutableLiveData<Response<AllHotel>> = MutableLiveData()
     val fetchAllHotelResponse : LiveData<Response<AllHotel>> = _fetchAllHotelResponse
 
+    private var _bookingHistory : MutableLiveData<CustomerBookingDataItem> = MutableLiveData()
+    val bookingHistory : LiveData<CustomerBookingDataItem> = _bookingHistory
+
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
     private var _updatedDetails : MutableLiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = MutableLiveData()
     val updatedDetails : LiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = _updatedDetails
 
+    private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
+    val addReviews: LiveData<AddReviewsResponse> = _addReviews
+    private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
+    val addRatings: LiveData<AddRatingsResponse> = _addRatings
 
-    init {
-//        getTopHotels()
-//        getAllHotels()
-    }
-
+    /**Live data for hotelRating*/
+    private val _ratings = MutableLiveData<Resource<List<HotelRating>>>()
+    val rating : LiveData<Resource<List<HotelRating>>> = _ratings
 
 
     fun registerUser(userData: UserDataResponseItem) {
@@ -227,6 +245,9 @@ class RoomViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     _confirmEmailAddress.postValue(responseBody)
+                }
+                else{
+                    _confirmEmailAddress.postValue(null)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -402,58 +423,158 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-
     //Response to network successfully connection or error in connection to the API
 //    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
 //        try {
 //            val response = apiRepository.userLoginDetails(userLoginDetails)
 //            if(networkHandler()){
 //                if(response.isSuccessful){
+    fun getBookingHistory(userId : String){
+        viewModelScope.launch {
+            try {
+                val response = apiRepository.bookingHistory(userId)
+                if (response.isSuccessful) {
 //                    _userLoginDetails.postValue(response.body())
-//                }else {
-//                    _userLoginDetails.postValue(null)
-//                }
-//            }else{
-//                _userLoginDetails.postValue(null)
-//            }
-//        }catch (t: Throwable){
-//            when(t){
-//                is IOException -> _userLoginDetails.postValue(null)
-//                else -> _userLoginDetails.postValue(null)
-//            }
-//        }
-//
-//    }
+                    _bookingHistory.postValue(response.body())
+                } else {
+                    _userLoginDetails.postValue(null)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
 
-//    //Handle network connectivity
-//
-//    private fun networkHandler() : Boolean{
-//        val connectivityManager = getApplication<HotelApplication>().getSystemService(
-//            Context.CONNECTIVITY_SERVICE
-//        ) as ConnectivityManager
-//
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//            val activeNetwork = connectivityManager.activeNetwork ?: return false
-//            val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-//            return when{
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-//                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-//                else -> false
-//            }
-//        }
-//        else{
-//            connectivityManager.activeNetworkInfo?.run {
-//                return when(type){
-//                    ConnectivityManager.TYPE_WIFI -> true
-//                    ConnectivityManager.TYPE_MOBILE -> true
-//                    ConnectivityManager.TYPE_ETHERNET -> true
-//                    else -> false
-//                }
-//            }
-//        }
-//        return false
-//    }
+            }
+        }
+    }
+
+    fun addReviewsVM(addReviews: AddReviewsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addReviews(addReviews, token)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    _addReviews.postValue(responseBody)
+                }else{
+                    _addReviews.postValue(null)
+                }
+
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun addRatingsVM(hotelId: String, addRatings: AddRatingsPost, token: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addRating(hotelId,addRatings,token)
+                if(response.isSuccessful){
+                    val responseBody = response.body()
+                    _addRatings.postValue(responseBody)
+                }else{
+                    _addRatings.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    fun refreshToken(userId: String,refreshToken:String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.refreshTokenRequest(userId,refreshToken)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    _refreshToken.postValue(responseBody)
+                }else{
+                    _refreshToken.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    fun addCustomerWishToWishList(token: String,hotelId:String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.addCustomerWishToWishList(token,hotelId)
+                if (response.isSuccessful){
+                    _addCustomerWish.postValue("wish added Successfully")
+                }else{
+                    _addCustomerWish.postValue("failed to add customer")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun deleteCustomerWishFromWishList(token: String,hotelId:String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.deleteCustomerWishFromWishList(token,hotelId)
+                if (response.isSuccessful){
+                    _deleteCustomerWish.postValue("wish deleted Successfully")
+                }else{
+                    _deleteCustomerWish.postValue("failed to delete customer")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun uploadImageToAPI(token: String, uri: String) {
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.uploadImageToAPI(token,uri)
+                if (response.isSuccessful){
+                    _uploadImage.postValue("image uploaded Successful")
+                }else{
+                    _uploadImage.postValue("failed to upload image")
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    fun getAllWishLIstFromAPi(token: String){
+
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.getAllWishListFromApi(token)
+                if (response.isSuccessful){
+                    Log.d("tokenQuery", "allWishList = ${response.body()}")
+
+                    _getAllWishListFromAoi.postValue(response.body())
+                }else{
+                    _getAllWishListFromAoi.postValue(null)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getHotelRatings(id :String){
+
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _ratings.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelRatings(id)
+                if (response.isSuccessful){
+                    _ratings.postValue(response.body()?.let { Resource.Success(it.data) })
+                }else{
+                    //handle error
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }
 
 

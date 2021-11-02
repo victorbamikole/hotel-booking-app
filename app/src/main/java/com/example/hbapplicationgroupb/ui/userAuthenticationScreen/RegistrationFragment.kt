@@ -57,6 +57,7 @@ class RegistrationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        selectedGender = "Male"
         //set content of gender field
         val listOfGender = resources.getStringArray(R.array.Gender)
         val genderAdapter = ArrayAdapter(requireContext(),R.layout.array_adapter_for_gender_layout,
@@ -186,7 +187,7 @@ class RegistrationFragment : Fragment() {
                 is ApiCallNetworkResource.Success ->{
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                     val action = RegistrationFragmentDirections
                         .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
                     findNavController().navigate(action)

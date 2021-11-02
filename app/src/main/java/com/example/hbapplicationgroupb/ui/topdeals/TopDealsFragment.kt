@@ -30,7 +30,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentTopDealsBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSessionUser() }
+        token = activity?.let { UserPreferences(it).getUserToken() }
         if (token == null){
             token = "1"
         }
@@ -60,19 +60,6 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
 
                 //Set Click Listener on adapter list items
                 myAdapter.setOnItemClickListener(object : TopDealsAdapter.SetItemClickListener{
-                    override fun setOnItemClick(position: Int, myView: View?) {
-                        val id = it.data[position].id
-                        val price = it.data[position].price.toString()
-                        findNavController()
-                            .navigate(
-                            TopDealsFragmentDirections
-                                .actionTopDealsFragmentToHotelDescriptionFragment(
-                                    id,price
-                                )
-                            )
-                    }
-
-
                     override fun toggleSaveItemToWishList(
                         position: Int,
                         saveItemTextBox: TextView,
@@ -109,7 +96,7 @@ class TopDealsFragment : Fragment(R.layout.fragment_top_deals) {
                             roomViewModel.deleteWishListFromDb(wishListData)
                         }
 
-                }
+                    }
 
                 })
 

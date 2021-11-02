@@ -11,5 +11,8 @@ data class TopDealAndHotelData(
     val id: String,
     val name: String,
     val price: Double,
-    val thumbnail: String
+    val thumbnail: String,
+    val address : String,
+    val city : String,
+    val state : String
 )

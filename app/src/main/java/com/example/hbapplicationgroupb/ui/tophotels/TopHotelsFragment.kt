@@ -25,10 +25,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
-   private var _binding: FragmentTopHotelsBinding? = null
+    private var _binding: FragmentTopHotelsBinding? = null
     private val binding  get() = _binding!!
     private val roomViewModel : RoomViewModel by viewModels()
-    val myAdapter = TopHotelsAdapter()
+    private val myAdapter = TopHotelsAdapter()
     private var token:String? = null
 
 
@@ -36,7 +36,7 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentTopHotelsBinding.bind(view)
 
-        token = activity?.let { UserPreferences(it).getSessionUser() }
+        token = activity?.let { UserPreferences(it).getUserToken() }
         if (token == null){
             token = "1"
         }
@@ -76,29 +76,6 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
 
         myAdapter.topHotelClickListener(object : TopHotelClickListener{
-            override fun onItemSelected(position: Int, item: TopDealAndHotelData) {
-                val id = item.id
-                val price = item.price.toString()
-                findNavController()
-                    .navigate(
-                        TopHotelsFragmentDirections
-                            .actionTopHotelsFragmentToHotelDescriptionFragment(
-                                id,price
-                            )
-                    )
-
-
-
-            }
-
-            override fun bookNow(position: Int, item: TopDealAndHotelData) {
-
-                val name = item.name
-                val action =TopHotelsFragmentDirections
-                    .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
-                findNavController().navigate(action)
-            }
-
             override fun toggleSaveItemToWishList(
                 position: Int,
                 saveItemTextBox: TextView,
