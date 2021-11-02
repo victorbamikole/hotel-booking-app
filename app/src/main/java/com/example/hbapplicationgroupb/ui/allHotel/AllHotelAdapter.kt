@@ -26,7 +26,6 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
         private val topImage = binding.topDealsRecyclerViewImage
         private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        private val topPrice = binding.topDealRecyclerViewPrice
         private val description = binding.topDealRecyclerViewtopDealRating
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
@@ -43,9 +42,6 @@ class AllHotelAdapter(): RecyclerView.Adapter<AllHotelAdapter.AllHotelViewHolder
 
 
                 topName.text = allhotel.name
-
-                topPrice.text = "$${allhotel.roomTypes[0].price}"
-
 
                 description.text = allhotel.description
                 topPercent.text = allhotel.rating.toString()
