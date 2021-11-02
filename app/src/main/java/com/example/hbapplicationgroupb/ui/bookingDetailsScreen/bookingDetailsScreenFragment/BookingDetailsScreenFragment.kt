@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.bookingDetailsScreenFragment
 
 import android.os.Bundle
-import android.util.SparseIntArray
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -10,17 +9,15 @@ import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
-import com.aminography.primedatepicker.picker.callback.RangeDaysPickCallback
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingData
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.RoomTypeListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.validation.BookingDetailsValidation
-import com.example.hbapplicationgroupb.validation.RegistrationValidation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -30,12 +27,18 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
     private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
+    private lateinit var bookingDetail:HotelBookingData
+    private lateinit var hotelRoomId:String
+    private lateinit var hotelRoomPrice:String
+    private  var totalNoOfPeople:Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
-        val hotelName = safeArgs.hotelName
-        binding.bookingDetailsScreenTextViewName.setText(hotelName)
+        val roomType = safeArgs.roomType
+        hotelRoomId = safeArgs.roomId
+        hotelRoomPrice = safeArgs.roomPrice
+        binding.bookingDetailsScreenRoomType.setText("Room Type - $roomType")
 
         lateinit var datePicker : PrimeDatePicker
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
@@ -93,7 +96,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
             val checkIn = binding.bookingDetailsScreenTextViewStartDate.text.toString()
             val checkout = binding.bookingDetailsScreenTextViewEndDate.text.toString()
             val people = binding.bookingDetailsScreenTextViewAgeBracket.text.toString()
-            val roomType = binding.bookingDetailsScreenTextViewRoomType.text.toString()
+            val roomNo = binding.bookingDetailsScreenTextViewRoomType.text.toString()
 
 
             /**Was about creating a booking details Data when I noticed that the endPoint is
@@ -134,18 +137,30 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
                 return@setOnClickListener
             }
 
-            if (!BookingDetailsValidation.validateRoomType(roomType)) {
+            if (!BookingDetailsValidation.validateRoomType(roomNo)) {
                 binding.bookingDetailsScreenTextViewRoomType.error = "Select a room type"
                 binding.bookingDetailsScreenTextViewRoomType.isFocusable
                 return@setOnClickListener
             }
 
+            bookingDetail = HotelBookingData(
+                roomId = hotelRoomId,
+                checkIn = checkIn,
+                checkOut = checkout,
+                noOfPeople = totalNoOfPeople,
+                price = hotelRoomPrice
+            )
+            val action = BookingDetailsScreenFragmentDirections
+                .actionBookingDetailsScreenFragment2ToPaymentCheckoutFragment(bookingDetail)
+            findNavController().navigate(action)
+
         }
 }
 
 
-    override fun OnclickOfDoneTextView(numberOfPersons: String) {
+    override fun OnclickOfDoneTextView(numberOfPersons: String, count: Int) {
         binding.bookingDetailsScreenTextViewAgeBracket.setText(numberOfPersons)
+        totalNoOfPeople = count
     }
 
     override fun OnclickOfDoneTextViewRoomTypes(selectedRooms: String) {

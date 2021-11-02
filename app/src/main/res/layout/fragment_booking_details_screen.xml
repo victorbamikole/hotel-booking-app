@@ -172,6 +172,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_End_Date" />
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/bookingDetailsScreen_RoomType"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Room Type"
+                android:drawablePadding="8dp"
+                android:textStyle="normal"
+                android:focusable="false"
+                android:background="@drawable/text_input_rectangle"
+                android:drawableStart="@drawable/ic_baseline_bedroom_parent_24"
+                android:elevation="4dp"
+                android:paddingStart="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_Age_Bracket" />
+
     <com.google.android.material.textfield.MaterialAutoCompleteTextView
         android:id="@+id/bookingDetailsScreen_textView_Room_type"
         android:layout_width="match_parent"
@@ -190,7 +210,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_textView_Age_Bracket" />
+        app:layout_constraintTop_toBottomOf="@+id/bookingDetailsScreen_RoomType" />
 
 
             <androidx.appcompat.widget.AppCompatButton

@@ -87,6 +87,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="36dp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toStartOf="@+id/topDealsRecyclerViewImage"
@@ -97,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:textStyle="bold"
             android:layout_marginBottom="8dp"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -131,41 +133,10 @@
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealPercent" />
 
-        <TextView
-            android:id="@+id/topDealRecyclerViewPeriod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/per_night" />
 
-        <TextView
-            android:id="@+id/topDealRecyclerViewPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="12dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
-            app:layout_constraintEnd_toEndOf="@+id/topDealsRecyclerViewImage"
-            tools:text="@string/_499" />
 
-        <TextView
-            android:id="@+id/sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="64dp"
-            android:layout_marginBottom="12dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
-            app:layout_constraintEnd_toEndOf="@+id/topDealsRecyclerViewImage"
-            tools:text="$" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

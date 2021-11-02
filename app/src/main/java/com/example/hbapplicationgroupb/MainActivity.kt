@@ -2,7 +2,9 @@ package com.example.hbapplicationgroupb
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.hbapplicationgroupb.databinding.ActivityMainBinding
@@ -18,6 +20,9 @@ class MainActivity : AppCompatActivity(),BackPressedListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)//set binding to root layout
+        window.statusBarColor = ContextCompat.getColor(this,R.color.custom_orange)
+
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.fragmentContainerView

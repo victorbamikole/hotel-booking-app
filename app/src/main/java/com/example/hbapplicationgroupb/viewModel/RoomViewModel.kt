@@ -13,6 +13,8 @@ import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBooking
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -23,8 +25,11 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
@@ -35,6 +40,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import retrofit2.http.Body
 import java.io.IOException
 import javax.inject.Inject
 
@@ -77,16 +83,19 @@ class RoomViewModel @Inject constructor(
     private var _numInfant:MutableLiveData<Int> = MutableLiveData(0)
     val numInfant:LiveData<Int> = _numInfant
 
-
-
+    /**live data for total number of people*/
+    private var _totalNumberOfPeople:MutableLiveData<Int> = MutableLiveData(0)
+    val totalNumberOfPeople:LiveData<Int> = _totalNumberOfPeople
 
     /**Update Adult count*/
     fun addToAdultCount () {
         _numAdults.value = _numAdults.value!!.plus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.plus(1)
     }
 
     fun subtractFromAdultCount () {
         _numAdults.value = _numAdults.value!!.minus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.plus(1)
     }
 
 
@@ -94,29 +103,35 @@ class RoomViewModel @Inject constructor(
     /**Update Teens count*/
     fun addToTeensCount () {
         _numTeens.value = _numTeens.value!!.plus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.plus(1)
     }
 
     fun subtractFromTeensCount () {
         _numTeens.value = _numTeens.value!!.minus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.minus(1)
     }
 
 
     /**Update Children count*/
     fun addToChildrenCount () {
         _numChildren.value = _numChildren.value!!.plus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.plus(1)
     }
 
     fun subtractFromChildrenCount () {
         _numChildren.value = _numChildren.value!!.minus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.minus(1)
     }
 
 
     /**Update Infant count*/
     fun addToInfantCount (){
         _numInfant.value = _numInfant.value!!.plus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.plus(1)
     }
     fun subtractFromInfantCount (){
         _numInfant.value = _numInfant.value!!.minus(1)
+        _totalNumberOfPeople.value = _totalNumberOfPeople.value!!.minus(1)
     }
 
 
@@ -158,10 +173,21 @@ class RoomViewModel @Inject constructor(
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
+    private var _updatedDetails : MutableLiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = MutableLiveData()
+    val updatedDetails : LiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = _updatedDetails
+
     private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
+
     private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
     val addRatings: LiveData<AddRatingsResponse> = _addRatings
+
+    private var _userProfile : MutableLiveData<UserProfile> = MutableLiveData()
+    val userProfile : LiveData<UserProfile> = _userProfile
+
+    //book an hotel
+    private val _bookAnHotel: MutableLiveData<ApiCallNetworkResource<HotelBookingResponse>> = MutableLiveData()
+    val bookAnHotel:LiveData<ApiCallNetworkResource<HotelBookingResponse>> = _bookAnHotel
 
     /**Live data for hotelRating*/
     private val _ratings = MutableLiveData<Resource<List<HotelRating>>>()
@@ -198,7 +224,6 @@ class RoomViewModel @Inject constructor(
                         "an error occur please try again later"))
                     }
                 }
-
             }
         }
     }
@@ -284,6 +309,22 @@ class RoomViewModel @Inject constructor(
                 e.printStackTrace()
             }
 
+        }
+    }
+
+
+    fun getUserProfile (token: String){
+        viewModelScope.launch {
+            try {
+                val response = apiRepository.getUserProfile(token)
+                if (response.isSuccessful){
+                    _userProfile.postValue(response.body())
+                } else {
+                    _userProfile.postValue(null)
+                }
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
         }
     }
 
@@ -377,15 +418,52 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-    fun deleteWishListFromDb(wishItem: WishListDataClass){
+    fun deleteWishListFromDb(wishItem: WishListDataClass) {
         viewModelScope.launch {
             try {
                 apiRepository.deleteWishFromDataBase(wishItem)
-            }catch (e:Exception){
+            } catch (e:Exception) {
                 e.printStackTrace()
             }
         }
     }
+
+
+
+
+
+    fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) {
+        viewModelScope.launch {
+            _updatedDetails.postValue(ApiCallNetworkResource.Loading())
+
+            try {
+                delay(2000)
+                val response = apiRepository.updateUserDetails(updatedUserData, token)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    _updatedDetails.postValue(ApiCallNetworkResource.Success("Profile Updated Succefully"))
+                }else{
+                    _updatedDetails.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
+                }
+
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                when(e){
+                    is IOException ->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "Network Failure, please check your internet connection"))
+                    }
+                    else->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "an error occur please try again later"))
+                    }
+                }
+            }
+
+
+        }
+    }
+
 
     fun getBookingHistory(token : String){
         viewModelScope.launch {
@@ -531,6 +609,41 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
+
+    fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType) {
+        viewModelScope.launch {
+            _newUser.postValue(ApiCallNetworkResource.Loading())
+            try {
+                delay(2000)
+                val response = apiRepository.bookAnHotel(token,roomToBook)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    _bookAnHotel.postValue(ApiCallNetworkResource.Success(responseBody?.message!!,responseBody))
+                }else{
+                    _bookAnHotel.postValue(ApiCallNetworkResource.Error(response.message()))
+                }
+
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                when(e){
+                    is IOException ->{
+                        _bookAnHotel.postValue(ApiCallNetworkResource.Error(message =
+                        "Network Failure, please check your internet connection"))
+                    }
+                    is NullPointerException ->{
+                        _bookAnHotel.postValue(ApiCallNetworkResource.Error(
+                            "Room not found"
+                        ))
+                    }
+                    else->{
+                        _bookAnHotel.postValue(ApiCallNetworkResource.Error(message =
+                        "an error occur please try again later"))
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 

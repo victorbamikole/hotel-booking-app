@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -55,11 +56,21 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
                             temptList.add(i)
                         }
                     }
-                    myAdapter.submitList(temptList)
-                    myAdapter.notifyDataSetChanged()
-                    binding.allHotelsRecyclerView.adapter = myAdapter
-                    Log.d("NewList ", "NewList = $temptList")
+                    if (temptList.size <= 0) {
+                        binding.noHotelAvailable.visibility = View.VISIBLE
+                        binding.noHotelAvailableText.visibility = View.VISIBLE
+                        binding.allHotelsRecyclerView.visibility = View.GONE
+                    }else {
+                        binding.noHotelAvailable.visibility = View.GONE
+                        binding.noHotelAvailableText.visibility = View.GONE
+                        myAdapter.submitList(temptList)
+                        myAdapter.notifyDataSetChanged()
+                        binding.allHotelsRecyclerView.adapter = myAdapter
+                    }
                 }else{
+                    binding.noHotelAvailable.visibility = View.GONE
+                    binding.noHotelAvailableText.visibility = View.GONE
+                    binding.allHotelsRecyclerView.visibility = View.VISIBLE
                     binding.fragmentAllHotelsStateName.text = ""
                     binding.fragmentAllHotelsActv.text.clear()
                     fetchAllHotels()
@@ -73,6 +84,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(),R.color.custom_orange)
         token = activity?.let { UserPreferences(it).getUserToken()}
         if (token == null){
             token = "1"
@@ -111,23 +123,6 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
         })
 
         myAdapter.allHotelClickListener(object : AllHotelClickListener{
-            override fun onItemSelected(position: Int, item: PageItem) {
-                val id = item.id
-                findNavController()
-                    .navigate(
-                        AllHotelsFragmentDirections
-                            .actionAllHotelsFragmentToHotelDescriptionFragment(
-                                id
-                            )
-                    )
-            }
-
-            override fun bookNow(position: Int, item: PageItem) {
-                val name = item.name
-                val action =AllHotelsFragmentDirections
-                    .actionAllHotelsFragmentToBookingDetailsScreenFragment2(name)
-                findNavController().navigate(action)
-            }
 
             override fun toggleSaveItemToWishList(
                 position: Int,

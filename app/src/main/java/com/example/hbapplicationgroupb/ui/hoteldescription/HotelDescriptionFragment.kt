@@ -42,12 +42,16 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         initialiseViewPager()
         setUpViewPagerTransition()
 
-        binding.bookNowButton.setOnClickListener {
-            val name = binding.HotelName.text.toString()
-            val action = HotelDescriptionFragmentDirections
-                .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(name)
-            findNavController().navigate(action)
-        }
+
+        roomViewPagerAdapter.setOnClickListener(object :RoomsViewPagerAdapter.OnClickOfBookNowToBookRoom{
+            override fun bookNowButtonClicked(roomType: String,roomId:String,roomPrice:String) {
+                val action = HotelDescriptionFragmentDirections
+                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType,roomId,roomPrice)
+                findNavController().navigate(action)
+            }
+
+        })
+
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
 
         binding.addStarRatingContainer.setOnClickListener {
@@ -78,14 +82,17 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
                 //Set Hotel Images on hotelViewPagerAdapter
                 hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
-
                 navigateToHotelReviews(hotelId,hotelRating,binding.reviewsHolder)
                 navigateToHotelReviews(hotelId,hotelRating,binding.addStarRatingContainer )
 
-
-            } else{
-                Snackbar.make(view,"No data retrieved for this hotel", Snackbar.LENGTH_SHORT).show()
             }
+            else{
+                Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
+
+            }
+//            else{
+//                Snackbar.make(view,"No data retrieved for this hotel", Snackbar.LENGTH_SHORT).show()
+//            }
 
         })
 
@@ -313,7 +320,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                                 .into(binding.tinyImageView4)
                         }
 
-
+                    imageReviewCount.text = (it.data.size - 4).toString()
                     }
                 }
 

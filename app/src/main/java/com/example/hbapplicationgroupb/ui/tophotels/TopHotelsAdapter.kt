@@ -24,7 +24,6 @@ class TopHotelsAdapter() :
             TopDealRecyclerViewLayoutBinding.bind(itemView)
         private val topImage = binding.topDealsRecyclerViewImage
         private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        //        private val topPrice = binding.topDealRecyclerViewPrice
         private val description = binding.topDealRecyclerViewtopDealRating
         private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
@@ -33,9 +32,7 @@ class TopHotelsAdapter() :
         val layoutForToggle = binding.layoutForSaving
 
         fun bind(topHotel : TopDealAndHotelData){
-//            itemView.setOnClickListener {
-//                topHotelClickListener.onItemSelected(adapterPosition,topHotel)
-//            }
+
             Glide.with(itemView)
                 .load(topHotel.thumbnail)
                 .into(topImage)
@@ -85,8 +82,6 @@ class TopHotelsAdapter() :
 
 
 interface TopHotelClickListener {
-    //    fun onItemSelected(position: Int, item: TopDealAndHotelData)
-//    fun bookNow(position: Int, item: TopDealAndHotelData)
     fun toggleSaveItemToWishList(
         position: Int,
         saveItemTextBox: TextView,
