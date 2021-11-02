@@ -23,9 +23,6 @@ class WishListAdapter:RecyclerView.Adapter<WishListAdapter.MyViewHolder>() {
                 AllHotelsRecyclerviewLayoutBinding.bind(itemView)
         private val topImage = binding.topDealsRecyclerViewImage
         private val topName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        private val topPrice = binding.topDealRecyclerViewPrice
-        private val description = binding.topDealRecyclerViewtopDealRating
-        private val topPercent = binding.topDealRecyclerViewtopDealPercent
         val bookTopHotelNow = binding.topDealRecyclerviewBookNowButton
         val saveText = binding.topDealSaveHotelRecyclerViewSaveText
         val saveImage = binding.topDealSaveHotelRecyclerViewImage

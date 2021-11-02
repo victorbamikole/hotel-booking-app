@@ -42,12 +42,16 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         initialiseViewPager()
         setUpViewPagerTransition()
 
-        binding.bookNowButton.setOnClickListener {
-            val name = binding.HotelName.text.toString()
-            val action = HotelDescriptionFragmentDirections
-                .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(name)
-            findNavController().navigate(action)
-        }
+
+        roomViewPagerAdapter.setOnClickListener(object :RoomsViewPagerAdapter.OnClickOfBookNowToBookRoom{
+            override fun bookNowButtonClicked(roomType: String) {
+                val action = HotelDescriptionFragmentDirections
+                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType)
+                findNavController().navigate(action)
+            }
+
+        })
+
         binding.fragmentReviewPageStarViewRatingBarVerySmall4.rating = 4.5f
 
         binding.addStarRatingContainer.setOnClickListener {
@@ -316,7 +320,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
                                 .into(binding.tinyImageView4)
                         }
 
-
+                    imageReviewCount.text = (it.data.size - 4).toString()
                     }
                 }
 
