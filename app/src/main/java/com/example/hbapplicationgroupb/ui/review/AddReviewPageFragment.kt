@@ -14,8 +14,10 @@ import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentAddReviewPageBinding
+import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
+import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +31,14 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
     private val roomViewModel: RoomViewModel by viewModels()
     private lateinit  var _hotelId: String
     private  var token: String? = null
+
+    private lateinit var connectivityLiveData: ConnectivityLiveData
+    private var isNetworkAvailable : Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        connectivityLiveData = ConnectivityLiveData(HotelApplication.application)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,6 +65,19 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
                 .actionAddReviewPageFragmentToReviewPageFragment(hotelId,rating)
             findNavController().navigate(action)
         }
+
+        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
+            when (isAvailable) {
+                true -> {
+                    binding.networkConnectionTextId.visibility = View.GONE
+                    isNetworkAvailable = true
+                }
+                false -> {
+                    binding.networkConnectionTextId.visibility = View.VISIBLE
+                    isNetworkAvailable = false
+                }
+            }
+        })
 
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             initAddRatings()
