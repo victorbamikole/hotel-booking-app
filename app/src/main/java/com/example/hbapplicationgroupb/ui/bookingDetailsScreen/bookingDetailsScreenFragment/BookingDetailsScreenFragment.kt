@@ -34,8 +34,8 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBookingDetailsScreenBinding.bind(view)
-        val hotelName = safeArgs.hotelName
-        binding.bookingDetailsScreenTextViewName.setText(hotelName)
+        val roomType = safeArgs.roomType
+        binding.bookingDetailsScreenRoomType.setText("Room Type - $roomType")
 
         lateinit var datePicker : PrimeDatePicker
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */

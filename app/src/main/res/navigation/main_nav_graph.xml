@@ -306,7 +306,7 @@
             android:id="@+id/action_bookingDetailsScreenFragment2_to_paymentCheckoutFragment"
             app:destination="@id/paymentCheckoutFragment" />
         <argument
-            android:name="hotelName"
+            android:name="roomType"
             app:argType="string" />
     </fragment>
     <fragment
