@@ -17,6 +17,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -158,6 +159,10 @@ class ApiRepositoryImpl @Inject constructor (
 
     override suspend fun bookingHistory(userId: String): Response<CustomerBookingDataItem> {
         return hotelServices.bookingHistory(userId)
+    }
+
+    override suspend fun getHotelRatings(id: String): Response<HotelRatingResponse> {
+        return hotelServices.getHotelRating(id)
     }
 
 }

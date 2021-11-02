@@ -13,6 +13,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -160,6 +161,10 @@ class RoomViewModel @Inject constructor(
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
     private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
     val addRatings: LiveData<AddRatingsResponse> = _addRatings
+
+    /**Live data for hotelRating*/
+    private val _ratings = MutableLiveData<Resource<List<HotelRating>>>()
+    val rating : LiveData<Resource<List<HotelRating>>> = _ratings
 
 
     fun registerUser(userData: UserDataResponseItem) {
@@ -506,6 +511,23 @@ class RoomViewModel @Inject constructor(
                     _getAllWishListFromAoi.postValue(null)
                 }
             }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getHotelRatings(id :String){
+
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                _ratings.postValue(Resource.Loading(null))
+                val response = apiRepository.getHotelRatings(id)
+                if (response.isSuccessful){
+                    _ratings.postValue(response.body()?.let { Resource.Success(it.data) })
+                }else{
+                    //handle error
+                }
+            }catch (e : Exception){
                 e.printStackTrace()
             }
         }

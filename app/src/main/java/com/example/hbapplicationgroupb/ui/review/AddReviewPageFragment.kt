@@ -53,6 +53,12 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
             token="1"
         }
 
+        binding.addRatingBackArrow.setOnClickListener {
+            val action = AddReviewPageFragmentDirections
+                .actionAddReviewPageFragmentToReviewPageFragment(hotelId,rating)
+            findNavController().navigate(action)
+        }
+
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             val comment = binding.fragmentAddReviewCommentTi.text.toString()
             roomViewModel.addReviewsVM(AddReviewsPost(comment,hotelId), token!!)
@@ -78,20 +84,7 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
                     else -> "click to change rating value".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                 }
             }
-//        binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
-//            findNavController()
-//                .navigate(R.id.action_addReviewPageFragment_to_reviewPageFragment)
-//        }
-        binding.addRatingBackArrow.setOnClickListener {
-            findNavController().navigate(R.id.action_addReviewPageFragment_to_reviewPageFragment)
-        }
-
-        binding.addRatingBackArrow.setOnClickListener {
-            findNavController()
-                .navigate(R.id.action_addReviewPageFragment_to_hotelDescriptionFragment)
-        }
     }
-
 
 
     override fun onDetach() {

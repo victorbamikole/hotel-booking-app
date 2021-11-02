@@ -1,29 +1,34 @@
 package com.example.hbapplicationgroupb.ui.tophotels
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
+import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
+import com.example.hbapplicationgroupb.util.resource.Resource
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
+import com.example.hbapplicationgroupb.viewModel.UIViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
-   private var _binding: FragmentTopHotelsBinding? = null
+    private var _binding: FragmentTopHotelsBinding? = null
     private val binding  get() = _binding!!
     private val roomViewModel : RoomViewModel by viewModels()
-    val myAdapter = TopHotelsAdapter()
+    private val myAdapter = TopHotelsAdapter()
     private var token:String? = null
 
 
@@ -71,28 +76,6 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
 
 
         myAdapter.topHotelClickListener(object : TopHotelClickListener{
-            override fun onItemSelected(position: Int, item: TopDealAndHotelData) {
-                val id = item.id
-                findNavController()
-                    .navigate(
-                        TopHotelsFragmentDirections
-                            .actionTopHotelsFragmentToHotelDescriptionFragment(
-                                id
-                            )
-                    )
-
-
-
-            }
-
-            override fun bookNow(position: Int, item: TopDealAndHotelData) {
-
-                val name = item.name
-                val action =TopHotelsFragmentDirections
-                    .actionTopHotelsFragmentToBookingDetailsScreenFragment2(name)
-                findNavController().navigate(action)
-            }
-
             override fun toggleSaveItemToWishList(
                 position: Int,
                 saveItemTextBox: TextView,

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 
 class ReviewPageFragmentRVAdapter:
@@ -16,6 +17,7 @@ class ReviewPageFragmentRVAdapter:
     //list of items recycler view
 //    private val listOfReview:MutableList<UserReview> = mutableListOf()
     private var listOfReview:List<PageItems> = listOf()
+    private var listOfRating : List<HotelRating> = listOf()
 
     //internal class for holding recycler layout views together
     inner class ReviewPageFragmentViewHolder(view: View):RecyclerView.ViewHolder(view){
@@ -46,14 +48,24 @@ class ReviewPageFragmentRVAdapter:
     //function to set data to each views
     override fun onBindViewHolder(holder: ReviewPageFragmentViewHolder, position: Int) {
         val currentReview = listOfReview[position]
+
         holder.apply {
+//            if (currentRating.customerId == currentReview.customerId){
             Glide.with(itemView)
                 .load(currentReview.avatar)
                 .into(profileImage)
             profileName.text = String.format(("${currentReview.firstName} ${currentReview.lastName}"))
             review.text = currentReview.comment
             date.text = currentReview.createdAt
-//            rating.rating = currentReview.//.rating.toFloat()
+            if (listOfRating.isNotEmpty()){
+                for (i in listOfRating){
+                    if (i.customerId == currentReview.customerId){
+                        rating.rating = i.ratings.toFloat()
+                    }
+                }
+            }
+
+
         }
     }
 
@@ -63,6 +75,11 @@ class ReviewPageFragmentRVAdapter:
     //function to get all list from an external source
     fun getListOfReviews(reviews: List<PageItems>){
         listOfReview = reviews
+        notifyDataSetChanged()
+    }
+
+    fun getListOfRatings(ratings: List<HotelRating>){
+        listOfRating = ratings
         notifyDataSetChanged()
     }
 

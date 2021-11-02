@@ -24,9 +24,10 @@ class ExploreHomeAdapter2(val click: OnItemClickListener) :
 
         private val binding: RecyclerviewRowBinding =
             RecyclerviewRowBinding.bind(itemView)
-        val hotelImage = binding.hotelImage
+        private val hotelImage = binding.hotelImage
         val hotelName = binding.hotelName
-        val hotelPrice = binding.hotelPrice
+        private val hotelRatingStar = binding.exploreFragmentHotelRatingStar
+        private val hotelAddress = binding.hotelAddress
         val layout2 = binding.topHotelLayout
 
         init {
@@ -42,7 +43,8 @@ class ExploreHomeAdapter2(val click: OnItemClickListener) :
                 .load(topDealsAndHotel.thumbnail)
                 .into(hotelImage)
             hotelName.text = topDealsAndHotel.name
-            hotelPrice.text = topDealsAndHotel.price.toString()//.price
+            hotelAddress.text = topDealsAndHotel.address
+            hotelRatingStar.rating = ((topDealsAndHotel.percentageRating/100) * 5).toFloat()
         }
     }
 

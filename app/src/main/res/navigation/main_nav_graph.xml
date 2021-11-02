@@ -207,8 +207,7 @@
             app:argType="string" />
         <argument
             android:name="rating"
-            app:argType="float"
-            android:defaultValue="0" />
+            app:argType="float"/>
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
