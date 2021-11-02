@@ -24,6 +24,8 @@ import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResp
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
@@ -32,10 +34,10 @@ import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
-import retrofit2.http.*
-
-
 interface ApiRepositoryInterface {
+
+    //Update User Profile
+    suspend fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) : Response<UpdateUserDataResponse>
 
     //Register user
     suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponse>
