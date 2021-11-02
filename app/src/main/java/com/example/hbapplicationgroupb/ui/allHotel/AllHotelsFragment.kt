@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -73,6 +74,7 @@ class AllHotelsFragment : Fragment(R.layout.fragment_all_hotels) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentAllHotelsBinding.bind(view)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(),R.color.custom_orange)
         token = activity?.let { UserPreferences(it).getUserToken()}
         if (token == null){
             token = "1"
