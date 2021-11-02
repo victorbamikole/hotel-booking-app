@@ -85,14 +85,17 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
 
                 //Set Hotel Images on hotelViewPagerAdapter
                 hotelViewPagerAdapter.getImagesFromExternalSource(it.gallery)
-
                 navigateToHotelReviews(hotelId,hotelRating,binding.reviewsHolder)
                 navigateToHotelReviews(hotelId,hotelRating,binding.addStarRatingContainer )
 
-
-            } else{
-                Snackbar.make(view,"No data retrieved for this hotel", Snackbar.LENGTH_SHORT).show()
             }
+            else{
+                Snackbar.make(view,"No data retrieved fo this hotel", Snackbar.LENGTH_SHORT).show()
+
+            }
+//            else{
+//                Snackbar.make(view,"No data retrieved for this hotel", Snackbar.LENGTH_SHORT).show()
+//            }
 
         })
 

@@ -83,14 +83,14 @@ class BottomSheetForRooms(private val listener: RoomTypeListenerInterface) : Bot
             if (roomNo2RadBtn.isChecked){
                 roomsBooked.add(room2Booked)
             }
-            else{
+            else {
                 roomsBooked.remove(room2Booked)
             }
 
             if (roomNo22RadBtn.isChecked){
                 roomsBooked.add(room22Booked)
             }
-            else{
+            else {
                 roomsBooked.remove(room22Booked)
             }
 

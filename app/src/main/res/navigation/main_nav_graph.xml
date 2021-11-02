@@ -269,6 +269,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment2_to_editUserProfile"
+            app:destination="@id/editUserProfile" />
     </fragment>
     <fragment
         android:id="@+id/reviewPageFragment"
@@ -377,5 +380,14 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editUserProfile"
+        android:name="com.example.hbapplicationgroupb.EditUserProfile"
+        android:label="fragment_edit_user_profile"
+        tools:layout="@layout/fragment_edit_user_profile" >
+        <action
+            android:id="@+id/action_editUserProfile_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
     </fragment>
 </navigation>
