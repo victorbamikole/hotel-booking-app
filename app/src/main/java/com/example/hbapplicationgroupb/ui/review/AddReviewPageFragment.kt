@@ -61,12 +61,15 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
 
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
             val comment = binding.fragmentAddReviewCommentTi.text.toString()
-            roomViewModel.addReviewsVM(AddReviewsPost(comment,hotelId), token!!)
+            roomViewModel.addReviewsVM(AddReviewsPost(comment,hotelId), "Bearer $token")
             Log.d("COMMENT", comment )
 
             val ratings =  binding.fragmentReviewPageStarViewRatingBar1.rating.toInt()
-            roomViewModel.addRatingsVM(_hotelId, AddRatingsPost(ratings), token!!)
+            roomViewModel.addRatingsVM(_hotelId, AddRatingsPost(ratings), "Bearer $token")
             Log.d("COMMENT","$ratings")
+            val action = AddReviewPageFragmentDirections
+                .actionAddReviewPageFragmentToReviewPageFragment(hotelId,rating)
+            findNavController().navigate(action)
 
         }
         //read rating when user click on star and display text
