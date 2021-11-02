@@ -29,7 +29,7 @@ class TopDealsAdapter():
         private val binding: TopDealRecyclerViewLayoutBinding = TopDealRecyclerViewLayoutBinding.bind(itemView)
         private val topDealImage = binding.topDealsRecyclerViewImage
         private val topDealName = binding.topDealtopDealNameHotelRecyclerViewSaveText
-        private val topDealPrice = binding.topDealRecyclerViewPrice
+        //        private val topDealPrice = binding.topDealRecyclerViewPrice
         private val topDealRating = binding.topDealRecyclerViewtopDealRating
         private val topDealPercent = binding.topDealRecyclerViewtopDealPercent
         val topDealButton = binding.topDealRecyclerviewBookNowButton
@@ -38,11 +38,11 @@ class TopDealsAdapter():
         val layoutForToggle = binding.layoutForSaving
 
 
-        init {
-            itemView.setOnClickListener {
-                listener.setOnItemClick(adapterPosition,itemView)
-            }
-        }
+//        init {
+//            itemView.setOnClickListener {
+//                listener.setOnItemClick(adapterPosition,itemView)
+//            }
+//        }
 
         fun populateTopDeals(topDealsAndHotel: TopDealAndHotelData) {
             Glide.with(itemView)
@@ -51,7 +51,7 @@ class TopDealsAdapter():
 
 
             topDealName.text = topDealsAndHotel.name
-            topDealPrice.text = "${topDealsAndHotel.price}"
+//            topDealPrice.text = "${topDealsAndHotel.price}"
             "${topDealsAndHotel.percentageRating}%".also { topDealPercent.text = it }
             topDealRating.text = topDealsAndHotel.description
 
@@ -68,29 +68,35 @@ class TopDealsAdapter():
     override fun onBindViewHolder(holder: DealsViewHolder, position: Int) {
         holder.populateTopDeals(topDeals[position])
 
-            holder.itemView.apply {
+        holder.itemView.apply {
 
-                holder.topDealButton.setOnClickListener {
-                    val name = topDeals[position].name
-                    val action = TopDealsFragmentDirections
-                        .actionTopDealsFragmentToBookingDetailsScreenFragment2(name)
-                    findNavController().navigate(action)
-                }
-
+//                holder.topDealButton.setOnClickListener {
+//                    val name = topDeals[position].name
+//                    val action = TopDealsFragmentDirections
+//                        .actionTopDealsFragmentToBookingDetailsScreenFragment2(name)
+//                    findNavController().navigate(action)
+//                }
+            holder.topDealButton.setOnClickListener {
+                val id = topDeals[position].id
+                val action = TopDealsFragmentDirections
+                    .actionTopDealsFragmentToHotelDescriptionFragment(id)
+                findNavController().navigate(action)
             }
+
+        }
         holder.itemView.apply {
             holder.layoutForToggle.setOnClickListener {
                 listener.toggleSaveItemToWishList(position, holder.saveText,holder.saveImage,topDeals[position])
             }
         }
-        }
+    }
 
-        override fun getItemCount(): Int {
-            return topDeals.size
-        }
+    override fun getItemCount(): Int {
+        return topDeals.size
+    }
 
     interface SetItemClickListener{
-        fun setOnItemClick(position: Int,myView: View?)
+        //        fun setOnItemClick(position: Int,myView: View?)
         fun toggleSaveItemToWishList(position: Int, saveItemTextBox: TextView, saveItemImage: ImageView, item: TopDealAndHotelData)
     }
 

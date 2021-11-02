@@ -187,7 +187,7 @@ class RegistrationFragment : Fragment() {
                 is ApiCallNetworkResource.Success ->{
                     binding.viewCover.visibility = View.GONE
                     binding.registerProgressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Registration successful", Toast.LENGTH_SHORT).show()
                     val action = RegistrationFragmentDirections
                         .actionRegistrationFragmentToRegistrationIsSuccessfulFragment(userDataTest)
                     findNavController().navigate(action)

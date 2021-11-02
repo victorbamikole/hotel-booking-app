@@ -24,10 +24,10 @@ class ExploreHomeAdapter() :
 
     class HotelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding: RecyclerviewRowBinding = RecyclerviewRowBinding.bind(itemView)
-        val hotelImage = binding.hotelImage
+        private val hotelImage = binding.hotelImage
         val hotelName = binding.hotelName
-        val hotelPrice = binding.hotelPrice
-
+        private val hotelAddress = binding.hotelAddress
+        private val hotelRatingStar = binding.exploreFragmentHotelRatingStar
         val layout = binding.topHotelLayout
 
         fun populateHotels(hotelList : TopDealAndHotelData){
@@ -35,7 +35,9 @@ class ExploreHomeAdapter() :
                 .load(hotelList.thumbnail)
                 .into(hotelImage)
             hotelName.text = hotelList.name
-            hotelPrice.text = hotelList.price.toString()//.price
+            hotelAddress.text = String
+                .format("${hotelList.address}, ${hotelList.city}, ${hotelList.state}")
+            hotelRatingStar.rating = ((hotelList.percentageRating/100)*5).toFloat()
         }
 
     }

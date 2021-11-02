@@ -14,6 +14,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -89,5 +90,7 @@ interface ApiRepositoryInterface {
     suspend fun uploadImageToAPI(token:String,uri: String):Response<String>
 
     suspend fun getAllWishListFromApi(token: String):Response<WishListResponse>
+
+    suspend fun getHotelRatings(id : String) : Response<HotelRatingResponse>
 
 }

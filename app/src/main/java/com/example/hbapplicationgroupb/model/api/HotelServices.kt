@@ -13,6 +13,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
+import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
 import com.example.hbapplicationgroupb.model.loginUserData.LoginUserDataResponse
 import com.example.hbapplicationgroupb.model.loginUserData.PostLoginUserData
@@ -112,4 +113,7 @@ interface HotelServices {
 
     @GET("/api/Customer/wishlist")
     suspend fun getAllWishListFromApi(@Header("Authorization")token: String):Response<WishListResponse>
+
+    @GET("/api/Hotel/{hotelId}/ratings")
+    suspend fun getHotelRating(@Path("hotelId") hotelId : String) : Response<HotelRatingResponse>
 }
