@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupb.ui.review
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -36,10 +37,6 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         //to remove extra colour on top of toolbar
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-        roomViewModel.addReviews.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(),"$it", Toast.LENGTH_LONG).show()
-        })
-
         /**
          * passing the @hotelId, @token, and @rating to make @POST api call
          * **/
@@ -60,13 +57,9 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
         }
 
         binding.fragmentAddReviewPageTvPostRed.setOnClickListener {
-            val comment = binding.fragmentAddReviewCommentTi.text.toString()
-            roomViewModel.addReviewsVM(AddReviewsPost(comment,hotelId), "Bearer $token")
-            Log.d("COMMENT", comment )
-
-            val ratings =  binding.fragmentReviewPageStarViewRatingBar1.rating.toInt()
-            roomViewModel.addRatingsVM(_hotelId, AddRatingsPost(ratings), "Bearer $token")
-            Log.d("COMMENT","$ratings")
+            initAddRatings()
+            addRatings()
+            addReviews()
             val action = AddReviewPageFragmentDirections
                 .actionAddReviewPageFragmentToReviewPageFragment(hotelId,rating)
             findNavController().navigate(action)
@@ -84,11 +77,29 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
                     3 -> "Good".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     4 -> "Very Good".also { binding.fragmentAddReviewPageRatingRemark.text = it }
                     5 -> "Excellent".also { binding.fragmentAddReviewPageRatingRemark.text = it }
-                    else -> "click to change rating value".also { binding.fragmentAddReviewPageRatingRemark.text = it }
+                    else -> ("click to change rating v" +
+                            "alue").also { binding.fragmentAddReviewPageRatingRemark.text = it }
                 }
             }
     }
 
+    private fun addRatings(){
+        val comment = binding.fragmentAddReviewCommentTi.text.toString().trim()
+        roomViewModel.addReviewsVM(AddReviewsPost(comment,_hotelId), "Bearer $token")
+    }
+    private fun addReviews(){
+        val ratings =  binding.fragmentReviewPageStarViewRatingBar1.rating.toInt()
+        roomViewModel.addRatingsVM(_hotelId, AddRatingsPost(ratings), "Bearer $token")
+    }
+
+    private fun initAddRatings(){
+        binding.progressBar.visibility = View.VISIBLE
+        roomViewModel.addRatings.observe(viewLifecycleOwner, Observer { it
+            if (it.status == 200 || it.status ==201){
+                binding.progressBar.visibility = View.GONE
+            }
+        })
+    }
 
     override fun onDetach() {
         //clear flag on detach of fragment
