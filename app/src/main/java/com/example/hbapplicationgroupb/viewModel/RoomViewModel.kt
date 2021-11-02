@@ -26,6 +26,7 @@ import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
 import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.repository.ApiRepositoryInterface
@@ -163,8 +164,12 @@ class RoomViewModel @Inject constructor(
 
     private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
+
     private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
     val addRatings: LiveData<AddRatingsResponse> = _addRatings
+
+    private var _userProfile : MutableLiveData<UserProfile> = MutableLiveData()
+    val userProfile : LiveData<UserProfile> = _userProfile
 
     /**Live data for hotelRating*/
     private val _ratings = MutableLiveData<Resource<List<HotelRating>>>()
@@ -286,6 +291,22 @@ class RoomViewModel @Inject constructor(
                 e.printStackTrace()
             }
 
+        }
+    }
+
+
+    fun getUserProfile (token: String){
+        viewModelScope.launch {
+            try {
+                val response = apiRepository.getUserProfile(token)
+                if (response.isSuccessful){
+                    _userProfile.postValue(response.body())
+                } else {
+                    _userProfile.postValue(null)
+                }
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
         }
     }
 

@@ -26,6 +26,7 @@ import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataRespon
 import com.example.hbapplicationgroupb.model.updateUserPassword.PostUpdateUserPassword
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import retrofit2.Response
@@ -72,7 +73,7 @@ interface HotelServices {
     suspend fun updateUserDetails (@Body updatedUserData: PostUpdateUserData,@Header("Authorization") token: String) : Response<UpdateUserDataResponse>
 
     @GET ("api/Customer")
-    suspend fun getUserDetails (@Header("Authorization") token: String) : Response<UpdateUserDataResponse>
+    suspend fun getUserProfile (@Header("Authorization") token: String) : Response<UserProfile>
 
 
     @POST("api/Authentication/forgot-password")
