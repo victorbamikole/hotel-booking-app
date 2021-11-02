@@ -26,6 +26,7 @@ import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
+import com.example.hbapplicationgroupb.model.userData.Data
 import com.example.hbapplicationgroupb.util.constants.*
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.karumi.dexter.Dexter
@@ -50,6 +51,37 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
+        val userToken = activity?.let { UserPreferences(it).getUserToken() }
+
+
+        roomViewModel.getUserProfile( "Bearer $userToken")
+//        roomViewModel.userProfile.observe(viewLifecycleOwner, androidx.lifecycle.Observer { response ->
+//            if(response.succeeded){
+//                val userProfile : Data = response.data
+//                binding?.fragmentProfileEmailTv?.setText(userProfile.email)
+//                binding?.fragmentProfileNameTv?.setText(userProfile.firstName)
+//                binding?.fragmentProfileIv?.let {
+//                    context?.let { it1 ->
+//                        Glide.with(it1).load(userProfile.avatar)
+//                            .into(it)
+//                    }
+//                }
+//
+//            }
+//
+//        })
+
+//        roomViewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
+//            if(response.succeeded){
+//                Log.d(ContentValues.TAG, "onCreate: $response")
+//                  var userProfile : Data = response.data
+////                binding?.EditProfileFragmentEditTextViewFirstName?.setText(userProfile.firstName)
+////                binding?.EditProfileFragmentEditTexLastName?.setText(userProfile.lastName)
+////                binding?.EditProfileFragmentEditTextPhoneNumber?.setText(userProfile.phoneNumber)
+////                binding?.EditProfileFragmentEditTextAddress?.setText(userProfile.address)
+////                binding?.EditProfileFragmentEditTextState?.setText(userProfile.state)
+//            }
+//        })
 
         binding?.fragmentProfileLogOutBtn?.setOnClickListener {
             //Clear user token from shared preferences

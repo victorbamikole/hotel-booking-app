@@ -29,15 +29,21 @@ import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataRespon
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Header
+
 interface ApiRepositoryInterface {
 
     //Update User Profile
     suspend fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) : Response<UpdateUserDataResponse>
+
+    suspend fun getUserProfile (token: String) : Response<UserProfile>
 
     //Register user
     suspend fun registerAUser(userData: UserDataResponseItem) : Response<UserDataResponse>

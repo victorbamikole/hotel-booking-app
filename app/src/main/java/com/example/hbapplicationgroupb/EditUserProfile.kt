@@ -1,15 +1,19 @@
 package com.example.hbapplicationgroupb
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentEditUserProfileBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication
 import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.userData.Data
 import com.example.hbapplicationgroupb.validation.UpdateUserValidation
 import com.example.hbapplicationgroupb.util.resource.ApiCallNetworkResource
 import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
@@ -28,12 +32,31 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         connectivityLiveData = ConnectivityLiveData(HotelApplication.application)
+
+
+       // var token = activity?.let { UserPreferences(it).getUserToken()}
+
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditUserProfileBinding.bind(view)
+        val userToken = activity?.let { UserPreferences(it).getUserToken() }
+
+        viewModel.getUserProfile( "Bearer $userToken")
+        viewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
+            if(response.succeeded){
+                Log.d(TAG, "onCreate: $response")
+                var userProfile : Data = response.data
+                binding?.EditProfileFragmentEditTextViewFirstName?.setText(userProfile.firstName)
+                binding?.EditProfileFragmentEditTexLastName?.setText(userProfile.lastName)
+                binding?.EditProfileFragmentEditTextPhoneNumber?.setText(userProfile.phoneNumber)
+                binding?.EditProfileFragmentEditTextAddress?.setText(userProfile.address)
+                binding?.EditProfileFragmentEditTextState?.setText(userProfile.state)
+            }
+        })
+
 
         //observe network state
         observeNetworkConnection(connectivityLiveData,viewLifecycleOwner,
@@ -42,7 +65,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
         registrationResponseObserver()
 
         binding?.EditProfileFragmentUpdateButton?.setOnClickListener {
-            val userToken = activity?.let { UserPreferences(it).getUserToken() }
+                //userToken = activity?.let { UserPreferences(it).getUserToken() }
             val updatedFirstName = binding?.EditProfileFragmentEditTextViewFirstName?.text?.trim().toString()
             val updatedLastName = binding?.EditProfileFragmentEditTexLastName?.text?.trim().toString()
             val updatedPhoneNumber = binding?.EditProfileFragmentEditTextPhoneNumber?.text?.trim().toString()

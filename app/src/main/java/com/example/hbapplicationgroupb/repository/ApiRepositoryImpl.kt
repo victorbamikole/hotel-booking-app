@@ -29,6 +29,7 @@ import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
 import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
 import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
@@ -63,6 +64,11 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun updateUserDetails(updatedUserData: PostUpdateUserData, token: String): Response<UpdateUserDataResponse> {
         return hotelServices.updateUserDetails(updatedUserData, token)
     }
+
+    override suspend fun getUserProfile(token: String): Response<UserProfile> {
+        return hotelServices.getUserProfile(token)
+    }
+
 
     override suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse> {
         return hotelServices.addReviews(addReview, token)
