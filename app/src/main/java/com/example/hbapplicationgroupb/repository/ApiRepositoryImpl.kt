@@ -10,6 +10,7 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
+import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -36,6 +37,7 @@ import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
 import retrofit2.Response
+import java.net.PasswordAuthentication
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor (
@@ -171,8 +173,9 @@ class ApiRepositoryImpl @Inject constructor (
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 
-    override suspend fun bookingHistory(userId: String): Response<CustomerBookingDataItem> {
-        return hotelServices.bookingHistory(userId)
+    //Booking history and also pass user token dynamically per user
+    override suspend fun bookingHistory(token: String): Response<BookingHistoryDataClass> {
+        return hotelServices.bookingHistory(token)
     }
 
     override suspend fun getHotelRatings(id: String): Response<HotelRatingResponse> {
