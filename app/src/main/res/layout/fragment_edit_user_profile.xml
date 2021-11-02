@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.userAuthenticationScreen.RegistrationFragment">
+
+
+    <View
+        android:id="@+id/editProfileViewCover"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_grey"
+        android:elevation="100dp"
+        />
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/editProfileProgressBar"
+        android:elevation="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        local:layout_constraintTop_toTopOf="parent"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        />
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/editProfileNetworkErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/reg_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/custom_orange"
+        android:text="@string/no_internet_connection"
+        />
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/reg_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:layout_marginTop="25dp"
+        android:minHeight="?attr/actionBarSize"
+        android:padding="0dp"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        local:layout_constraintTop_toTopOf="parent"
+        local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Edit Profile"
+                style="@style/ToolBarTextStyle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        local:layout_constraintBottom_toBottomOf="parent"
+        local:layout_constraintEnd_toEndOf="parent"
+        local:layout_constraintStart_toStartOf="parent"
+        local:layout_constraintTop_toBottomOf="@+id/reg_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reg_name_card"
+                style="@style/TopUserAuthCard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toTopOf="@+id/reg_last_name_card"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent"
+                local:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reg_name_input"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                    app:startIconDrawable="@drawable/icon_person">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditProfileFragment_editTextViewFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textCursorDrawable="@null"
+                        android:textSize="19sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reg_last_name_card"
+                style="@style/TopUserAuthCard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toTopOf="@+id/reg_phone_number_card"
+                app:layout_constraintTop_toBottomOf="@+id/reg_name_card"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reg_last_name_input"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                    app:startIconDrawable="@drawable/icon_person">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditProfileFragment_editTexLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textCursorDrawable="@null"
+                        android:textSize="19sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reg_phone_number_card"
+                style="@style/TopUserAuthCard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintTop_toBottomOf="@+id/reg_last_name_card"
+                local:layout_constraintBottom_toTopOf="@+id/reg_gender_card"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reg_phone_number_input"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                    app:startIconDrawable="@drawable/ic_baseline_phone_24">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditProfileFragment_editText_PhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textCursorDrawable="@null"
+                        android:textSize="19sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/reg_gender_card"
+                style="@style/TopUserAuthCard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toTopOf="@+id/email_field_card"
+                app:layout_constraintTop_toBottomOf="@+id/reg_phone_number_card"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reg_gender_input"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Address"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                    app:startIconDrawable="@drawable/ic_location_on"
+                    local:boxBackgroundMode="filled">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditProfileFragment_editTextAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:inputType="none"
+                        android:textCursorDrawable="@null" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/email_field_card"
+                style="@style/UserAuthCard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:layout_constraintTop_toBottomOf="@+id/reg_gender_card"
+                local:layout_constraintEnd_toEndOf="parent"
+                local:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/reg_email_input"
+                    style="@style/TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="State"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_registration"
+                    app:startIconDrawable="@drawable/icon_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EditProfileFragment_editTextState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textCursorDrawable="@null" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/EditProfileFragment_UpdateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/rectangle_button"
+                android:text="Update Profile"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                local:layout_constraintTop_toBottomOf="@+id/email_field_card" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

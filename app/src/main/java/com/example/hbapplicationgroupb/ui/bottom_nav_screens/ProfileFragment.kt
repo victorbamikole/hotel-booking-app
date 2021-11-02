@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
+import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.util.constants.*
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
@@ -49,30 +50,39 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-        binding?.fragmentProfileLogOutBtn?.setOnClickListener {
 
+        binding?.fragmentProfileLogOutBtn?.setOnClickListener {
             //Clear user token from shared preferences
             activity?.let { it1 -> UserPreferences(it1).clearUserSession() }
             showLogOutAlert()
         }
 
+        /** Method to pop bottom Sheet for Room type Selection */
+        binding?.fragmentProfileEditProfileTv?.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_profileFragment2_to_editUserProfile)
+        }
+
         binding?.fragmentProfileHistoryTv?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_bookingHistoryFragment)
-
         }
+
         binding?.fragmentProfileHistoryIcon?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_bookingHistoryFragment)
         }
+
         binding?.fragmentProfileHelpTv?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_helpAndSupportFragment)
         }
+
         binding?.fragmentProfileHelpIcon?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_helpAndSupportFragment)
         }
+
         binding?.fragmentPrivacyPolicyTextView?.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_profileFragment2_to_privacyPolicyFragment)

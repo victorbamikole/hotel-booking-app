@@ -22,6 +22,8 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
@@ -34,6 +36,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import retrofit2.http.Body
 import java.io.IOException
 import javax.inject.Inject
 
@@ -75,8 +78,6 @@ class RoomViewModel @Inject constructor(
     /**Live data for Infants*/
     private var _numInfant:MutableLiveData<Int> = MutableLiveData(0)
     val numInfant:LiveData<Int> = _numInfant
-
-
 
 
     /**Update Adult count*/
@@ -157,6 +158,9 @@ class RoomViewModel @Inject constructor(
     private var _hotelReview : MutableLiveData<Resource<List<PageItems>>> = MutableLiveData<Resource<List<PageItems>>>()
     val hotelReview : LiveData<Resource<List<PageItems>>> = _hotelReview
 
+    private var _updatedDetails : MutableLiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = MutableLiveData()
+    val updatedDetails : LiveData<ApiCallNetworkResource<UpdateUserDataResponse>> = _updatedDetails
+
     private var _addReviews: MutableLiveData<AddReviewsResponse> = MutableLiveData()
     val addReviews: LiveData<AddReviewsResponse> = _addReviews
     private var _addRatings: MutableLiveData<AddRatingsResponse> = MutableLiveData()
@@ -197,7 +201,6 @@ class RoomViewModel @Inject constructor(
                         "an error occur please try again later"))
                     }
                 }
-
             }
         }
     }
@@ -376,16 +379,56 @@ class RoomViewModel @Inject constructor(
             }
         }
     }
-    fun deleteWishListFromDb(wishItem: WishListDataClass){
+    fun deleteWishListFromDb(wishItem: WishListDataClass) {
         viewModelScope.launch {
             try {
                 apiRepository.deleteWishFromDataBase(wishItem)
-            }catch (e:Exception){
+            } catch (e:Exception) {
                 e.printStackTrace()
             }
         }
     }
 
+
+
+    fun updateUserDetails (updatedUserData: PostUpdateUserData, token: String) {
+        viewModelScope.launch {
+            _updatedDetails.postValue(ApiCallNetworkResource.Loading())
+
+            try {
+                delay(5000)
+                val response = apiRepository.updateUserDetails(updatedUserData, token)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    _updatedDetails.postValue(ApiCallNetworkResource.Success("Profile Updated Succefully"))
+                }else{
+                    _updatedDetails.postValue(ApiCallNetworkResource.Error(response.body()!!.message))
+                }
+
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                when(e){
+                    is IOException ->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "Network Failure, please check your internet connection"))
+                    }
+                    else->{
+                        _updatedDetails.postValue(ApiCallNetworkResource.Error(message =
+                        "an error occur please try again later"))
+                    }
+                }
+            }
+
+
+        }
+    }
+
+    //Response to network successfully connection or error in connection to the API
+//    private suspend fun safeLoginNetworkHandler(userLoginDetails: PostLoginUserData){
+//        try {
+//            val response = apiRepository.userLoginDetails(userLoginDetails)
+//            if(networkHandler()){
+//                if(response.isSuccessful){
     fun getBookingHistory(userId : String){
         viewModelScope.launch {
             try {
