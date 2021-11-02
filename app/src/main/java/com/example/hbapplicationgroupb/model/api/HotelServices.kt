@@ -71,6 +71,10 @@ interface HotelServices {
     @PUT ("api/Customer/update")
     suspend fun updateUserDetails (@Body updatedUserData: PostUpdateUserData,@Header("Authorization") token: String) : Response<UpdateUserDataResponse>
 
+    @GET ("api/Customer")
+    suspend fun getUserDetails (@Header("Authorization") token: String) : Response<UpdateUserDataResponse>
+
+
     @POST("api/Authentication/forgot-password")
     suspend fun resetForgetPasswordEmail(@Query("email") email: String):Response<ForgotPasswordDataResponse>
 
