@@ -5,6 +5,6 @@ data class HotelBookingDataWithPaymentType(
     val roomId: String,
     val checkIn:String,
     val checkOut:String,
-    val noOfPeople:String,
+    val noOfPeople:Int,
     val paymentService:String
 )

@@ -8,5 +8,6 @@ data class HotelBookingData (
     val roomId: String,
     val checkIn:String,
     val checkOut:String,
-    val noOfPeople:String
+    val noOfPeople:Int,
+    val price:String
         ): Parcelable

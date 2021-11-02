@@ -214,4 +214,5 @@ This policy was last updated October 20th, 2021.</string>
     <string name="phoneNumber"><u>09033017453</u></string>
     <string name="no_internet_connection_add">No internet connection</string>
     <string name="sorry_there_is_no_hotel_available_in_this_location">sorry, there is no hotel available in this location</string>
+    <string name="paystack">Paystack</string>
 </resources>

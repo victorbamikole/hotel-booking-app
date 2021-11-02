@@ -13,6 +13,8 @@ import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -37,6 +39,7 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 
 interface ApiRepositoryInterface {
 
@@ -100,5 +103,8 @@ interface ApiRepositoryInterface {
     suspend fun getAllWishListFromApi(token: String):Response<WishListResponse>
 
     suspend fun getHotelRatings(id : String) : Response<HotelRatingResponse>
+
+
+    suspend fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType):Response<HotelBookingResponse>
 
 }

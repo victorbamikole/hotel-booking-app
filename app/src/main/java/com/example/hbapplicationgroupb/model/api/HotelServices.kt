@@ -12,6 +12,8 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -126,4 +128,10 @@ interface HotelServices {
 
     @GET("/api/Hotel/{hotelId}/ratings")
     suspend fun getHotelRating(@Path("hotelId") hotelId : String) : Response<HotelRatingResponse>
+
+
+    @POST("/api/Hotel/book-hotel")
+    suspend fun bookAnHotel(@Header("Authorization")token: String,
+                            @Body roomToBook:HotelBookingDataWithPaymentType
+    ):Response<HotelBookingResponse>
 }

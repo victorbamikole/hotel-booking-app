@@ -311,6 +311,8 @@
         <argument
             android:name="roomId"
             app:argType="string" />
+        <argument android:name="roomPrice"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"
