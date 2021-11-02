@@ -34,7 +34,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
         connectivityLiveData = ConnectivityLiveData(HotelApplication.application)
 
 
-       // var token = activity?.let { UserPreferences(it).getUserToken()}
+      // var token = activity?.let { UserPreferences(it).getUserToken()}
 
     }
 
@@ -47,7 +47,7 @@ class EditUserProfile : Fragment(R.layout.fragment_edit_user_profile) {
         viewModel.getUserProfile( "Bearer $userToken")
         viewModel.userProfile.observe(viewLifecycleOwner, Observer { response ->
             if(response.succeeded){
-                Log.d(TAG, "onCreate: $response")
+              //  Log.d(TAG, "onCreate: $response")
                 var userProfile : Data = response.data
                 binding?.EditProfileFragmentEditTextViewFirstName?.setText(userProfile.firstName)
                 binding?.EditProfileFragmentEditTexLastName?.setText(userProfile.lastName)
