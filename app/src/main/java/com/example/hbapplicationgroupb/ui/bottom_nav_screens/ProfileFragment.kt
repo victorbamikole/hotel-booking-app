@@ -13,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -36,6 +35,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MultipartBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -288,6 +288,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val userToken = activity?.let { it1 ->
             UserPreferences(it1).getUserToken()
         }
+//        val filx = File(requireActivity().cacheDir,requireActivity().contentResolver.getFileName(Uri.parse(file.absolutePath)))
+//        val body= filx.asRequestBody("image/jpg".toMediaTypeOrNull())
         roomViewModel.uploadImageToAPI("Bearer $userToken","${Uri.parse(file.absolutePath)}")
         Log.d("imageUri", "saveImageToInternalStorage: ${Uri.parse(file.absolutePath)} ")
         return Uri.parse(file.absolutePath)

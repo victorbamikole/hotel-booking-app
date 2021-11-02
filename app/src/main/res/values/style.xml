@@ -43,6 +43,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="singleLine">true</item>
+
     </style>
 
 
