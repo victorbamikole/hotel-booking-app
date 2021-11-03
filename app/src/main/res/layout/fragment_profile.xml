@@ -57,7 +57,6 @@
             android:id="@+id/fragment_profile_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/emma"
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>

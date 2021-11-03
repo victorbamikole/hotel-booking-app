@@ -11,7 +11,6 @@ import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -37,8 +36,8 @@ import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
+import okhttp3.MultipartBody
 import retrofit2.Response
-import java.net.PasswordAuthentication
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor (
@@ -129,7 +128,7 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.deleteCustomerWishFromWishList(token,hotelId)
     }
 
-    override suspend fun uploadImageToAPI(token: String, uri: String):Response<String> {
+    override suspend fun uploadImageToAPI(token: String, uri: MultipartBody.Part):Response<String> {
         return hotelServices.uploadImageToAPI(token,uri)
     }
 
