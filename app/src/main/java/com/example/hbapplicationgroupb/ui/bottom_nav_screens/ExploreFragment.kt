@@ -12,10 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
+//import androidx.work.OneTimeWorkRequestBuilder
+//import androidx.work.PeriodicWorkRequestBuilder
+//import androidx.work.WorkManager
+//import androidx.work.WorkRequest
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application

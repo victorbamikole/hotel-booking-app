@@ -68,7 +68,6 @@ class ExploreHomeAdapter() :
     }
 }
 
-
 interface TopItemClickListener {
     fun onItemClick(position: Int, objectData: TopDealAndHotelData)
 
