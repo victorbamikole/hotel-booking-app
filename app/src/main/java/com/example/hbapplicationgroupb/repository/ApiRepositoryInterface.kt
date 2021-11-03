@@ -9,7 +9,6 @@ import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
 import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -37,12 +36,9 @@ import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.Resource
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Path
 
 interface ApiRepositoryInterface {
 
@@ -101,7 +97,7 @@ interface ApiRepositoryInterface {
     suspend fun addCustomerWishToWishList(token: String,hotelId:String):Response<String>
 
     suspend fun deleteCustomerWishFromWishList(token: String, hotelId:String):Response<String>
-    suspend fun uploadImageToAPI(token:String,uri: String):Response<String>
+    suspend fun uploadImageToAPI(token:String, uri: MultipartBody.Part):Response<String>
 
     suspend fun getAllWishListFromApi(token: String):Response<WishListResponse>
 

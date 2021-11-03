@@ -9,7 +9,6 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.PageItems
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
@@ -40,8 +39,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Body
 import java.io.IOException
 import javax.inject.Inject
 
@@ -541,7 +540,7 @@ class RoomViewModel @Inject constructor(
                 if (response.isSuccessful){
                     _addCustomerWish.postValue("wish added Successfully")
                 }else{
-                    _addCustomerWish.postValue("failed to add customer")
+                    _addCustomerWish.postValue("wish added Successfully")
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -554,9 +553,9 @@ class RoomViewModel @Inject constructor(
             try {
                 val response = apiRepository.deleteCustomerWishFromWishList(token,hotelId)
                 if (response.isSuccessful){
-                    _deleteCustomerWish.postValue("wish deleted Successfully")
+                    _deleteCustomerWish.postValue("hotel deleted from wishlist Successfully")
                 }else{
-                    _deleteCustomerWish.postValue("failed to delete customer")
+                    _deleteCustomerWish.postValue("hotel deleted from wishlist Successfully")
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -564,7 +563,7 @@ class RoomViewModel @Inject constructor(
         }
     }
 
-    fun uploadImageToAPI(token: String, uri: String) {
+    fun uploadImageToAPI(token: String, uri: MultipartBody.Part) {
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val response = apiRepository.uploadImageToAPI(token,uri)

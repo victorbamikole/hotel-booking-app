@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -95,6 +96,12 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                         featureImage = item.thumbnail,
                         saved = true
                     )
+                    val userToken = activity.let { UserPreferences(it!!).getUserToken() }
+                    roomViewModel.addCustomerWishToWishList("Bearer $userToken",item.id)
+
+                    roomViewModel.addCustomerWish.observe(viewLifecycleOwner,{
+                        Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                    })
                     roomViewModel.insertWishListToDb(wishListData)
                 }else{
                     saveItemTextBox.text = "Save"
@@ -109,6 +116,12 @@ class TopHotelsFragment : Fragment(R.layout.fragment_top_hotels) {
                         featureImage = item.thumbnail,
                         saved = false
                     )
+
+                    val userToken = activity.let { UserPreferences(it!!).getUserToken() }
+                    roomViewModel.deleteCustomerWishFromWishList("Bearer $userToken",item.id)
+                    roomViewModel.deleteCustomerWish.observe(viewLifecycleOwner,{
+                        Toast.makeText(requireContext(), "$it", Toast.LENGTH_SHORT).show()
+                    })
                     roomViewModel.deleteWishListFromDb(wishListData)
                 }
             }
