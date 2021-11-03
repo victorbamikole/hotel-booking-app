@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.allhotel.PageItem
+import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -86,7 +87,7 @@ interface ApiRepositoryInterface {
     fun getAllHotelsFomApiToDB(): Flow<Resource<List<PageItem>>>
 
 
-    suspend fun bookingHistory(userId : String) : Response<CustomerBookingDataItem>
+    suspend fun bookingHistory(token : String) : Response<BookingHistoryDataClass>
 
     suspend fun getHotelReview(id : String) : Response<HotelReview>
 

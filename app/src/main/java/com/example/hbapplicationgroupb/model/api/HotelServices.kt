@@ -6,6 +6,7 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
+import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
@@ -95,10 +96,11 @@ interface HotelServices {
     @PATCH
     suspend fun updateLoginDetails() : Response<PostUpdateUserPassword>
 
-    @GET("/api/Customer/{userId}/bookings")
+    //Booking history get request
+    @GET("/api/Customer/bookings")
     suspend fun bookingHistory(
-        @Path("userId", encoded = true) userId: String
-    ) : Response<CustomerBookingDataItem>
+        @Header("Authorization") token: String
+    ) : Response<BookingHistoryDataClass>
 
     @GET("/api/Hotel/{hotelId}/reviews")
     suspend fun getHotelReview(@Path("hotelId") hotelId : String) : Response<HotelReview>
