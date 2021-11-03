@@ -30,11 +30,12 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
     private lateinit var roomViewPagerAdapter: RoomsViewPagerAdapter
     private val roomViewModel : RoomViewModel by viewModels()
     private val safeArgs :HotelDescriptionFragmentArgs by navArgs()
+    private lateinit var hotelId: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHotelDescriptionBinding.bind(view)
-        val hotelId = safeArgs.hotelId
+        hotelId = safeArgs.hotelId
         roomViewModel.getHotelDescription(hotelId)
         roomViewModel.getHotelReview(hotelId)
         observeHotelReview()
@@ -46,7 +47,7 @@ class HotelDescriptionFragment : Fragment(R.layout.fragment_hotel_description) {
         roomViewPagerAdapter.setOnClickListener(object :RoomsViewPagerAdapter.OnClickOfBookNowToBookRoom{
             override fun bookNowButtonClicked(roomType: String,roomId:String,roomPrice:String) {
                 val action = HotelDescriptionFragmentDirections
-                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType,roomId,roomPrice)
+                    .actionHotelDescriptionFragmentToBookingDetailsScreenFragment2(roomType,roomId,roomPrice,hotelId)
                 findNavController().navigate(action)
             }
 

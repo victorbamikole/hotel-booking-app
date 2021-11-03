@@ -5,6 +5,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
@@ -13,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -36,16 +38,14 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
+import java.io.*
 import java.util.*
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-    var binding : FragmentProfileBinding? = null
+    var binding: FragmentProfileBinding? = null
     private val roomViewModel: RoomViewModel by viewModels()
+    private lateinit var imageUri:Uri
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,12 +54,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val userToken = activity?.let { UserPreferences(it).getUserToken() }
 
 
-        roomViewModel.getUserProfile( "Bearer $userToken")
-        roomViewModel.userProfile.observe(viewLifecycleOwner,  { response ->
-            if(response.succeeded){
-                val userProfile : Data = response.data
+        roomViewModel.getUserProfile("Bearer $userToken")
+        roomViewModel.userProfile.observe(viewLifecycleOwner, { response ->
+            if (response.succeeded) {
+                val userProfile: Data = response.data
                 binding?.fragmentProfileEmailTv?.setText(userProfile.email)
-                binding?.fragmentProfileNameTv?.text =  "${userProfile.firstName} ${userProfile.lastName}"
+                binding?.fragmentProfileNameTv?.text =
+                    "${userProfile.firstName} ${userProfile.lastName}"
                 /** once the the implementation for uploading user image to API is done, uncomment this code*/
                 // Glide.with(requireActivity()).load(userProfile.avatar).into(binding!!.fragmentProfileIv)
             }
@@ -110,11 +111,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val addPictureDialogue = android.app.AlertDialog.Builder(requireContext())
             addPictureDialogue.setTitle("select Action")
             val addPictureDialogueItem = arrayOf(
-                "Select picture from gallery","Capture photo from camera")
-            addPictureDialogue.setItems(addPictureDialogueItem){
-                    _,which ->
+                "Select picture from gallery", "Capture photo from camera"
+            )
+            addPictureDialogue.setItems(addPictureDialogueItem) { _, which ->
 
-                when(which){
+                when (which) {
                     0 -> {
                         choosePhotoFromGallery()
                     }
@@ -134,12 +135,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun checkIfCameraPermissionIsGranted() {
         if (ContextCompat.checkSelfPermission(
                 requireContext(), android.Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED){
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent, CAMERA_REQUEST_CODE)
-        }else{
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE
+            )
         }
     }
 
@@ -149,12 +153,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         ).withListener(object : MultiplePermissionsListener {
             override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
-                if (p0!!.areAllPermissionsGranted()){
+                if (p0!!.areAllPermissionsGranted()) {
                     val galleryIntent = Intent(
                         Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                     )
-                    startActivityForResult(galleryIntent,GALLERY_REQUEST_CODE)
+                    startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
                 }
             }
 
@@ -165,30 +169,33 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 showRationalCaseDialogue()
             }
 
-        }).onSameThread().check()    }
+        }).onSameThread().check()
+    }
 
     private fun showRationalCaseDialogue() {
         android.app.AlertDialog.Builder(requireContext())
-            .setMessage("it seems like you have turned off permission required for this feature." +
-                    "it acn be enabled under application settings")
-            .setPositiveButton("Go to settings"){_,_ ->
+            .setMessage(
+                "it seems like you have turned off permission required for this feature." +
+                        "it acn be enabled under application settings"
+            )
+            .setPositiveButton("Go to settings") { _, _ ->
                 try {
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                    val uri = Uri.fromParts("package",activity?.packageName,null)
+                    val uri = Uri.fromParts("package", activity?.packageName, null)
                     intent.data = uri
                     startActivity(intent)
-                }catch (e: ActivityNotFoundException){
+                } catch (e: ActivityNotFoundException) {
                     e.printStackTrace()
                 }
 
             }
-            .setNegativeButton("Back"){dialog,_ ->
+            .setNegativeButton("Back") { dialog, _ ->
                 dialog.dismiss()
             }.show()
     }
 
 
-    private fun showLogOutAlert(){
+    private fun showLogOutAlert() {
         val dialogView = layoutInflater.inflate(R.layout.custom_profile_dialog, null)
         val customDialog = activity?.let {
             AlertDialog.Builder(it)
@@ -196,7 +203,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 .show()
         }
 
-        val btnProfileLogOutDialog = dialogView.findViewById<Button>(R.id.fragment_profile_log_out_btn)
+        val btnProfileLogOutDialog =
+            dialogView.findViewById<Button>(R.id.fragment_profile_log_out_btn)
         btnProfileLogOutDialog.setOnClickListener {
             customDialog?.dismiss()
 
@@ -205,7 +213,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         }
 
-        val btnProfileCancelDialog = dialogView.findViewById<Button>(R.id.fragment_profile_cancel_btn)
+        val btnProfileCancelDialog =
+            dialogView.findViewById<Button>(R.id.fragment_profile_cancel_btn)
         btnProfileCancelDialog.setOnClickListener {
             customDialog?.dismiss()
         }
@@ -223,17 +232,18 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onDestroyView()
         binding = null
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_PERMISSION_CODE){
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(intent, CAMERA_REQUEST_CODE)
-            }else{
+            } else {
                 binding?.profileFragmentParent?.snackbar("Permission Denied")
 
             }
@@ -242,19 +252,22 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK){
-            if (requestCode == CAMERA_REQUEST_CODE){
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE) {
                 val thumbNail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 binding?.fragmentProfileIv?.setImageBitmap(thumbNail)
                 Log.d("imageUri", "onActivityResult: $thumbNail")
                 saveImageToInternalStorage(thumbNail)
 
-            }else if (requestCode == GALLERY_REQUEST_CODE){
-                if(data != null){
-                    val imageUri = data.data
+            } else if (requestCode == GALLERY_REQUEST_CODE) {
+                if (data != null) {
+                    imageUri = data.data!!
                     Log.d("imageUri", "onActivityResult: $imageUri")
-                    try{
-                        val imageBitmap = MediaStore.Images.Media.getBitmap(this.activity?.contentResolver ,imageUri)
+                    try {
+                        val imageBitmap = MediaStore.Images.Media.getBitmap(
+                            this.activity?.contentResolver,
+                            imageUri
+                        )
                         Log.d("imageUri", "onActivityResult: $imageBitmap")
 
                         saveImageToInternalStorage(imageBitmap)
@@ -262,7 +275,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                             .load(imageUri)
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(binding?.fragmentProfileIv!!)
-                    }catch (e: IOException){
+                    } catch (e: IOException) {
                         e.printStackTrace()
                         binding?.profileFragmentParent?.snackbar("image could not be loaded")
                     }
@@ -273,16 +286,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
 
-    private fun saveImageToInternalStorage(bitmap: Bitmap):Uri{
+    private fun saveImageToInternalStorage(bitmap: Bitmap): Uri {
         val wrapper = ContextWrapper(application)
         var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
-        file = File(file,"${UUID.randomUUID()}.jpg")
+        file = File(file, "${UUID.randomUUID()}.jpg")
         try {
             val stream: OutputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             stream.flush()
             stream.close()
-        }catch (e:IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
         val userToken = activity?.let { it1 ->
@@ -290,10 +303,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 //        val filx = File(requireActivity().cacheDir,requireActivity().contentResolver.getFileName(Uri.parse(file.absolutePath)))
 //        val body= filx.asRequestBody("image/jpg".toMediaTypeOrNull())
-        roomViewModel.uploadImageToAPI("Bearer $userToken","${Uri.parse(file.absolutePath)}")
+        roomViewModel.uploadImageToAPI("Bearer $userToken", "${Uri.parse(file.absolutePath)}")
         Log.d("imageUri", "saveImageToInternalStorage: ${Uri.parse(file.absolutePath)} ")
         return Uri.parse(file.absolutePath)
     }
+//    @RequiresApi(Build.VERSION_CODES.KITKAT)
+//    private fun uploadImage() {
+//        if (imageUri == null) {
+//            binding?.profileFragmentParent?.snackbar("select an Image first")
+//            return
+//        }
+//
+//        val parcelFileDescriptor = context?.contentResolver?.openAssetFileDescriptor(imageUri!!, "r", null)?:  return
+//        val file = File(requireActivity().cacheDir, requireActivity().contentResolver.getFileName(selectedImage!!))
+//        body = UploadRequestBody(file, "image", this )
+//        val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
+//        val outputStream = FileOutputStream(file)
+//        inputStream.copyTo(outputStream )
+//        // binding.progressCircular.progress = 0
+//        AuthPreference.initPreference(requireActivity())
+//        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+////       val body = file.asRequestBody("image/jpg".toMediaTypeOrNull())
+//        observeNetwork(authToken, MultipartBody.Part.createFormData("image", file.name, body))
+//    }
 
 
 }
