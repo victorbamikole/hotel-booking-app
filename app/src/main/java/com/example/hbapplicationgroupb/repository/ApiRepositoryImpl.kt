@@ -10,11 +10,14 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
+import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
+import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
@@ -26,11 +29,15 @@ import com.example.hbapplicationgroupb.model.resetPassword.PostResetPasswordData
 import com.example.hbapplicationgroupb.model.resetPassword.ResetPasswordDataResponse
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealsAndHotel
 import com.example.hbapplicationgroupb.model.tophotelresponse.TopHotelData
+import com.example.hbapplicationgroupb.model.updateUserData.PostUpdateUserData
+import com.example.hbapplicationgroupb.model.updateUserData.UpdateUserDataResponse
 import com.example.hbapplicationgroupb.model.userData.UserDataResponse
+import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
 import retrofit2.Response
+import java.net.PasswordAuthentication
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor (
@@ -57,6 +64,15 @@ class ApiRepositoryImpl @Inject constructor (
     override suspend fun searchHotelLocation(location: String): Response<HotelSearchResponse> {
         return hotelServices.searchHotelLocation(location)
     }
+
+    override suspend fun updateUserDetails(updatedUserData: PostUpdateUserData, token: String): Response<UpdateUserDataResponse> {
+        return hotelServices.updateUserDetails(updatedUserData, token)
+    }
+
+    override suspend fun getUserProfile(token: String): Response<UserProfile> {
+        return hotelServices.getUserProfile(token)
+    }
+
 
     override suspend fun addReviews(addReview: AddReviewsPost, token: String): Response<AddReviewsResponse> {
         return hotelServices.addReviews(addReview, token)
@@ -157,12 +173,15 @@ class ApiRepositoryImpl @Inject constructor (
 
     override fun getAllTopHotels(): LiveData<List<TopHotelData>> = db.getAllTopHotelsDao().getAllTopHotels()
 
-    override suspend fun bookingHistory(userId: String): Response<CustomerBookingDataItem> {
-        return hotelServices.bookingHistory(userId)
+    //Booking history and also pass user token dynamically per user
+    override suspend fun bookingHistory(token: String): Response<BookingHistoryDataClass> {
+        return hotelServices.bookingHistory(token)
     }
 
     override suspend fun getHotelRatings(id: String): Response<HotelRatingResponse> {
         return hotelServices.getHotelRating(id)
     }
-
+    override suspend fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType):Response<HotelBookingResponse>{
+        return hotelServices.bookAnHotel(token,roomToBook)
+    }
 }

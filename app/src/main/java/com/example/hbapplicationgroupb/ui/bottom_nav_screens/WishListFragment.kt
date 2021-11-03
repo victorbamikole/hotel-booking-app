@@ -60,9 +60,9 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
             }
 
             override fun bookNow(position: Int, item: PageItem) {
-                val name = item.hotelName
+                val name = item.hotelId
                 val action =WishListFragmentDirections
-                    .actionWishListFragment2ToBookingDetailsScreenFragment2(name)
+                    .actionWishListFragment2ToHotelDescriptionFragment(name)
                 findNavController().navigate(action)
             }
 

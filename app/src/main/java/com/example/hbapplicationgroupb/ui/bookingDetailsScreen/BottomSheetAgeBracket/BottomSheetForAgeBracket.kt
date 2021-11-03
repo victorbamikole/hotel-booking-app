@@ -1,23 +1,14 @@
 package com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
-import com.example.hbapplicationgroupb.validation.convertArrayToString
-import com.example.hbapplicationgroupb.validation.removerWhereArrayContain
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +39,8 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
     lateinit var addInfantButton : View
     lateinit var subtractInfant : View
 
+    var count = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +53,7 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         cancelText = view.findViewById(R.id.fragment_bookingDetails_CancelText_textView)
         doneText = view.findViewById(R.id.fragment_booking_details_doneText_textView)
@@ -270,7 +264,7 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
 
 
         doneText.setOnClickListener {
-            listener.OnclickOfDoneTextView(personsBooked.joinToString(","))
+            listener.OnclickOfDoneTextView(personsBooked.joinToString(","),count)
                 dismiss()
         }
 
@@ -301,6 +295,12 @@ class BottomSheetForAgeBracket(private val listener: AgeBracketListenerInterface
     private fun observeInfantCount() {
         viewModel.numInfant.observe(viewLifecycleOwner,{
             infantCount.text = it.toString()
+        })
+    }
+
+    private fun observeTotalCount() {
+        viewModel.totalNumberOfPeople.observe(viewLifecycleOwner,{
+            count = it
         })
     }
 }

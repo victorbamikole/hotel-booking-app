@@ -29,7 +29,8 @@
             android:layout_height="34dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/custom_button"
-            android:text="@string/book_now"
+            android:text="Preview"
+            android:textAllCaps="false"
             android:textColor="@color/custom_orange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginBottom="32dp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
@@ -98,25 +100,11 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="8dp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/rating" />
-
-
-        <!--        <ImageView-->
-<!--            android:id="@+id/topDealRecyclerViewlike"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="20dp"-->
-<!--            android:layout_marginStart="28dp"-->
-<!--            android:layout_marginBottom="8dp"-->
-<!--            android:src="@drawable/ic_baseline_thumb_up_24"-->
-<!--            android:text="@string/_96"-->
-<!--            android:textColor="@color/grey"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealPercent" />-->
-
 
         <TextView
             android:id="@+id/topDealRecyclerViewtopDealPercent"
@@ -126,33 +114,12 @@
             android:layout_marginBottom="8dp"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
             app:layout_constraintStart_toEndOf="@+id/topDealRecyclerViewtopDealRating"
             tools:text="@string/_96" />
 
-        <TextView
-            android:id="@+id/topDealRecyclerViewPeriod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/topDealsRecyclerViewImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/per_night" />
 
-        <TextView
-            android:id="@+id/topDealRecyclerViewPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/topDealRecyclerViewPeriod"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/_499" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
