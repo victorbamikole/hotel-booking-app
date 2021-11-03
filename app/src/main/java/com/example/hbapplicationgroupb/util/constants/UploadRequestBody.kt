@@ -19,7 +19,7 @@ class UploadRequestBody(
         fun onProgressUpdate(percentage:Int)
     }
 
-    override fun contentType() = "$contentType/jpg".toMediaTypeOrNull()
+    override fun contentType() = "$contentType/*".toMediaTypeOrNull()
     override fun contentLength() = file.length()
     override fun writeTo(sink: BufferedSink) {
         val length = file.length()

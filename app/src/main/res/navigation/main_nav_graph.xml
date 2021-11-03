@@ -373,7 +373,7 @@
         tools:layout="@layout/fragment_confirm_email">
         <deepLink
             android:id="@+id/deepLink2"
-            app:uri="http://www.example.com/confirm-email/{emailConfirmationToken}/{emailConfirmation}" />
+            app:uri="http://www.example.com/ConfirmEmail/{emailConfirmationToken}/{emailConfirmation}" />
         <action
             android:id="@+id/action_confirmEmail_to_loginFragment"
             app:destination="@id/loginFragment" />
