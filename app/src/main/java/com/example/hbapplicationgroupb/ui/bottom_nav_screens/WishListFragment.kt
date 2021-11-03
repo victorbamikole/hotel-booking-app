@@ -106,6 +106,13 @@ class WishListFragment : Fragment(R.layout.fragment_wish_list) {
                 instanceOfWishListAdapter.submitList(it.data.pageItems)
                 instanceOfWishListAdapter.notifyDataSetChanged()
                 binding.wishListRecyclerViewId.adapter = instanceOfWishListAdapter
+                if (instanceOfWishListAdapter.itemCount <= 0){
+                    binding.noHotelAvailable.visibility = View.VISIBLE
+                    binding.noHotelAvailableText.visibility = View.VISIBLE
+                }else{
+                    binding.noHotelAvailable.visibility = View.GONE
+                    binding.noHotelAvailableText.visibility = View.GONE
+                }
             }
         })
     }
