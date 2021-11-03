@@ -57,7 +57,7 @@
             android:id="@+id/fragment_profile_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/emma"
+            android:background="@drawable/images"
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>
@@ -66,8 +66,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:cardCornerRadius="50dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="3dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView">
 
@@ -82,28 +84,29 @@
 
     <TextView
         android:id="@+id/fragment_profile_name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/profile_marginLeft_text"
         android:layout_marginTop="20dp"
         android:text="Kiran Carmen"
         android:textColor="@color/profile_text_dark"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@id/fragment_PaymentOptions_toolbar"
-      />
+        app:layout_constraintStart_toStartOf="@+id/fragment_profile_email_tv"
+        app:layout_constraintTop_toBottomOf="@id/fragment_PaymentOptions_toolbar" />
+
     <TextView
         android:id="@+id/fragment_profile_email_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/profile_marginLeft_text"
         android:layout_marginTop="10dp"
-        android:text="kcaremen@gmail.com"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="40dp"
+        android:text="okosgodday0021@gmail.com"
         android:textColor="@color/custom_dark_ash"
-        android:textSize="@dimen/upload_profile_small_text_size"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_name_tv"/>
+        app:layout_constraintTop_toBottomOf="@+id/fragment_profile_name_tv" />
 
     <TextView
         android:id="@+id/fragment_profile_edit_profile_tv"

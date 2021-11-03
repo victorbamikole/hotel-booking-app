@@ -11,13 +11,13 @@ import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.api.HotelServices
 import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListDataClass
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
 import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
@@ -36,8 +36,8 @@ import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
 import com.example.hbapplicationgroupb.util.resource.networkBoundResource
 import kotlinx.coroutines.delay
+import okhttp3.MultipartBody
 import retrofit2.Response
-import java.net.PasswordAuthentication
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor (
@@ -128,7 +128,7 @@ class ApiRepositoryImpl @Inject constructor (
         return hotelServices.deleteCustomerWishFromWishList(token,hotelId)
     }
 
-    override suspend fun uploadImageToAPI(token: String, uri: String):Response<String> {
+    override suspend fun uploadImageToAPI(token: String, uri: MultipartBody.Part):Response<String> {
         return hotelServices.uploadImageToAPI(token,uri)
     }
 
@@ -183,5 +183,13 @@ class ApiRepositoryImpl @Inject constructor (
     }
     override suspend fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType):Response<HotelBookingResponse>{
         return hotelServices.bookAnHotel(token,roomToBook)
+    }
+
+    override suspend fun availableRooms(
+        token: String,
+        hotelId: String,
+        roomTypeId: String
+    ): Response<RoomsAvailable> {
+        return hotelServices.availableRooms(token,hotelId,roomTypeId)
     }
 }

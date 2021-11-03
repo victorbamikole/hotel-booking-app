@@ -5,6 +5,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
@@ -13,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -24,7 +26,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentProfileBinding
-import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.model.userData.Data
 import com.example.hbapplicationgroupb.util.constants.*
@@ -36,10 +37,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MultipartBody
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
+import java.io.*
 import java.util.*
 
 @AndroidEntryPoint
@@ -62,6 +60,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 binding?.fragmentProfileNameTv?.text =  "${userProfile.firstName} ${userProfile.lastName}"
                 /** once the the implementation for uploading user image to API is done, uncomment this code*/
                 // Glide.with(requireActivity()).load(userProfile.avatar).into(binding!!.fragmentProfileIv)
+                Glide.with(requireActivity())
+                    .load(userProfile.avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding?.fragmentProfileIv!!)
             }
         })
 
@@ -252,6 +254,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }else if (requestCode == GALLERY_REQUEST_CODE){
                 if(data != null){
                     val imageUri = data.data
+                    uploadImage(imageUri)
                     Log.d("imageUri", "onActivityResult: $imageUri")
                     try{
                         val imageBitmap = MediaStore.Images.Media.getBitmap(this.activity?.contentResolver ,imageUri)
@@ -285,14 +288,34 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }catch (e:IOException){
             e.printStackTrace()
         }
+//        val userToken = activity?.let { it1 ->
+//            UserPreferences(it1).getUserToken()
+//        }
+//        val filx = File(requireActivity().cacheDir,requireActivity().contentResolver.getFileName(Uri.parse(file.absolutePath)))
+//        val body= filx.asRequestBody("image/jpg".toMediaTypeOrNull())
+//        roomViewModel.uploadImageToAPI("Bearer $userToken","${Uri.parse(file.absolutePath)}")
+        Log.d("imageUri", "saveImageToInternalStorage: ${Uri.parse(file.absolutePath)} ")
+        return Uri.parse(file.absolutePath)
+    }
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    private fun uploadImage(selectedImage:Uri?) {
+        if (selectedImage == null) {
+            binding?.profileFragmentParent?.snackbar("select an Image first")
+            return
+        }
+
+        val parcelFileDescriptor = context?.contentResolver?.openFileDescriptor(selectedImage!!, "r", null)?:  return
+        val file = File(requireActivity().cacheDir, requireActivity().contentResolver.getFileName(selectedImage!!))
+        val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
+        val outputStream = FileOutputStream(file)
+        inputStream.copyTo(outputStream )
+        val body = UploadRequestBody(file, "image", this )
+
+
         val userToken = activity?.let { it1 ->
             UserPreferences(it1).getUserToken()
         }
-//        val filx = File(requireActivity().cacheDir,requireActivity().contentResolver.getFileName(Uri.parse(file.absolutePath)))
-//        val body= filx.asRequestBody("image/jpg".toMediaTypeOrNull())
-        roomViewModel.uploadImageToAPI("Bearer $userToken","${Uri.parse(file.absolutePath)}")
-        Log.d("imageUri", "saveImageToInternalStorage: ${Uri.parse(file.absolutePath)} ")
-        return Uri.parse(file.absolutePath)
+        roomViewModel.uploadImageToAPI("Bearer $userToken",MultipartBody.Part.createFormData("image",file.name,body))
     }
 
 

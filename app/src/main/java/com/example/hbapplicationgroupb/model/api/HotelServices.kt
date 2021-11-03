@@ -7,7 +7,6 @@ import com.example.hbapplicationgroupb.model.addReviews.AddReviewsResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelReview
 import com.example.hbapplicationgroupb.model.allhotel.AllHotel
 import com.example.hbapplicationgroupb.model.bookinghistory.BookingHistoryDataClass
-import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataItem
 import com.example.hbapplicationgroupb.model.customerBookingData.CustomerBookingDataResponse
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddress
 import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddressResponse
@@ -15,6 +14,7 @@ import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDa
 import com.example.hbapplicationgroupb.model.hotelAmenities.HotelAmenitiesResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -32,6 +32,7 @@ import com.example.hbapplicationgroupb.model.userData.UserDataResponseItem
 import com.example.hbapplicationgroupb.model.userData.UserProfile
 import com.example.hbapplicationgroupb.model.userHotelsData.UserHotelDataResponse
 import com.example.hbapplicationgroupb.model.wishlistdataclass.WishListResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -122,8 +123,9 @@ interface HotelServices {
     @DELETE("/api/Customer/{hotelId}/remove-wishlist")
     suspend fun deleteCustomerWishFromWishList(@Header("Authorization")token: String, @Path("hotelId") hotelId:String):Response<String>
 
+    @Multipart
     @PATCH("/api/Customer/update-image")
-    suspend fun uploadImageToAPI(@Header("Authorization") token:String, @Body uri: String):Response<String>
+    suspend fun uploadImageToAPI(@Header("Authorization") token:String, @Part uri: MultipartBody.Part):Response<String>
 
     @GET("/api/Customer/wishlist")
     suspend fun getAllWishListFromApi(@Header("Authorization")token: String):Response<WishListResponse>
@@ -136,4 +138,11 @@ interface HotelServices {
     suspend fun bookAnHotel(@Header("Authorization")token: String,
                             @Body roomToBook:HotelBookingDataWithPaymentType
     ):Response<HotelBookingResponse>
+
+
+    @GET("/api/Hotel/{hotelId}/room/{roomTypeId}")
+    suspend fun availableRooms(@Header("Authorization")token: String,
+                            @Path("hotelId") hotelId: String,
+                               @Path("roomTypeId") roomTypeId:String
+    ):Response<RoomsAvailable>
 }
