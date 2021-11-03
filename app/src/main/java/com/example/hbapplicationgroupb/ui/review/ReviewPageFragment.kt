@@ -6,13 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentReviewPageBinding
+import com.example.hbapplicationgroupb.model.addRatings.AddRatingsPost
+import com.example.hbapplicationgroupb.model.addReviews.AddReviewsPost
 import com.example.hbapplicationgroupb.ui.review.adapter.ReviewPageFragmentRVAdapter
 import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,9 +31,13 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
     private val roomViewModel : RoomViewModel by viewModels()
     var userRatings = 0
 
+    private  var token: String? = null
+    private lateinit  var _hotelId: String
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val hotelId = safeArgs.hotelId
+        _hotelId = hotelId
         val hotelRating = safeArgs.rating
 
         roomViewModel.getHotelReview(hotelId)
@@ -48,12 +56,6 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
 
         setBarRatingAndProgressBar()
 
-        binding.fragmentReviewPageTvAddNewReview.setOnClickListener {
-            val action = ReviewPageFragmentDirections
-                .actionReviewPageFragmentToAddReviewPageFragment(hotelId,hotelRating)
-            findNavController()
-                .navigate(action)
-        }
         binding.ratingBackArrow.setOnClickListener {
             val action = ReviewPageFragmentDirections
                 .actionReviewPageFragmentToHotelDescriptionFragment(hotelId)
@@ -71,6 +73,7 @@ class ReviewPageFragment : Fragment(R.layout.fragment_review_page) {
                 .actionReviewPageFragmentToAddReviewPageFragment(hotelId,hotelRating)
             findNavController().navigate(action)
         }
+
 
         roomViewModel.hotelReview.observe(viewLifecycleOwner,  { it
             if (it.data == null){

@@ -88,6 +88,7 @@ class AddReviewPageFragment : Fragment(R.layout.fragment_add_review_page) {
             findNavController().navigate(action)
 
         }
+        binding.fragmentReviewPageStarViewRatingBar1.rating = userRatings.toFloat()
         //read rating when user click on star and display text
         binding.fragmentReviewPageStarViewRatingBar1.setOnRatingBarChangeListener {  ratingBar, fl, b ->
 
