@@ -15,6 +15,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -49,6 +50,8 @@ class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
 
+    private var _allRoomsAvailable: MutableLiveData<RoomsAvailable> = MutableLiveData()
+    val allRoomsAvailable:LiveData<RoomsAvailable> = _allRoomsAvailable
     private var _getAllWishListFromAoi: MutableLiveData<WishListResponse> = MutableLiveData()
     val getAllWishListFromApi:LiveData<WishListResponse> = _getAllWishListFromAoi
 
@@ -640,6 +643,24 @@ class RoomViewModel @Inject constructor(
                         "an error occur please try again later"))
                     }
                 }
+            }
+        }
+    }
+
+    fun getListOfRooms(token: String,
+                       hotelId: String,
+                       roomTypeId: String){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.availableRooms(token,hotelId,roomTypeId)
+                if (response.isSuccessful){
+                    _allRoomsAvailable.postValue(response.body())
+                }else{
+                    _allRoomsAvailable.postValue(null)
+                }
+
+            }catch (e:Exception){
+                e.printStackTrace()
             }
         }
     }

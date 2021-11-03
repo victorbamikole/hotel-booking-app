@@ -16,6 +16,7 @@ import com.example.hbapplicationgroupb.model.emailconfirmation.ConfirmEmailAddre
 import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDataResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
+import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -41,6 +42,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiRepositoryInterface {
 
@@ -107,5 +109,10 @@ interface ApiRepositoryInterface {
 
 
     suspend fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType):Response<HotelBookingResponse>
+
+    suspend fun availableRooms(token: String,
+                               hotelId: String,
+                              roomTypeId:String
+    ):Response<RoomsAvailable>
 
 }

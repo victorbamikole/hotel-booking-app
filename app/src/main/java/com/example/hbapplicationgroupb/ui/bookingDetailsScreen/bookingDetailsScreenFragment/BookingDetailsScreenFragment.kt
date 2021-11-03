@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
@@ -11,13 +12,17 @@ import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupb.R
+import com.example.hbapplicationgroupb.dataBase.db.UserPreferences
 import com.example.hbapplicationgroupb.databinding.FragmentBookingDetailsScreenBinding
+import com.example.hbapplicationgroupb.model.hotelBooking.Data
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingData
+import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.AgeBracketListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BootomSheetInterface.RoomTypeListenerInterface
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetAgeBracket.BottomSheetForAgeBracket
 import com.example.hbapplicationgroupb.ui.bookingDetailsScreen.BottomSheetForRooms.BottomSheetForRooms
 import com.example.hbapplicationgroupb.validation.BookingDetailsValidation
+import com.example.hbapplicationgroupb.viewModel.RoomViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -27,9 +32,13 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
     private lateinit var binding: FragmentBookingDetailsScreenBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
     private val safeArgs : BookingDetailsScreenFragmentArgs by navArgs()
+    private val roomViewModel : RoomViewModel by viewModels()
     private lateinit var bookingDetail:HotelBookingData
     private lateinit var hotelRoomId:String
     private lateinit var hotelRoomPrice:String
+    private lateinit var hotelId:String
+    private lateinit var roomId:String
+    private  var arrayOfRooms:MutableList<Data> = mutableListOf()
     private  var totalNoOfPeople:Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +47,26 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
         val roomType = safeArgs.roomType
         hotelRoomId = safeArgs.roomId
         hotelRoomPrice = safeArgs.roomPrice
+        hotelId = safeArgs.hotelId
+
         binding.bookingDetailsScreenRoomType.setText("Room Type - $roomType")
+        val token = activity?.let { it1 ->
+            UserPreferences(it1).getUserToken()
+        }
+        roomViewModel.getListOfRooms("Bearer $token",hotelId,hotelRoomId)
+
+        roomViewModel.allRoomsAvailable.observe(viewLifecycleOwner,{
+            if(it != null){
+
+
+                for(i in it.data){
+                    if (!i.isBooked){
+                        arrayOfRooms.add(i)
+                    }
+                }
+            }
+
+        })
 
         lateinit var datePicker : PrimeDatePicker
         /** Method to pop bottom Sheet for Calender Start-date EditTexView */
@@ -143,8 +171,15 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
                 return@setOnClickListener
             }
 
+            if (arrayOfRooms.size > 0){
+                val arraySize = arrayOfRooms.size
+                val rand = (0 until arraySize).random()
+                roomId = arrayOfRooms[rand].id
+            }
+
+
             bookingDetail = HotelBookingData(
-                roomId = hotelRoomId,
+                roomId = roomId,
                 checkIn = checkIn,
                 checkOut = checkout,
                 noOfPeople = totalNoOfPeople,
