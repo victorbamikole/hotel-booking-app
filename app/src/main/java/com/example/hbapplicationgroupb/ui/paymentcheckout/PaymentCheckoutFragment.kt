@@ -37,6 +37,8 @@ class PaymentCheckoutFragment : Fragment(R.layout.fragment_payment_checkout) {
             UserPreferences(it).getUserToken()
         }
         binding?.paymentByPayStackLayout?.setOnClickListener {
+            binding?.viewCover?.visibility = View.VISIBLE
+            binding?.registerProgressBar?.visibility = View.VISIBLE
 
             paymentDetail = HotelBookingDataWithPaymentType(
                 roomId = bookingDetails.roomId,
