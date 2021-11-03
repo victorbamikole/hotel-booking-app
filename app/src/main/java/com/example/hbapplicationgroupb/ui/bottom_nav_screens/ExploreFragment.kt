@@ -20,7 +20,6 @@ import com.example.hbapplicationgroupb.R
 import com.example.hbapplicationgroupb.databinding.FragmentExploreBinding
 import com.example.hbapplicationgroupb.di.application.HotelApplication.Companion.application
 import com.example.hbapplicationgroupb.model.topDealAndHotel.TopDealAndHotelData
-import com.example.hbapplicationgroupb.util.HotelBookingWorkManagerClass
 import com.example.hbapplicationgroupb.util.resource.ConnectivityLiveData
 import com.example.hbapplicationgroupb.util.resource.observeNetworkConnection
 import com.example.hbapplicationgroupb.viewModel.UIViewModel
