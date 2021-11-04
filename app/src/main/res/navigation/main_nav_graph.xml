@@ -219,6 +219,8 @@
             app:destination="@id/exploreFragment2"
             app:popUpTo="@id/exploreFragment2"
             app:popUpToInclusive="true" />
+        <argument android:name="url"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/helpAndSupportFragment"
@@ -340,9 +342,6 @@
         android:label="fragment_payment_checkout"
         tools:layout="@layout/fragment_payment_checkout" >
         <action
-            android:id="@+id/action_paymentCheckoutFragment_to_bookingConfirmationFragment"
-            app:destination="@id/bookingConfirmationFragment" />
-        <action
             android:id="@+id/action_paymentCheckoutFragment_to_bookingDetailsScreenFragment2"
             app:destination="@id/bookingDetailsScreenFragment2"
             app:popUpTo="@id/bookingDetailsScreenFragment2"
@@ -350,6 +349,9 @@
         <argument
             android:name="bookingDetailObject"
             app:argType="com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingData" />
+        <action
+            android:id="@+id/action_paymentCheckoutFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/allHotelsFragment"
@@ -400,5 +402,17 @@
         <action
             android:id="@+id/action_editUserProfile_to_profileFragment2"
             app:destination="@id/profileFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.hbapplicationgroupb.ui.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" >
+        <action
+            android:id="@+id/action_webViewFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -15,6 +15,8 @@ import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDa
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
+import com.example.hbapplicationgroupb.model.hotelBooking.verifyBooking.VerifyBookingData
+import com.example.hbapplicationgroupb.model.hotelBooking.verifyBooking.VerifyBookingDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionData
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRating
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -48,7 +50,7 @@ import javax.inject.Inject
 class RoomViewModel @Inject constructor(
     private val apiRepository : ApiRepositoryInterface
 ) : ViewModel() {
-
+    var listener:MutableLiveData<String> = MutableLiveData()
     private var _allRoomsAvailable: MutableLiveData<RoomsAvailable> = MutableLiveData()
     val allRoomsAvailable:LiveData<RoomsAvailable> = _allRoomsAvailable
     private var _getAllWishListFromAoi: MutableLiveData<WishListResponse> = MutableLiveData()
@@ -65,6 +67,11 @@ class RoomViewModel @Inject constructor(
 
     private var _uploadImage: MutableLiveData<String> = MutableLiveData()
     val uploadImage:LiveData<String> = _uploadImage
+
+
+    private var _verifyPayment: MutableLiveData<VerifyBookingDataResponse> = MutableLiveData()
+    val verifyPayment:LiveData<VerifyBookingDataResponse> = _verifyPayment
+
 
     /**Live data for Adult*/
     private var _numAdults : MutableLiveData<Int> = MutableLiveData(0)
@@ -614,7 +621,7 @@ class RoomViewModel @Inject constructor(
 
     fun bookAnHotel(token: String,roomToBook: HotelBookingDataWithPaymentType) {
         viewModelScope.launch {
-            _newUser.postValue(ApiCallNetworkResource.Loading())
+            _bookAnHotel.postValue(ApiCallNetworkResource.Loading())
             try {
                 delay(2000)
                 val response = apiRepository.bookAnHotel(token,roomToBook)
@@ -656,6 +663,25 @@ class RoomViewModel @Inject constructor(
                     _allRoomsAvailable.postValue(response.body())
                 }else{
                     _allRoomsAvailable.postValue(null)
+                }
+
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    fun verifyPaymentFunc(token: String,
+                      body: VerifyBookingData
+    ){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = apiRepository.verifyPayment(token,body)
+                if (response.isSuccessful){
+                    _verifyPayment.postValue(response.body())
+                }else{
+                    _verifyPayment.postValue(null)
                 }
 
             }catch (e:Exception){
