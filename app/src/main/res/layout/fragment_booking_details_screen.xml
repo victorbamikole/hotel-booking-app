@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.bookingDetailsScreen.bookingDetailsScreenFragment.BookingDetailsScreenFragment">
+<TextView
+    android:visibility="gone"
+    android:id="@+id/noRoomMessage"
+    android:text="all Rooms Have been booked for this RoomType ..."
+    android:textStyle="bold"
+    android:textColor="@color/custom_orange"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/fragment_bookingDetails_toolbar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
+    />
 
 
     <!--    profile toolbar-->

@@ -57,12 +57,19 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
 
         roomViewModel.allRoomsAvailable.observe(viewLifecycleOwner,{
             if(it != null){
-
-
                 for(i in it.data){
                     if (!i.isBooked){
                         arrayOfRooms.add(i)
                     }
+                }
+                if (arrayOfRooms.size > 0){
+                    val arraySize = arrayOfRooms.size
+                    val rand = (0 until arraySize).random()
+                    roomId = arrayOfRooms[rand].id
+                }else{
+                    binding.noRoomMessage.visibility = View.VISIBLE
+                    binding.fragmentBookingBookNowButton.isEnabled = false
+                    binding.bookingDetailsScreenTextViewRoomType.isClickable = false
                 }
             }
 
@@ -171,11 +178,7 @@ class BookingDetailsScreenFragment : Fragment(R.layout.fragment_booking_details_
                 return@setOnClickListener
             }
 
-            if (arrayOfRooms.size > 0){
-                val arraySize = arrayOfRooms.size
-                val rand = (0 until arraySize).random()
-                roomId = arrayOfRooms[rand].id
-            }
+
 
 
             bookingDetail = HotelBookingData(
