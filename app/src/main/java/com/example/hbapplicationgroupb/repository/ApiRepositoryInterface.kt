@@ -16,6 +16,8 @@ import com.example.hbapplicationgroupb.model.forgotPasswordData.ForgotPasswordDa
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingDataWithPaymentType
 import com.example.hbapplicationgroupb.model.hotelBooking.HotelBookingResponse
 import com.example.hbapplicationgroupb.model.hotelBooking.RoomsAvailable
+import com.example.hbapplicationgroupb.model.hotelBooking.verifyBooking.VerifyBookingData
+import com.example.hbapplicationgroupb.model.hotelBooking.verifyBooking.VerifyBookingDataResponse
 import com.example.hbapplicationgroupb.model.hotelDescriptionData.HotelDescriptionResponse
 import com.example.hbapplicationgroupb.model.hotelRating.hotelRating.HotelRatingResponse
 import com.example.hbapplicationgroupb.model.hotelSearchResponse.HotelSearchResponse
@@ -39,6 +41,8 @@ import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.Header
 
 interface ApiRepositoryInterface {
 
@@ -110,5 +114,7 @@ interface ApiRepositoryInterface {
                                hotelId: String,
                               roomTypeId:String
     ):Response<RoomsAvailable>
+
+    suspend fun verifyPayment(token: String, body: VerifyBookingData):Response<VerifyBookingDataResponse>
 
 }

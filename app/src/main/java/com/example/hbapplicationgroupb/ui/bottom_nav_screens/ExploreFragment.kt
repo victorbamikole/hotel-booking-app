@@ -33,7 +33,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
     private val roomViewModel: RoomViewModel by viewModels()
     val myAdapter = ExploreHomeAdapter()
     val myAdapter2 = ExploreHomeAdapter2(this)
-    private val UIViewModel: UIViewModel by viewModels()
     private lateinit var connectivityLiveData: ConnectivityLiveData
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,18 +43,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore), OnItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
-//        Log.d("doWork", "doWork: n")
-//
-//
-//        val uploadWorkRequest: WorkRequest =
-//            PeriodicWorkRequestBuilder<HotelBookingWorkManagerClass>(1,TimeUnit.MINUTES)
-//                .build()
-//
-//        WorkManager
-//            .getInstance(application)
-//            .enqueue(uploadWorkRequest)
-
-
 
         initViewModel()
         initViewModel2()

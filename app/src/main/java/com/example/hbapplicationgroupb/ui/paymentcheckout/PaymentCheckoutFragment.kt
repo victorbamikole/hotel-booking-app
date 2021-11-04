@@ -79,10 +79,12 @@ class PaymentCheckoutFragment : Fragment(R.layout.fragment_payment_checkout) {
     }
 
     private fun navigateToBrowser(data:String) {
-        val defaultBrowser =
-            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
-        defaultBrowser.data = Uri.parse(data)
-        startActivity(defaultBrowser)
+//        val defaultBrowser =
+//            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+//        defaultBrowser.data = Uri.parse(data)
+//        startActivity(defaultBrowser)
+        val action = PaymentCheckoutFragmentDirections.actionPaymentCheckoutFragmentToWebViewFragment(data)
+        findNavController().navigate(action)
     }
 
 }
